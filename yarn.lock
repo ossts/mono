@@ -1260,6 +1260,16 @@ cssstyle@^2.3.0:
   dependencies:
     cssom "~0.3.6"
 
+cz-git@^1.4.1:
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/cz-git/-/cz-git-1.4.1.tgz#c0f1daa3864afe2581c5dcdcb8e47987a6f49d11"
+  integrity sha512-EOtuitcnfxde8t3NNTKh2YxEJhLXGiVlKSVaZipK3+DVo135rEUifAfqxkslM66Nf6ZO7a+3JR+XAOLhMXUAjQ==
+
+czg@^1.4.1:
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/czg/-/czg-1.4.1.tgz#9e6ee5e1133d8ca97e182194650b2ba407143f9d"
+  integrity sha512-ZjK46yrHgRbypfKAzv8D/UIWiz3BgGfO0cSPAGpk4VO9FmJ3tqaLqelrNyiVjHqOyg1dOi8hoxBHdrdvwa1eaQ==
+
 data-urls@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/data-urls/-/data-urls-3.0.2.tgz#9cf24a477ae22bcef5cd5f6f0bfbc1d2d3be9143"
