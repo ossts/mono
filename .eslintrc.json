@@ -1,0 +1,96 @@
+{
+  "root": true,
+  "ignorePatterns": ["**/*"],
+  "plugins": ["@nrwl/nx"],
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "rules": {
+        "@nrwl/nx/enforce-module-boundaries": [
+          "error",
+          {
+            "enforceBuildableLibDependency": true,
+            "allow": [],
+            "depConstraints": [
+              {
+                "sourceTag": "scope:react",
+                "onlyDependOnLibsWithTags": [
+                  "scope:react",
+                  "scope:react,nextjs",
+                  "scope:ts"
+                ]
+              },
+              {
+                "sourceTag": "scope:nextjs",
+                "onlyDependOnLibsWithTags": [
+                  "scope:nextjs",
+                  "scope:react",
+                  "scope:react,nextjs",
+                  "scope:ts"
+                ]
+              },
+              {
+                "sourceTag": "scope:react,nextjs",
+                "onlyDependOnLibsWithTags": [
+                  "scope:react",
+                  "scope:nextjs",
+                  "scope:ts"
+                ]
+              },
+              {
+                "sourceTag": "scope:ts",
+                "onlyDependOnLibsWithTags": ["scope:ts"]
+              },
+              {
+                "sourceTag": "scope:cy",
+                "onlyDependOnLibsWithTags": ["scope:cy", "scope:ts"]
+              },
+              {
+                "sourceTag": "type:app",
+                "onlyDependOnLibsWithTags": ["type:module", "type:lib"]
+              },
+              {
+                "sourceTag": "type:e2e",
+                "onlyDependOnLibsWithTags": ["type:app", "type:lib"]
+              },
+              {
+                "sourceTag": "type:module",
+                "onlyDependOnLibsWithTags": ["type:module", "type:lib"]
+              },
+              {
+                "sourceTag": "type:publishable-lib",
+                "onlyDependOnLibsWithTags": ["type:lib"]
+              },
+              {
+                "sourceTag": "type:lib",
+                "onlyDependOnLibsWithTags": ["type:lib"]
+              },
+
+              {
+                "sourceTag": "project:shared",
+                "onlyDependOnLibsWithTags": ["project:shared"]
+              },
+              {
+                "sourceTag": "project:openapi-codegen",
+                "onlyDependOnLibsWithTags": [
+                  "project:openapi-codegen",
+                  "project:shared"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "files": ["*.ts", "*.tsx"],
+      "extends": ["plugin:@nrwl/nx/typescript"],
+      "rules": {}
+    },
+    {
+      "files": ["*.js", "*.jsx"],
+      "extends": ["plugin:@nrwl/nx/javascript"],
+      "rules": {}
+    }
+  ]
+}
