@@ -17,7 +17,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@ossts/openapi-codegen": ["libs/openapi-codegen/main/src/index.ts"]
+      "@ossts/openapi-codegen": ["libs/openapi-codegen/main/src/index.ts"],
+      "@ossts/openapi-codegen/core": ["libs/openapi-codegen/core/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

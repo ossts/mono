@@ -2,7 +2,6 @@
   "recommendations": [
     "nrwl.angular-console",
     "esbenp.prettier-vscode",
-    "mike-co.import-sorter",
     "dbaeumer.vscode-eslint"
   ]
 }

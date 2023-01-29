@@ -1,0 +1,14 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "openapi-codegen/core",
+      "program": "${workspaceFolder}/libs/openapi-codegen/core/src/lib/debug/index.ts",
+      "preLaunchTask": "tsc: build - libs/openapi-codegen/core/tsconfig.json",
+      "outFiles": ["${workspaceFolder}/dist/**/*.js"],
+      "skipFiles": ["<node_internals>/**", "**/node_modules/**"]
+    }
+  ]
+}
