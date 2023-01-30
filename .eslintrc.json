@@ -6,7 +6,7 @@
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
       "rules": {
-        "@typescript-eslint/consistent-type-imports": "error",
+        "@typescript-eslint/consistent-type-imports": "warn",
         "@nrwl/nx/enforce-module-boundaries": [
           "error",
           {

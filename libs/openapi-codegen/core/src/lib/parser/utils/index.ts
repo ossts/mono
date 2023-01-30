@@ -7,3 +7,4 @@ export * from './unique';
 export * from './isOperation';
 export * from './sortByRequired';
 export * from './discriminator';
+export * from './sort';

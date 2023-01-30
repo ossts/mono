@@ -1,4 +1,5 @@
 import { getModels, getServers, getServices } from './helpers';
+import { postProcess } from './post-process';
 import type { OpenAPIDocument, ParsedClient } from './types';
 
 export const parse = (openApi: OpenAPIDocument): ParsedClient => {
@@ -7,10 +8,10 @@ export const parse = (openApi: OpenAPIDocument): ParsedClient => {
   const models = getModels(openApi);
   const services = getServices(openApi);
 
-  return {
+  return postProcess({
     version,
     servers,
     models,
     services,
-  };
+  });
 };
