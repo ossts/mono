@@ -17,8 +17,18 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@ossts/openapi-codegen": ["libs/openapi-codegen/main/src/index.ts"],
-      "@ossts/openapi-codegen/core": ["libs/openapi-codegen/core/src/index.ts"]
+      "@ossts/codegen": ["libs/codegen/main/src/index.ts"],
+      "@ossts/codegen/common": ["libs/codegen/common/src/index.ts"],
+      "@ossts/codegen/core": ["libs/codegen/core/src/index.ts"],
+      "@ossts/codegen/parsers/graphql/v1": [
+        "libs/codegen/parsers/graphql/v1/src/index.ts"
+      ],
+      "@ossts/codegen/parsers/openapi/v3": [
+        "libs/codegen/parsers/openapi/v3/src/index.ts"
+      ],
+      "@ossts/shared/typescript/helper-types": [
+        "libs/shared/typescript/helper-types/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

@@ -72,9 +72,9 @@
                 "onlyDependOnLibsWithTags": ["project:shared"]
               },
               {
-                "sourceTag": "project:openapi-codegen",
+                "sourceTag": "project:codegen",
                 "onlyDependOnLibsWithTags": [
-                  "project:openapi-codegen",
+                  "project:codegen",
                   "project:shared"
                 ]
               }

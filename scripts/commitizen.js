@@ -1,6 +1,6 @@
 // prettier-ignore
 const scopes = [
-  { value: 'openapi-codegen', name: 'openapi-codegen: anything related to openapi-codegen' },
+  { value: 'codegen', name: 'codegen: anything related to codegen' },
 ];
 
 /** @type {import('cz-git').CommitizenGitOptions} */

@@ -4,9 +4,11 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "openapi-codegen/core",
-      "program": "${workspaceFolder}/libs/openapi-codegen/core/src/lib/debug/index.ts",
-      "preLaunchTask": "tsc: build - libs/openapi-codegen/core/tsconfig.json",
+      "name": "Debug codegen/core",
+      "program": "${workspaceFolder}/libs/codegen/core/src/lib/debug/index.ts",
+      // Problem with default preLaunchTask is that it doesn't resolve tsconfig paths
+      // "preLaunchTask": "tsc: build - libs/codegen/core/tsconfig.lib.json",
+      "preLaunchTask": "Build codegen/core",
       "outFiles": ["${workspaceFolder}/dist/**/*.js"],
       "skipFiles": ["<node_internals>/**", "**/node_modules/**"]
     }
