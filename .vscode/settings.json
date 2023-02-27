@@ -9,5 +9,6 @@
     "ossts",
     "trivago",
     "uxname"
-  ]
+  ],
+  "typescript.tsdk": "node_modules/typescript/lib"
 }

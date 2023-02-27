@@ -4,6 +4,8 @@
     {
       "type": "node",
       "request": "launch",
+      "runtimeVersion": "18.12.1",
+      "outputCapture": "std",
       "name": "Debug codegen/core",
       "program": "${workspaceFolder}/libs/codegen/core/src/lib/debug/index.ts",
       // Problem with default preLaunchTask is that it doesn't resolve tsconfig paths

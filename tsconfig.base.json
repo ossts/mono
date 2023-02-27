@@ -20,6 +20,15 @@
       "@ossts/codegen": ["libs/codegen/main/src/index.ts"],
       "@ossts/codegen/common": ["libs/codegen/common/src/index.ts"],
       "@ossts/codegen/core": ["libs/codegen/core/src/index.ts"],
+      "@ossts/codegen/generators-runtime": [
+        "libs/codegen/generators-runtime/src/index.ts"
+      ],
+      "@ossts/codegen/generators/common/endpoints": [
+        "libs/codegen/generators/common/endpoints/src/index.ts"
+      ],
+      "@ossts/codegen/generators/common/models": [
+        "libs/codegen/generators/common/models/src/index.ts"
+      ],
       "@ossts/codegen/parsers/graphql/v1": [
         "libs/codegen/parsers/graphql/v1/src/index.ts"
       ],
@@ -28,6 +37,9 @@
       ],
       "@ossts/shared/typescript/helper-types": [
         "libs/shared/typescript/helper-types/src/index.ts"
+      ],
+      "@ossts/shared/typescript/helpers": [
+        "libs/shared/typescript/helpers/src/index.ts"
       ]
     }
   },

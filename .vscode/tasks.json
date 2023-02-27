@@ -5,7 +5,7 @@
   "tasks": [
     {
       "type": "shell",
-      "command": "yarn tsc --build ${workspaceFolder}/libs/codegen/core/tsconfig.lib.json && yarn tsc-alias -p ${workspaceFolder}/libs/codegen/core/tsconfig.lib.json",
+      "command": "yarn tsc --build --force ${workspaceFolder}/libs/codegen/core/tsconfig.lib.json && yarn tsc-alias -p ${workspaceFolder}/libs/codegen/core/tsconfig.lib.json",
       "group": {
         "kind": "build"
       },

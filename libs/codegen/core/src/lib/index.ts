@@ -1,17 +1,23 @@
+import type { AbstractExternalGeneratorWithName } from '@ossts/codegen/common';
 import { getSchema, getSchemaParser } from '@ossts/codegen/common';
+import { runGenerators } from '@ossts/codegen/generators-runtime';
 
 import { parserVersionsPathMapping } from './helpers';
 import { validateConfig } from './helpers/validateConfig';
 import type { Config } from './types';
 
-export const generate = async (config: Config) => {
+export const generateWithCustom = async <
+  TGenerators extends AbstractExternalGeneratorWithName = AbstractExternalGeneratorWithName
+>(
+  config: Config<TGenerators>
+) => {
   validateConfig(config);
 
   const {
     input,
-    output = 'codegen',
     schemaType = 'openapi',
     parseOnly,
+    ...generatorConfig
   } = config;
 
   const schema = await getSchema(input, schemaType);
@@ -23,11 +29,18 @@ export const generate = async (config: Config) => {
     parserVersionsPathMapping
   );
 
-  const result = await parse(schema);
+  const parsedSchema = await parse(schema);
 
-  if (parseOnly) return result;
+  if (parseOnly) return parsedSchema;
 
-  // TODO: run generators
-  // TODO: output results
+  await runGenerators<TGenerators>({
+    ...generatorConfig,
+    parsedSchema,
+  });
+
   return;
 };
+
+type FakeExternalGenerator = { name: 'uxname'; uxname: '' };
+export const generate = (config: Config<FakeExternalGenerator>) =>
+  generateWithCustom(config);

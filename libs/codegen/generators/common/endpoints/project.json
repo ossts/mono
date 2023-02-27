@@ -1,0 +1,31 @@
+{
+  "name": "codegen-generators-common-endpoints",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/codegen/generators/common/endpoints/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/vite:build",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/codegen/generators/common/endpoints"
+      }
+    },
+    "test": {
+      "executor": "@nrwl/vite:test",
+      "outputs": ["coverage/libs/codegen/generators/common/endpoints"],
+      "options": {
+        "passWithNoTests": true,
+        "reportsDirectory": "../../../../../coverage/libs/codegen/generators/common/endpoints"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/codegen/generators/common/endpoints/**/*.ts"]
+      }
+    }
+  },
+  "tags": ["scope:ts", "type:lib", "project:codegen"]
+}
