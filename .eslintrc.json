@@ -66,7 +66,6 @@
                 "sourceTag": "type:lib",
                 "onlyDependOnLibsWithTags": ["type:lib"]
               },
-
               {
                 "sourceTag": "project:shared",
                 "onlyDependOnLibsWithTags": ["project:shared"]
@@ -91,6 +90,11 @@
     {
       "files": ["*.js", "*.jsx"],
       "extends": ["plugin:@nrwl/nx/javascript"],
+      "rules": {}
+    },
+    {
+      "files": "*.json",
+      "parser": "jsonc-eslint-parser",
       "rules": {}
     }
   ]

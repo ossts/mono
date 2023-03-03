@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "name": "tooling-plugin-codegen",
+  "version": "0.0.1",
+  "generators": {
+    "generator": {
+      "factory": "./src/generators/generator/generator",
+      "schema": "./src/generators/generator/schema.json",
+      "description": "This will scaffold a new generator"
+    }
+  }
+}

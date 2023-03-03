@@ -1,0 +1,27 @@
+import type { AbstractGeneratorWithName } from '@ossts/codegen/common';
+import { AbstractGenerator } from '@ossts/codegen/common';
+import { mergeObjectsWithSameShape } from '@ossts/shared/typescript/helpers';
+
+import type {
+  <%= className %>GeneratorConfig,
+  <%= className %>GeneratorSettings,
+} from './types';
+
+export const <%= propertyName %>GeneratorName = '<%= name %>' as const;
+
+export class <%= className %>Generator
+  extends AbstractGenerator
+  implements AbstractGeneratorWithName
+{
+  name = <%= propertyName %>GeneratorName;
+
+  constructor(config?: <%= className %>GeneratorConfig) {
+    super();
+
+    mergeObjectsWithSameShape(this, {}, config);
+  }
+
+  override settings?: <%= className %>GeneratorSettings;
+}
+
+export const <%= propertyName %>DefaultConfig = new <%= className %>Generator();

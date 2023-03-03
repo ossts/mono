@@ -35,6 +35,7 @@
       "@ossts/codegen/parsers/openapi/v3": [
         "libs/codegen/parsers/openapi/v3/src/index.ts"
       ],
+      "@ossts/plugin-codegen": ["libs/tooling/plugin-codegen/src/index.ts"],
       "@ossts/shared/typescript/helper-types": [
         "libs/shared/typescript/helper-types/src/index.ts"
       ],
