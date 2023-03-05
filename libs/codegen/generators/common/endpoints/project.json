@@ -25,6 +25,20 @@
       "options": {
         "lintFilePatterns": ["libs/codegen/generators/common/endpoints/**/*.ts"]
       }
+    },
+    "precompiled-templates-exist": {
+      "executor": "@ossts/plugin-codegen:precompiled-templates-exist",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "libs/codegen/generators/common/endpoints/src/lib/precompiled-templates/index.ts"
+      }
+    },
+    "precompile-templates": {
+      "executor": "@ossts/plugin-codegen:precompile-templates",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "libs/codegen/generators/common/endpoints/src/lib/precompiled-templates"
+      }
     }
   },
   "tags": ["scope:ts", "type:lib", "project:codegen"]
