@@ -1,0 +1,30 @@
+<%- generators.map(generator => `import {
+  ${generator.propertyName}DefaultConfig,
+  ${generator.propertyName}GeneratorName
+} from '@ossts/codegen/generators/${generator.name}';`).join('\n'); %>
+import type { DictionaryWithAny } from '@ossts/shared/typescript/helper-types';
+
+import type { BuiltInGenerators, GeneratorNameBuiltIn } from '../types';
+
+export * from './knownGlobalHelpers';
+
+export const generatorNames = [
+  <%- generators.map(generator => `${generator.propertyName}GeneratorName`).join(','); %>
+] as const;
+
+// TODO: Update to satisfies when TS updated to version >= 4.9 in NX
+export const generatorsDefaultConfigs: Record<
+  GeneratorNameBuiltIn,
+  BuiltInGenerators
+> = {
+  <%- generators.map(generator => `[${generator.propertyName}GeneratorName]: ${generator.propertyName}DefaultConfig`).join(','); %>
+};
+
+export const generatorImportPaths: Record<
+  string,
+  () => Promise<DictionaryWithAny>
+> = {
+  <%- generators.map(generator => `
+    '${generator.name}': () => import('@ossts/codegen/generators/${generator.name}')
+  `).join(','); %>
+};

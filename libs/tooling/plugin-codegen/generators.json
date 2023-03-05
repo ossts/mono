@@ -7,6 +7,11 @@
       "factory": "./src/generators/generator/generator",
       "schema": "./src/generators/generator/schema.json",
       "description": "This will scaffold a new generator"
+    },
+    "update-generated-content": {
+      "factory": "./src/generators/update-generated-content/generator",
+      "schema": "./src/generators/update-generated-content/schema.json",
+      "description": "Updates content inside __generated__ folders across codegen libraries"
     }
   }
 }

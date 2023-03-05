@@ -2,12 +2,14 @@
   "cSpell.words": [
     "apidevtools",
     "APIV",
+    "buildable",
     "codegen",
     "nextjs",
     "nrwl",
     "openapi",
     "ossts",
     "trivago",
+    "typeof",
     "uxname"
   ],
   "typescript.tsdk": "node_modules/typescript/lib",

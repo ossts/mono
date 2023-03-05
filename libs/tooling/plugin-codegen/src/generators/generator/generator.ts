@@ -1,38 +1,46 @@
-import * as path from 'path';
-
 import type { Tree } from '@nrwl/devkit';
 import {
   formatFiles,
   generateFiles,
   getWorkspaceLayout,
+  joinPathFragments,
   names,
   offsetFromRoot,
   readNxJson,
+  updateJson,
 } from '@nrwl/devkit';
 import { libraryGenerator as jsLibraryGenerator } from '@nrwl/js';
 
+import { updateGeneratedContent } from '../update-generated-content/generator';
 import type { GeneratorGeneratorSchema } from './schema';
 
-interface NormalizedSchema extends GeneratorGeneratorSchema {
+export interface NormalizedSchema extends GeneratorGeneratorSchema {
   projectName: string;
   projectRoot: string;
   projectDirectory: string;
 }
 
-export default async function (tree: Tree, options: GeneratorGeneratorSchema) {
-  const normalizedOptions = normalizeOptions(tree, options);
+export default async function (tree: Tree, schema: GeneratorGeneratorSchema) {
+  const options = normalizeOptions(tree, schema);
   const nxJson = readNxJson(tree);
 
   await jsLibraryGenerator(tree, {
-    name: normalizedOptions.projectDirectory,
+    name: options.projectDirectory,
     buildable: true,
     skipFormat: true,
     config: 'project',
     tags: ['scope:ts', 'type:lib', 'project:codegen'].join(','),
     ...nxJson?.generators?.['@nrwl/js']?.library,
   });
-  removeFiles(tree, normalizedOptions);
-  addFiles(tree, normalizedOptions);
+
+  updateProjectTargets(tree, options);
+  removeFiles(tree, options);
+  addFiles(tree, options);
+
+  updateGeneratedContent(tree, {
+    currentGeneratorOptions: options,
+  });
+
   await formatFiles(tree);
 }
 
@@ -58,7 +66,7 @@ function normalizeOptions(
 
   const name = names(options.name).fileName;
 
-  const projectDirectory = path.join(generatorsBasePath, name);
+  const projectDirectory = joinPathFragments(generatorsBasePath, name);
 
   const projectName = projectDirectory.replace(new RegExp('/', 'g'), '-');
   const projectRoot = `${getWorkspaceLayout(tree).libsDir}/${projectDirectory}`;
@@ -72,12 +80,20 @@ function normalizeOptions(
 }
 
 function removeFiles(tree: Tree, options: NormalizedSchema) {
-  tree.delete(path.join(options.projectRoot, 'src/index.ts'));
+  tree.delete(joinPathFragments(options.projectRoot, 'src/index.ts'));
   tree.delete(
-    path.join(options.projectRoot, 'src/lib', `${options.projectName}.ts`)
+    joinPathFragments(
+      options.projectRoot,
+      'src/lib',
+      `${options.projectName}.ts`
+    )
   );
   tree.delete(
-    path.join(options.projectRoot, 'src/lib', `${options.projectName}.spec.ts`)
+    joinPathFragments(
+      options.projectRoot,
+      'src/lib',
+      `${options.projectName}.spec.ts`
+    )
   );
 }
 
@@ -91,8 +107,35 @@ function addFiles(tree: Tree, options: NormalizedSchema) {
 
   generateFiles(
     tree,
-    path.join(__dirname, 'files'),
+    joinPathFragments(__dirname, 'files'),
     options.projectRoot,
     templateOptions
   );
+}
+
+function updateProjectTargets(tree: Tree, options: NormalizedSchema) {
+  const precompiledTemplatesPath = joinPathFragments(
+    options.projectRoot,
+    'src/lib/precompiled-templates'
+  );
+
+  updateJson(tree, `${options.projectRoot}/project.json`, (json) => {
+    json.targets['precompiled-templates-exist'] = {
+      executor: '@ossts/plugin-codegen:precompiled-templates-exist',
+      outputs: ['{options.outputPath}'],
+      options: {
+        outputPath: joinPathFragments(precompiledTemplatesPath, 'index.ts'),
+      },
+    };
+
+    json.targets['precompile-templates'] = {
+      executor: '@ossts/plugin-codegen:precompile-templates',
+      outputs: ['{options.outputPath}'],
+      options: {
+        outputPath: precompiledTemplatesPath,
+      },
+    };
+
+    return json;
+  });
 }

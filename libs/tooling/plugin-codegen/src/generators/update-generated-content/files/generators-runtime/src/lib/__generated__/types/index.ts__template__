@@ -1,0 +1,8 @@
+<%- generators.map(generator => `import type { ${generator.className}Generator } from '@ossts/codegen/generators/${generator.name}';`).join('\n'); %>
+
+import type { generatorNames } from '../data';
+
+export type BuiltInGenerators =
+  <%- generators.map(generator => `${generator.className}Generator`).join('|'); %>;
+
+export type GeneratorNameBuiltIn = (typeof generatorNames)[number];

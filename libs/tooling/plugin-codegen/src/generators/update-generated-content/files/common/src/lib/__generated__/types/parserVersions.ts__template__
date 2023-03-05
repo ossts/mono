@@ -1,0 +1,8 @@
+export type ParserVersionsMap<T> = {
+  <%- Object.entries(parsers).reduce((acc, [name, versions]) => {
+    const versionsStr = versions.map(version => `${version}: T`).join(',');
+
+    acc.push(`${name}: {${versionsStr}};`)
+    return acc;
+  }, []).join('') %>
+};
