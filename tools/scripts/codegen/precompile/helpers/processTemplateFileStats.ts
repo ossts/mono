@@ -9,24 +9,22 @@ export const processTemplateFileStats = (
   path: string,
   eventName?: 'add' | 'change' | 'unlink'
 ) => {
-  const [generatorName, requiredPath] = path.split('/src/lib/templates/');
+  const parsedPath = parse(path);
 
-  const parsedPath = parse(requiredPath);
-
-  let exportType = getTemplateType(requiredPath);
+  const exportType = getTemplateType(path);
 
   let name = '';
   if (exportType === 'entries') {
     name = parsedPath.name;
   } else {
-    const nameSplit = parsedPath.dir.split(pathSeparator).slice(1);
+    const nameSplit = parsedPath.dir.split(pathSeparator);
     nameSplit.push(parsedPath.name);
-    name = camelCase(nameSplit.join('__'));
+    name = camelCase(nameSplit.join('_'));
   }
 
   if (eventName === 'unlink') {
-    generatorsStatsMap[generatorName][exportType].delete(name);
+    generatorsStatsMap[exportType].delete(name);
   } else {
-    generatorsStatsMap[generatorName][exportType].add(name);
+    generatorsStatsMap[exportType].add(name);
   }
 };

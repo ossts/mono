@@ -5,48 +5,43 @@ import { camelCase } from 'lodash';
 
 import type { Dictionary } from '@ossts/shared/typescript/helper-types';
 
-import { exportsMap, fileExtension, generatorsProjectsPaths } from '../data';
+import {
+  exportsMap,
+  fileExtension,
+  generatorPrecompiledTemplatesPath,
+} from '../data';
 
 export const generateIndex = (path?: string) => {
-  Object.entries(exportsMap).forEach(([generatorName, generatorEntities]) => {
-    if (path) {
-      const [pathGeneratorName] = path.split('/src/lib/templates/');
-      if (generatorName !== pathGeneratorName) return;
-    }
+  let content = '';
 
-    const { precompiledTemplates } = generatorsProjectsPaths.get(generatorName);
+  const exportsMapEntries = Object.entries(exportsMap);
 
-    let content = '';
-
-    const imports: string[] = [];
-    Object.entries(generatorEntities).forEach(([key, exports]) => {
-      Object.entries(exports).forEach(([path, name]) => {
-        imports.push(`import { ${name} } from './${path}';`);
-      });
+  const imports: string[] = [];
+  exportsMapEntries.forEach(([key, exports]) => {
+    Object.entries(exports).forEach(([path, name]) => {
+      imports.push(`import { ${name} } from './${path}';`);
     });
-
-    content += imports.join('\n');
-    content += '\n\n';
-
-    const precompiledTemplatesSections = Object.entries(
-      generatorEntities
-    ).reduce<string[]>(
-      (acc, [key, exports]) =>
-        acc.concat(generatePrecompiledSection(key, exports)),
-      []
-    );
-
-    content += [
-      'export const precompiledTemplates = {',
-      ...precompiledTemplatesSections,
-      '}\n',
-    ].join('\n');
-
-    const indexFilePath = `${precompiledTemplates}/index.${fileExtension}`;
-
-    ensureFileSync(indexFilePath);
-    writeFileSync(indexFilePath, content);
   });
+
+  content += imports.join('\n');
+  content += '\n\n';
+
+  const precompiledTemplates = exportsMapEntries.reduce<string[]>(
+    (acc, [key, exports]) =>
+      acc.concat(generatePrecompiledSection(key, exports)),
+    []
+  );
+
+  content += [
+    'export const precompiledTemplates = {',
+    ...precompiledTemplates,
+    '}\n',
+  ].join('\n');
+
+  const indexFilePath = `${generatorPrecompiledTemplatesPath}/index.${fileExtension}`;
+
+  ensureFileSync(indexFilePath);
+  writeFileSync(indexFilePath, content);
 };
 
 const generatePrecompiledSection = (

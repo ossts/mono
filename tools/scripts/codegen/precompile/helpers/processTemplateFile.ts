@@ -9,35 +9,33 @@ import {
 import handlebars from 'handlebars';
 import { camelCase } from 'lodash';
 
-import { getTemplateType } from '.';
+import { getKnownHelpers, getTemplateType } from '.';
 import {
   exportsMap,
   fileExtension,
-  generatorsProjectsPaths,
-  generatorsStatsMap,
-  knownGlobals,
+  generatorPrecompiledTemplatesPath,
+  generatorTemplatesPath,
+  getGeneratorConfig,
   precompiledTemplateDisableLinters,
 } from '../data';
 
-export const processTemplateFile = (
+export const processTemplateFile = async (
   path: string,
   eventName?: 'add' | 'change' | 'unlink'
 ) => {
-  const [generatorName, requiredPath] = path.split('/src/lib/templates/');
-  const { templates, precompiledTemplates } =
-    generatorsProjectsPaths.get(generatorName);
+  const generatorConfig = await getGeneratorConfig();
 
-  const parsedPath = parse(requiredPath);
+  const parsedPath = parse(path);
   const parsedPathSplit = parsedPath.dir.split(pathSeparator);
 
-  let exportType = getTemplateType(requiredPath);
+  let exportType = getTemplateType(path);
 
   const targetPathRelative = `${parsedPath.dir ? `${parsedPath.dir}/` : ''}${
     parsedPath.name
   }`;
 
   const targetPath = resolve(
-    precompiledTemplates,
+    generatorPrecompiledTemplatesPath,
     `${targetPathRelative}.${fileExtension}`
   );
   const pathBasedNameUnderscored = parsedPathSplit.join('_');
@@ -47,19 +45,15 @@ export const processTemplateFile = (
 
   if (eventName === 'unlink') {
     removeSync(targetPath);
-    delete exportsMap[generatorName][exportType][targetPathRelative];
+    delete exportsMap[exportType][targetPathRelative];
   } else {
-    exportsMap[generatorName][exportType][targetPathRelative] = camelCasedName;
+    exportsMap[exportType][targetPathRelative] = camelCasedName;
 
-    const contents = readFileSync(`${templates}/${requiredPath}`, 'utf-8');
+    const contents = readFileSync(`${generatorTemplatesPath}/${path}`, 'utf-8');
 
-    // we need to combine global helpers with generator local helpers
-    const knownHelpers = {
-      ...knownGlobals.helpers[generatorName],
-    };
-    generatorsStatsMap[generatorName].helpers.forEach((helper) => {
-      knownHelpers[helper] = true;
-    });
+    const knownHelpers = await getKnownHelpers(
+      generatorConfig?.helpers.localHelpers
+    );
 
     const precompiledTemplate = handlebars.precompile(contents, {
       strict: true,

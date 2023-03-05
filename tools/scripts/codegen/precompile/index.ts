@@ -1,61 +1,57 @@
 import chokidar from 'chokidar';
 import rimraf from 'rimraf';
 
-import { generatorsPath, generatorsProjectsPaths, isWatchMode } from './data';
+import {
+  generatorPrecompiledTemplatesPath,
+  generatorTemplatesPath,
+  globals,
+  isWatchMode,
+} from './data';
 import {
   generateIndex,
   processTemplateFile,
   processTemplateFileStats,
 } from './helpers';
-import { generateKnownGlobalHelpers, generateStats } from './helpers';
 
-// TODO: add NX caching mechanism for this if possible
-
-for (const paths of generatorsProjectsPaths.values()) {
-  rimraf.sync(paths.precompiledTemplates);
-}
+rimraf.sync(generatorPrecompiledTemplatesPath);
 
 const filesBeforeReadyEvent = new Set<string>();
 
-let isReady = false;
-
 const watcher = chokidar.watch('**/*.hbs', {
-  cwd: generatorsPath,
+  cwd: generatorTemplatesPath,
 });
 
-watcher.on('ready', () => {
-  isReady = true;
-
+watcher.on('ready', async () => {
   filesBeforeReadyEvent.forEach((name) => processTemplateFileStats(name));
 
-  generateStats();
-  generateKnownGlobalHelpers();
+  // we need to run in sequence to take advantage of caching for globalHelpers
+  for await (const file of filesBeforeReadyEvent) {
+    await processTemplateFile(file);
+  }
 
-  filesBeforeReadyEvent.forEach((name) => processTemplateFile(name));
   filesBeforeReadyEvent.clear();
 
   generateIndex();
+
+  globals.watcherInitialized = true;
 
   if (!isWatchMode) {
     watcher.close();
   }
 });
 
-watcher.on('all', (eventName, path, stats) => {
+watcher.on('all', async (eventName, path) => {
   if (eventName !== 'add' && eventName !== 'change' && eventName !== 'unlink')
     return;
 
-  if (!isReady) {
+  if (!globals.watcherInitialized) {
     filesBeforeReadyEvent.add(path);
     return;
   }
 
   processTemplateFileStats(path, eventName);
 
-  generateStats();
-  generateKnownGlobalHelpers(path);
-
-  processTemplateFile(path, eventName);
+  await processTemplateFile(path, eventName);
 
   generateIndex();
 });

@@ -1,108 +1,80 @@
-import { resolve } from 'node:path';
+import { join, sep as pathSeparator, resolve } from 'node:path';
 
+import { camelCase } from 'lodash';
 import yargsParse from 'yargs-parser';
 
-import type { ProjectGraphProjectNode } from '@nrwl/devkit';
-import { readCachedProjectGraph, workspaceRoot } from '@nrwl/devkit';
+import type {
+  GeneratorHelpersExportType,
+  GeneratorTemplatesExportType,
+} from '@ossts/codegen/common';
+import type {
+  Dictionary,
+  DictionaryWithAny,
+} from '@ossts/shared/typescript/helper-types';
 
-import type { GeneratorExportType } from '@ossts/codegen/common';
-import type { Dictionary } from '@ossts/shared/typescript/helper-types';
-
-const fileExtension = 'ts';
-
-const { watch } = yargsParse(process.argv.slice(2));
+const {
+  watch,
+  fileExtension = 'js',
+  internalCall = false,
+  _: [generatorPathArg],
+} = yargsParse(process.argv.slice(2));
 
 const isWatchMode = watch === 'true';
 
-const generatorsRelativePath = 'libs/codegen/generators/';
-const generatorsPath = resolve(workspaceRoot, generatorsRelativePath);
+if (!generatorPathArg) {
+  throw new Error(`Path to generator is mandatory`);
+}
 
-const projectGraph = readCachedProjectGraph();
-let generatorsRuntimeProjectTmp: ProjectGraphProjectNode | null = null;
-const generatorsProjects = Object.values(projectGraph.nodes).filter(
-  (project) => {
-    if (
-      !generatorsRuntimeProjectTmp &&
-      project.name.endsWith('generators-runtime')
-    ) {
-      generatorsRuntimeProjectTmp = project;
-      return;
-    }
-    return project.data.root.startsWith(generatorsRelativePath);
-  }
+const generatorPath = `${generatorPathArg}`;
+const generatorAbsolutePath = resolve(generatorPath);
+const generatorTemplatesPath = join(generatorPath, 'templates');
+const generatorPrecompiledTemplatesPath = join(
+  generatorPath,
+  'precompiled-templates'
 );
 
-if (!generatorsRuntimeProjectTmp) {
-  throw new Error(`Unable to find "generators-runtime" project`);
-}
-const generatorsRuntimeProject =
-  generatorsRuntimeProjectTmp as ProjectGraphProjectNode;
-if (!generatorsRuntimeProject.data.sourceRoot) {
-  throw new Error(
-    `${generatorsRuntimeProject.name} project.json sourceRoot is empty`
-  );
-}
-const generatorsRuntimeProjectGeneratedDataPath = resolve(
-  `${generatorsRuntimeProject.data.sourceRoot}`,
-  'lib',
-  '__generated__',
-  'data'
-);
+let generatorName = generatorAbsolutePath.split(pathSeparator).at(-1);
 
-const generatorsProjectsPaths = generatorsProjects.reduce((acc, project) => {
-  if (!project.data?.sourceRoot) {
-    throw new Error(`${project.name} project.json sourceRoot is empty`);
+const globals = {
+  watcherInitialized: false,
+  generatorName,
+};
+
+type GeneratorConfg = {
+  precompiledTemplates: Record<GeneratorTemplatesExportType, DictionaryWithAny>;
+  helpers: Record<GeneratorHelpersExportType, DictionaryWithAny>;
+  globalName?: string;
+};
+let generatorConfig: GeneratorConfg | null = null;
+
+const getGeneratorConfig = async () => {
+  if (generatorConfig) {
+    return generatorConfig;
   }
-  const relativeRootPath = project.data.root.replace(
-    generatorsRelativePath,
-    ''
-  );
+  generatorConfig = await import(`${generatorPath}`);
+  if (!generatorConfig) {
+    throw new Error(
+      `Unable to read generator config. Please make sure that there is an "index.{${fileExtension}}" present in generator root directory.`
+    );
+  }
+  if (generatorConfig.globalName) {
+    generatorName = generatorConfig.globalName;
+  }
+  globals.generatorName = camelCase(generatorName);
 
-  const libPath = resolve(project.data.sourceRoot, 'lib');
+  return generatorConfig;
+};
 
-  acc.set(relativeRootPath, {
-    templates: resolve(libPath, 'templates'),
-    precompiledTemplates: resolve(libPath, 'precompiled-templates'),
-  });
-  return acc;
-}, new Map());
+const exportsMap: Record<GeneratorTemplatesExportType, Dictionary<string>> = {
+  entries: {},
+  partials: {},
+  globalPartials: {},
+};
 
-const generatorProjectNames: string[] = [...generatorsProjectsPaths.keys()];
-
-const exportsMap = generatorProjectNames.reduce<
-  Dictionary<Record<GeneratorExportType, Dictionary<string>>>
->((acc, name) => {
-  acc[name] = {
-    entries: {},
-    partials: {},
-    helpers: {},
-
-    globalPartials: {},
-    globalHelpers: {},
-  };
-
-  return acc;
-}, {});
-
-const defaultExportType: GeneratorExportType = 'partials';
-
-const generatorsStatsMap = generatorProjectNames.reduce<
-  Dictionary<Record<GeneratorExportType, Set<string>>>
->((acc, name) => {
-  acc[name] = {
-    entries: new Set(),
-    partials: new Set(),
-    helpers: new Set(),
-
-    globalPartials: new Set(),
-    globalHelpers: new Set(),
-  };
-
-  return acc;
-}, {});
-
-let knownGlobals: { helpers: Dictionary<Dictionary<boolean>> } = {
-  helpers: {},
+const generatorsStatsMap: Record<GeneratorTemplatesExportType, Set<string>> = {
+  entries: new Set(),
+  partials: new Set(),
+  globalPartials: new Set(),
 };
 
 const precompiledTemplateDisableLinters = [
@@ -111,15 +83,15 @@ const precompiledTemplateDisableLinters = [
 ].join('\n');
 
 export {
-  projectGraph,
+  globals,
+  internalCall,
   fileExtension,
   isWatchMode,
-  generatorsPath,
-  generatorsProjectsPaths,
-  generatorsStatsMap,
+  generatorPath,
+  generatorTemplatesPath,
+  generatorPrecompiledTemplatesPath,
   exportsMap,
-  defaultExportType,
-  knownGlobals,
+  generatorsStatsMap,
   precompiledTemplateDisableLinters,
-  generatorsRuntimeProjectGeneratedDataPath,
+  getGeneratorConfig,
 };

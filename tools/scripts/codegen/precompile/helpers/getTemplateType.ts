@@ -1,21 +1,20 @@
 import { parse, sep as pathSeparator } from 'node:path';
 
-import { camelCase } from 'lodash';
+import type { GeneratorTemplatesExportType } from '@ossts/codegen/common';
+import { generatorTemplatesExportTypes } from '@ossts/codegen/common';
 
-import type { GeneratorExportType } from '@ossts/codegen/common';
-import { generatorExportTypes } from '@ossts/codegen/common';
-
-import { defaultExportType } from '../data';
-
-export const getTemplateType = (path: string): GeneratorExportType => {
+export const getTemplateType = (path: string): GeneratorTemplatesExportType => {
   const parsedPath = parse(path);
   const parsedPathSplit = parsedPath.dir.split(pathSeparator);
 
-  const parsedPathType = camelCase(parsedPathSplit[0]) as GeneratorExportType;
-  let exportType = defaultExportType;
-  if (generatorExportTypes.includes(parsedPathType)) {
-    exportType = parsedPathType;
-  }
+  const parsedPathType = parsedPathSplit[0] as GeneratorTemplatesExportType;
 
-  return exportType;
+  if (!generatorTemplatesExportTypes.includes(parsedPathType)) {
+    throw new Error(
+      `Unsupported template type "${parsedPathType}". Allowed values are "${JSON.stringify(
+        generatorTemplatesExportTypes
+      )}"`
+    );
+  }
+  return parsedPathType;
 };
