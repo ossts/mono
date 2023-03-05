@@ -25,12 +25,6 @@
       "options": {
         "lintFilePatterns": ["libs/codegen/generators-runtime/**/*.ts"]
       }
-    },
-    "precompile-templates": {
-      "executor": "nx:run-commands",
-      "options": {
-        "command": "TS_NODE_PROJECT=tools/scripts/codegen/precompile/tsconfig.json node -r ts-node/register -r tsconfig-paths/register tools/scripts/codegen/precompile/index.ts"
-      }
     }
   },
   "tags": ["scope:ts", "type:lib", "project:codegen"]

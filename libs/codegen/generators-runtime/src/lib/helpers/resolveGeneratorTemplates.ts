@@ -13,11 +13,15 @@ export const resolveGeneratorTemplates = async <
   const isBuiltIn = generatorNamesString.includes(generatorCfg.name);
 
   if (isBuiltIn) {
-    const { precompiledTemplates } = await generatorImportPaths[
-      generatorCfg.name
-    ]();
+    const { precompiledTemplates, helpers, globalName } =
+      await generatorImportPaths[generatorCfg.name]();
+
+    if (globalName) {
+      generatorCfg.globalName = globalName;
+    }
 
     generatorCfg.templates = precompiledTemplates;
+    generatorCfg.helpers = helpers;
   } else {
     // TODO: extract required info from external generator
   }

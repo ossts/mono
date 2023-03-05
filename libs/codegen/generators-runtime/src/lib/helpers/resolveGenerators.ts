@@ -75,7 +75,7 @@ export const resolveGenerators = async <
   await Promise.all(resolveTemplatesPromises);
 
   generatorConfigs.forEach((generator) => {
-    registerHandlebarsEntities(generator);
+    registerHandlebarsEntities(generator, generatorsMap);
     resolveEntriesRenderCfg(generator);
   });
 

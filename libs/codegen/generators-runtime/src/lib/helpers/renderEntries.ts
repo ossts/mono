@@ -1,7 +1,6 @@
 import { resolve as resolvePath } from 'node:path';
 
 import { ensureFile, ensureFileSync, writeFile } from 'fs-extra';
-import Handlebars from 'handlebars';
 import { get as getNested, isPlainObject } from 'lodash';
 
 import type { AbstractExternalGeneratorWithName } from '@ossts/codegen/common';
@@ -84,7 +83,8 @@ const render = <
   }: Pick<GenerateParams, 'output' | 'suppressWarnings' | 'parsedSchema'>
 ) =>
   new Promise<void>((resolve) => {
-    if (!generator.templates) return;
+    const { handlebarsInstance } = generator;
+    if (!generator.templates || !handlebarsInstance) return;
 
     const promises: Promise<void>[] = [];
 
@@ -92,7 +92,9 @@ const render = <
       const config = generator.resolvedEntriesRenderCfg?.[name];
       if (!config) continue;
 
-      const tpl = Handlebars.template(generator.templates.entries[name]);
+      const tpl = handlebarsInstance.template(
+        generator.templates.entries[name]
+      );
 
       const data = config.dataPath
         ? getNested(parsedSchema, config.dataPath)

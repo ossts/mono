@@ -1,7 +1,9 @@
-export const generatorExportTypes = [
+export const generatorTemplatesExportTypes = [
   'entries',
   'partials',
-  'helpers',
   'globalPartials',
+] as const;
+export const generatorHelpersExportTypes = [
+  'localHelpers',
   'globalHelpers',
 ] as const;

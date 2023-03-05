@@ -8,9 +8,8 @@ import type {
   AbstractGeneratorWithName,
 } from '@ossts/codegen/common';
 
-import type { BuiltInGenerators, generatorNames } from '../__generated__';
+import type { BuiltInGenerators, GeneratorNameBuiltIn } from '../__generated__';
 
-export type GeneratorNameBuiltIn = (typeof generatorNames)[number];
 export type GeneratorNameExternal<
   TGenerators extends AbstractExternalGeneratorWithName = AbstractExternalGeneratorWithName
 > = TGenerators['name'];

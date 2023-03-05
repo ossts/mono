@@ -3,7 +3,10 @@ import type {
   DictionaryWithAny,
 } from '@ossts/shared/typescript/helper-types';
 
-import type { GeneratorExportType } from './GeneratorExportType';
+import type {
+  GeneratorHelpersExportType,
+  GeneratorTemplatesExportType,
+} from './GeneratorExportTypes';
 import type { GeneratorEntriesRenderConfig } from './other';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
@@ -57,7 +60,12 @@ export abstract class AbstractGenerator {
   /**
    * Set of templates for this generator
    */
-  templates?: Partial<Record<GeneratorExportType, DictionaryWithAny>>;
+  templates?: Partial<Record<GeneratorTemplatesExportType, DictionaryWithAny>>;
+
+  /**
+   * Set of helpers for this generator
+   */
+  helpers?: Partial<Record<GeneratorHelpersExportType, DictionaryWithAny>>;
 }
 
 /**

@@ -1,7 +1,7 @@
+import { helpers as commonEndpointsHelpers } from '@ossts/codegen/generators/common/endpoints';
+import { helpers as commonModelsHelpers } from '@ossts/codegen/generators/common/models';
+
 export const knownGlobalHelpers = {
-  "common/endpoints": {
-    "globalHelper": true,
-    "nestedPathHelperName": true
-  },
-  "common/models": {}
-}
+  commonEndpoints: commonEndpointsHelpers.globalHelpers,
+  commonModels: commonModelsHelpers.globalHelpers,
+};
