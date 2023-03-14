@@ -1,3 +1,5 @@
+import { camelCase } from 'lodash';
+
 import type { AbstractGeneratorWithName } from '@ossts/codegen/common';
 import { AbstractGenerator } from '@ossts/codegen/common';
 import { mergeObjectsWithSameShape } from '@ossts/shared/typescript/helpers';
@@ -18,10 +20,20 @@ export class CommonEndpointsGenerator
   constructor(config?: CommonEndpointsGeneratorConfig) {
     super();
 
-    mergeObjectsWithSameShape(this, {}, config);
+    mergeObjectsWithSameShape(this, {}, config, {
+      settings: {
+        createExportAllWithSuffix: 'Endpoints',
+        ...config?.settings,
+      },
+      entriesRenderCfg: {
+        endpoint: {
+          dataPath: 'services',
+          nameFieldOrFn: (data) => camelCase(data['name']),
+        },
+      },
+      dependsOn: ['utils', ...(config?.dependsOn ?? [])],
+    });
   }
 
   override settings?: CommonEndpointsGeneratorSettings;
 }
-
-export const commonEndpointsDefaultConfig = new CommonEndpointsGenerator();

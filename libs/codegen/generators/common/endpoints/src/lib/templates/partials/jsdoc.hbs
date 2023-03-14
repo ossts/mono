@@ -1,0 +1,17 @@
+/**
+ * Method: {{method}}
+{{#if deprecated}}
+ *
+ * @deprecated
+{{/if}}
+{{#if parameters}}
+{{#each parameters}}
+ *
+ * `{{prop}}{{>utilsRequired}}: {{type}}{{#if default}} = {{default}}{{/if}}` in `{{in}}`
+{{#if description}}
+ *
+ * {{{utilsEscapeComment description ../gap}}}
+{{/if}}
+{{/each}}
+{{/if}}
+ */

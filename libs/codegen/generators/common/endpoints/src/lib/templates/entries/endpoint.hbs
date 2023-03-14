@@ -1,0 +1,9 @@
+{{#with data}}
+{{>utilsHeader}}
+
+{{#each operations}}
+{{> jsdoc }}
+export const {{name}}Endpoint = '{{path}}';
+{{/each}}
+
+{{/with}}
