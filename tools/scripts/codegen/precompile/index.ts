@@ -6,6 +6,7 @@ import {
   generatorTemplatesPath,
   globals,
   isWatchMode,
+  showLogs,
 } from './data';
 import {
   generateIndex,
@@ -36,7 +37,10 @@ watcher.on('ready', async () => {
   globals.watcherInitialized = true;
 
   if (!isWatchMode) {
-    watcher.close();
+    return watcher.close();
+  }
+  if (showLogs) {
+    console.log('Updated', new Date().toLocaleTimeString());
   }
 });
 
@@ -54,4 +58,7 @@ watcher.on('all', async (eventName, path) => {
   await processTemplateFile(path, eventName);
 
   generateIndex();
+  if (showLogs) {
+    console.log('Updated', new Date().toLocaleTimeString());
+  }
 });

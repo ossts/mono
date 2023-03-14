@@ -5,11 +5,6 @@
       "implementation": "./src/executors/precompile-templates/executor",
       "schema": "./src/executors/precompile-templates/schema.json",
       "description": "Precompile generator templates to speed up generation process and reduce package size"
-    },
-    "precompiled-templates-exist": {
-      "implementation": "./src/executors/precompiled-templates-exist/executor",
-      "schema": "./src/executors/precompiled-templates-exist/schema.json",
-      "description": "This executor will make sure that precompiled-templates with required exports exist, which are required by other executors"
     }
   }
 }

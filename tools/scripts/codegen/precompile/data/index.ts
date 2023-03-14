@@ -14,6 +14,7 @@ import type {
 
 const {
   watch,
+  showLogs = false,
   fileExtension = 'js',
   internalCall = false,
   _: [generatorPathArg],
@@ -43,7 +44,6 @@ const globals = {
 type GeneratorConfg = {
   precompiledTemplates: Record<GeneratorTemplatesExportType, DictionaryWithAny>;
   helpers: Record<GeneratorHelpersExportType, DictionaryWithAny>;
-  globalName?: string;
 };
 let generatorConfig: GeneratorConfg | null = null;
 
@@ -57,10 +57,6 @@ const getGeneratorConfig = async () => {
       `Unable to read generator config. Please make sure that there is an "index.{${fileExtension}}" present in generator root directory.`
     );
   }
-  if (generatorConfig.globalName) {
-    generatorName = generatorConfig.globalName;
-  }
-  globals.generatorName = camelCase(generatorName);
 
   return generatorConfig;
 };
@@ -84,6 +80,7 @@ const precompiledTemplateDisableLinters = [
 
 export {
   globals,
+  showLogs,
   internalCall,
   fileExtension,
   isWatchMode,

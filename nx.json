@@ -28,11 +28,7 @@
       "inputs": ["default", "{workspaceRoot}/.eslintrc.json"]
     },
     "precompile-templates": {
-      "inputs": ["{projectRoot}/src/lib/templates/**/*"],
-      "dependsOn": ["precompiled-templates-exist"]
-    },
-    "precompiled-templates-exist": {
-      "inputs": ["{projectRoot}/src/lib/precompiled-templates/index.ts"]
+      "inputs": ["{projectRoot}/src/lib/templates/**/*"]
     }
   },
   "namedInputs": {

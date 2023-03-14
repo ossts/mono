@@ -1,0 +1,3 @@
+export const generatorNamesBuiltIn = [
+  '<%- generators.map(generator => `${generator.name}`).join(`', '`); %>'
+] as const;

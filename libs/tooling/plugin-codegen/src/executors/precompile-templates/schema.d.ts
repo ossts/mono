@@ -1,1 +1,3 @@
-export interface PrecompileTemplatesExecutorSchema {} // eslint-disable-line
+export interface PrecompileTemplatesExecutorSchema {
+  watch?: boolean;
+}

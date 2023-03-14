@@ -23,5 +23,3 @@ export class <%= className %>Generator
 
   override settings?: <%= className %>GeneratorSettings;
 }
-
-export const <%= propertyName %>DefaultConfig = new <%= className %>Generator();

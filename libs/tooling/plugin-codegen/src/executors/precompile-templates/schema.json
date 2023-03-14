@@ -5,6 +5,10 @@
   "title": "PrecompileTemplates executor",
   "description": "",
   "type": "object",
-  "properties": {},
+  "properties": {
+    "watch": {
+      "type": "boolean"
+    }
+  },
   "required": []
 }

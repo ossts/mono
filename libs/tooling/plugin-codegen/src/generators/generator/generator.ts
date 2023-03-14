@@ -120,14 +120,6 @@ function updateProjectTargets(tree: Tree, options: NormalizedSchema) {
   );
 
   updateJson(tree, `${options.projectRoot}/project.json`, (json) => {
-    json.targets['precompiled-templates-exist'] = {
-      executor: '@ossts/plugin-codegen:precompiled-templates-exist',
-      outputs: ['{options.outputPath}'],
-      options: {
-        outputPath: joinPathFragments(precompiledTemplatesPath, 'index.ts'),
-      },
-    };
-
     json.targets['precompile-templates'] = {
       executor: '@ossts/plugin-codegen:precompile-templates',
       outputs: ['{options.outputPath}'],
