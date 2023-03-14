@@ -1,0 +1,19 @@
+{
+	type: 'array',
+{{#if link}}
+	contains: {{>schema link}},
+{{else}}
+	contains: {
+		type: '{{{base}}}',
+	},
+{{/if}}
+{{#if readOnly}}
+	readOnly: {{{readOnly}}},
+{{/if}}
+{{#if required}}
+	required: {{{required}}},
+{{/if}}
+{{#if nullable}}
+	nullable: {{{nullable}}},
+{{/if}}
+}

@@ -18,10 +18,10 @@ export class CommonModelsGenerator
   constructor(config?: CommonModelsGeneratorConfig) {
     super();
 
-    mergeObjectsWithSameShape(this, {}, config);
+    mergeObjectsWithSameShape(this, {}, config, {
+      dependsOn: ['utils', ...(config?.dependsOn ?? [])],
+    });
   }
 
   override settings?: CommonModelsGeneratorSettings;
 }
-
-export const commonModelsDefaultConfig = new CommonModelsGenerator();

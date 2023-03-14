@@ -1,0 +1,21 @@
+{
+{{#if description}}
+	description: `{{{utilsEscapeDescription description}}}`,
+{{/if}}
+	properties: {
+{{#if properties}}
+	{{#each properties}}
+		{{{name}}}: {{>schema}},
+	{{/each}}
+{{/if}}
+	},
+{{#if readOnly}}
+	readOnly: {{{readOnly}}},
+{{/if}}
+{{#if required}}
+	required: {{{required}}},
+{{/if}}
+{{#if nullable}}
+	nullable: {{{nullable}}},
+{{/if}}
+}
