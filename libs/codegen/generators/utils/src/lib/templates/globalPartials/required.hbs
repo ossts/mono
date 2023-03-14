@@ -1,0 +1,5 @@
+{{~#if @root.settings.useDistinctParams~}}
+{{#unless required}}?{{else if default}}?{{/unless}}
+{{~else~}}
+{{#unless required}}{{#unless default}}?{{/unless}}{{/unless}}
+{{~/if~}}

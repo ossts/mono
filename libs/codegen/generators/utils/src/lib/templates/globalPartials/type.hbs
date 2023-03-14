@@ -1,0 +1,19 @@
+{{#utilsEquals export 'interface'}}
+{{>utilsTypeInterface}}
+{{else utilsEquals export 'reference'}}
+{{>utilsTypeReference}}
+{{else utilsEquals export 'enum'}}
+{{>utilsTypeEnum}}
+{{else utilsEquals export 'array'}}
+{{>utilsTypeArray}}
+{{else utilsEquals export 'dictionary'}}
+{{>utilsTypeDictionary}}
+{{else utilsEquals export 'oneOf'}}
+{{>utilsTypeUnion}}
+{{else utilsEquals export 'anyOf'}}
+{{>utilsTypeUnion}}
+{{else utilsEquals export 'allOf'}}
+{{>utilsTypeIntersection}}
+{{else}}
+{{>utilsTypeGeneric}}
+{{/utilsEquals}}

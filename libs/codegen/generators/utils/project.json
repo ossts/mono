@@ -1,0 +1,38 @@
+{
+  "name": "codegen-generators-utils",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/codegen/generators/utils/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/vite:build",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/codegen/generators/utils"
+      }
+    },
+    "test": {
+      "executor": "@nrwl/vite:test",
+      "outputs": ["coverage/libs/codegen/generators/utils"],
+      "options": {
+        "passWithNoTests": true,
+        "reportsDirectory": "../../../../coverage/libs/codegen/generators/utils"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/codegen/generators/utils/**/*.ts"]
+      }
+    },
+    "precompile-templates": {
+      "executor": "@ossts/plugin-codegen:precompile-templates",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "libs/codegen/generators/utils/src/lib/precompiled-templates"
+      }
+    }
+  },
+  "tags": ["scope:ts", "type:lib", "project:codegen"]
+}

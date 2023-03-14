@@ -1,0 +1,5 @@
+{{~#if link~}}
+Record<string, {{>utilsType link}}>{{>utilsNullable}}
+{{~else~}}
+Record<string, {{>utilsBase}}>{{>utilsNullable}}
+{{~/if~}}

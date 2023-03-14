@@ -1,0 +1,23 @@
+{{~#if properties~}}
+{
+{{#each properties}}
+{{#utilsIfdef description deprecated}}
+/**
+{{#if description}}
+ * {{{utilsEscapeComment description}}}
+{{/if}}
+{{#if deprecated}}
+ * @deprecated
+{{/if}}
+ */
+{{/utilsIfdef}}
+{{#if ../parent}}
+{{>utilsReadOnly}}{{{name}}}{{>utilsRequired}}: {{>utilsType parent=../parent}};
+{{else}}
+{{>utilsReadOnly}}{{{name}}}{{>utilsRequired}}: {{>utilsType}};
+{{/if}}
+{{/each}}
+}{{>utilsNullable}}
+{{~else~}}
+any
+{{~/if~}}
