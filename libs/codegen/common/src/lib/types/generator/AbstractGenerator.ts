@@ -3,14 +3,50 @@ import type {
   DictionaryWithAny,
 } from '@ossts/shared/typescript/helper-types';
 
+import type { GeneratorNameBuiltIn } from '../../__generated__';
+import type { CodegenHandlebarsHelperWrapper } from '../handlebars';
 import type {
   GeneratorHelpersExportType,
   GeneratorTemplatesExportType,
 } from './GeneratorExportTypes';
 import type { GeneratorEntriesRenderConfig } from './other';
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface AbstractGeneratorSettings {}
+export interface AbstractGeneratorSettings {
+  /**
+   * Set to `true` to add `export * all as ...` alongside regular export in generator `index.ts`
+   *
+   * e.g. if set to "Endpoints" will add `export * as entityEndpoints from './entity'`
+   */
+  createExportAllWithSuffix?: string;
+
+  /**
+   * Set to `true` to add comments which will disable linters for generated files
+   */
+  disableLinters?: boolean;
+
+  /**
+   * Set to `true` to generate unions instead of enums
+   */
+  useUnionTypes?: boolean;
+
+  /**
+   * Set to `true` to generate separate function parameters instead of one object type parameter
+   */
+  useDistinctParams?: boolean;
+
+  /**
+   * Formatter to use before outputting template results.
+   *
+   * `prettier` - use Prettier (default)
+   *
+   * `null` - don't format result
+   *
+   * `(content: string) => string` - custom formatter function
+   */
+  formatter?: null | 'prettier' | AbstractGeneratorCustomFormatter;
+}
+
+export type AbstractGeneratorCustomFormatter = (content: string) => string;
 
 export abstract class AbstractGenerator {
   /**
@@ -65,7 +101,17 @@ export abstract class AbstractGenerator {
   /**
    * Set of helpers for this generator
    */
-  helpers?: Partial<Record<GeneratorHelpersExportType, DictionaryWithAny>>;
+  helpers?: Partial<
+    Record<
+      GeneratorHelpersExportType,
+      Dictionary<CodegenHandlebarsHelperWrapper>
+    >
+  >;
+
+  /**
+   * Generators required for this generator to work
+   */
+  dependsOn?: GeneratorNameBuiltIn[];
 }
 
 /**

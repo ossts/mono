@@ -1,5 +1,7 @@
+import type { DictionaryWithAny } from '@ossts/shared/typescript/helper-types';
+
 export type GeneratorEntriesRenderConfigNameFieldExtractor = (
-  data: unknown
+  data: DictionaryWithAny
 ) => string;
 
 export type GeneratorEntriesRenderConfig = {

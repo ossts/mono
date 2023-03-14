@@ -1,4 +1,4 @@
-import type { AbstractGeneratorWithAll } from '.';
+import type { AbstractGeneratorSettings, AbstractGeneratorWithAll } from '.';
 import type { AbstractCodegenParsedClient } from '..';
 import type {
   AbstractGenerateHookAfterAll,
@@ -35,6 +35,13 @@ export interface AbstractGenerateParams<
   generators: TGenerators[];
 
   /**
+   * Settings that will be applied to all generators.
+   *
+   * Each generator can override those by providing their own settings
+   */
+  generatorsSettings?: AbstractGeneratorSettings;
+
+  /**
    * Set to true to prevent any warnings on all generators.
    *
    * This can be overridden on generator level
@@ -44,9 +51,7 @@ export interface AbstractGenerateParams<
   /**
    * Set this to true to make all generators run in sequence.
    *
-   * This may be useful if result of one generator depends on generator before it.
-   *
-   * Some commands (i.e. `before`, `after`) set this flag to `true` if not set explicitly
+   * This may be useful if result of one generator depends on generator before it
    */
   sequential?: boolean;
 
