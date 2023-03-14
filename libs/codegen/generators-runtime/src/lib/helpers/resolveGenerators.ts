@@ -1,11 +1,15 @@
-import type { AbstractExternalGeneratorWithName } from '@ossts/codegen/common';
+import { generatorNamesBuiltIn } from '@ossts/codegen/common';
+import type {
+  AbstractExternalGeneratorWithName,
+  AbstractGeneratorSettings,
+  AbstractGeneratorWithName,
+} from '@ossts/codegen/common';
 
 import {
   normalizeGeneratorConfigs,
   resolveEntriesRenderCfg,
-  resolveGeneratorTemplates,
+  resolveGeneratorParams,
 } from '.';
-import { generatorNames, generatorsDefaultConfigs } from '../__generated__';
 import type {
   GeneratorsWithAll,
   ResolvedGenerator,
@@ -19,19 +23,13 @@ import { registerHandlebarsEntities } from './registerHandlebarEntities';
 export const resolveGenerators = async <
   TGenerators extends AbstractExternalGeneratorWithName = AbstractExternalGeneratorWithName
 >(
-  generatorsCfg: (GeneratorsWithAll | TGenerators)[]
+  generatorsCfg: (GeneratorsWithAll | TGenerators)[],
+  generatorsSettings: AbstractGeneratorSettings | undefined
 ): Promise<ResolvedGeneratorsMap<TGenerators>> => {
   const generatorsMap: ResolvedGeneratorsMap<TGenerators> = new Map();
+  const generatorCfgMap = new Map<string, AbstractGeneratorWithName>();
 
   let includesAll = false;
-
-  const checkGeneratorNameAlreadyRegistered = (name: string) => {
-    if (!generatorsMap.has(name)) return;
-
-    throw new Error(`Multiple configurations provided for generator "${name}"`);
-  };
-
-  const generatorConfigs: ResolvedGenerator<TGenerators>[] = [];
 
   generatorsCfg.forEach((generatorCfg, index) => {
     if (generatorCfg === '*' || generatorCfg === 'all') {
@@ -45,39 +43,90 @@ export const resolveGenerators = async <
       );
     }
 
-    checkGeneratorNameAlreadyRegistered(generatorCfg.name);
+    if (generatorCfgMap.has(generatorCfg.name)) {
+      throw new Error(
+        `Multiple configurations provided for generator "${name}"`
+      );
+    }
 
-    const normalizedCfg = normalizeGeneratorConfigs(generatorCfg);
-    generatorConfigs.push(normalizedCfg);
-
-    generatorsMap.set(normalizedCfg.name, normalizedCfg);
+    generatorCfgMap.set(generatorCfg.name, generatorCfg);
   });
 
   if (includesAll) {
-    generatorNames.forEach((name) => {
+    generatorNamesBuiltIn.forEach((name) => {
       // we need to skip all built-in generators which were listed explicitly
       // in the list of generators
-      if (generatorsMap.has(name)) return;
+      if (generatorCfgMap.has(name)) return;
 
-      const generatorCfg = generatorsDefaultConfigs[name];
-
-      const normalizedCfg = normalizeGeneratorConfigs(generatorCfg);
-      generatorConfigs.push(normalizedCfg);
-
-      generatorsMap.set(normalizedCfg.name, normalizedCfg);
+      generatorCfgMap.set(name, {
+        name,
+      });
     });
   }
 
-  const resolveTemplatesPromises = generatorConfigs.map((generatorCfg) =>
-    resolveGeneratorTemplates(generatorCfg)
+  await resolveGeneratorsConfigs(
+    generatorsMap,
+    generatorCfgMap,
+    generatorsSettings
   );
 
-  await Promise.all(resolveTemplatesPromises);
+  return generatorsMap;
+};
 
-  generatorConfigs.forEach((generator) => {
-    registerHandlebarsEntities(generator, generatorsMap);
-    resolveEntriesRenderCfg(generator);
+/**
+ * Recursively resolves generator configs for `generatorCfgMap`
+ * and its dependencies specified in `dependsOn` field
+ */
+const resolveGeneratorsConfigs = async <
+  TGenerators extends AbstractExternalGeneratorWithName = AbstractExternalGeneratorWithName
+>(
+  generatorsMap: ResolvedGeneratorsMap<TGenerators>,
+  generatorCfgMap: Map<string, AbstractGeneratorWithName>,
+  generatorsSettings: AbstractGeneratorSettings | undefined
+) => {
+  const resolveTemplatesPromises = [...generatorCfgMap.values()].map(
+    (generatorCfg) =>
+      resolveGeneratorParams<TGenerators>(generatorCfg, generatorsSettings)
+  );
+
+  const generatorConfigs: ResolvedGenerator<TGenerators>[] = await Promise.all(
+    resolveTemplatesPromises
+  );
+
+  const dependsOnGenerators = new Set<string>();
+  generatorConfigs.forEach((generatorCfg) => {
+    generatorCfg.dependsOn?.forEach((name) => dependsOnGenerators.add(name));
   });
 
-  return generatorsMap;
+  generatorCfgMap.clear();
+
+  for (const name of dependsOnGenerators) {
+    // ignore generator listed explicitly
+    if (generatorsMap.has(name)) continue;
+
+    generatorCfgMap.set(name, {
+      name,
+    });
+  }
+
+  // we have to resolve dependencies first, otherwise templates may have missing
+  // global helpers or global templates
+  if (generatorCfgMap.size) {
+    await resolveGeneratorsConfigs(
+      generatorsMap,
+      generatorCfgMap,
+      generatorsSettings
+    );
+  }
+
+  generatorConfigs.forEach((generatorCfg) => {
+    const normalizedCfg = normalizeGeneratorConfigs<TGenerators>(generatorCfg);
+
+    generatorsMap.set(normalizedCfg.name, normalizedCfg);
+
+    if (normalizedCfg.helpersOnly) return;
+
+    registerHandlebarsEntities(normalizedCfg, generatorsMap);
+    resolveEntriesRenderCfg(normalizedCfg);
+  });
 };

@@ -15,6 +15,8 @@ export const registerHandlebarsEntities = <
 
   generator.handlebarsInstance = handlebarsInstance;
 
+  const { settings = {} } = generator;
+
   // ------- Register local generator entities -------
   if (generator.templates) {
     for (const name in generator.templates.partials) {
@@ -28,7 +30,10 @@ export const registerHandlebarsEntities = <
     for (const name in generator.helpers.localHelpers) {
       handlebarsInstance.registerHelper(
         name,
-        generator.helpers.localHelpers[name]
+        generator.helpers.localHelpers[name]({
+          handlebarsInstance,
+          settings,
+        })
       );
     }
   }
@@ -49,7 +54,10 @@ export const registerHandlebarsEntities = <
       for (const name in currentGenerator.helpers.globalHelpers) {
         handlebarsInstance.registerHelper(
           camelCase(`${currentGenerator.globalName}_${name}`),
-          currentGenerator.helpers.globalHelpers[name]
+          currentGenerator.helpers.globalHelpers[name]({
+            handlebarsInstance,
+            settings,
+          })
         );
       }
     }

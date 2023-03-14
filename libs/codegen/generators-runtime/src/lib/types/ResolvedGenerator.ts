@@ -21,6 +21,11 @@ export type ResolvedGenerator<
   globalName: string;
 
   /**
+   * Path into which results of this generator should be written
+   */
+  outputPath: string;
+
+  /**
    * Handlebars copy with all entities preregistered
    */
   handlebarsInstance?: typeof Handlebars;

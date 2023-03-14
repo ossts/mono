@@ -6,27 +6,22 @@ import type { GenerateParams } from './types';
 export const runGenerators = async <
   TGenerators extends AbstractExternalGeneratorWithName = AbstractExternalGeneratorWithName
 >({
-  parsedSchema,
   generators: generatorsCfg,
-  output = 'codegen',
-  sequential,
   suppressWarnings,
+  generatorsSettings,
+  output = 'codegen',
   beforeAll,
   afterAll,
-  beforeEach,
-  afterEach,
+  ...other
 }: GenerateParams<TGenerators>) => {
-  const generators = await resolveGenerators(generatorsCfg);
+  const generators = await resolveGenerators(generatorsCfg, generatorsSettings);
 
   if (beforeAll?.(generators) === false) return;
 
   await renderEntries(generators, {
-    parsedSchema,
     output,
     suppressWarnings,
-    sequential,
-    beforeEach,
-    afterEach,
+    ...other,
   });
 
   afterAll?.(generators);

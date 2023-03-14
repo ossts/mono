@@ -6,9 +6,10 @@ import type {
   AbstractExternalGeneratorWithName,
   AbstractGeneratorAll,
   AbstractGeneratorWithName,
+  GeneratorNameBuiltIn,
 } from '@ossts/codegen/common';
 
-import type { BuiltInGenerators, GeneratorNameBuiltIn } from '../__generated__';
+import type { GeneratorsBuiltIn } from '../__generated__';
 
 export type GeneratorNameExternal<
   TGenerators extends AbstractExternalGeneratorWithName = AbstractExternalGeneratorWithName
@@ -29,7 +30,7 @@ export type GeneratorName<
  */
 export type GeneratorsWithAllInternal =
   | AbstractGeneratorAll
-  | BuiltInGenerators
+  | GeneratorsBuiltIn
   | AbstractExternalGeneratorUXName;
 
 /**

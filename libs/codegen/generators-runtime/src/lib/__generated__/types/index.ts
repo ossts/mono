@@ -1,10 +1,8 @@
 import type { CommonEndpointsGenerator } from '@ossts/codegen/generators/common/endpoints';
 import type { CommonModelsGenerator } from '@ossts/codegen/generators/common/models';
+import type { UtilsGenerator } from '@ossts/codegen/generators/utils';
 
-import type { generatorNames } from '../data';
-
-export type BuiltInGenerators =
+export type GeneratorsBuiltIn =
   | CommonEndpointsGenerator
-  | CommonModelsGenerator;
-
-export type GeneratorNameBuiltIn = (typeof generatorNames)[number];
+  | CommonModelsGenerator
+  | UtilsGenerator;

@@ -28,6 +28,10 @@ export const normalizeGeneratorConfigs = <
     generatorPath: name,
     globalName: camelCase(name.split(pathSeparator).join('_')),
     ...generatorCfg,
+    settings: {
+      formatter: 'prettier',
+      ...generatorCfg.settings,
+    },
     name,
   };
 
