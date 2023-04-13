@@ -10,7 +10,8 @@
           "lint",
           "test",
           "e2e",
-          "precompile-templates"
+          "precompile-templates",
+          "precommit"
         ],
         "accessToken": "OTRiYzlhOTUtYjhlYS00ZjhkLWFlOTQtMTdkNjY1MWQ2YmFifHJlYWQtd3JpdGU="
       }
@@ -29,6 +30,13 @@
     },
     "precompile-templates": {
       "inputs": ["{projectRoot}/src/lib/templates/**/*"]
+    },
+    "precommit": {
+      "inputs": [
+        "{workspaceRoot}/**/project.json",
+        "{workspaceRoot}/libs/tooling/plugin-workspace/src/generators/cz-scopes/generator.ts"
+      ],
+      "outputs": ["{workspaceRoot}/__generated__/cz-scopes.json"]
     }
   },
   "namedInputs": {

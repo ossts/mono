@@ -4,10 +4,12 @@
     "APIV",
     "buildable",
     "codegen",
+    "commitlint",
     "nextjs",
     "nrwl",
     "openapi",
     "ossts",
+    "precommit",
     "trivago",
     "typeof",
     "uxname"

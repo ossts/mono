@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
+    "precommit": "nx --silent exec -- yarn nx g @ossts/plugin-workspace:cz-scopes",
     "commit": "czg",
     "prepare": "is-ci || husky install"
   },
@@ -22,6 +23,8 @@
   },
   "devDependencies": {
     "@apidevtools/json-schema-ref-parser": "^10.1.0",
+    "@commitlint/cli": "^17.6.0",
+    "@commitlint/config-conventional": "^17.6.0",
     "@nrwl/devkit": "15.4.5",
     "@nrwl/eslint-plugin-nx": "15.4.5",
     "@nrwl/jest": "15.4.5",
@@ -76,5 +79,6 @@
     "vite-tsconfig-paths": "^4.0.2",
     "vitest": "^0.25.8",
     "yargs-parser": "^21.1.1"
-  }
+  },
+  "nx": {}
 }

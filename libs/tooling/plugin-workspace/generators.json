@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "name": "tooling-plugin-workspace",
+  "version": "0.0.1",
+  "generators": {
+    "cz-scopes": {
+      "factory": "./src/generators/cz-scopes/generator",
+      "schema": "./src/generators/cz-scopes/schema.json",
+      "description": "Commitizen scopes generator"
+    }
+  }
+}

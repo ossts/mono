@@ -3,6 +3,10 @@
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/codegen/main/src",
   "projectType": "library",
+  "czScope": {
+    "name": "codegen",
+    "description": "anything related to codegen project"
+  },
   "targets": {
     "build": {
       "executor": "@nrwl/vite:build",
