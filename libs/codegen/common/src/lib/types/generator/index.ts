@@ -1,4 +1,4 @@
-export * from './AbstractExternalGeneratorUpdatedName';
+export * from './AbstractExternalGenerator';
 export * from './AbstractExternalGeneratorUxname';
 export * from './AbstractGenerate';
 export * from './AbstractGenerator';

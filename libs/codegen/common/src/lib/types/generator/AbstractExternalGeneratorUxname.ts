@@ -1,4 +1,4 @@
-import type { AbstractExternalGenerator } from './AbstractExternalGeneratorUpdatedName';
+import type { AbstractExternalGenerator } from './AbstractExternalGenerator';
 
 export interface AbstractExternalGeneratorUXName
   extends AbstractExternalGenerator {
