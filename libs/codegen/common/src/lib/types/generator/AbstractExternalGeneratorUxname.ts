@@ -1,11 +1,4 @@
-import type { AbstractGeneratorSettings } from './AbstractGenerator';
-import { AbstractGenerator } from './AbstractGenerator';
-
-export type AbstractExternalGeneratorSettings = AbstractGeneratorSettings;
-
-export abstract class AbstractExternalGenerator extends AbstractGenerator {
-  override settings?: AbstractExternalGeneratorSettings;
-}
+import type { AbstractExternalGenerator } from './AbstractExternalGeneratorUpdatedName';
 
 export interface AbstractExternalGeneratorUXName
   extends AbstractExternalGenerator {
