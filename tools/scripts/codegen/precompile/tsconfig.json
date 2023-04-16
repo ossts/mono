@@ -4,5 +4,7 @@
     "module": "commonjs",
     "esModuleInterop": true,
     "types": ["node"]
-  }
+  },
+  "files": [],
+  "include": ["**/*.ts"]
 }
