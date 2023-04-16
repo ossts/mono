@@ -6,7 +6,7 @@ import type {
 
 export type AbstractExternalGeneratorSettings = AbstractGeneratorSettings;
 
-export abstract class AbstractExternalGenerator extends AbstractGenerator {
+export class AbstractExternalGenerator extends AbstractGenerator {
   override settings?: AbstractExternalGeneratorSettings;
 }
 
