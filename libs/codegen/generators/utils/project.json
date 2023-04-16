@@ -9,7 +9,8 @@
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/libs/codegen/generators/utils"
-      }
+      },
+      "dependsOn": ["precompile-templates"]
     },
     "test": {
       "executor": "@nrwl/vite:test",
@@ -17,14 +18,16 @@
       "options": {
         "passWithNoTests": true,
         "reportsDirectory": "../../../../coverage/libs/codegen/generators/utils"
-      }
+      },
+      "dependsOn": ["precompile-templates"]
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": ["libs/codegen/generators/utils/**/*.ts"]
-      }
+      },
+      "dependsOn": ["precompile-templates"]
     },
     "precompile-templates": {
       "executor": "@ossts/plugin-codegen:precompile-templates",

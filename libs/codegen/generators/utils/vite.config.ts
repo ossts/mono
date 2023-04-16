@@ -1,7 +1,13 @@
+import { builtinModules } from 'node:module';
+
 import { join } from 'path';
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
 import viteTsConfigPaths from 'vite-tsconfig-paths';
+
+const nodeBuiltinModules = builtinModules.concat(
+  builtinModules.map((name) => `node:${name}`)
+);
 
 export default defineConfig({
   plugins: [
@@ -39,7 +45,7 @@ export default defineConfig({
     },
     rollupOptions: {
       // External packages that should not be bundled into your library.
-      external: [],
+      external: nodeBuiltinModules,
     },
   },
 

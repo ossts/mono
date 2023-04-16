@@ -29,6 +29,7 @@
       "inputs": ["default", "{workspaceRoot}/.eslintrc.json"]
     },
     "precompile-templates": {
+      "dependsOn": ["^precompile-templates"],
       "inputs": ["{projectRoot}/src/lib/templates/**/*"]
     },
     "precommit": {
