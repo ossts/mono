@@ -1,6 +1,7 @@
-// import type { AbstractExternalGenerator } from './AbstractExternalGenerator';
-import type { AbstractExternalGeneratorSettings } from './AbstractExternalGenerator';
+import type { AbstractGeneratorSettings } from './AbstractGenerator';
 import { AbstractGenerator } from './AbstractGenerator';
+
+export type AbstractExternalGeneratorSettings = AbstractGeneratorSettings;
 
 export abstract class AbstractExternalGenerator extends AbstractGenerator {
   override settings?: AbstractExternalGeneratorSettings;
