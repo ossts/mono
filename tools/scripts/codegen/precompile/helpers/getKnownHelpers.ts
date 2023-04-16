@@ -28,13 +28,14 @@ export const getKnownHelpers = async (
   let knownHelpers: Dictionary<boolean> = {};
   const knownHelpersSet = new Set<string>();
 
-  Object.entries(builtInGlobalHelpers).forEach(
-    ([globalGeneratorName, globalGeneratorHelpers]) => {
-      Object.keys(globalGeneratorHelpers).forEach((globalHelperName) => {
-        knownHelpersSet.add(`${globalGeneratorName}_${globalHelperName}`);
-      });
-    }
-  );
+  for await (let [generatorName, getter] of Object.entries(
+    builtInGlobalHelpers
+  )) {
+    const helpers = await getter();
+    Object.keys(helpers).forEach((helperName) => {
+      knownHelpersSet.add(`${generatorName}_${helperName}`);
+    });
+  }
 
   Object.keys(generatorLocalHelpers).forEach((name) => {
     knownHelpersSet.add(name);

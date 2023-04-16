@@ -1,20 +1,11 @@
 import chokidar from 'chokidar';
-import rimraf from 'rimraf';
 
-import {
-  generatorPrecompiledTemplatesPath,
-  generatorTemplatesPath,
-  globals,
-  isWatchMode,
-  showLogs,
-} from './data';
+import { generatorTemplatesPath, globals, isWatchMode, showLogs } from './data';
 import {
   generateIndex,
   processTemplateFile,
   processTemplateFileStats,
 } from './helpers';
-
-rimraf.sync(generatorPrecompiledTemplatesPath);
 
 const filesBeforeReadyEvent = new Set<string>();
 
