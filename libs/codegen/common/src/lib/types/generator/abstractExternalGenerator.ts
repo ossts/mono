@@ -6,11 +6,9 @@ import type {
 
 export type AbstractExternalGeneratorSettings = AbstractGeneratorSettings;
 
-export class AbstractExternalGenerator extends AbstractGenerator {
+export abstract class AbstractExternalGenerator extends AbstractGenerator {
   override settings?: AbstractExternalGeneratorSettings;
 }
-
-console.log('AbstractExternalGenerator => ', AbstractExternalGenerator);
 
 /**
  * This interface should be as extend target for all external generators
