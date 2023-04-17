@@ -1,6 +1,6 @@
 import { execSync } from 'node:child_process';
 
-import { ensureFileSync, writeFileSync } from 'fs-extra';
+import { ensureFileSync, existsSync, writeFileSync } from 'fs-extra';
 import rimraf from 'rimraf';
 
 import { joinPathFragments } from '@nrwl/devkit';
@@ -14,6 +14,22 @@ export default async function runExecutor(
 ) {
   if (!context.projectName || !context.projectsConfigurations) return;
 
+  const otherGeneratorProjectNames = Object.values(
+    context.projectsConfigurations.projects
+  )
+    .filter(
+      (config) =>
+        config.name !== context.projectName &&
+        config.sourceRoot?.startsWith('libs/codegen/generators/')
+    )
+    .map((config) => config.name);
+
+  // we have to create precompiled templates for all generators
+  // otherwise we would get error about missing import paths
+  otherGeneratorProjectNames.forEach(
+    (name) => name && ensurePrecompiledTemplatesPresent(context, name)
+  );
+
   const { sourceRoot } =
     context.projectsConfigurations.projects[context.projectName ?? ''];
 
@@ -21,23 +37,7 @@ export default async function runExecutor(
 
   const libPath = joinPathFragments(sourceRoot, 'lib');
 
-  const precompiledTemplatesPath = joinPathFragments(
-    libPath,
-    'precompiled-templates'
-  );
-
-  rimraf.sync(precompiledTemplatesPath);
-
-  const precompiledTemplatesIndexPath = joinPathFragments(
-    precompiledTemplatesPath,
-    'index.ts'
-  );
-
-  ensureFileSync(precompiledTemplatesIndexPath);
-  writeFileSync(
-    precompiledTemplatesIndexPath,
-    `export const precompiledTemplates = {};`
-  );
+  ensurePrecompiledTemplatesPresent(context, context.projectName, true);
 
   execSync(
     [
@@ -60,4 +60,39 @@ export default async function runExecutor(
   return {
     success: true,
   };
+}
+
+function ensurePrecompiledTemplatesPresent(
+  context: ExecutorContext,
+  projectName: string,
+  forceUpdate = false
+) {
+  if (!context.projectsConfigurations) return;
+
+  const { sourceRoot } =
+    context.projectsConfigurations.projects[projectName ?? ''];
+
+  if (!sourceRoot) return;
+
+  const libPath = joinPathFragments(sourceRoot, 'lib');
+
+  const precompiledTemplatesPath = joinPathFragments(
+    libPath,
+    'precompiled-templates'
+  );
+
+  if (!forceUpdate && existsSync(precompiledTemplatesPath)) return;
+
+  rimraf.sync(precompiledTemplatesPath);
+
+  const precompiledTemplatesIndexPath = joinPathFragments(
+    precompiledTemplatesPath,
+    'index.ts'
+  );
+
+  ensureFileSync(precompiledTemplatesIndexPath);
+  writeFileSync(
+    precompiledTemplatesIndexPath,
+    `export const precompiledTemplates = {};`
+  );
 }

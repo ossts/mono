@@ -1,9 +1,10 @@
-import { helpers as commonEndpointsHelpers } from '@ossts/codegen/generators/common/endpoints';
-import { helpers as commonModelsHelpers } from '@ossts/codegen/generators/common/models';
-import { helpers as utilsHelpers } from '@ossts/codegen/generators/utils';
-
 export const knownGlobalHelpers = {
-  commonEndpoints: commonEndpointsHelpers.globalHelpers,
-  commonModels: commonModelsHelpers.globalHelpers,
-  utils: utilsHelpers.globalHelpers,
+  commonEndpoints: async () =>
+    (await import('@ossts/codegen/generators/common/endpoints')).helpers
+      .globalHelpers,
+  commonModels: async () =>
+    (await import('@ossts/codegen/generators/common/models')).helpers
+      .globalHelpers,
+  utils: async () =>
+    (await import('@ossts/codegen/generators/utils')).helpers.globalHelpers,
 };

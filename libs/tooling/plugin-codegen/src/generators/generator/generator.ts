@@ -11,6 +11,8 @@ import {
 } from '@nrwl/devkit';
 import { libraryGenerator as jsLibraryGenerator } from '@nrwl/js';
 
+import type { DictionaryWithAny } from '@ossts/shared/typescript/helper-types';
+
 import { updateGeneratedContent } from '../update-generated-content/generator';
 import type { GeneratorGeneratorSchema } from './schema';
 
@@ -120,6 +122,10 @@ function updateProjectTargets(tree: Tree, options: NormalizedSchema) {
   );
 
   updateJson(tree, `${options.projectRoot}/project.json`, (json) => {
+    Object.values<DictionaryWithAny>(json.targets).forEach((target) => {
+      target.dependsOn = ['precompile-templates'];
+    });
+
     json.targets['precompile-templates'] = {
       executor: '@ossts/plugin-codegen:precompile-templates',
       outputs: ['{options.outputPath}'],
