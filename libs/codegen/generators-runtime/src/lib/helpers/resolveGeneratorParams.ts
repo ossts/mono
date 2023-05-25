@@ -22,7 +22,7 @@ export const resolveGeneratorParams = async <
 
   let generator: ResolvedGenerator<TGenerators> | null = null;
   if (isBuiltIn) {
-    const module = await generatorImportPaths[generatorCfg.name]();
+    const module = generatorImportPaths[generatorCfg.name];
 
     const { precompiledTemplates, helpers } = module;
 

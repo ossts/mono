@@ -1,12 +1,14 @@
+<%- generators.map(generator => `import * as ${generator.propertyName} from '@ossts/codegen/generators/${generator.name}';`).join('\n'); %>
+
 import type { DictionaryWithAny } from '@ossts/shared/typescript/helper-types';
 
 export * from './knownGlobalHelpers';
 
 export const generatorImportPaths: Record<
   string,
-  () => Promise<DictionaryWithAny>
+  DictionaryWithAny
 > = {
   <%- generators.map(generator => `
-    '${generator.name}': () => import('@ossts/codegen/generators/${generator.name}')
+    '${generator.name}': ${generator.propertyName}
   `).join(','); %>
 };

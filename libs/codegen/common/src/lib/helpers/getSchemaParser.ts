@@ -33,11 +33,9 @@ export const getSchemaParser = async (
 
   const loadParserVersion = requiredParserVersion[0];
 
-  return await (
-    parserVersionsPathMapping[schemaType] as Dictionary<
-      () => Promise<GenericParserModuleExport>
-    >
-  )
-    [loadParserVersion]()
-    .then((module) => module.parse);
+  return (
+    parserVersionsPathMapping[
+      schemaType
+    ] as Dictionary<GenericParserModuleExport>
+  )[loadParserVersion].parse;
 };

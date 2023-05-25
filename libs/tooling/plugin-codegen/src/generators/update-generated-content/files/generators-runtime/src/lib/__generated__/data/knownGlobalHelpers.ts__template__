@@ -1,5 +1,9 @@
+<%- generators.map(generator => `import {
+  helpers as ${generator.propertyName}Helpers,
+} from '@ossts/codegen/generators/${generator.name}';`).join('\n'); %>
+
 export const knownGlobalHelpers = {
   <%- generators.map(generator => `
-    '${generator.propertyName}': async () => (await import('@ossts/codegen/generators/${generator.name}')).helpers.globalHelpers
+    '${generator.propertyName}': ${generator.propertyName}Helpers.globalHelpers
   `).join(','); %>
 };

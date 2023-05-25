@@ -17,6 +17,5 @@ export type GenericParserModuleExport = {
   parse: GenericParserModuleExportParseFn;
 };
 
-export type ParserVersionsPathsMapping = ParserVersionsMap<
-  () => Promise<GenericParserModuleExport>
->;
+export type ParserVersionsPathsMapping =
+  ParserVersionsMap<GenericParserModuleExport>;
