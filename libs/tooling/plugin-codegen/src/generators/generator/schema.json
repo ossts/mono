@@ -18,7 +18,5 @@
       "description": "A directory where the project is placed (relative to codegen/generators folder)"
     }
   },
-  "required": [
-    "name"
-  ]
+  "required": ["name"]
 }
