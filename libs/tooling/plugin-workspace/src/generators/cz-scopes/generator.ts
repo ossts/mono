@@ -1,7 +1,7 @@
 import type { ScopesType } from 'cz-git';
 
-import type { ProjectConfiguration, Tree } from '@nrwl/devkit';
-import { getProjects, writeJson } from '@nrwl/devkit';
+import type { ProjectConfiguration, Tree } from '@nx/devkit';
+import { getProjects, writeJson } from '@nx/devkit';
 
 export default async function (tree: Tree) {
   const projectsMap: Map<

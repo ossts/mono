@@ -1,6 +1,6 @@
 import { sep as pathSeparator } from 'node:path';
 
-import type { Tree } from '@nrwl/devkit';
+import type { Tree } from '@nx/devkit';
 import {
   formatFiles,
   generateFiles,
@@ -8,7 +8,7 @@ import {
   joinPathFragments,
   names,
   readCachedProjectGraph,
-} from '@nrwl/devkit';
+} from '@nx/devkit';
 
 import type { Dictionary } from '@ossts/shared/typescript/helper-types';
 

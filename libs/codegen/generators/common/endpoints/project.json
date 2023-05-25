@@ -6,7 +6,7 @@
   "implicitDependencies": ["codegen-generators-utils"],
   "targets": {
     "build": {
-      "executor": "@nrwl/vite:build",
+      "executor": "@nx/vite:build",
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/libs/codegen/generators/common/endpoints"
@@ -14,7 +14,7 @@
       "dependsOn": ["precompile-templates"]
     },
     "test": {
-      "executor": "@nrwl/vite:test",
+      "executor": "@nx/vite:test",
       "outputs": ["coverage/libs/codegen/generators/common/endpoints"],
       "options": {
         "passWithNoTests": true,
@@ -23,7 +23,7 @@
       "dependsOn": ["precompile-templates"]
     },
     "lint": {
-      "executor": "@nrwl/linter:eslint",
+      "executor": "@nx/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": ["libs/codegen/generators/common/endpoints/**/*.ts"]

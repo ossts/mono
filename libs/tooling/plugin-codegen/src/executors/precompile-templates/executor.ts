@@ -3,8 +3,8 @@ import { execSync } from 'node:child_process';
 import { ensureFileSync, existsSync, writeFileSync } from 'fs-extra';
 import rimraf from 'rimraf';
 
-import { joinPathFragments } from '@nrwl/devkit';
-import type { ExecutorContext } from '@nrwl/devkit';
+import { joinPathFragments } from '@nx/devkit';
+import type { ExecutorContext } from '@nx/devkit';
 
 import type { PrecompileTemplatesExecutorSchema } from './schema';
 

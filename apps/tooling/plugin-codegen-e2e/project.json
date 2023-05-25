@@ -5,11 +5,12 @@
   "sourceRoot": "apps/tooling/plugin-codegen-e2e/src",
   "targets": {
     "e2e": {
-      "executor": "@nrwl/nx-plugin:e2e",
+      "executor": "@nx/jest:jest",
       "options": {
-        "target": "tooling-plugin-codegen:build",
-        "jestConfig": "apps/tooling/plugin-codegen-e2e/jest.config.ts"
-      }
+        "jestConfig": "apps/tooling/plugin-codegen-e2e/jest.config.ts",
+        "runInBand": true
+      },
+      "dependsOn": ["tooling-plugin-codegen:build"]
     }
   },
   "tags": [],

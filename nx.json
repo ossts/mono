@@ -3,7 +3,7 @@
   "npmScope": "ossts",
   "tasksRunnerOptions": {
     "default": {
-      "runner": "@nrwl/nx-cloud",
+      "runner": "nx-cloud",
       "options": {
         "cacheableOperations": [
           "build",
@@ -52,7 +52,7 @@
     "sharedGlobals": []
   },
   "generators": {
-    "@nrwl/js": {
+    "@nx/js": {
       "library": {
         "bundler": "vite",
         "unitTestRunner": "vitest"

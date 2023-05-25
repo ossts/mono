@@ -1,4 +1,4 @@
-import type { Tree } from '@nrwl/devkit';
+import type { Tree } from '@nx/devkit';
 import {
   formatFiles,
   generateFiles,
@@ -8,8 +8,8 @@ import {
   offsetFromRoot,
   readNxJson,
   updateJson,
-} from '@nrwl/devkit';
-import { libraryGenerator as jsLibraryGenerator } from '@nrwl/js';
+} from '@nx/devkit';
+import { libraryGenerator as jsLibraryGenerator } from '@nx/js';
 
 import type { DictionaryWithAny } from '@ossts/shared/typescript/helper-types';
 
@@ -32,7 +32,7 @@ export default async function (tree: Tree, schema: GeneratorGeneratorSchema) {
     skipFormat: true,
     config: 'project',
     tags: ['scope:ts', 'type:lib', 'project:codegen'].join(','),
-    ...nxJson?.generators?.['@nrwl/js']?.library,
+    ...nxJson?.generators?.['@nx/js']?.library,
   });
 
   updateProjectTargets(tree, options);

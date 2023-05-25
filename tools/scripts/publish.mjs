@@ -11,7 +11,7 @@ import { readFileSync, writeFileSync } from 'node:fs';
 
 import chalk from 'chalk';
 
-import { readCachedProjectGraph } from '@nrwl/devkit';
+import { readCachedProjectGraph } from '@nx/devkit';
 
 function invariant(condition, message) {
   if (!condition) {
