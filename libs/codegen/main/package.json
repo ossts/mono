@@ -1,5 +1,15 @@
 {
   "name": "@ossts/codegen",
-  "version": "0.0.1",
-  "type": "commonjs"
+  "version": "0.0.0-semantic-release",
+  "description": "Library for code generation from OpenAPI Schema with support for 3rd party generators.",
+  "type": "commonjs",
+  "keywords": [
+    "openapi",
+    "codegen",
+    "typescript",
+    "yaml",
+    "json"
+  ],
+  "author": "Volodymyr <vpanov.me@gmail.com>",
+  "license": "MIT"
 }

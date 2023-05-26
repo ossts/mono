@@ -9,18 +9,32 @@
   },
   "targets": {
     "build": {
+      "executor": "nx:run-commands",
+      "dependsOn": [],
+      "options": {
+        "commands": [
+          "rm -rf dist/{args.libPath}",
+          "UXNX_LIB_PATH={args.libPath} yarn tsup --config ./{args.libPath}/tsup.config.ts",
+          "node ./scripts/build/update-and-copy-package-json.js --nxLibPath={args.libPath}"
+        ],
+        "args": "--libPath=libs/codegen/main",
+        "parallel": false
+      }
+    },
+    "build-vite": {
       "executor": "@nx/vite:build",
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/libs/codegen/main"
       }
     },
-    "publish": {
+    "release": {
       "executor": "nx:run-commands",
+      "outputs": [],
       "options": {
-        "command": "node tools/scripts/publish.mjs codegen-main {args.ver} {args.tag}"
-      },
-      "dependsOn": ["build"]
+        "command": "yarn semantic-release --extends ./libs/codegen/main/release.config.js",
+        "parallel": false
+      }
     },
     "test": {
       "executor": "@nx/vite:test",
