@@ -1,32 +1,33 @@
 const { resolve } = require('node:path');
 
-const yargsParse = require('yargs-parser');
-const { readJsonSync, writeJSONSync, read } = require('fs-extra');
+const { readJsonSync, writeJSONSync, removeSync } = require('fs-extra');
 
 const { extractImports } = require('./extract-imports');
+const {
+  nxLibPath,
+  libPackageJSONPath,
+  projectRootPackageJSONPath,
+  distRootPath,
+  ditPackageJSONPath,
+} = require('./paths');
 
-(async () => {
-  const { nxLibPath } = yargsParse(process.argv.slice(2));
-
-  const libPackageJSON = readJsonSync(
-    resolve(__dirname, `../../${nxLibPath}/package.json`)
-  );
+module.exports.updateAndCopyPackageJSON = async () => {
+  const libPackageJSON = readJsonSync(libPackageJSONPath);
 
   const githubBasePath = 'https://github.com/ossts/mono';
-
-  const projectRoot = resolve(__dirname, `../../`);
-  const distRootPath = resolve(projectRoot, 'dist', nxLibPath);
 
   const {
     dependencies: rootDependencies,
     devDependencies: rootDevDependencies,
-  } = readJsonSync(resolve(projectRoot, `package.json`));
+  } = readJsonSync(projectRootPackageJSONPath);
   const rootDependenciesKeys = Object.keys(rootDependencies);
   const rootDevDependenciesKeys = Object.keys(rootDevDependencies);
 
-  const { outputs: metaFileOutputs } = readJsonSync(
-    resolve(distRootPath, 'metafile-cjs.json')
-  );
+  const metaFilePath = resolve(distRootPath, 'metafile-cjs.json');
+  const metaFileESMPath = resolve(distRootPath, 'metafile-esm.json');
+  const { outputs: metaFileOutputs } = readJsonSync(metaFilePath);
+  removeSync(metaFilePath);
+  removeSync(metaFileESMPath);
 
   const dtsImports = await extractImports(resolve(distRootPath, 'index.d.ts'));
 
@@ -88,9 +89,10 @@ const { extractImports } = require('./extract-imports');
   };
 
   libPackageJSON['main'] = 'index.js';
+  libPackageJSON['module'] = 'index.mjs';
   libPackageJSON['types'] = 'index.d.ts';
 
-  writeJSONSync(resolve(distRootPath, `package.json`), libPackageJSON, {
+  writeJSONSync(ditPackageJSONPath, libPackageJSON, {
     spaces: 2,
   });
-})();
+};

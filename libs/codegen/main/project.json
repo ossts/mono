@@ -15,7 +15,7 @@
         "commands": [
           "rm -rf dist/{args.libPath}",
           "UXNX_LIB_PATH={args.libPath} yarn tsup --config ./{args.libPath}/tsup.config.ts",
-          "node ./scripts/build/update-and-copy-package-json.js --nxLibPath={args.libPath}"
+          "node ./scripts/build/index.js --nxLibPath={args.libPath}"
         ],
         "args": "--libPath=libs/codegen/main",
         "parallel": false
