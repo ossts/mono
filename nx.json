@@ -20,7 +20,7 @@
   "targetDefaults": {
     "build": {
       "dependsOn": ["^build"],
-      "inputs": ["production", "^production"]
+      "inputs": ["production", "^production", "build", "^build"]
     },
     "test": {
       "inputs": ["default", "^production", "{workspaceRoot}/jest.preset.js"]
@@ -49,6 +49,7 @@
       "!{projectRoot}/.eslintrc.json",
       "!{projectRoot}/jest.config.[jt]s"
     ],
+    "build": ["{workspaceRoot}/scripts/build/**/*"],
     "sharedGlobals": []
   },
   "generators": {
