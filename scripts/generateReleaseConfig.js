@@ -1,5 +1,17 @@
-module.exports = (name) => {
-  const srcRoot = `libs/${name}`;
+/**
+ * Generates release config which will publish to NPM and create new Github release.
+ *
+ * @param {string} packageName Name of package in NPM and in Github release notes
+ * @param {string} branchName Name of the branch after `release/`
+ * @param {string} path Path to package root relative to `libs` folder
+ * @returns
+ */
+module.exports = (
+  packageName,
+  branchName = packageName,
+  path = packageName
+) => {
+  const srcRoot = `libs/${path}`;
   const distRoot = `dist/${srcRoot}`;
 
   const assets = [`${srcRoot}/package.json`, `${srcRoot}/CHANGELOG.md`];
@@ -8,21 +20,21 @@ module.exports = (name) => {
   const result = {
     extends: 'release.config.base.js',
     pkgRoot: distRoot,
-    tagFormat: name + '-v${version}',
+    tagFormat: packageName + '-v${version}',
     commitPaths: [`${srcRoot}/*`],
     branches: [
-      `release/${name}`,
+      `release/${branchName}`,
 
       // handle "feature" (e.g. 1.x) and "fix" (e.g. 1.1.x) release branches logic
       {
-        name: `release/${name}--<%= version %>`,
+        name: `release/${branchName}--<%= version %>`,
         version: '+([0-9])?(.{+([0-9]),x}).x',
       },
 
-      // handle alpha, beta and rc releases in format release/${name}--v2.0.0-{alpha,beta,rc}.1
-      { name: `release/${name}--alpha`, prerelease: 'alpha' },
-      { name: `release/${name}--beta`, prerelease: 'beta' },
-      { name: `release/${name}--rc`, prerelease: 'rc' },
+      // handle alpha, beta and rc releases in format release/${branchName}--v2.0.0-{alpha,beta,rc}.1
+      { name: `release/${branchName}--alpha`, prerelease: 'alpha' },
+      { name: `release/${branchName}--beta`, prerelease: 'beta' },
+      { name: `release/${branchName}--rc`, prerelease: 'rc' },
     ],
     plugins: [
       '@semantic-release/commit-analyzer',
@@ -46,7 +58,7 @@ module.exports = (name) => {
         {
           assets,
           message:
-            `chore(release): Release ${name} ` +
+            `chore(release): Release ${packageName} ` +
             '${nextRelease.version} [skip ci]\n\n${nextRelease.notes}',
         },
       ],
