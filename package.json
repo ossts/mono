@@ -23,6 +23,7 @@
     "tslib": "^2.3.0"
   },
   "devDependencies": {
+    "@commander-js/extra-typings": "^10.0.3",
     "@commitlint/cli": "^17.6.0",
     "@commitlint/config-conventional": "^17.6.0",
     "@nx/devkit": "16.2.2",
@@ -53,6 +54,7 @@
     "@vitest/ui": "0.31.1",
     "app-root-path": "^3.1.0",
     "chokidar": "^3.5.3",
+    "commander": "^10.0.1",
     "cz-git": "^1.4.1",
     "czg": "^1.4.1",
     "eslint": "~8.15.0",

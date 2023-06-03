@@ -1057,6 +1057,11 @@
   resolved "https://registry.yarnpkg.com/@colors/colors/-/colors-1.5.0.tgz#bb504579c1cae923e6576a4f5da43d25f97bdbd9"
   integrity sha512-ooWCrlZP11i8GImSjTHYHLkvFDP48nS4+204nGb1RiX/WXYHmJA2III9/e2DWVabCESdW7hBAEzHRqUn9OUVvQ==
 
+"@commander-js/extra-typings@^10.0.3":
+  version "10.0.3"
+  resolved "https://registry.yarnpkg.com/@commander-js/extra-typings/-/extra-typings-10.0.3.tgz#8b6c64897231ed9c00461db82018b5131b653aae"
+  integrity sha512-OIw28QV/GlP8k0B5CJTRsl8IyNvd0R8C8rfo54Yz9P388vCNDgdNrFlKxZTGqps+5j6lSw3Ss9JTQwcur1w1oA==
+
 "@commitlint/cli@^17.6.0":
   version "17.6.1"
   resolved "https://registry.yarnpkg.com/@commitlint/cli/-/cli-17.6.1.tgz#571a1272a656cd316f4b601cbb0fcb2ef50bfc7a"
@@ -4799,7 +4804,7 @@ combined-stream@^1.0.6, combined-stream@^1.0.8, combined-stream@~1.0.6:
   dependencies:
     delayed-stream "~1.0.0"
 
-commander@^10.0.0:
+commander@^10.0.0, commander@^10.0.1:
   version "10.0.1"
   resolved "https://registry.yarnpkg.com/commander/-/commander-10.0.1.tgz#881ee46b4f77d1c1dccc5823433aa39b022cbe06"
   integrity sha512-y4Mg2tXshplEbSGzx7amzPwKKOCGuoSRP/CjEdwwk0FOGlUbq6lKuoyDZTNZkmxHdJtp54hdfY/JUrdL7Xfdug==

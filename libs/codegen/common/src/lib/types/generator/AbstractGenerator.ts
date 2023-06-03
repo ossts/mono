@@ -136,8 +136,13 @@ export type AbstractGeneratorWithName = AbstractGenerator &
   AbstractGeneratorName;
 
 /**
+ * List of names that mean: "use all generators"
+ */
+export const generatorsAll = ['*', 'all'] as const;
+
+/**
  * This is an internal helper type to prevent duplication
  */
-export type AbstractGeneratorAll = '*' | 'all';
+export type AbstractGeneratorAll = (typeof generatorsAll)[number];
 
 export type AbstractGeneratorWithAll = AbstractGenerator | AbstractGeneratorAll;

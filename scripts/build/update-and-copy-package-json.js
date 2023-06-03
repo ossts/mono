@@ -24,10 +24,7 @@ module.exports.updateAndCopyPackageJSON = async () => {
   const rootDevDependenciesKeys = Object.keys(rootDevDependencies);
 
   const metaFilePath = resolve(distRootPath, 'metafile-cjs.json');
-  const metaFileESMPath = resolve(distRootPath, 'metafile-esm.json');
   const { outputs: metaFileOutputs } = readJsonSync(metaFilePath);
-  removeSync(metaFilePath);
-  removeSync(metaFileESMPath);
 
   const dtsImports = await extractImports(resolve(distRootPath, 'index.d.ts'));
 

@@ -12,6 +12,7 @@
     "precommit",
     "trivago",
     "typeof",
+    "typesafe",
     "uxname"
   ],
   "typescript.tsdk": "node_modules/typescript/lib",

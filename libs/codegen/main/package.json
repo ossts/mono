@@ -10,6 +10,9 @@
     "yaml",
     "json"
   ],
+  "bin": {
+    "codegen": "bin/index.js"
+  },
   "author": "Volodymyr <vpanov.me@gmail.com>",
   "license": "MIT"
 }

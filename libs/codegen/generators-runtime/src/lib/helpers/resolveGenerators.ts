@@ -1,9 +1,10 @@
-import { generatorNamesBuiltIn } from '@ossts/codegen/common';
+import { generatorNamesBuiltIn, generatorsAll } from '@ossts/codegen/common';
 import type {
   AbstractExternalGeneratorWithName,
   AbstractGeneratorSettings,
   AbstractGeneratorWithName,
 } from '@ossts/codegen/common';
+import { tupleIncludes } from '@ossts/shared/typescript/helpers';
 
 import {
   normalizeGeneratorConfigs,
@@ -32,7 +33,7 @@ export const resolveGenerators = async <
   let includesAll = false;
 
   generatorsCfg.forEach((generatorCfg, index) => {
-    if (generatorCfg === '*' || generatorCfg === 'all') {
+    if (tupleIncludes(generatorsAll, generatorCfg)) {
       includesAll = true;
       return;
     }
