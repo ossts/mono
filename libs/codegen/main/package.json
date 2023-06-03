@@ -13,6 +13,9 @@
   "bin": {
     "codegen": "bin/index.js"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "author": "Volodymyr <vpanov.me@gmail.com>",
   "license": "MIT"
 }
