@@ -96,7 +96,7 @@ jobs:
             const { version } = JSON.parse('${{ steps.project.outputs.result }}');
             if (version) return;
 
-            const { id } = await github.rest.pulls.create({
+            const response = await github.rest.pulls.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
               base: '${{github.event.repository.default_branch}}',
@@ -104,10 +104,10 @@ jobs:
               title: 'Merge branch "${{github.ref_name}}" into "${{github.event.repository.default_branch}}"'
             });
 
-            console.log('id => ', id);
+            console.log('response => ', JSON.stringify(response));
 
             github.rest.pulls.merge({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              pull_number: id,
+              pull_number: response.id,
             });
