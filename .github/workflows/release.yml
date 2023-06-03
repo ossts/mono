@@ -89,16 +89,24 @@ jobs:
             await exec.exec(`yarn nx release ${name} --verbose`)
 
       # https://octokit.github.io/rest.js/v19#repos-merge
-      - name: Merge changes into default branch
+      - name: Create pull request into default branch
         uses: actions/github-script@v6
         with:
           script: |
             const { version } = JSON.parse('${{ steps.project.outputs.result }}');
             if (version) return;
 
-            github.rest.repos.merge({
+            const { id } = await octokit.rest.pulls.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
               base: '${{github.event.repository.default_branch}}',
               head: '${{github.ref_name}}',
+            });
+
+            console.log('id => ', id);
+
+            octokit.rest.pulls.merge({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: id,
             });
