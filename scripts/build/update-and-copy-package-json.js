@@ -40,15 +40,12 @@ module.exports.updateAndCopyPackageJSON = async () => {
   if (!libPackageJSON['dependencies']) {
     libPackageJSON['dependencies'] = {};
   }
-  if (!libPackageJSON['devDependencies']) {
-    libPackageJSON['devDependencies'] = {};
-  }
 
   for (let dependency of requiredDependencies) {
     if (rootDependencies[dependency]) {
       libPackageJSON['dependencies'][dependency] = rootDependencies[dependency];
     } else if (rootDevDependencies[dependency]) {
-      libPackageJSON['devDependencies'][dependency] =
+      libPackageJSON['dependencies'][dependency] =
         rootDevDependencies[dependency];
 
       // this is required to resolve deep import paths
@@ -69,7 +66,7 @@ module.exports.updateAndCopyPackageJSON = async () => {
 
       if (!matchedDevDependency) continue;
 
-      libPackageJSON['devDependencies'][matchedDevDependency] =
+      libPackageJSON['dependencies'][matchedDevDependency] =
         rootDevDependencies[matchedDevDependency];
     }
   }
