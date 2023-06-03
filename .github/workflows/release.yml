@@ -104,10 +104,8 @@ jobs:
               title: 'Merge branch "${{github.ref_name}}" into "${{github.event.repository.default_branch}}"'
             });
 
-            console.log('response => ', JSON.stringify(response));
-
             github.rest.pulls.merge({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              pull_number: response.id,
+              pull_number: response.data.number,
             });
