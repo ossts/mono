@@ -101,7 +101,7 @@ jobs:
               repo: context.repo.repo,
               base: '${{github.event.repository.default_branch}}',
               head: '${{github.ref_name}}',
-              title: 'Merge branch "${{github.ref_name}}" into "${{github.event.repository.default_branch}}"'
+              title: 'Merge branch "${{github.ref_name}}" into "${{github.event.repository.default_branch}}" [skip ci]'
             });
 
             github.rest.pulls.merge({
