@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/ossts/mono/compare/@ossts/codegen-v1.0.0...@ossts/codegen-v1.0.1) (2023-06-03)
+
+
+### Bug Fixes
+
+* **codegen:** fix package dependencies for NPM publish. Update Readme.md ([b703043](https://github.com/ossts/mono/commit/b703043c73740e3665eee8b64f748bb766012d88))
+
 # 1.0.0 (2023-06-03)
 
 
