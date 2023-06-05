@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/ossts/mono/compare/@ossts/codegen-v1.0.1...@ossts/codegen-v1.0.2) (2023-06-05)
+
+
+### Bug Fixes
+
+* **codegen:** update Readme.md ([820ad9d](https://github.com/ossts/mono/commit/820ad9d97ae4d20f6ba81cedcdbdc65859c84609))
+
 ## [1.0.1](https://github.com/ossts/mono/compare/@ossts/codegen-v1.0.0...@ossts/codegen-v1.0.1) (2023-06-03)
 
 
