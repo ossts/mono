@@ -12,49 +12,16 @@ env:
 permissions: write-all
 
 jobs:
-  build:
-    name: Nx Cloud - Main Job
-    if: "!contains(github.event.head_commit.message, 'skip ci')"
-    uses: nrwl/ci/.github/workflows/nx-cloud-main.yml@v0.13.0
-    with:
-      main-branch-name: main
-      number-of-agents: 3
-      artifacts-path: dist/**/*
-      artifacts-name: build-artifacts
-      init-commands: |
-        yarn nx-cloud start-ci-run --stop-agents-after="build" --agent-count=3
-      parallel-commands-on-agents: |
-        yarn nx affected --target=build --parallel=3
-
-  agents:
-    name: Nx Cloud - Agents
-    if: "!contains(github.event.head_commit.message, 'skip ci')"
-    uses: nrwl/ci/.github/workflows/nx-cloud-agents.yml@v0.13.0
-    with:
-      number-of-agents: 3
-
-  # release result of NX Cloud build
-  release:
-    name: Release
-    needs:
-      - build
+  prepare:
+    name: Prepare
     runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, 'skip ci')"
     steps:
       - uses: actions/checkout@v3
 
-      - name: Setup node
-        uses: actions/setup-node@v3
-        with:
-          node-version-file: '.nvmrc'
-          check-latest: true
-          cache: yarn
-
-      - name: Install dependencies
-        run: yarn install --frozen-lockfile
-
-      - name: Extract branch name
+      - name: Extract branch data
         uses: actions/github-script@v6
-        id: project
+        id: branchData
         with:
           script: |
             const [refName, version] = "${{github.ref_name}}".split('--');
@@ -71,6 +38,62 @@ jobs:
 
             return { name, version, type };
 
+      - name: Extract branch name
+        uses: actions/github-script@v6
+        id: project
+        with:
+          script: |
+            const { name } = JSON.parse('${{ steps.branchData.outputs.result }}');
+
+            return name;
+
+    outputs:
+      branchData: ${{steps.branchData.outputs.result}}
+      project: ${{steps.project.outputs.result}}
+
+  build:
+    name: Nx Cloud - Main Job
+    needs:
+      - prepare
+    uses: nrwl/ci/.github/workflows/nx-cloud-main.yml@v0.13.0
+    with:
+      main-branch-name: main
+      number-of-agents: 3
+      artifacts-path: dist/**/*
+      artifacts-name: build-artifacts
+      init-commands: |
+        yarn nx-cloud start-ci-run --stop-agents-after="build" --agent-count=3
+      parallel-commands-on-agents: |
+        yarn nx build ${{ needs.prepare.outputs.project }}
+
+  agents:
+    name: Nx Cloud - Agents
+    needs:
+      - prepare
+    uses: nrwl/ci/.github/workflows/nx-cloud-agents.yml@v0.13.0
+    with:
+      number-of-agents: 3
+
+  # release result of NX Cloud build
+  release:
+    name: Release
+    needs:
+      - prepare
+      - build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: '.nvmrc'
+          check-latest: true
+          cache: yarn
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
       - name: Download build artifacts
         uses: actions/download-artifact@v3
         with:
@@ -85,27 +108,21 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            const { name } = JSON.parse('${{ steps.project.outputs.result }}');
+            const { name } = JSON.parse('${{ needs.prepare.outputs.branchData }}');
             await exec.exec(`yarn nx release ${name} --verbose`)
 
       # https://octokit.github.io/rest.js/v19#repos-merge
       - name: Merge changes into default branch
         uses: actions/github-script@v6
         with:
+          github-token: ${{ secrets.SECRET_KEY }}
           script: |
-            const { version } = JSON.parse('${{ steps.project.outputs.result }}');
+            const { version } = JSON.parse('${{ needs.prepare.outputs.branchData }}');
             if (version) return;
 
-            const response = await github.rest.pulls.create({
+            github.rest.repos.merge({
               owner: context.repo.owner,
               repo: context.repo.repo,
               base: '${{github.event.repository.default_branch}}',
               head: '${{github.ref_name}}',
-              title: 'Merge branch "${{github.ref_name}}" into "${{github.event.repository.default_branch}}" [skip ci]'
-            });
-
-            github.rest.pulls.merge({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              pull_number: response.data.number,
             });
