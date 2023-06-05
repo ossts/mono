@@ -119,7 +119,6 @@ jobs:
       - name: Merge changes into default branch
         uses: actions/github-script@v6
         with:
-          github-token: ${{ secrets.SECRET_KEY }}
           script: |
             const { version } = JSON.parse('${{ needs.prepare.outputs.branchData }}');
             if (version) return;
