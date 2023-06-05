@@ -81,6 +81,8 @@ jobs:
       - prepare
       - build
     runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.SECRET_KEY }}
     steps:
       - uses: actions/checkout@v3
 
