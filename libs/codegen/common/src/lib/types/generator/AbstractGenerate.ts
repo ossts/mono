@@ -31,8 +31,10 @@ export interface AbstractGenerateParams<
    * Generators that should be used.
    *
    * Set to `*` or `all` to include all built-in generators
+   *
+   * Defaults to `["*"]`
    */
-  generators: TGenerators[];
+  generators?: TGenerators[];
 
   /**
    * Settings that will be applied to all generators.
@@ -59,6 +61,8 @@ export interface AbstractGenerateParams<
    * This function is called before any generator is called.
    *
    * Return `false` to prevent any generator from running
+   *
+   * @TJS-ignore
    */
   beforeAll?: AbstractGenerateHookBeforeAll<TResolvedGeneratorsMap>;
 
@@ -66,6 +70,8 @@ export interface AbstractGenerateParams<
    * This function is called after all generators finished processing.
    *
    * This may be used to add additional logic based on results
+   *
+   * @TJS-ignore
    */
   afterAll?: AbstractGenerateHookAfterAll<TResolvedGeneratorsMap>;
 
@@ -73,6 +79,8 @@ export interface AbstractGenerateParams<
    * This function is called before each generator is called.
    *
    * Return `false` to prevent this generator from running
+   *
+   * @TJS-ignore
    */
   beforeEach?: AbstractGenerateHookBeforeEach<
     TResolvedGeneratorsMap,
@@ -83,6 +91,8 @@ export interface AbstractGenerateParams<
    * This function is called after each generator is called.
    *
    * This may be used to add additional logic based on results
+   *
+   * @TJS-ignore
    */
   afterEach?: AbstractGenerateHookAfterEach<
     TResolvedGeneratorsMap,

@@ -6,7 +6,7 @@ import type { GenerateParams } from './types';
 export const runGenerators = async <
   TGenerators extends AbstractExternalGeneratorWithName = AbstractExternalGeneratorWithName
 >({
-  generators: generatorsCfg,
+  generators: generatorsCfg = ['*'],
   suppressWarnings,
   generatorsSettings,
   output = 'codegen',

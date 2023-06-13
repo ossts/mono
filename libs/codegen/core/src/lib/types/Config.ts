@@ -23,6 +23,8 @@ export interface Config<
 
   /**
    * Set this to `true` to only run parser logic and return result
+   *
+   * @TJS-ignore
    */
   parseOnly?: boolean;
 }

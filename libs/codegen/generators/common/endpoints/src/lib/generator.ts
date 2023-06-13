@@ -21,10 +21,6 @@ export class CommonEndpointsGenerator
     super();
 
     mergeObjectsWithSameShape(this, {}, config, {
-      settings: {
-        createExportAllWithSuffix: 'Endpoints',
-        ...config?.settings,
-      },
       entriesRenderCfg: {
         endpoint: {
           dataPath: 'services',

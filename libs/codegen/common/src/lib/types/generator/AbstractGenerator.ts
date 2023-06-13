@@ -11,14 +11,11 @@ import type {
 } from './GeneratorExportTypes';
 import type { GeneratorEntriesRenderConfig } from './other';
 
-export interface AbstractGeneratorSettings {
-  /**
-   * Set to `true` to add `export * all as ...` alongside regular export in generator `index.ts`
-   *
-   * e.g. if set to "Endpoints" will add `export * as entityEndpoints from './entity'`
-   */
-  createExportAllWithSuffix?: string;
+export const abstractGeneratorFormatters = ['none', 'prettier'] as const;
+export type AbstractGeneratorFormatters =
+  (typeof abstractGeneratorFormatters)[number];
 
+export interface AbstractGeneratorSettings {
   /**
    * Set to `true` to add comments which will disable linters for generated files
    */
@@ -39,11 +36,11 @@ export interface AbstractGeneratorSettings {
    *
    * `prettier` - use Prettier (default)
    *
-   * `null` - don't format result
+   * `none` - don't format result
    *
    * `(content: string) => string` - custom formatter function
    */
-  formatter?: null | 'prettier' | AbstractGeneratorCustomFormatter;
+  formatter?: AbstractGeneratorFormatters | AbstractGeneratorCustomFormatter;
 }
 
 export type AbstractGeneratorCustomFormatter = (content: string) => string;

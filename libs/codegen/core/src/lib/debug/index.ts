@@ -5,5 +5,4 @@ import { generate } from '../';
 generate({
   input: mockJSONSchemaV3,
   output: 'dist/tmp/codegen',
-  generators: ['*'],
 });

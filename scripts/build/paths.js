@@ -1,8 +1,6 @@
 const { resolve } = require('node:path');
 
-const yargsParse = require('yargs-parser');
-
-const { nxLibPath } = yargsParse(process.argv.slice(2));
+const { nxLibPath } = require('./args');
 
 const projectRootPath = resolve(__dirname, `../../`);
 const projectRootPackageJSONPath = resolve(projectRootPath, `package.json`);

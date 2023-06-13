@@ -5,6 +5,7 @@ const { program } = require('./cli');
 
 program.version(version).parse();
 
-const options = program.opts();
+const opts = program.opts();
+const options = opts.jsonConfig ?? opts;
 
 generate(options);

@@ -154,19 +154,26 @@ const render = <
       });
 
       const indexDist = resolvePath(basePath, 'index.ts');
-      const content = fileNames
+      const importAllNames = new Set();
+      let content = fileNames
         .map((name) => {
           let content = `export * from './${name}';`;
 
-          if (generator.settings?.createExportAllWithSuffix) {
-            content += `\nexport * as ${camelCase(
-              name + '_' + generator.settings.createExportAllWithSuffix
-            )} from './${name}';`;
-          }
+          const importAllName = camelCase(name + '_Endpoints');
+          content += `\nimport * as ${importAllName} from './${name}';`;
+          content += `\nexport { ${importAllName} }`;
+
+          importAllNames.add(importAllName);
 
           return content;
         })
-        .join('\n');
+        .join('\n\n');
+
+      content += '\n\nexport const allApiEndpoints = {\n';
+      content += [...importAllNames].map((name) => `  ${name},`).join('\n');
+      content += '\n};';
+
+      content += '\n\nexport type AllApiEndpoints = typeof allApiEndpoints;';
 
       ensureFileSync(indexDist);
       promises.push(writeFile(indexDist, content + '\n'));

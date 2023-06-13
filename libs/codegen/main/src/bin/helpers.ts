@@ -1,3 +1,5 @@
+import { readJsonSync } from 'fs-extra';
+
 import { generatorsAll } from '@ossts/codegen/common';
 import { tupleIncludes } from '@ossts/shared/typescript/helpers';
 
@@ -10,3 +12,5 @@ export const processGenerators = (
     return { name };
   });
 };
+
+export const readJSONConfig = (path: string) => readJsonSync(path);
