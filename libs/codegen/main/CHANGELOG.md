@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/ossts/mono/compare/@ossts/codegen-v1.0.2...@ossts/codegen-v1.1.0) (2023-06-28)
+
+
+### Features
+
+* **codegen:** update/Add CLI generator options. Endpoint generator improvements ([56d09dd](https://github.com/ossts/mono/commit/56d09ddadd5873405d2abfd6fe4577eaca011faa))
+
 ## [1.0.2](https://github.com/ossts/mono/compare/@ossts/codegen-v1.0.1...@ossts/codegen-v1.0.2) (2023-06-05)
 
 
