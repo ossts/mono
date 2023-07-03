@@ -1,3 +1,15 @@
+# [1.2.0](https://github.com/ossts/mono/compare/@ossts/codegen-v1.1.0...@ossts/codegen-v1.2.0) (2023-07-03)
+
+
+### Bug Fixes
+
+* **workspace:** fix semantic release filter paths ([b856ef7](https://github.com/ossts/mono/commit/b856ef77a2606667995a7bf4003bbed8a02e8305))
+
+
+### Features
+
+* **codegen:** add 'withExportAll' option to allow import as single object ([fdd04df](https://github.com/ossts/mono/commit/fdd04df1b37488ec9ad8d6bc5f60bf081a84535f))
+
 # [1.1.0](https://github.com/ossts/mono/compare/@ossts/codegen-v1.0.2...@ossts/codegen-v1.1.0) (2023-06-28)
 
 
