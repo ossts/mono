@@ -84,6 +84,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
+          persist-credentials: false
           ssh-key: ${{ secrets.SECRET_KEY }}
 
       - name: Setup node
