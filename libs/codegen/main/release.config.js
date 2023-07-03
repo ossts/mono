@@ -11,5 +11,6 @@ const { name } = readJsonSync(`${__dirname}/package.json`);
 module.exports = generateReleaseConfig(
   name,
   'codegen-main',
-  join('codegen', 'main')
+  join('codegen', 'main'),
+  ['libs/codegen/*']
 );

@@ -4,12 +4,14 @@
  * @param {string} packageName Name of package in NPM and in Github release notes
  * @param {string} branchName Name of the branch after `release/`
  * @param {string} path Path to package root relative to `libs` folder
+ * @param {string[]?} additionalCommitPaths Additional path to check for commits
  * @returns
  */
 module.exports = (
   packageName,
   branchName = packageName,
-  path = packageName
+  path = packageName,
+  additionalCommitPaths = []
 ) => {
   const srcRoot = `libs/${path}`;
   const distRoot = `dist/${srcRoot}`;
@@ -21,7 +23,7 @@ module.exports = (
     extends: 'release.config.base.js',
     pkgRoot: distRoot,
     tagFormat: packageName + '-v${version}',
-    commitPaths: [`${srcRoot}/*`],
+    commitPaths: [`${srcRoot}/*`, ...additionalCommitPaths],
     branches: [
       `release/${branchName}`,
 
