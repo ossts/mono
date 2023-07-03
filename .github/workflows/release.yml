@@ -81,12 +81,10 @@ jobs:
       - prepare
       - build
     runs-on: ubuntu-latest
-    env:
-      GITHUB_TOKEN: ${{ secrets.SECRET_KEY }}
     steps:
       - uses: actions/checkout@v3
         with:
-          persist-credentials: false
+          ssh-key: ${{ secrets.SECRET_KEY }}
 
       - name: Setup node
         uses: actions/setup-node@v3

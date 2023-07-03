@@ -21,6 +21,12 @@ export class CommonEndpointsGenerator
     super();
 
     mergeObjectsWithSameShape(this, {}, config, {
+      settings: {
+        withExportAll: config?.settings?.withExportAll ?? {
+          name: 'allApiEndpoints',
+        },
+        ...config?.settings,
+      },
       entriesRenderCfg: {
         endpoint: {
           dataPath: 'services',

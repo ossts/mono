@@ -1,7 +1,7 @@
 import { resolve as resolvePath } from 'node:path';
 
 import { ensureFile, ensureFileSync, writeFile } from 'fs-extra';
-import { camelCase, get as getNested, isPlainObject } from 'lodash';
+import { camelCase, get as getNested, isPlainObject, upperFirst } from 'lodash';
 import prettier from 'prettier';
 import rimraf from 'rimraf';
 
@@ -169,11 +169,25 @@ const render = <
         })
         .join('\n\n');
 
-      content += '\n\nexport const allApiEndpoints = {\n';
-      content += [...importAllNames].map((name) => `  ${name},`).join('\n');
-      content += '\n};';
+      if (generator.settings?.withExportAll) {
+        let name = '',
+          typeName = '';
 
-      content += '\n\nexport type AllApiEndpoints = typeof allApiEndpoints;';
+        if (generator.settings.withExportAll === true) {
+          name = camelCase(`all_${generator.globalName}`);
+          typeName = upperFirst(name);
+        } else {
+          ({ name } = generator.settings.withExportAll);
+          typeName =
+            generator.settings.withExportAll.typeName ?? upperFirst(name);
+        }
+
+        content += `\n\nexport const ${name} = {\n`;
+        content += [...importAllNames].map((name) => `  ${name},`).join('\n');
+        content += '\n};';
+
+        content += `\n\nexport type ${typeName} = typeof ${name};`;
+      }
 
       ensureFileSync(indexDist);
       promises.push(writeFile(indexDist, content + '\n'));

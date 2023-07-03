@@ -32,6 +32,12 @@ export interface AbstractGeneratorSettings {
   useDistinctParams?: boolean;
 
   /**
+   * Set to `true` or config object to generate export statement
+   * which contains all exports of this generator.
+   */
+  withExportAll?: AbstractGeneratorSettingsExportAll;
+
+  /**
    * Formatter to use before outputting template results.
    *
    * `prettier` - use Prettier (default)
@@ -42,6 +48,19 @@ export interface AbstractGeneratorSettings {
    */
   formatter?: AbstractGeneratorFormatters | AbstractGeneratorCustomFormatter;
 }
+
+export type AbstractGeneratorSettingsExportAll =
+  | boolean
+  | {
+      /**
+       * Name of export all variable
+       */
+      name: string;
+      /**
+       * Name of export all type variable
+       */
+      typeName?: string;
+    };
 
 export type AbstractGeneratorCustomFormatter = (content: string) => string;
 
