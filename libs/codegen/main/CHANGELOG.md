@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/ossts/mono/compare/@ossts/codegen-v1.3.0...@ossts/codegen-v1.3.1) (2024-04-13)
+
+
+### Bug Fixes
+
+* **codegen:** fix Zod schema generation for "null" and "undefined" values ([53a8137](https://github.com/ossts/mono/commit/53a813747635b4dcdf0b88395cde23f9e5b4bb00))
+
 # [1.3.0](https://github.com/ossts/mono/compare/@ossts/codegen-v1.2.0...@ossts/codegen-v1.3.0) (2024-04-13)
 
 
