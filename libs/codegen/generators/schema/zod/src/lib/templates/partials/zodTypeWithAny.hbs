@@ -1,5 +1,9 @@
 {{~#utilsEquals type 'any'~}}
 z.any()
+{{~else utilsEquals type 'null'~}}
+z.null()
+{{~else utilsEquals type 'undefined'~}}
+z.undefined()
 {{~else~}}
 {{type}}
 {{~/utilsEquals~}}
