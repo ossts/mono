@@ -1,0 +1,5 @@
+{{~#if link~}}
+{{>zodType link hasWrapperType=hasWrapperType}}.array(){{>zodValidationRules}}{{>zodNullable}}
+{{~else~}}
+{{type}}Schema.array(){{>zodValidationRules}}
+{{~/if~}}

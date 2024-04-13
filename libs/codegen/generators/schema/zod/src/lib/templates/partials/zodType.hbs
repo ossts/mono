@@ -1,0 +1,23 @@
+{{~#utilsEquals export 'interface'~}}
+	{{>zodTypeInterface}}
+{{else utilsEquals export 'reference'}}
+	{{>zodTypeReference}}
+{{else utilsEquals export 'enum'}}
+	{{>zodTypeEnum hasWrapperType=hasWrapperType}}
+{{else utilsEquals export 'array'}}
+	{{~>zodArray hasWrapperType=hasWrapperType}}
+{{else utilsEquals export 'dictionary'}}
+	{{~>zodDictionary hasWrapperType=hasWrapperType~}}
+{{else utilsEquals export 'oneOf'}}
+	{{>zodTypeUnion hasWrapperType=hasWrapperType}}
+{{else utilsEquals export 'anyOf'}}
+	{{>zodTypeUnion hasWrapperType=hasWrapperType}}
+{{else utilsEquals export 'allOf'}}
+	{{>zodTypeIntersection hasWrapperType=hasWrapperType}}
+{{~else~}}
+	{{~#utilsIsPrimitive type~}}
+		.{{>zodTypeWithAny}}(){{>zodTypeFormat}}{{>zodValidationRules}}{{#unless hasWrapperType}}{{~>zodRequired}}{{/unless}}{{>zodNullable}}{{>zodReadOnly}}
+	{{~else~}}
+		{{>zodTypeWithAny}}{{~>zodRequired}}{{>zodNullable}}{{>zodReadOnly}}
+	{{~/utilsIsPrimitive~}}
+{{~/utilsEquals~}}

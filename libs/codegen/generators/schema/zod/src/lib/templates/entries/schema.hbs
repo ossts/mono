@@ -1,0 +1,24 @@
+{{#with data}}
+{{>utilsHeader}}
+
+import { z } from 'zod';
+{{#if imports}}
+	{{#each imports}}
+		import { {{this}}Schema } from './{{this}}Schema';
+	{{/each}}
+{{/if}}
+
+{{#utilsEquals export 'interface'}}
+	{{>zodInterfaceSchema}}
+{{else utilsEquals export 'oneOf'}}
+	{{>zodComposition}}
+{{else utilsEquals export 'anyOf'}}
+	{{>zodComposition}}
+{{else utilsEquals export 'allOf'}}
+	{{>zodComposition}}
+{{else utilsEquals export 'enum'}}
+	{{>zodExportEnum}}
+{{else}}
+	{{>zodExportType}}
+{{/utilsEquals}}
+{{/with}}

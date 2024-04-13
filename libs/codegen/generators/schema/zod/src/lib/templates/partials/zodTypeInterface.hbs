@@ -1,0 +1,9 @@
+{{~#if properties~}}
+z.object({
+	{{#each properties}}
+		{{{name}}}: {{>zodStart}}{{>zodType}},
+	{{/each}}
+}){{>zodNullable}}{{>zodReadOnly}}
+{{~else~}}
+z.any()
+{{~/if~}}

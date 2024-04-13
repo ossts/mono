@@ -1,0 +1,13 @@
+{{~#utilsEquals base 'binary'~}}
+.object()
+{{~else~}}
+	{{~#utilsIsPrimitive type~}}
+		{{#utilsStartsWith base "'"}}
+			z.literal({{base}})
+		{{~else~}}
+			z.{{{type}}}()
+		{{/utilsStartsWith}}
+	{{~else~}}
+		{{{type}}}Schema
+	{{~/utilsIsPrimitive~}}
+{{~/utilsEquals~}}

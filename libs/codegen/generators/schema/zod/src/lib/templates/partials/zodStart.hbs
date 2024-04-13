@@ -1,0 +1,7 @@
+{{~#utilsNotEquals export 'reference'~}}
+{{~#utilsNotEquals export 'dictionary'~}}
+{{~#utilsIsPrimitive type~}}
+z{{~#utilsEquals export 'generic'~}}{{~#unless @root.settings.withoutTypeCoercion~}}{{#if required}}{{#unless nullable}}.coerce{{/unless}}{{/if}}{{/unless}}{{~/utilsEquals~}}
+{{~/utilsIsPrimitive~}}
+{{~/utilsNotEquals~}}
+{{~/utilsNotEquals~}}

@@ -1,0 +1,41 @@
+{
+  "name": "codegen-generators-schema-zod",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/codegen/generators/schema/zod/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/vite:build",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/codegen/generators/schema/zod"
+      },
+      "dependsOn": ["precompile-templates"]
+    },
+    "test": {
+      "executor": "@nx/vite:test",
+      "outputs": ["coverage/libs/codegen/generators/schema/zod"],
+      "options": {
+        "passWithNoTests": true,
+        "reportsDirectory": "../../../../../coverage/libs/codegen/generators/schema/zod"
+      },
+      "dependsOn": ["precompile-templates"]
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/codegen/generators/schema/zod/**/*.ts"]
+      },
+      "dependsOn": ["precompile-templates"]
+    },
+    "precompile-templates": {
+      "executor": "@ossts/plugin-codegen:precompile-templates",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "libs/codegen/generators/schema/zod/src/lib/precompiled-templates"
+      }
+    }
+  },
+  "tags": ["scope:ts", "type:lib", "project:codegen"]
+}
