@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/ossts/mono/compare/@ossts/codegen-v1.2.0...@ossts/codegen-v1.3.0) (2024-04-13)
+
+
+### Features
+
+* **codegen:** add generator for "Zod" schemas ([1893cd9](https://github.com/ossts/mono/commit/1893cd9286286dd294397fae05a0e2a28be4168f))
+
 # [1.2.0](https://github.com/ossts/mono/compare/@ossts/codegen-v1.1.0...@ossts/codegen-v1.2.0) (2023-07-03)
 
 
