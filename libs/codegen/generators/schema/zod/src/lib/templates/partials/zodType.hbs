@@ -3,17 +3,17 @@
 {{else utilsEquals export 'reference'}}
 	{{>zodTypeReference}}
 {{else utilsEquals export 'enum'}}
-	{{>zodTypeEnum hasWrapperType=hasWrapperType}}
+	{{>zodTypeEnum}}
 {{else utilsEquals export 'array'}}
-	{{~>zodArray hasWrapperType=hasWrapperType}}
+	{{~>zodArray}}
 {{else utilsEquals export 'dictionary'}}
-	{{~>zodDictionary hasWrapperType=hasWrapperType~}}
+	{{~>zodDictionary~}}
 {{else utilsEquals export 'oneOf'}}
-	{{>zodTypeUnion hasWrapperType=hasWrapperType}}
+	{{>zodTypeUnion}}
 {{else utilsEquals export 'anyOf'}}
-	{{>zodTypeUnion hasWrapperType=hasWrapperType}}
+	{{>zodTypeUnion}}
 {{else utilsEquals export 'allOf'}}
-	{{>zodTypeIntersection hasWrapperType=hasWrapperType}}
+	{{>zodTypeIntersection}}
 {{~else~}}
 	{{~#utilsIsPrimitive type~}}
 		.{{>zodTypeWithAny}}(){{>zodTypeFormat}}{{>zodValidationRules}}{{#unless hasWrapperType}}{{~>zodRequired}}{{/unless}}{{>zodNullable}}{{>zodReadOnly}}

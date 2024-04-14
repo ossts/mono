@@ -1,1 +1,5 @@
-{{#zodEnumerator enum parent name @root.settings.useUnionTypes}}{{this}}{{/zodEnumerator}}{{>zodNullable}}{{#unless isRoot}}{{#unless hasWrapperType}}{{>zodRequired}}{{/unless}}{{/unless}}
+{{~#unless isRoot~}}
+{{#zodEnumerator enum parentName name @root.settings.useUnionTypes}}{{this}}{{/zodEnumerator}}{{>zodNullable}}{{#unless isRoot}}{{#unless hasWrapperType}}{{>zodRequired}}{{/unless}}{{/unless}}
+{{~else~}}
+z.nativeEnum({{name}}){{>zodNullable}}{{#unless isRoot}}{{#unless hasWrapperType}}{{>zodRequired}}{{/unless}}{{/unless}}
+{{~/unless}}

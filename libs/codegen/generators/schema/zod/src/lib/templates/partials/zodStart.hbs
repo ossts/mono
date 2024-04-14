@@ -1,7 +1,13 @@
 {{~#utilsNotEquals export 'reference'~}}
 {{~#utilsNotEquals export 'dictionary'~}}
+{{~#utilsNotEquals export 'enum'~}}
+{{~#utilsNotEquals export 'array'~}}
+{{~#unless link~}}
 {{~#utilsIsPrimitive type~}}
 z{{~#utilsEquals export 'generic'~}}{{~#unless @root.settings.withoutTypeCoercion~}}{{#if required}}{{#unless nullable}}.coerce{{/unless}}{{/if}}{{/unless}}{{~/utilsEquals~}}
 {{~/utilsIsPrimitive~}}
+{{~/unless~}}
+{{~/utilsNotEquals~}}
+{{~/utilsNotEquals~}}
 {{~/utilsNotEquals~}}
 {{~/utilsNotEquals~}}

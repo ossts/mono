@@ -25,7 +25,7 @@ export class SchemaZodGenerator
           nameFieldOrFn: (data) => `${data['name']}Schema`,
         },
       },
-      dependsOn: ['utils', ...(config?.dependsOn ?? [])],
+      dependsOn: ['utils', 'common/models', ...(config?.dependsOn ?? [])],
     });
   }
 

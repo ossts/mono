@@ -10,7 +10,7 @@ export const zodUnion: CodegenHandlebarsHelperWrapper = ({
   function (
     this: unknown,
     properties: ParsedModelOpenAPIV3[],
-    parent: string | undefined,
+    parentName: string | undefined,
     options: Handlebars.HelperOptions
   ) {
     const type = handlebarsInstance.partials['zodType'];
@@ -18,7 +18,7 @@ export const zodUnion: CodegenHandlebarsHelperWrapper = ({
       type({
         ...property,
         hasWrapperType: true,
-        parent,
+        parentName,
         settings,
       })
     );

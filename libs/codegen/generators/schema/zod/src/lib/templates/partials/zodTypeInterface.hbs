@@ -1,7 +1,7 @@
 {{~#if properties~}}
 z.object({
 	{{#each properties}}
-		{{{name}}}: {{>zodStart}}{{>zodType}},
+		{{{name}}}: {{>zodStart}}{{>zodType parentName=../name}},
 	{{/each}}
 }){{>zodNullable}}{{>zodReadOnly}}
 {{~else~}}

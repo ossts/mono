@@ -5,18 +5,19 @@ export const zodEnumerator: CodegenHandlebarsHelperWrapper = () =>
   function (
     this: unknown,
     enumerators: ParsedEnumOpenAPIV3[],
-    parent: string | undefined,
+    parentName: string | undefined,
     name: string | undefined,
     useUnionTypes: boolean,
     options: Handlebars.HelperOptions
   ) {
-    if (!useUnionTypes && parent && name) {
-      return `${parent}.${name}`;
+    if (!useUnionTypes && parentName && name) {
+      return `z.nativeEnum(${parentName}.${name})`;
     }
 
     const enums = enumerators.map((enumerator) => enumerator.value);
-    const uniqueEnums = [...new Set(enums)];
-    const uniqueEnumsString = `.enum([${uniqueEnums.join(', ')}])`;
+    // we use union here to support enums with
+    const uniqueEnums = [...new Set(enums)].map((item) => `z.literal(${item})`);
+    const uniqueEnumsString = `z.union([${uniqueEnums.join(', ')}])`;
 
     return options.fn(uniqueEnumsString);
   };
