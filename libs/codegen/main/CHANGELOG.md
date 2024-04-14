@@ -1,3 +1,10 @@
+## [1.3.2](https://github.com/ossts/mono/compare/@ossts/codegen-v1.3.1...@ossts/codegen-v1.3.2) (2024-04-14)
+
+
+### Bug Fixes
+
+* **codegen:** update Zod arrays to wrap nested type, update enums to use nativeEnum ([069286d](https://github.com/ossts/mono/commit/069286de536d0b74d14c947fb0ace69147954119))
+
 ## [1.3.1](https://github.com/ossts/mono/compare/@ossts/codegen-v1.3.0...@ossts/codegen-v1.3.1) (2024-04-13)
 
 
