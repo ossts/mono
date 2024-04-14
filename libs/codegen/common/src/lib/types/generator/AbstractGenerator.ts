@@ -1,19 +1,22 @@
-import type {
-  Dictionary,
-  DictionaryWithAny,
-} from '@ossts/shared/typescript/helper-types';
+import type { Dictionary } from '@ossts/shared/typescript/helper-types';
 
 import type { GeneratorNameBuiltIn } from '../../__generated__';
-import type { CodegenHandlebarsHelperWrapper } from '../handlebars';
-import type {
-  GeneratorHelpersExportType,
-  GeneratorTemplatesExportType,
-} from './GeneratorExportTypes';
 import type { GeneratorEntriesRenderConfig } from './other';
 
 export const abstractGeneratorFormatters = ['none', 'prettier'] as const;
 export type AbstractGeneratorFormatters =
   (typeof abstractGeneratorFormatters)[number];
+
+// this should match interface options below. Required in CLI tool
+export const abstractGeneratorSettings = [
+  'disableLinters',
+  'useUnionTypes',
+  'useDistinctParams',
+  'withExportAll',
+  'suppressWarnings',
+  'exportSuffix',
+  'formatter',
+] as const;
 
 export interface AbstractGeneratorSettings {
   /**
@@ -36,6 +39,18 @@ export interface AbstractGeneratorSettings {
    * which contains all exports of this generator.
    */
   withExportAll?: AbstractGeneratorSettingsExportAll;
+
+  /**
+   * Set to true to prevent any warnings on all generators.
+   */
+  suppressWarnings?: boolean;
+
+  /**
+   * Unique identifier to add after name in export name.
+   *
+   * Defaults to `generator.name.split(pathSeparator).at(-1)`
+   */
+  exportSuffix?: string;
 
   /**
    * Formatter to use before outputting template results.
@@ -89,13 +104,6 @@ export abstract class AbstractGenerator {
   outputPath?: string;
 
   /**
-   * Set to true to prevent any warnings for this generator
-   *
-   * Also can be used to override global `suppressWarnings` setting
-   */
-  suppressWarnings?: boolean;
-
-  /**
    * Template engine entry files rendering config.
    *
    * This will override internal config and config extracted from entry filename
@@ -108,21 +116,6 @@ export abstract class AbstractGenerator {
    * This will also prevent entries from rendering
    */
   helpersOnly?: boolean;
-
-  /**
-   * Set of templates for this generator
-   */
-  templates?: Partial<Record<GeneratorTemplatesExportType, DictionaryWithAny>>;
-
-  /**
-   * Set of helpers for this generator
-   */
-  helpers?: Partial<
-    Record<
-      GeneratorHelpersExportType,
-      Dictionary<CodegenHandlebarsHelperWrapper>
-    >
-  >;
 
   /**
    * Generators required for this generator to work

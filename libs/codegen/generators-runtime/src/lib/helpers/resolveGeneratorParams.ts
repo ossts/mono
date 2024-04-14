@@ -1,6 +1,10 @@
 import { camelCase, upperFirst } from 'lodash';
 
-import { generatorNamesBuiltIn } from '@ossts/codegen/common';
+import {
+  AbstractExternalGenerator,
+  DefaultExternalGenerator,
+  generatorNamesBuiltIn,
+} from '@ossts/codegen/common';
 import type {
   AbstractExternalGeneratorWithName,
   AbstractGeneratorSettings,
@@ -15,7 +19,7 @@ export const generatorNamesString: readonly string[] = generatorNamesBuiltIn;
 export const resolveGeneratorParams = async <
   TGenerators extends AbstractExternalGeneratorWithName = AbstractExternalGeneratorWithName
 >(
-  generatorCfg: AbstractGeneratorWithName,
+  generatorCfg: AbstractGeneratorWithName | AbstractExternalGeneratorWithName,
   generatorsSettings: AbstractGeneratorSettings | undefined
 ): Promise<ResolvedGenerator<TGenerators>> => {
   const isBuiltIn = generatorNamesString.includes(generatorCfg.name);
@@ -44,9 +48,30 @@ export const resolveGeneratorParams = async <
     generator.templates = precompiledTemplates;
     generator.helpers = helpers;
   } else {
-    generator = {} as ResolvedGenerator<TGenerators>;
-    // TODO: extract required info from external generator
-    throw new Error('External generators not implemented yet');
+    if (!generatorCfg.generatorPath) {
+      throw new Error(
+        `"generatorPath" is missing for "${generatorCfg.name}" generator`
+      );
+    }
+
+    const module = await import(generatorCfg.generatorPath);
+
+    const { precompiledTemplates, helpers } = module;
+
+    const generatorParams: AbstractExternalGeneratorWithName = {
+      ...generatorCfg,
+      settings: {
+        ...generatorsSettings,
+        ...generatorCfg.settings,
+      },
+    };
+
+    generator = new DefaultExternalGenerator(
+      generatorParams
+    ) as ResolvedGenerator<TGenerators>;
+
+    generator.templates = precompiledTemplates;
+    generator.helpers = helpers;
   }
 
   return generator;

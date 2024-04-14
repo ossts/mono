@@ -1,9 +1,15 @@
 import type {
   AbstractExternalGenerator,
   AbstractExternalGeneratorWithName,
+  CodegenHandlebarsHelperWrapper,
   GeneratorEntriesRenderConfig,
+  GeneratorHelpersExportType,
+  GeneratorTemplatesExportType,
 } from '@ossts/codegen/common';
-import type { Dictionary } from '@ossts/shared/typescript/helper-types';
+import type {
+  Dictionary,
+  DictionaryWithAny,
+} from '@ossts/shared/typescript/helper-types';
 
 import type { AllGeneratorsResolvedParams, GeneratorName } from './Generator';
 
@@ -36,6 +42,21 @@ export type ResolvedGenerator<
    * This will hold final configuration with all configs merged and resolved.
    */
   resolvedEntriesRenderCfg?: Dictionary<GeneratorEntriesRenderConfig>;
+
+  /**
+   * Set of templates for this generator
+   */
+  templates?: Partial<Record<GeneratorTemplatesExportType, DictionaryWithAny>>;
+
+  /**
+   * Set of helpers for this generator
+   */
+  helpers?: Partial<
+    Record<
+      GeneratorHelpersExportType,
+      Dictionary<CodegenHandlebarsHelperWrapper>
+    >
+  >;
 };
 
 export type ResolvedGeneratorsMap<

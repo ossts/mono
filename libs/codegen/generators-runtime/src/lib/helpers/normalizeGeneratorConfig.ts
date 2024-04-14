@@ -23,6 +23,8 @@ export const normalizeGeneratorConfigs = <
     name = generatorCfg.name;
   }
 
+  const nameSplit = name.split(pathSeparator);
+
   const config: ResolvedGenerator<TGenerators> = {
     // don't move ...generatorCfg after outputPath and generatorPath
     // it overrides those options with undefined on production build
@@ -30,10 +32,11 @@ export const normalizeGeneratorConfigs = <
     ...generatorCfg,
     outputPath: generatorCfg.outputPath ?? name,
     generatorPath: generatorCfg.generatorPath ?? name,
-    globalName: camelCase(name.split(pathSeparator).join('_')),
+    globalName: camelCase(nameSplit.join('_')),
     settings: {
       formatter: 'prettier',
       ...generatorCfg.settings,
+      exportSuffix: generatorCfg.settings?.exportSuffix ?? nameSplit.at(-1),
     },
     name,
   };

@@ -1,7 +1,10 @@
 const fs = require('node:fs');
 const readline = require('node:readline');
 
-const extractImportNameRegExp = new RegExp(/from\s*'(.*?)';$/, 'gm');
+const extractImportNameRegExp = new RegExp(
+  /import.*?(?:from)?\s*'(.*?)';$/,
+  'gm'
+);
 
 /**
  * Reads file line by line and extracts imports

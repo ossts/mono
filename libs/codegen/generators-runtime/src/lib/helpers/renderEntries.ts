@@ -26,12 +26,7 @@ export const renderEntries = async <
     ...other
   }: Pick<
     GenerateParams,
-    | 'output'
-    | 'suppressWarnings'
-    | 'parsedSchema'
-    | 'sequential'
-    | 'beforeEach'
-    | 'afterEach'
+    'output' | 'parsedSchema' | 'sequential' | 'beforeEach' | 'afterEach'
   >
 ) => {
   const rootFileNames: string[] = [];
@@ -77,10 +72,7 @@ const render = <
 >(
   generator: ResolvedGenerator<TGenerators>,
   prettierOptions: prettier.Options,
-  {
-    parsedSchema,
-    output,
-  }: Pick<GenerateParams, 'output' | 'suppressWarnings' | 'parsedSchema'>
+  { parsedSchema, output }: Pick<GenerateParams, 'output' | 'parsedSchema'>
 ) =>
   new Promise<void>((resolve) => {
     const { handlebarsInstance } = generator;
@@ -124,7 +116,14 @@ const render = <
 
         if (typeof config.nameFieldOrFn === 'string') {
           fileName = getNested(data, config.nameFieldOrFn);
-          fileName += config.nameSuffix;
+          if (!fileName) {
+            throw new Error(
+              `No data available for key "${config.nameFieldOrFn}"`
+            );
+          }
+          if (config.nameSuffix) {
+            fileName += config.nameSuffix;
+          }
         } else {
           fileName = config.nameFieldOrFn(data);
         }
@@ -159,7 +158,9 @@ const render = <
         .map((name) => {
           let content = `export * from './${name}';`;
 
-          const importAllName = camelCase(name + '_Endpoints');
+          const importAllName = camelCase(
+            name + `_${generator.settings?.exportSuffix}`
+          );
           content += `\nimport * as ${importAllName} from './${name}';`;
           content += `\nexport { ${importAllName} }`;
 
@@ -174,7 +175,7 @@ const render = <
           typeName = '';
 
         if (generator.settings.withExportAll === true) {
-          name = camelCase(`all_${generator.globalName}`);
+          name = camelCase(`all_${generator.settings.exportSuffix}`);
           typeName = upperFirst(name);
         } else {
           ({ name } = generator.settings.withExportAll);

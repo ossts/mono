@@ -44,13 +44,6 @@ export interface AbstractGenerateParams<
   generatorsSettings?: AbstractGeneratorSettings;
 
   /**
-   * Set to true to prevent any warnings on all generators.
-   *
-   * This can be overridden on generator level
-   */
-  suppressWarnings?: boolean;
-
-  /**
    * Set this to true to make all generators run in sequence.
    *
    * This may be useful if result of one generator depends on generator before it

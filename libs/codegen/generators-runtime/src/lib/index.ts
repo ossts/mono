@@ -7,7 +7,6 @@ export const runGenerators = async <
   TGenerators extends AbstractExternalGeneratorWithName = AbstractExternalGeneratorWithName
 >({
   generators: generatorsCfg = ['*'],
-  suppressWarnings,
   generatorsSettings,
   output = 'codegen',
   beforeAll,
@@ -20,7 +19,6 @@ export const runGenerators = async <
 
   await renderEntries(generators, {
     output,
-    suppressWarnings,
     ...other,
   });
 
