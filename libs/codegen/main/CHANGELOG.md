@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/ossts/mono/compare/@ossts/codegen-v1.3.2...@ossts/codegen-v1.4.0) (2024-04-14)
+
+
+### Features
+
+* **codegen:** add CLI and basic implementtion of external generators. Update exports naming logic ([4fdb2c3](https://github.com/ossts/mono/commit/4fdb2c33471f44b6e1bd4965e7e0c8d5c0cf7bbb))
+
 ## [1.3.2](https://github.com/ossts/mono/compare/@ossts/codegen-v1.3.1...@ossts/codegen-v1.3.2) (2024-04-14)
 
 
