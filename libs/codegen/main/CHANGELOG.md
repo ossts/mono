@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/ossts/mono/compare/@ossts/codegen-v1.4.0...@ossts/codegen-v1.5.0) (2024-05-07)
+
+
+### Features
+
+* **codegen:** update export all logic. Add namespace for generators ([a634e68](https://github.com/ossts/mono/commit/a634e688c1b0a238cde52758da6b1aeba186cb30))
+
 # [1.4.0](https://github.com/ossts/mono/compare/@ossts/codegen-v1.3.2...@ossts/codegen-v1.4.0) (2024-04-14)
 
 
