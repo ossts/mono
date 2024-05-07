@@ -1,6 +1,4 @@
-import { sep as pathSeparator } from 'node:path';
-
-import { camelCase } from 'lodash';
+import { camelCase, upperFirst } from 'lodash';
 
 import type {
   AbstractExternalGeneratorUXName,
@@ -23,7 +21,11 @@ export const normalizeGeneratorConfigs = <
     name = generatorCfg.name;
   }
 
-  const nameSplit = name.split(pathSeparator);
+  const nameSplit = name.split('/');
+  const { exportAllSuffix = 'Exports' } = generatorCfg.settings ?? {};
+
+  // don't add namespace to common packages
+  const nameSplitNS = nameSplit[0] === 'common' ? [] : nameSplit;
 
   const config: ResolvedGenerator<TGenerators> = {
     // don't move ...generatorCfg after outputPath and generatorPath
@@ -35,8 +37,9 @@ export const normalizeGeneratorConfigs = <
     globalName: camelCase(nameSplit.join('_')),
     settings: {
       formatter: 'prettier',
+      globalNS: upperFirst(camelCase(nameSplitNS.join('_'))),
       ...generatorCfg.settings,
-      exportSuffix: generatorCfg.settings?.exportSuffix ?? nameSplit.at(-1),
+      exportAllSuffix,
     },
     name,
   };

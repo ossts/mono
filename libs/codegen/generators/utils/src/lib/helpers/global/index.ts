@@ -10,3 +10,4 @@ export * from './escapeDescription';
 export * from './camelCase';
 export * from './isPrimitive';
 export * from './startsWith';
+export * from './nameWithNS';

@@ -12,9 +12,11 @@ export const abstractGeneratorSettings = [
   'disableLinters',
   'useUnionTypes',
   'useDistinctParams',
+  'withEntryExportAll',
   'withExportAll',
   'suppressWarnings',
-  'exportSuffix',
+  'exportAllSuffix',
+  'preventExportNameCapitalization',
   'formatter',
 ] as const;
 
@@ -35,6 +37,19 @@ export interface AbstractGeneratorSettings {
   useDistinctParams?: boolean;
 
   /**
+   * Set to `true` if you want to have export all statements for each generated entry.
+   *
+   * This will add in generator's `index.ts`
+   *
+   * import * as { [name][exportSuffix] } from './[name]';
+   *
+   * export { [name][exportSuffix] };
+   *
+   * Defaults to `false`
+   */
+  withEntryExportAll?: boolean;
+
+  /**
    * Set to `true` or config object to generate export statement
    * which contains all exports of this generator.
    */
@@ -46,11 +61,16 @@ export interface AbstractGeneratorSettings {
   suppressWarnings?: boolean;
 
   /**
-   * Unique identifier to add after name in export name.
+   * Unique identifier to add after name in export all name.
    *
-   * Defaults to `generator.name.split(pathSeparator).at(-1)`
+   * Defaults to `Exports`
    */
-  exportSuffix?: string;
+  exportAllSuffix?: string;
+
+  /**
+   * Set this to `true` if first letter in export name inside of index.ts shouldn't be capitalized
+   */
+  preventExportNameCapitalization?: boolean;
 
   /**
    * Formatter to use before outputting template results.
@@ -62,6 +82,14 @@ export interface AbstractGeneratorSettings {
    * `(content: string) => string` - custom formatter function
    */
   formatter?: AbstractGeneratorFormatters | AbstractGeneratorCustomFormatter;
+
+  /**
+   * Unique namespace identifier of this generator.
+   *
+   * This will be passed to Handlebars and should be added to each generated entity,
+   * which will make sure that there are no naming collisions
+   */
+  globalNS?: string;
 }
 
 export type AbstractGeneratorSettingsExportAll =

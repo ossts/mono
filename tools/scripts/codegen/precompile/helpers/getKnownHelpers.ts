@@ -1,4 +1,4 @@
-import { camelCase } from 'lodash';
+import { upperFirst } from 'lodash';
 
 import { knownGlobalHelpers as builtInGlobalHelpers } from '@ossts/codegen/generators-runtime';
 import {
@@ -32,7 +32,7 @@ export const getKnownHelpers = async (
     builtInGlobalHelpers
   )) {
     Object.keys(helpers).forEach((helperName) => {
-      knownHelpersSet.add(`${generatorName}_${helperName}`);
+      knownHelpersSet.add(`${generatorName}${upperFirst(helperName)}`);
     });
   }
 
@@ -42,13 +42,13 @@ export const getKnownHelpers = async (
 
   if (!internalCall && generatorConfig?.helpers.globalHelpers) {
     Object.keys(generatorConfig.helpers.globalHelpers).forEach((name) => {
-      knownHelpersSet.add(`${globals.generatorName}_${name}`);
+      knownHelpersSet.add(`${globals.generatorName}${upperFirst(name)}`);
     });
   }
 
   knownHelpers = [...knownHelpersSet].reduce<Dictionary<boolean>>(
     (acc, helperName) => {
-      acc[camelCase(helperName)] = true;
+      acc[helperName] = true;
       return acc;
     },
     {}

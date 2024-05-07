@@ -22,7 +22,7 @@ export class SchemaZodGenerator
       entriesRenderCfg: {
         schema: {
           dataPath: 'models',
-          nameFieldOrFn: (data) => `${data['name']}Schema`,
+          nameFieldOrFn: (data) => `${data['name'].replace(/Schema/g, '')}`,
         },
       },
       dependsOn: ['utils', 'common/models', ...(config?.dependsOn ?? [])],

@@ -1,5 +1,5 @@
 import Handlebars from 'handlebars';
-import { camelCase } from 'lodash';
+import { upperFirst } from 'lodash';
 
 import type { AbstractGeneratorWithName } from '@ossts/codegen/common';
 
@@ -43,7 +43,7 @@ export const registerHandlebarsEntities = <
     if (currentGenerator.templates) {
       for (const name in currentGenerator.templates.globalPartials) {
         handlebarsInstance.registerPartial(
-          camelCase(`${currentGenerator.globalName}_${name}`),
+          `${currentGenerator.globalName}${upperFirst(name)}`,
           handlebarsInstance.template(
             currentGenerator.templates.globalPartials[name]
           )
@@ -53,7 +53,7 @@ export const registerHandlebarsEntities = <
     if (currentGenerator.helpers) {
       for (const name in currentGenerator.helpers.globalHelpers) {
         handlebarsInstance.registerHelper(
-          camelCase(`${currentGenerator.globalName}_${name}`),
+          `${currentGenerator.globalName}${upperFirst(name)}`,
           currentGenerator.helpers.globalHelpers[name]({
             handlebarsInstance,
             settings,

@@ -105,6 +105,8 @@ const render = <
 
       const fileNames: string[] = [];
 
+      const generatorNS = generator.settings?.globalNS;
+
       dataAsArray.forEach((data: DictionaryWithAny) => {
         if (!isPlainObject(data)) {
           throw new Error(
@@ -146,7 +148,7 @@ const render = <
           formattedContent = settings.formatter(content);
         }
 
-        const dist = resolvePath(basePath, `${fileName}.ts`);
+        const dist = resolvePath(basePath, `${fileName}${generatorNS}.ts`);
 
         ensureFileSync(dist);
         promises.push(writeFile(dist, formattedContent));
@@ -156,15 +158,26 @@ const render = <
       const importAllNames = new Set();
       let content = fileNames
         .map((name) => {
-          let content = `export * from './${name}';`;
+          let content = `export * from './${name}${generatorNS}';`;
 
-          const importAllName = camelCase(
-            name + `_${generator.settings?.exportSuffix}`
-          );
-          content += `\nimport * as ${importAllName} from './${name}';`;
-          content += `\nexport { ${importAllName} }`;
+          if (
+            generator.settings?.withEntryExportAll ||
+            generator.settings?.withExportAll
+          ) {
+            let importAllName = `${name}${upperFirst(generatorNS)}${
+              generator.settings?.exportAllSuffix
+            }`;
+            if (!generator.settings.preventExportNameCapitalization) {
+              importAllName = upperFirst(importAllName);
+            }
 
-          importAllNames.add(importAllName);
+            content += `\nimport * as ${importAllName} from './${name}';`;
+            if (generator.settings?.withEntryExportAll) {
+              content += `\nexport { ${importAllName} }`;
+            }
+
+            importAllNames.add(importAllName);
+          }
 
           return content;
         })
@@ -175,7 +188,9 @@ const render = <
           typeName = '';
 
         if (generator.settings.withExportAll === true) {
-          name = camelCase(`all_${generator.settings.exportSuffix}`);
+          name = `all${upperFirst(generatorNS)}${
+            generator.settings.exportAllSuffix
+          }`;
           typeName = upperFirst(name);
         } else {
           ({ name } = generator.settings.withExportAll);
