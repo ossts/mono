@@ -22,7 +22,9 @@ export class CommonEndpointsGenerator
 
     mergeObjectsWithSameShape(this, {}, config, {
       settings: {
-        withExportAll: true,
+        withExportAll: config?.settings?.withExportAll ?? {
+          name: 'allApiEndpoints',
+        },
         withEntryExportAll: true,
         preventExportNameCapitalization: true,
         ...config?.settings,
