@@ -25,6 +25,7 @@ export class CommonEndpointsGenerator
         withExportAll: config?.settings?.withExportAll ?? {
           name: 'allApiEndpoints',
         },
+        exportAllSuffix: '',
         withEntryExportAll: true,
         preventExportNameCapitalization: true,
         ...config?.settings,
