@@ -1,3 +1,11 @@
+## [1.5.1](https://github.com/ossts/mono/compare/@ossts/codegen-v1.5.0...@ossts/codegen-v1.5.1) (2024-05-08)
+
+
+### Bug Fixes
+
+* **codegen:** remove exportAllSufix in common/endpoints required by ApiEntities to have valid names ([a1130f2](https://github.com/ossts/mono/commit/a1130f256575ee16133d0afd55049ac6eab03093))
+* **codegen:** update common/endpoints exportAll default name ([7c75288](https://github.com/ossts/mono/commit/7c75288149852f1e45db424e67123a803f04f30d))
+
 # [1.5.0](https://github.com/ossts/mono/compare/@ossts/codegen-v1.4.0...@ossts/codegen-v1.5.0) (2024-05-07)
 
 
