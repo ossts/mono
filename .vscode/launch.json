@@ -4,7 +4,7 @@
     {
       "type": "node",
       "request": "launch",
-      "runtimeVersion": "18.16.0",
+      "runtimeVersion": "20.17.0",
       "outputCapture": "std",
       "name": "Debug codegen/core",
       "program": "${workspaceFolder}/libs/codegen/core/src/lib/debug/index.ts",

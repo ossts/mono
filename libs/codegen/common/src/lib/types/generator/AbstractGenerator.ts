@@ -90,6 +90,13 @@ export interface AbstractGeneratorSettings {
    * which will make sure that there are no naming collisions
    */
   globalNS?: string;
+
+  /**
+   * Set to `true` if previous generated results should be persisted.
+   *
+   * Defaults to `false`, which will clear generator's dist folder before execution.s
+   */
+  preventCleanup?: boolean;
 }
 
 export type AbstractGeneratorSettingsExportAll =

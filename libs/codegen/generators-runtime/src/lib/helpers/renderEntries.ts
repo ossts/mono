@@ -1,7 +1,7 @@
 import { resolve as resolvePath } from 'node:path';
 
 import { ensureFile, ensureFileSync, writeFile } from 'fs-extra';
-import { camelCase, get as getNested, isPlainObject, upperFirst } from 'lodash';
+import { get as getNested, isPlainObject, upperFirst } from 'lodash';
 import prettier from 'prettier';
 import rimraf from 'rimraf';
 
@@ -101,7 +101,9 @@ const render = <
 
       const basePath = resolvePath(output ?? '', generator.outputPath);
 
-      rimraf.sync(basePath);
+      if (!generator.settings?.preventCleanup) {
+        rimraf.sync(basePath);
+      }
 
       const fileNames: string[] = [];
 

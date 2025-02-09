@@ -1,0 +1,14 @@
+{{~#if minItems~}}
+	{{~#if maxItems~}}
+		, {
+			min: {{minItems}},
+			max: {{maxItems}},
+		}
+	{{~else~}}
+		,{{minItems}}
+	{{~/if~}}
+{{~else~}}
+	{{~#if maxItems~}}
+	, {{maxItems}}
+	{{~/if~}}
+{{~/if~}}
