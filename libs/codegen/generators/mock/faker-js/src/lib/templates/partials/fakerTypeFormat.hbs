@@ -1,0 +1,21 @@
+{{~#utilsEquals format 'date-time'}}
+	date.anytime()
+{{~else utilsEquals format 'date'}}
+	date.anytime()
+{{~else utilsEquals format 'time'}}
+	date.anytime()
+{{~else utilsEquals format 'uri'}}
+	internet.url()
+{{~else utilsEquals format 'uuid'}}
+	string.uuid()
+{{~else utilsEquals type 'number'}}
+	number.int()
+{{~else utilsEquals type 'boolean'}}
+	datatype.boolean()
+{{~else utilsEquals type 'string'}}
+	string.alpha({
+		length: {
+			min: 5, max: 10
+		}
+	})
+{{/utilsEquals~}}

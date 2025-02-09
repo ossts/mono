@@ -29,6 +29,9 @@
       "@ossts/codegen/generators/common/models": [
         "libs/codegen/generators/common/models/src/index.ts"
       ],
+      "@ossts/codegen/generators/mock/faker-js": [
+        "libs/codegen/generators/mock/faker-js/src/index.ts"
+      ],
       "@ossts/codegen/generators/schema/zod": [
         "libs/codegen/generators/schema/zod/src/index.ts"
       ],

@@ -3,19 +3,19 @@ import { AbstractGenerator } from '@ossts/codegen/common';
 import { mergeObjectsWithSameShape } from '@ossts/shared/typescript/helpers';
 
 import type {
-  SchemaZodGeneratorConfig,
-  SchemaZodGeneratorSettings,
+  MockFakerJsGeneratorConfig,
+  MockFakerJsGeneratorSettings,
 } from './types';
 
-export const schemaZodGeneratorName = 'schema/zod' as const;
+export const mockFakerJsGeneratorName = 'mock/faker-js' as const;
 
-export class SchemaZodGenerator
+export class MockFakerJsGenerator
   extends AbstractGenerator
   implements AbstractGeneratorWithName
 {
-  name = schemaZodGeneratorName;
+  name = mockFakerJsGeneratorName;
 
-  constructor(config?: SchemaZodGeneratorConfig) {
+  constructor(config?: MockFakerJsGeneratorConfig) {
     super();
 
     mergeObjectsWithSameShape(
@@ -33,5 +33,5 @@ export class SchemaZodGenerator
     );
   }
 
-  override settings?: SchemaZodGeneratorSettings;
+  override settings?: MockFakerJsGeneratorSettings;
 }

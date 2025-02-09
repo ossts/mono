@@ -1,0 +1,5 @@
+{{#if enums}}
+import { {{name}} } from '../../common/models';
+{{/if}}
+
+export const get{{{utilsNameWithNS name}}} =  () => ({{>fakerTypeInterface}});

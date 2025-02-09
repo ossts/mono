@@ -1,6 +1,7 @@
 export const generatorNamesBuiltIn = [
   'common/endpoints',
   'common/models',
-  'utils',
   'schema/zod',
+  'utils',
+  'mock/faker-js',
 ] as const;

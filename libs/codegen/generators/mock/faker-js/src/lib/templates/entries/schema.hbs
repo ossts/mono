@@ -1,0 +1,20 @@
+{{#with data}}
+{{>utilsHeader}}
+
+import { faker } from '@faker-js/faker';
+
+{{#if imports}}
+	{{#each imports}}
+		import { get{{{utilsNameWithNS this}}} } from './{{{utilsNameWithNS this}}}';
+	{{/each}}
+{{/if}}
+
+{{#utilsEquals export 'interface'}}
+	{{>fakerInterfaceSchema}}
+{{else utilsEquals export 'enum'}}
+	{{>fakerExportEnum}}
+{{else}}
+	{{>fakerExportType}}
+{{/utilsEquals}}
+
+{{/with}}

@@ -1,0 +1,11 @@
+{{~#if link~}}
+faker.helpers.arrayElements([
+	{{#with link}}{{>fakerStart}}{{/with}}{{>fakerType link hasWrapperType=true}}
+	{{~#if nullable~}}, null{{~/if~}}
+])
+{{~else~}}
+faker.helpers.arrayElements([
+	get{{{utilsNameWithNS type}}}()
+	{{~#if nullable~}}, null{{~/if~}}
+])
+{{~/if~}}

@@ -1,0 +1,23 @@
+{{~#utilsEquals export 'interface'~}}
+	{{>fakerTypeInterface}}
+{{else utilsEquals export 'reference'}}
+	{{>fakerTypeReference}}
+{{else utilsEquals export 'enum'}}
+	{{>fakerTypeEnum}}
+{{else utilsEquals export 'array'}}
+	{{>fakerArray}}
+{{else utilsEquals export 'dictionary'}}
+	{{>fakerDictionary}}
+{{else utilsEquals export 'oneOf'}}
+	{{>fakerTypeUnion}}
+{{else utilsEquals export 'anyOf'}}
+	{{>fakerTypeUnion}}
+{{else utilsEquals export 'allOf'}}
+	{{>fakerTypeIntersection}}
+{{~else~}}
+	{{~#utilsIsPrimitive type~}}
+		.{{>fakerTypeFormat}}
+	{{~else~}}
+		faker{{>fakerBase}}
+	{{~/utilsIsPrimitive~}}
+{{~/utilsEquals~}}

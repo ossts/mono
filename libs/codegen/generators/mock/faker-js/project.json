@@ -1,0 +1,41 @@
+{
+  "name": "codegen-generators-mock-faker-js",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/codegen/generators/mock/faker-js/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/vite:build",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/codegen/generators/mock/faker-js"
+      },
+      "dependsOn": ["precompile-templates"]
+    },
+    "test": {
+      "executor": "@nx/vite:test",
+      "outputs": ["coverage/libs/codegen/generators/mock/faker-js"],
+      "options": {
+        "passWithNoTests": true,
+        "reportsDirectory": "../../../../../coverage/libs/codegen/generators/mock/faker-js"
+      },
+      "dependsOn": ["precompile-templates"]
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/codegen/generators/mock/faker-js/**/*.ts"]
+      },
+      "dependsOn": ["precompile-templates"]
+    },
+    "precompile-templates": {
+      "executor": "@ossts/plugin-codegen:precompile-templates",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "libs/codegen/generators/mock/faker-js/src/lib/precompiled-templates"
+      }
+    }
+  },
+  "tags": ["scope:ts", "type:lib", "project:codegen"]
+}

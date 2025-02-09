@@ -1,0 +1,7 @@
+{{~#unless required~}}
+	faker.helpers.maybe(() => (
+{{~/unless~}}
+
+{{~#if nullable~}}
+	faker.helpers.arrayElement([
+{{~/if~}}
