@@ -17,10 +17,10 @@ jobs:
     runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, 'skip ci')"
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Extract branch data
-        uses: actions/github-script@v6
+        uses: actions/github-script@v7
         id: branchData
         with:
           script: |
@@ -39,7 +39,7 @@ jobs:
             return { name, version, type };
 
       - name: Extract branch name
-        uses: actions/github-script@v6
+        uses: actions/github-script@v7
         id: project
         with:
           script: |
@@ -55,7 +55,7 @@ jobs:
     name: Nx Cloud - Main Job
     needs:
       - prepare
-    uses: nrwl/ci/.github/workflows/nx-cloud-main.yml@v0.13.0
+    uses: nrwl/ci/.github/workflows/nx-cloud-main.yml@v0.15.0
     with:
       main-branch-name: main
       number-of-agents: 3
@@ -70,7 +70,7 @@ jobs:
     name: Nx Cloud - Agents
     needs:
       - prepare
-    uses: nrwl/ci/.github/workflows/nx-cloud-agents.yml@v0.13.0
+    uses: nrwl/ci/.github/workflows/nx-cloud-agents.yml@v0.15.0
     with:
       number-of-agents: 3
 
@@ -84,12 +84,12 @@ jobs:
     env:
       GITHUB_TOKEN: ${{ secrets.SECRET_KEY }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           persist-credentials: false
 
       - name: Setup node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
           check-latest: true
@@ -99,7 +99,7 @@ jobs:
         run: yarn install --frozen-lockfile
 
       - name: Download build artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           path: dist
           name: build-artifacts
@@ -109,7 +109,7 @@ jobs:
         shell: bash
 
       - name: Run release
-        uses: actions/github-script@v6
+        uses: actions/github-script@v7
         with:
           script: |
             const { name } = JSON.parse('${{ needs.prepare.outputs.branchData }}');
@@ -117,7 +117,7 @@ jobs:
 
       # https://octokit.github.io/rest.js/v19#repos-merge
       # - name: Merge changes into default branch
-      #   uses: actions/github-script@v6
+      #   uses: actions/github-script@v7
       #   with:
       #     script: |
       #       const { version } = JSON.parse('${{ needs.prepare.outputs.branchData }}');
