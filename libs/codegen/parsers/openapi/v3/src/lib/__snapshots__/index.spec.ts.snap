@@ -1,4 +1,4 @@
-// Vitest Snapshot v1
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Should be able to parse schema into required format 1`] = `
 {
@@ -659,6 +659,8 @@ Fourth line",
         "template": null,
         "type": "any",
       },
+      "maxItems": 20,
+      "minItems": 1,
       "name": "ArrayWithProperties",
       "nullable": false,
       "properties": [],
@@ -4522,7 +4524,7 @@ Fourth line",
   "services": [
     {
       "imports": [],
-      "name": "Default",
+      "name": "Common",
       "operations": [
         {
           "deprecated": false,
@@ -4541,7 +4543,7 @@ Fourth line",
           "path": "/api/v{api-version}/no-tag",
           "responseHeader": null,
           "results": [],
-          "service": "Default",
+          "service": "Common",
           "summary": null,
         },
       ],
