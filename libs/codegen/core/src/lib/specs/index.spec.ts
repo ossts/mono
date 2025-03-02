@@ -38,7 +38,7 @@ vi.mock('fs-extra', async (importOriginal) => {
 });
 
 describe('Basic', () => {
-  it.only('Should work with default parameters', async ({ meta }) => {
+  it('Should work with default parameters', async ({ meta }) => {
     await generate({
       input: mockJSONSchemaV3,
       output: generateMockOutputPath(meta),
