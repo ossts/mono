@@ -1,0 +1,16 @@
+/* istanbul ignore file */
+import { faker as fakerDefault } from '@faker-js/faker';
+
+import type { MockFakerJSGeneratorParams } from './typesMockFakerJs';
+
+export const getModelWithCircularReferenceMockFakerJs = (
+  params: MockFakerJSGeneratorParams
+) => {
+  const { faker = fakerDefault } = params;
+
+  return {
+    prop: faker.helpers.maybe(() =>
+      getModelWithCircularReferenceMockFakerJs(params)
+    ),
+  };
+};

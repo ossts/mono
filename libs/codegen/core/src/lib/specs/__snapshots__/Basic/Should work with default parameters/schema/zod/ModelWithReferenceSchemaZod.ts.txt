@@ -1,0 +1,8 @@
+/* istanbul ignore file */
+import { z } from 'zod';
+
+import { ModelWithPropertiesSchemaZod } from './ModelWithPropertiesSchemaZod';
+
+export const ModelWithReferenceSchemaZod = z.object({
+  prop: ModelWithPropertiesSchemaZod,
+});

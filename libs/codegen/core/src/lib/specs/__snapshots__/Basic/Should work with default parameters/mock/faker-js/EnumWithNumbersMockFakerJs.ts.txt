@@ -1,0 +1,13 @@
+/* istanbul ignore file */
+import { faker as fakerDefault } from '@faker-js/faker';
+
+import { EnumWithNumbers } from '../../common/models';
+import type { MockFakerJSGeneratorParams } from './typesMockFakerJs';
+
+export const getEnumWithNumbersMockFakerJs = (
+  params: MockFakerJSGeneratorParams
+) => {
+  const { faker = fakerDefault } = params;
+
+  return faker.helpers.enumValue(EnumWithNumbers);
+};

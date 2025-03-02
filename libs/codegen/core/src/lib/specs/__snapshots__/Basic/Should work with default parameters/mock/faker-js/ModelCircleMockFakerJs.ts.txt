@@ -1,0 +1,15 @@
+/* istanbul ignore file */
+import { faker as fakerDefault } from '@faker-js/faker';
+
+import type { MockFakerJSGeneratorParams } from './typesMockFakerJs';
+
+export const getModelCircleMockFakerJs = (
+  params: MockFakerJSGeneratorParams
+) => {
+  const { faker = fakerDefault } = params;
+
+  return {
+    kind: faker.helpers.fake('circle'),
+    radius: faker.helpers.maybe(() => faker.number.int()),
+  };
+};

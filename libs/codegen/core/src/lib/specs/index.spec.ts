@@ -32,7 +32,7 @@ vi.mock('fs-extra', async (importOriginal) => {
       path: PathOrFileDescriptor,
       content: string | NodeJS.ArrayBufferView
     ) => {
-      expect(content).toMatchFileSnapshot(path.toString());
+      expect(content).toMatchFileSnapshot(path.toString() + '.txt');
     },
   };
 });

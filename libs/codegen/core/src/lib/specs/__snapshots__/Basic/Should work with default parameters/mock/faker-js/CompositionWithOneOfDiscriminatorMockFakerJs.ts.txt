@@ -1,0 +1,17 @@
+/* istanbul ignore file */
+import { faker as fakerDefault } from '@faker-js/faker';
+
+import { getModelCircleMockFakerJs } from './ModelCircleMockFakerJs';
+import { getModelSquareMockFakerJs } from './ModelSquareMockFakerJs';
+import type { MockFakerJSGeneratorParams } from './typesMockFakerJs';
+
+export const getCompositionWithOneOfDiscriminatorMockFakerJs = (
+  params: MockFakerJSGeneratorParams
+) => {
+  const { faker = fakerDefault } = params;
+
+  return faker.helpers.arrayElement([
+    getModelCircleMockFakerJs(params),
+    getModelSquareMockFakerJs(params),
+  ]);
+};

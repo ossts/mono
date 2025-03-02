@@ -1,0 +1,21 @@
+/* istanbul ignore file */
+import { faker as fakerDefault } from '@faker-js/faker';
+
+import { ModelWithEnum } from '../../common/models';
+import type { MockFakerJSGeneratorParams } from './typesMockFakerJs';
+
+export const getModelWithEnumMockFakerJs = (
+  params: MockFakerJSGeneratorParams
+) => {
+  const { faker = fakerDefault } = params;
+
+  return {
+    test: faker.helpers.maybe(() =>
+      faker.helpers.enumValue(ModelWithEnum.test)
+    ),
+    statusCode: faker.helpers.maybe(() =>
+      faker.helpers.enumValue(ModelWithEnum.statusCode)
+    ),
+    bool: faker.helpers.maybe(() => faker.datatype.boolean()),
+  };
+};

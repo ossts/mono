@@ -1,0 +1,51 @@
+/* istanbul ignore file */
+import { faker as fakerDefault } from '@faker-js/faker';
+
+import type { MockFakerJSGeneratorParams } from './typesMockFakerJs';
+
+export const getModelWithPatternMockFakerJs = (
+  params: MockFakerJSGeneratorParams
+) => {
+  const { faker = fakerDefault } = params;
+
+  return {
+    key: faker.string.alpha({
+      length: {
+        min: 5,
+        max: 10,
+      },
+    }),
+    name: faker.string.alpha({
+      length: {
+        min: 5,
+        max: 10,
+      },
+    }),
+    enabled: faker.helpers.maybe(() => faker.datatype.boolean()),
+    modified: faker.helpers.maybe(() => faker.date.anytime()),
+    id: faker.helpers.maybe(() =>
+      faker.string.alpha({
+        length: {
+          min: 5,
+          max: 10,
+        },
+      })
+    ),
+    text: faker.helpers.maybe(() =>
+      faker.string.alpha({
+        length: {
+          min: 5,
+          max: 10,
+        },
+      })
+    ),
+    patternWithSingleQuotes: faker.helpers.maybe(() =>
+      faker.string.alpha({
+        length: {
+          min: 5,
+          max: 10,
+        },
+      })
+    ),
+  };
+};

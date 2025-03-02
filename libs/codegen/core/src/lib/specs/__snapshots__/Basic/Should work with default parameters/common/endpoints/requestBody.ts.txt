@@ -1,0 +1,14 @@
+/* istanbul ignore file */
+
+/**
+ * Method: POST
+ *
+ * `parameter?: string` in `query`
+ *
+ * This is a reusable parameter
+ *
+ * `requestBody?: ModelWithString` in `body`
+ *
+ * A reusable request body
+ */
+export const postApiRequestBodyEndpoint = '/api/v{api-version}/requestBody/';

@@ -1,0 +1,19 @@
+/* istanbul ignore file */
+import { z } from 'zod';
+
+import { ModelWithArraySchemaZod } from './ModelWithArraySchemaZod';
+import { ModelWithDictionarySchemaZod } from './ModelWithDictionarySchemaZod';
+import { ModelWithEnumSchemaZod } from './ModelWithEnumSchemaZod';
+
+export const CompositionWithAllOfAndNullableSchemaZod = z.object({
+  propA: z
+    .intersection([
+      z.object({
+        boolean: z.boolean().optional(),
+      }),
+      ModelWithEnumSchemaZod,
+      ModelWithArraySchemaZod,
+      ModelWithDictionarySchemaZod,
+    ])
+    .nullable(),
+});

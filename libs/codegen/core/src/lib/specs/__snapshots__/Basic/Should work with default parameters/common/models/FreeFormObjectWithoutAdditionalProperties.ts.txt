@@ -1,0 +1,6 @@
+/* istanbul ignore file */
+
+/**
+ * This is a free-form object without additionalProperties.
+ */
+export type FreeFormObjectWithoutAdditionalProperties = Record<string, any>;

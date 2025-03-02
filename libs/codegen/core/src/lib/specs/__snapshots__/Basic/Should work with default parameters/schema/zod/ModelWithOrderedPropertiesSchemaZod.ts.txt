@@ -1,0 +1,8 @@
+/* istanbul ignore file */
+import { z } from 'zod';
+
+export const ModelWithOrderedPropertiesSchemaZod = z.object({
+  zebra: z.string().optional(),
+  apple: z.string().optional(),
+  hawaii: z.string().optional(),
+});

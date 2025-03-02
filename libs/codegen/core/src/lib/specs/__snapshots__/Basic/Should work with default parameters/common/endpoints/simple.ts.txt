@@ -1,0 +1,37 @@
+/* istanbul ignore file */
+
+/**
+ * Method: GET
+ */
+export const getCallWithoutParametersAndResponseEndpoint =
+  '/api/v{api-version}/simple';
+/**
+ * Method: PUT
+ */
+export const putCallWithoutParametersAndResponseEndpoint =
+  '/api/v{api-version}/simple';
+/**
+ * Method: POST
+ */
+export const postCallWithoutParametersAndResponseEndpoint =
+  '/api/v{api-version}/simple';
+/**
+ * Method: DELETE
+ */
+export const deleteCallWithoutParametersAndResponseEndpoint =
+  '/api/v{api-version}/simple';
+/**
+ * Method: OPTIONS
+ */
+export const optionsCallWithoutParametersAndResponseEndpoint =
+  '/api/v{api-version}/simple';
+/**
+ * Method: HEAD
+ */
+export const headCallWithoutParametersAndResponseEndpoint =
+  '/api/v{api-version}/simple';
+/**
+ * Method: PATCH
+ */
+export const patchCallWithoutParametersAndResponseEndpoint =
+  '/api/v{api-version}/simple';

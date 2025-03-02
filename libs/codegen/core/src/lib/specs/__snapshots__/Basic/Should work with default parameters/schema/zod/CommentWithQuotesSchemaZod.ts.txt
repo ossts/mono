@@ -1,0 +1,4 @@
+/* istanbul ignore file */
+import { z } from 'zod';
+
+export const CommentWithQuotesSchemaZod = z.number();

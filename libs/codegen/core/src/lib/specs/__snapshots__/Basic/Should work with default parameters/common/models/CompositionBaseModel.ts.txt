@@ -1,0 +1,9 @@
+/* istanbul ignore file */
+
+/**
+ * This is a base model with two simple optional properties
+ */
+export type CompositionBaseModel = {
+  firstName?: string;
+  lastname?: string;
+};

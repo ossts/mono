@@ -1,0 +1,8 @@
+/* istanbul ignore file */
+import { z } from 'zod';
+
+import { ModelWithStringSchemaZod } from './ModelWithStringSchemaZod';
+
+export const ModelWithDuplicatePropertiesSchemaZod = z.object({
+  prop: ModelWithStringSchemaZod,
+});

@@ -1,0 +1,5 @@
+/* istanbul ignore file */
+
+export type _default = {
+  name?: string;
+};

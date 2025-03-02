@@ -1,0 +1,9 @@
+/* istanbul ignore file */
+
+/**
+ * Circle
+ */
+export type ModelCircle = {
+  kind: 'circle';
+  radius?: number;
+};

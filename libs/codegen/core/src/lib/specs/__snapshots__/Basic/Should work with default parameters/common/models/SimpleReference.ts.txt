@@ -1,0 +1,4 @@
+/* istanbul ignore file */
+import type { ModelWithString } from './ModelWithString';
+
+export type SimpleReference = ModelWithString;

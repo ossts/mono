@@ -1,0 +1,10 @@
+/* istanbul ignore file */
+import { z } from 'zod';
+
+import { ModelCircleSchemaZod } from './ModelCircleSchemaZod';
+import { ModelSquareSchemaZod } from './ModelSquareSchemaZod';
+
+export const CompositionWithOneOfDiscriminatorSchemaZod = z.union([
+  ModelCircleSchemaZod,
+  ModelSquareSchemaZod,
+]);

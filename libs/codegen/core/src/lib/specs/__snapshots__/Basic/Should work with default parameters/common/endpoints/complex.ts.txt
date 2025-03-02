@@ -1,0 +1,22 @@
+/* istanbul ignore file */
+
+/**
+ * Method: GET
+ *
+ * `parameterObject: any` in `query`
+ *
+ * Parameter containing object
+ *
+ * `parameterReference: ModelWithString` in `query`
+ *
+ * Parameter containing reference
+ */
+export const complexTypesEndpoint = '/api/v{api-version}/complex';
+/**
+ * Method: PUT
+ *
+ * `id: number` in `path`
+ *
+ * `requestBody?: any` in `body`
+ */
+export const complexParamsEndpoint = '/api/v{api-version}/complex/{id}';

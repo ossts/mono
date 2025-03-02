@@ -1,0 +1,15 @@
+/* istanbul ignore file */
+
+/**
+ * Method: GET
+ */
+export const callWithResponseEndpoint = '/api/v{api-version}/response';
+/**
+ * Method: POST
+ */
+export const callWithDuplicateResponsesEndpoint =
+  '/api/v{api-version}/response';
+/**
+ * Method: PUT
+ */
+export const callWithResponsesEndpoint = '/api/v{api-version}/response';

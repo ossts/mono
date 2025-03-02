@@ -1,0 +1,47 @@
+/* istanbul ignore file */
+import { faker as fakerDefault } from '@faker-js/faker';
+
+import type { MockFakerJSGeneratorParams } from './typesMockFakerJs';
+
+export const getModelWithNestedEnumsMockFakerJs = (
+  params: MockFakerJSGeneratorParams
+) => {
+  const { faker = fakerDefault } = params;
+
+  return {
+    dictionaryWithEnum: faker.helpers.maybe(() => ({
+      [faker.string.alpha({
+        length: {
+          min: 5,
+          max: 10,
+        },
+      })]: faker.helpers.maybe(() =>
+        faker.helpers.arrayElement([
+          faker.helpers.fake('Success'),
+          faker.helpers.fake('Warning'),
+          faker.helpers.fake('Error'),
+        ])
+      ),
+    })),
+    dictionaryWithEnumFromDescription: faker.helpers.maybe(() => ({
+      [faker.string.alpha({
+        length: {
+          min: 5,
+          max: 10,
+        },
+      })]: faker.helpers.maybe(() => faker.number.int()),
+    })),
+    arrayWithEnum: faker.helpers.maybe(() =>
+      faker.helpers.arrayElements([
+        faker.helpers.arrayElement([
+          faker.helpers.fake('Success'),
+          faker.helpers.fake('Warning'),
+          faker.helpers.fake('Error'),
+        ]),
+      ])
+    ),
+    arrayWithDescription: faker.helpers.maybe(() =>
+      faker.helpers.arrayElements([faker.number.int()])
+    ),
+  };
+};

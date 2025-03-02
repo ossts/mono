@@ -1,0 +1,12 @@
+/* istanbul ignore file */
+
+/**
+ * Method: POST
+ *
+ * `formData?: any` in `formData`
+ */
+export const multipartRequestEndpoint = '/api/v{api-version}/multipart';
+/**
+ * Method: GET
+ */
+export const multipartResponseEndpoint = '/api/v{api-version}/multipart';

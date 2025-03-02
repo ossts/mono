@@ -1,0 +1,7 @@
+/* istanbul ignore file */
+
+export type Pageable = {
+  page?: number;
+  size?: number;
+  sort?: Array<string>;
+};

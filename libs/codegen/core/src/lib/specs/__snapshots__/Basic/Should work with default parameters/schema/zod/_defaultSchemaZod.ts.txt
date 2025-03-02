@@ -1,0 +1,6 @@
+/* istanbul ignore file */
+import { z } from 'zod';
+
+export const _defaultSchemaZod = z.object({
+  name: z.string().optional(),
+});

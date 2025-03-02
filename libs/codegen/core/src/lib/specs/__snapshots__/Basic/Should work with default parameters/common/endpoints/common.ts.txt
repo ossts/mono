@@ -1,0 +1,6 @@
+/* istanbul ignore file */
+
+/**
+ * Method: GET
+ */
+export const serviceWithEmptyTagEndpoint = '/api/v{api-version}/no-tag';

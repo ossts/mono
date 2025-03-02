@@ -1,0 +1,10 @@
+/* istanbul ignore file */
+import { z } from 'zod';
+
+export const DictionaryWithPropertiesSchemaZod = z.record(
+  z.string(),
+  z.object({
+    foo: z.string().optional(),
+    bar: z.string().optional(),
+  })
+);

@@ -1,0 +1,10 @@
+/* istanbul ignore file */
+
+/**
+ * Method: POST
+ *
+ * `file: binary` in `formData`
+ *
+ * Supply a file reference for upload
+ */
+export const uploadFileEndpoint = '/api/v{api-version}/upload';

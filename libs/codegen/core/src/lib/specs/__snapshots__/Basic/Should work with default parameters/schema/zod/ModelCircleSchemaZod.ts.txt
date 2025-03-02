@@ -1,0 +1,7 @@
+/* istanbul ignore file */
+import { z } from 'zod';
+
+export const ModelCircleSchemaZod = z.object({
+  kind: z.literal('circle'),
+  radius: z.number().optional(),
+});

@@ -1,0 +1,14 @@
+/* istanbul ignore file */
+import { z } from 'zod';
+
+import { ModelThatExtendsSchemaZod } from './ModelThatExtendsSchemaZod';
+import { ModelWithStringSchemaZod } from './ModelWithStringSchemaZod';
+
+export const ModelThatExtendsExtendsSchemaZod = z.intersection([
+  ModelWithStringSchemaZod,
+  ModelThatExtendsSchemaZod,
+  z.object({
+    propExtendsC: z.string().optional(),
+    propExtendsD: ModelWithStringSchemaZod,
+  }),
+]);

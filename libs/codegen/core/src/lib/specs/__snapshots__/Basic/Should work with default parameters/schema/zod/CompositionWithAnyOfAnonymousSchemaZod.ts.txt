@@ -1,0 +1,14 @@
+/* istanbul ignore file */
+import { z } from 'zod';
+
+export const CompositionWithAnyOfAnonymousSchemaZod = z.object({
+  propA: z
+    .union([
+      z.object({
+        propA: z.string().optional(),
+      }),
+      z.string(),
+      z.number(),
+    ])
+    .optional(),
+});

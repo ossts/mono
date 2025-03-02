@@ -1,0 +1,25 @@
+/* istanbul ignore file */
+import { faker as fakerDefault } from '@faker-js/faker';
+
+import { getModelWithArrayMockFakerJs } from './ModelWithArrayMockFakerJs';
+import { getModelWithDictionaryMockFakerJs } from './ModelWithDictionaryMockFakerJs';
+import { getModelWithEnumMockFakerJs } from './ModelWithEnumMockFakerJs';
+import { getModelWithStringMockFakerJs } from './ModelWithStringMockFakerJs';
+import type { MockFakerJSGeneratorParams } from './typesMockFakerJs';
+
+export const getCompositionWithOneOfMockFakerJs = (
+  params: MockFakerJSGeneratorParams
+) => {
+  const { faker = fakerDefault } = params;
+
+  return {
+    propA: faker.helpers.maybe(() =>
+      faker.helpers.arrayElement([
+        getModelWithStringMockFakerJs(params),
+        getModelWithEnumMockFakerJs(params),
+        getModelWithArrayMockFakerJs(params),
+        getModelWithDictionaryMockFakerJs(params),
+      ])
+    ),
+  };
+};

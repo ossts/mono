@@ -1,0 +1,6 @@
+/* istanbul ignore file */
+
+/**
+ * Method: POST
+ */
+export const callWithResultFromHeaderEndpoint = '/api/v{api-version}/header';

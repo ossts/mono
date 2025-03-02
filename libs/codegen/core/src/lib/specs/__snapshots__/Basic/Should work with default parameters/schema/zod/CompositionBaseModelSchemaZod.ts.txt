@@ -1,0 +1,7 @@
+/* istanbul ignore file */
+import { z } from 'zod';
+
+export const CompositionBaseModelSchemaZod = z.object({
+  firstName: z.string().optional(),
+  lastname: z.string().optional(),
+});

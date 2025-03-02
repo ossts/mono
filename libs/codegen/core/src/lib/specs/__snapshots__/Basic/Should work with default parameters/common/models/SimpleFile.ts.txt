@@ -1,0 +1,6 @@
+/* istanbul ignore file */
+
+/**
+ * This is a simple file
+ */
+export type SimpleFile = Blob;

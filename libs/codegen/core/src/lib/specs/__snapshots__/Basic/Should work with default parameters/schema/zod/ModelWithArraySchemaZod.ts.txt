@@ -1,0 +1,10 @@
+/* istanbul ignore file */
+import { z } from 'zod';
+
+import { ModelWithStringSchemaZod } from './ModelWithStringSchemaZod';
+
+export const ModelWithArraySchemaZod = z.object({
+  prop: z.array(ModelWithStringSchemaZod).optional(),
+  propWithFile: z.array(z.object()).optional(),
+  propWithNumber: z.array(z.number()).optional(),
+});

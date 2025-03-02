@@ -1,0 +1,8 @@
+/* istanbul ignore file */
+
+/**
+ * This is a model with one property containing a dictionary
+ */
+export type ModelWithDictionary = {
+  prop?: Record<string, string>;
+};

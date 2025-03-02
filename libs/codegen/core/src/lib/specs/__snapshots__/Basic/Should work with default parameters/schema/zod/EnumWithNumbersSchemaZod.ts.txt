@@ -1,0 +1,6 @@
+/* istanbul ignore file */
+import { z } from 'zod';
+
+import { EnumWithNumbers } from '../../common/models';
+
+export const EnumWithNumbersSchemaZod = z.nativeEnum(EnumWithNumbers);

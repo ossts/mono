@@ -1,0 +1,17 @@
+/* istanbul ignore file */
+import { faker as fakerDefault } from '@faker-js/faker';
+
+import { getModelWithStringMockFakerJs } from './ModelWithStringMockFakerJs';
+import type { MockFakerJSGeneratorParams } from './typesMockFakerJs';
+
+export const getModelWithDuplicateImportsMockFakerJs = (
+  params: MockFakerJSGeneratorParams
+) => {
+  const { faker = fakerDefault } = params;
+
+  return {
+    propA: faker.helpers.maybe(() => getModelWithStringMockFakerJs(params)),
+    propB: faker.helpers.maybe(() => getModelWithStringMockFakerJs(params)),
+    propC: faker.helpers.maybe(() => getModelWithStringMockFakerJs(params)),
+  };
+};

@@ -1,0 +1,18 @@
+/* istanbul ignore file */
+
+/**
+ * Method: GET
+ */
+export const duplicateNameEndpoint = '/api/v{api-version}/duplicate';
+/**
+ * Method: POST
+ */
+export const duplicateName1Endpoint = '/api/v{api-version}/duplicate';
+/**
+ * Method: PUT
+ */
+export const duplicateName2Endpoint = '/api/v{api-version}/duplicate';
+/**
+ * Method: DELETE
+ */
+export const duplicateName3Endpoint = '/api/v{api-version}/duplicate';

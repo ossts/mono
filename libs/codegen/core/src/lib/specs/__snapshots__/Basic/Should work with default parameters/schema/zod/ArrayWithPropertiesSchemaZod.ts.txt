@@ -1,0 +1,12 @@
+/* istanbul ignore file */
+import { z } from 'zod';
+
+export const ArrayWithPropertiesSchemaZod = z
+  .array(
+    z.object({
+      foo: z.string().optional(),
+      bar: z.string().optional(),
+    })
+  )
+  .min(1)
+  .max(20);

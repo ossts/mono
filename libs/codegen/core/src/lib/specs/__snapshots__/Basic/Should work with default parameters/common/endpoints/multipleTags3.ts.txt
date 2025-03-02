@@ -1,0 +1,6 @@
+/* istanbul ignore file */
+
+/**
+ * Method: GET
+ */
+export const dummyBEndpoint = '/api/v{api-version}/multiple-tags/b';

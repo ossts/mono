@@ -1,0 +1,4 @@
+/* istanbul ignore file */
+import { z } from 'zod';
+
+export const ArrayWithBooleansSchemaZod = z.array(z.boolean());

@@ -1,0 +1,28 @@
+/* istanbul ignore file */
+import { faker as fakerDefault } from '@faker-js/faker';
+
+import type { MockFakerJSGeneratorParams } from './typesMockFakerJs';
+
+export const getFileMockFakerJs = (params: MockFakerJSGeneratorParams) => {
+  const { faker = fakerDefault } = params;
+
+  return {
+    id: faker.helpers.maybe(() =>
+      faker.string.alpha({
+        length: {
+          min: 5,
+          max: 10,
+        },
+      })
+    ),
+    updated_at: faker.helpers.maybe(() => faker.date.anytime()),
+    created_at: faker.helpers.maybe(() => faker.date.anytime()),
+    mime: faker.string.alpha({
+      length: {
+        min: 5,
+        max: 10,
+      },
+    }),
+    file: faker.helpers.maybe(() => faker.internet.url()),
+  };
+};

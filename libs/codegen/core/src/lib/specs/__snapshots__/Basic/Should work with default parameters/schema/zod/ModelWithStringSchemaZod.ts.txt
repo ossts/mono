@@ -1,0 +1,6 @@
+/* istanbul ignore file */
+import { z } from 'zod';
+
+export const ModelWithStringSchemaZod = z.object({
+  prop: z.string().optional(),
+});

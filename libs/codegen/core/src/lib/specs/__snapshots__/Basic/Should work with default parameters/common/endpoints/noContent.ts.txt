@@ -1,0 +1,7 @@
+/* istanbul ignore file */
+
+/**
+ * Method: GET
+ */
+export const callWithNoContentResponseEndpoint =
+  '/api/v{api-version}/no-content';

@@ -1,0 +1,33 @@
+/* istanbul ignore file */
+
+/**
+ * Method: POST
+ *
+ * `parameterWithBreaks?: any` in `query`
+ *
+ * Testing multiline comments in string: First line
+ * Second line
+ *
+ * Fourth line
+ *
+ * `parameterWithBackticks?: any` in `query`
+ *
+ * Testing backticks in string: `backticks` and ```multiple backticks``` should work
+ *
+ * `parameterWithSlashes?: any` in `query`
+ *
+ * Testing slashes in string: \backwards\\\ and /forwards/// should work
+ *
+ * `parameterWithExpressionPlaceholders?: any` in `query`
+ *
+ * Testing expression placeholders in string: ${expression} should work
+ *
+ * `parameterWithQuotes?: any` in `query`
+ *
+ * Testing quotes in string: 'single quote''' and "double quotes""" should work
+ *
+ * `parameterWithReservedCharacters?: any` in `query`
+ *
+ * Testing reserved characters in string: * inline * and ** inline ** should work
+ */
+export const callWithDescriptionsEndpoint = '/api/v{api-version}/descriptions/';

@@ -1,0 +1,6 @@
+/* istanbul ignore file */
+import { z } from 'zod';
+
+export const CompositionWithOneOfAndSimpleDictionarySchemaZod = z.object({
+  propA: z.union([z.boolean(), z.record(z.string(), z.number())]).optional(),
+});

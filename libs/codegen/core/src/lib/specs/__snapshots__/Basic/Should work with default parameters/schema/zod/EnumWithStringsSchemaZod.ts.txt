@@ -1,0 +1,6 @@
+/* istanbul ignore file */
+import { z } from 'zod';
+
+import { EnumWithStrings } from '../../common/models';
+
+export const EnumWithStringsSchemaZod = z.nativeEnum(EnumWithStrings);

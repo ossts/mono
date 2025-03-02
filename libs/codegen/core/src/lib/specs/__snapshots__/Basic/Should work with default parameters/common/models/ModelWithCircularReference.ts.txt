@@ -1,0 +1,8 @@
+/* istanbul ignore file */
+
+/**
+ * This is a model with one property containing a circular reference
+ */
+export type ModelWithCircularReference = {
+  prop?: ModelWithCircularReference;
+};

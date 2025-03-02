@@ -1,0 +1,26 @@
+/* istanbul ignore file */
+
+/**
+ * Method: GET
+ *
+ * `parameterArrayCSV: string` in `query`
+ *
+ * This is an array parameter that is sent as csv format (comma-separated values)
+ *
+ * `parameterArraySSV: string` in `query`
+ *
+ * This is an array parameter that is sent as ssv format (space-separated values)
+ *
+ * `parameterArrayTSV: string` in `query`
+ *
+ * This is an array parameter that is sent as tsv format (tab-separated values)
+ *
+ * `parameterArrayPipes: string` in `query`
+ *
+ * This is an array parameter that is sent as pipes format (pipe-separated values)
+ *
+ * `parameterArrayMulti: string` in `query`
+ *
+ * This is an array parameter that is sent as multi format (multiple parameter instances)
+ */
+export const collectionFormatEndpoint = '/api/v{api-version}/collectionFormat';

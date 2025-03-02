@@ -1,0 +1,6 @@
+/* istanbul ignore file */
+import { z } from 'zod';
+
+export const ModelWithEnumFromDescriptionSchemaZod = z.object({
+  test: z.number().optional(),
+});

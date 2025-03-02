@@ -1,0 +1,9 @@
+/* istanbul ignore file */
+
+/**
+ * This is a free-form object with additionalProperties: {}.
+ */
+export type FreeFormObjectWithAdditionalPropertiesEqEmptyObject = Record<
+  string,
+  any
+>;

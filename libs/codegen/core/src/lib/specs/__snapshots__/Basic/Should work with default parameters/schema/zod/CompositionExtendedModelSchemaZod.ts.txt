@@ -1,0 +1,13 @@
+/* istanbul ignore file */
+import { z } from 'zod';
+
+import { CompositionBaseModelSchemaZod } from './CompositionBaseModelSchemaZod';
+
+export const CompositionExtendedModelSchemaZod = z.intersection([
+  CompositionBaseModelSchemaZod,
+  z.object({
+    firstName: z.coerce.string(),
+    lastname: z.coerce.string(),
+    age: z.coerce.number(),
+  }),
+]);

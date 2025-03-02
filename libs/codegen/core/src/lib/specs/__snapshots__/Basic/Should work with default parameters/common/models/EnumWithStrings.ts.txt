@@ -1,0 +1,12 @@
+/* istanbul ignore file */
+
+/**
+ * This is a simple enum with strings
+ */
+export enum EnumWithStrings {
+  SUCCESS = 'Success',
+  WARNING = 'Warning',
+  ERROR = 'Error',
+  _SINGLE_QUOTE_ = "'Single Quote'",
+  _DOUBLE_QUOTES_ = '"Double Quotes"',
+}

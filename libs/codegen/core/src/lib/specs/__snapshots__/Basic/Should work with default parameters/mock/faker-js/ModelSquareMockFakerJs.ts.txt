@@ -1,0 +1,15 @@
+/* istanbul ignore file */
+import { faker as fakerDefault } from '@faker-js/faker';
+
+import type { MockFakerJSGeneratorParams } from './typesMockFakerJs';
+
+export const getModelSquareMockFakerJs = (
+  params: MockFakerJSGeneratorParams
+) => {
+  const { faker = fakerDefault } = params;
+
+  return {
+    kind: faker.helpers.fake('square'),
+    sideLength: faker.helpers.maybe(() => faker.number.int()),
+  };
+};

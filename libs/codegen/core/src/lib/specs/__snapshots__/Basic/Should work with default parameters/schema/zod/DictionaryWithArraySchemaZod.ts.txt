@@ -1,0 +1,9 @@
+/* istanbul ignore file */
+import { z } from 'zod';
+
+import { ModelWithStringSchemaZod } from './ModelWithStringSchemaZod';
+
+export const DictionaryWithArraySchemaZod = z.record(
+  z.string(),
+  z.array(ModelWithStringSchemaZod)
+);

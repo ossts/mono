@@ -1,0 +1,10 @@
+/* istanbul ignore file */
+
+/**
+ * Method: POST
+ *
+ * `status: number` in `query`
+ *
+ * Status code to return
+ */
+export const testErrorCodeEndpoint = '/api/v{api-version}/error';

@@ -1,0 +1,8 @@
+/* istanbul ignore file */
+import { z } from 'zod';
+
+import { ModelWithStringSchemaZod } from './ModelWithStringSchemaZod';
+
+export const ArrayWithArraySchemaZod = z.array(
+  z.array(ModelWithStringSchemaZod)
+);

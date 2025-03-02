@@ -20,7 +20,7 @@ export const getServices = (
       if (!isOperation(method, op)) return;
 
       // Each method contains an OpenAPI operation, we parse the operation
-      const tags = op.tags?.length ? op.tags.filter(unique) : ['Default'];
+      const tags = op.tags?.length ? op.tags.filter(unique) : ['Common'];
       tags.forEach((tag) => {
         const operation = getOperation(
           openApi,

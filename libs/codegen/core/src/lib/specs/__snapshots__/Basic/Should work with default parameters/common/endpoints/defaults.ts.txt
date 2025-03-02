@@ -1,0 +1,87 @@
+/* istanbul ignore file */
+
+/**
+ * Method: GET
+ *
+ * `parameterString: string = 'Hello World!'` in `query`
+ *
+ * This is a simple string with default value
+ *
+ * `parameterNumber: number = 123` in `query`
+ *
+ * This is a simple number with default value
+ *
+ * `parameterBoolean: boolean = true` in `query`
+ *
+ * This is a simple boolean with default value
+ *
+ * `parameterEnum: string = 'Success'` in `query`
+ *
+ * This is a simple enum with default value
+ *
+ * `parameterModel?: ModelWithString` in `query`
+ *
+ * This is a simple model with default value
+ */
+export const callWithDefaultParametersEndpoint = '/api/v{api-version}/defaults';
+/**
+ * Method: POST
+ *
+ * `parameterString: string = 'Hello World!'` in `query`
+ *
+ * This is a simple string that is optional with default value
+ *
+ * `parameterNumber: number = 123` in `query`
+ *
+ * This is a simple number that is optional with default value
+ *
+ * `parameterBoolean: boolean = true` in `query`
+ *
+ * This is a simple boolean that is optional with default value
+ *
+ * `parameterEnum: string = 'Success'` in `query`
+ *
+ * This is a simple enum that is optional with default value
+ *
+ * `parameterModel?: ModelWithString` in `query`
+ *
+ * This is a simple model that is optional with default value
+ */
+export const callWithDefaultOptionalParametersEndpoint =
+  '/api/v{api-version}/defaults';
+/**
+ * Method: PUT
+ *
+ * `parameterStringWithNoDefault: string` in `query`
+ *
+ * This is a string with no default
+ *
+ * `parameterOptionalStringWithDefault: string = 'Hello World!'` in `query`
+ *
+ * This is a optional string with default
+ *
+ * `parameterOptionalStringWithEmptyDefault: string = ''` in `query`
+ *
+ * This is a optional string with empty default
+ *
+ * `parameterOptionalStringWithNoDefault?: string` in `query`
+ *
+ * This is a optional string with no default
+ *
+ * `parameterStringWithDefault: string = 'Hello World!'` in `query`
+ *
+ * This is a string with default
+ *
+ * `parameterStringWithEmptyDefault: string = ''` in `query`
+ *
+ * This is a string with empty default
+ *
+ * `parameterStringNullableWithNoDefault?: string` in `query`
+ *
+ * This is a string that can be null with no default
+ *
+ * `parameterStringNullableWithDefault: string = null` in `query`
+ *
+ * This is a string that can be null with default
+ */
+export const callToTestOrderOfParamsEndpoint = '/api/v{api-version}/defaults';

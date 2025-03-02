@@ -1,0 +1,6 @@
+/* istanbul ignore file */
+
+/**
+ * This is a simple number
+ */
+export type SimpleInteger = number;

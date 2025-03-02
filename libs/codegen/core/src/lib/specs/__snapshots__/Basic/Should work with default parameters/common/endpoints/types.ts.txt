@@ -1,0 +1,38 @@
+/* istanbul ignore file */
+
+/**
+ * Method: GET
+ *
+ * `parameterArray: string` in `query`
+ *
+ * This is an array parameter
+ *
+ * `parameterDictionary: any` in `query`
+ *
+ * This is a dictionary parameter
+ *
+ * `parameterEnum: string` in `query`
+ *
+ * This is an enum parameter
+ *
+ * `parameterNumber: number = 123` in `query`
+ *
+ * This is a number parameter
+ *
+ * `parameterString: string = 'default'` in `query`
+ *
+ * This is a string parameter
+ *
+ * `parameterBoolean: boolean = true` in `query`
+ *
+ * This is a boolean parameter
+ *
+ * `parameterObject: any = null` in `query`
+ *
+ * This is an object parameter
+ *
+ * `id?: number` in `path`
+ *
+ * This is a number parameter
+ */
+export const typesEndpoint = '/api/v{api-version}/types';

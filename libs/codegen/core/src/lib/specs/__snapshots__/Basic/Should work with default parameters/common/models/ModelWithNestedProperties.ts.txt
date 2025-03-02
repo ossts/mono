@@ -1,0 +1,12 @@
+/* istanbul ignore file */
+
+/**
+ * This is a model with one nested property
+ */
+export type ModelWithNestedProperties = {
+  readonly first: {
+    readonly second: {
+      readonly third: string | null;
+    } | null;
+  } | null;
+};

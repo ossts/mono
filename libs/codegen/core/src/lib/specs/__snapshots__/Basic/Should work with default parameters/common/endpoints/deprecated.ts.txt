@@ -1,0 +1,13 @@
+/* istanbul ignore file */
+
+/**
+ * Method: POST
+ *
+ * @deprecated
+ *
+ * `parameter: DeprecatedModel` in `header`
+ *
+ * This parameter is deprecated
+ */
+export const deprecatedCallEndpoint =
+  '/api/v{api-version}/parameters/deprecated';
