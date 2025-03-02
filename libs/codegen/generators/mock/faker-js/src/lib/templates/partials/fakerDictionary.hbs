@@ -1,19 +1,9 @@
 {{~#if link~}}
 {
-	[faker.string.alpha({
-		length: {
-			min: 5,
-			max: 10
-		}
-	})]: {{>fakerOptionalAndNullableStart}}{{#with link}}{{>fakerStart}}{{/with}}{{>fakerType link hasWrapperType=true}}{{>fakerOptionalAndNullableEnd}}
+	[{{>fakerDictionaryKey}}]: {{>fakerOptionalAndNullableStart}}{{#with link}}{{>fakerStart}}{{/with}}{{>fakerType link hasWrapperType=true}}{{>fakerOptionalAndNullableEnd}}
 }
 {{~else~}}
 {
-	[faker.string.alpha({
-		length: {
-			min: 5,
-			max: 10
-		}
-	})]: {{>fakerOptionalAndNullableStart}}{{#with link}}{{>fakerStart}}{{/with}}{{>fakerBase}}{{>fakerOptionalAndNullableEnd}}
+	[{{>fakerDictionaryKey}}]: {{>fakerOptionalAndNullableStart}}{{#with link}}{{>fakerStart}}{{/with}}{{>fakerTypeFormat}}{{>fakerOptionalAndNullableEnd}}
 }
 {{~/if~}}

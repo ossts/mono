@@ -15,9 +15,5 @@
 {{else utilsEquals export 'allOf'}}
 	{{>fakerTypeIntersection}}
 {{~else~}}
-	{{~#utilsIsPrimitive type~}}
-		.{{>fakerTypeFormat}}
-	{{~else~}}
-		faker{{>fakerBase}}
-	{{~/utilsIsPrimitive~}}
+	{{>fakerTypeFormat}}
 {{~/utilsEquals~}}

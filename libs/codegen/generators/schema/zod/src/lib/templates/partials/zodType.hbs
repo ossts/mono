@@ -15,9 +15,5 @@
 {{else utilsEquals export 'allOf'}}
 	{{>zodTypeIntersection}}
 {{~else~}}
-	{{~#utilsIsPrimitive type~}}
-		.{{>zodTypeWithAny}}(){{>zodTypeFormat}}{{>zodValidationRules}}{{#unless hasWrapperType}}{{~>zodRequired}}{{/unless}}{{>zodNullable}}{{>zodReadOnly}}
-	{{~else~}}
-		{{>zodTypeWithAny}}{{~>zodRequired}}{{>zodNullable}}{{>zodReadOnly}}
-	{{~/utilsIsPrimitive~}}
+	{{>zodTypeFormat}}{{>zodValidationRules}}{{#unless hasWrapperType}}{{~>zodRequired}}{{/unless}}{{>zodNullable}}{{>zodReadOnly}}
 {{~/utilsEquals~}}

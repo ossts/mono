@@ -26,6 +26,11 @@ export class MockFakerJsGenerator
             dataPath: 'models',
             nameFieldOrFn: (data) => `${data['name'].replace(/Schema/g, '')}`,
           },
+          types: {
+            dataPath: '',
+            nameFieldOrFn: () => 'types',
+            doNotAddToIndex: true,
+          },
         },
         dependsOn: ['utils', 'common/models', ...(config?.dependsOn ?? [])],
       },

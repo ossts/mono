@@ -1,5 +1,5 @@
 {{~#if link~}}
 z.record(z.string(), {{#with link}}{{>zodStart}}{{/with}}{{>zodType link hasWrapperType=true}}){{>zodNullable}}{{#unless isRoot}}{{#unless hasWrapperType}}{{>zodRequired}}{{/unless}}{{/unless}}
 {{~else~}}
-z.record(z.string(), {{#with link}}{{>zodStart}}{{/with}}{{>zodBase}}){{>zodNullable}}{{#unless isRoot}}{{#unless hasWrapperType}}{{>zodRequired}}{{/unless}}{{/unless}}
+z.record(z.string(), {{#with link}}{{>zodStart}}{{/with}}{{>zodTypeFormat}}){{>zodNullable}}{{#unless isRoot}}{{#unless hasWrapperType}}{{>zodRequired}}{{/unless}}{{/unless}}
 {{~/if~}}

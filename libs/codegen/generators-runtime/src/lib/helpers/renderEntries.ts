@@ -81,6 +81,16 @@ const render = <
     const promises: Promise<void>[] = [];
     const { templates, settings = {} } = generator;
 
+    const generatorNS = generator.settings?.globalNS;
+
+    const basePath = resolvePath(output ?? '', generator.outputPath);
+
+    if (!generator.settings?.preventCleanup) {
+      rimraf.sync(basePath);
+    }
+
+    const fileNames: string[] = [];
+
     for (const name in templates.entries) {
       const config = generator.resolvedEntriesRenderCfg?.[name];
       if (!config) continue;
@@ -98,16 +108,6 @@ const render = <
       }
 
       const dataAsArray = Array.isArray(data) ? data : [data];
-
-      const basePath = resolvePath(output ?? '', generator.outputPath);
-
-      if (!generator.settings?.preventCleanup) {
-        rimraf.sync(basePath);
-      }
-
-      const fileNames: string[] = [];
-
-      const generatorNS = generator.settings?.globalNS;
 
       dataAsArray.forEach((data: DictionaryWithAny) => {
         if (!isPlainObject(data)) {
@@ -132,7 +132,9 @@ const render = <
           fileName = config.nameFieldOrFn(data);
         }
 
-        fileNames.push(fileName);
+        if (!config.doNotAddToIndex) {
+          fileNames.push(fileName);
+        }
 
         const content = tpl({
           data,
@@ -155,61 +157,61 @@ const render = <
         ensureFileSync(dist);
         promises.push(writeFile(dist, formattedContent));
       });
+    }
 
-      const indexDist = resolvePath(basePath, 'index.ts');
-      const importAllNames = new Set();
-      let content = fileNames
-        .map((name) => {
-          let content = `export * from './${name}${generatorNS}';`;
+    const indexDist = resolvePath(basePath, 'index.ts');
+    const importAllNames = new Set();
+    let content = fileNames
+      .map((name) => {
+        let content = `export * from './${name}${generatorNS}';`;
 
-          if (
-            generator.settings?.withEntryExportAll ||
-            generator.settings?.withExportAll
-          ) {
-            let importAllName = `${name}${upperFirst(generatorNS)}${
-              generator.settings?.exportAllSuffix
-            }`;
-            if (!generator.settings.preventExportNameCapitalization) {
-              importAllName = upperFirst(importAllName);
-            }
-
-            content += `\nimport * as ${importAllName} from './${name}';`;
-            if (generator.settings?.withEntryExportAll) {
-              content += `\nexport { ${importAllName} }`;
-            }
-
-            importAllNames.add(importAllName);
+        if (
+          generator.settings?.withEntryExportAll ||
+          generator.settings?.withExportAll
+        ) {
+          let importAllName = `${name}${upperFirst(generatorNS)}${
+            generator.settings?.exportAllSuffix
+          }`;
+          if (!generator.settings.preventExportNameCapitalization) {
+            importAllName = upperFirst(importAllName);
           }
 
-          return content;
-        })
-        .join('\n\n');
+          content += `\nimport * as ${importAllName} from './${name}';`;
+          if (generator.settings?.withEntryExportAll) {
+            content += `\nexport { ${importAllName} }`;
+          }
 
-      if (generator.settings?.withExportAll) {
-        let name = '',
-          typeName = '';
-
-        if (generator.settings.withExportAll === true) {
-          name = `all${upperFirst(generatorNS)}${
-            generator.settings.exportAllSuffix
-          }`;
-          typeName = upperFirst(name);
-        } else {
-          ({ name } = generator.settings.withExportAll);
-          typeName =
-            generator.settings.withExportAll.typeName ?? upperFirst(name);
+          importAllNames.add(importAllName);
         }
 
-        content += `\n\nexport const ${name} = {\n`;
-        content += [...importAllNames].map((name) => `  ${name},`).join('\n');
-        content += '\n};';
+        return content;
+      })
+      .join('\n\n');
 
-        content += `\n\nexport type ${typeName} = typeof ${name};`;
+    if (generator.settings?.withExportAll) {
+      let name = '',
+        typeName = '';
+
+      if (generator.settings.withExportAll === true) {
+        name = `all${upperFirst(generatorNS)}${
+          generator.settings.exportAllSuffix
+        }`;
+        typeName = upperFirst(name);
+      } else {
+        ({ name } = generator.settings.withExportAll);
+        typeName =
+          generator.settings.withExportAll.typeName ?? upperFirst(name);
       }
 
-      ensureFileSync(indexDist);
-      promises.push(writeFile(indexDist, content + '\n'));
+      content += `\n\nexport const ${name} = {\n`;
+      content += [...importAllNames].map((name) => `  ${name},`).join('\n');
+      content += '\n};';
+
+      content += `\n\nexport type ${typeName} = typeof ${name};`;
     }
+
+    ensureFileSync(indexDist);
+    promises.push(writeFile(indexDist, content + '\n'));
 
     Promise.all(promises).then(() => resolve());
   });

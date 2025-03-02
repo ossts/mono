@@ -2,4 +2,5 @@
 import { {{name}} } from '../../common/models';
 {{/if}}
 
-export const get{{{utilsNameWithNS name}}} =  () => ({{>fakerTypeInterface}});
+export const get{{{utilsNameWithNS name}}} = {{>fakerGeneratorParamsStart}} {{>fakerTypeInterface}}
+{{>fakerGeneratorParamsEnd}}

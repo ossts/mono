@@ -1,5 +1,31 @@
-{{~#utilsEquals format 'date-time'}}.datetime(){{/utilsEquals~}}
-{{~#utilsEquals format 'date'}}.date(){{/utilsEquals~}}
-{{~#utilsEquals format 'time'}}.time(){{/utilsEquals~}}
-{{~#utilsEquals format 'uri'}}.url(){{/utilsEquals~}}
-{{~#utilsEquals format 'uuid'}}.uuid(){{/utilsEquals~}}
+{{~#utilsEquals export 'dictionary'~}}
+	{{{utilsNameWithNS type}}}
+{{~else utilsEquals export 'reference'~}}
+	{{~#utilsStartsWith base "'"~}}
+		z.literal({{base}})
+	{{~else~}}
+		{{{utilsNameWithNS type}}}
+	{{~/utilsStartsWith~}}
+{{~else utilsEquals format 'date-time'~}}
+	.string().datetime()
+{{~else utilsEquals format 'date'~}}
+	.date()
+{{~else utilsEquals format 'time'~}}
+	.time()
+{{~else utilsEquals format 'uri'~}}
+	.string().url()
+{{~else utilsEquals format 'uuid'~}}
+	.uuid()
+{{~else utilsEquals type 'binary'~}}
+	.object()
+{{~else utilsEquals type 'string'~}}
+	.string()
+{{~else utilsEquals type 'any'~}}
+	.any()
+{{~else utilsEquals type 'null'~}}
+	.null()
+{{~else utilsEquals type 'undefined'~}}
+	.undefined()
+{{~else~}}
+	.{{type}}()
+{{~/utilsEquals~}}

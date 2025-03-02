@@ -4,6 +4,6 @@ faker.helpers.arrayElements([
 ]{{>fakerArrayParams}})
 {{~else~}}
 faker.helpers.arrayElements([
-	get{{{utilsNameWithNS type}}}()
+	get{{{utilsNameWithNS type}}}(params)
 ]{{>fakerArrayParams}})
 {{~/if~}}

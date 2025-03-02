@@ -7,7 +7,9 @@ export type GeneratorEntriesRenderConfigNameFieldExtractor = (
 export type GeneratorEntriesRenderConfig = {
   /**
    * Path to data for entry template,
-   * e.g. `models` or `services.operations`
+   * e.g. `models` or `services.operations`.
+   *
+   * Set to empty string `''` to pass whole parsed schema object.
    */
   dataPath: string;
 
@@ -22,4 +24,9 @@ export type GeneratorEntriesRenderConfig = {
    * Only applicable if `nameFieldOrFn` is `string`
    */
   nameSuffix?: string;
+
+  /**
+   * Set to true if file content shouldn't be reexported in index.ts
+   */
+  doNotAddToIndex?: boolean;
 };

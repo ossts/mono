@@ -1,3 +1,5 @@
+import type { Faker } from '@faker-js/faker';
+
 import type { AbstractGeneratorSettings } from '@ossts/codegen/common';
 
 import type {
@@ -7,7 +9,9 @@ import type {
 
 /* eslint-disable-next-line @typescript-eslint/no-empty-interface */
 export interface MockFakerJsGeneratorSettings
-  extends AbstractGeneratorSettings {}
+  extends AbstractGeneratorSettings {
+  fakerInstance?: Faker;
+}
 
 export type MockFakerJsGeneratorName = typeof mockFakerJsGeneratorName;
 

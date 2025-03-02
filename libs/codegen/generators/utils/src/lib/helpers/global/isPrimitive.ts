@@ -6,7 +6,7 @@ export const isPrimitive: CodegenHandlebarsHelperWrapper = () =>
     a: string,
     options: Handlebars.HelperOptions
   ): string {
-    return ['number', 'boolean', 'string'].includes(a)
+    return ['number', 'boolean', 'string', 'binary'].includes(a)
       ? options.fn(this)
       : options.inverse(this);
   };
