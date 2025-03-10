@@ -56,6 +56,7 @@ export const getModel = (
       model.base = arrayItems.base;
       model.template = arrayItems.template;
       model.link = arrayItems;
+      arrayItems.refToParent = model;
       model.imports.push(...arrayItems.imports);
       model.default = getModelDefault(schema, model);
       return model;
@@ -87,6 +88,7 @@ export const getModel = (
       model.base = additionalProperties.base;
       model.template = additionalProperties.template;
       model.link = additionalProperties;
+      additionalProperties.refToParent = model;
       model.imports.push(...additionalProperties.imports);
       model.default = getModelDefault(schema, model);
       return model;
@@ -99,7 +101,8 @@ export const getModel = (
       schema,
       schema.oneOf,
       'oneOf',
-      getModel
+      getModel,
+      model
     );
     model.export = composition.type;
     model.imports.push(...composition.imports);
@@ -114,7 +117,8 @@ export const getModel = (
       schema,
       schema.anyOf,
       'anyOf',
-      getModel
+      getModel,
+      model
     );
     model.export = composition.type;
     model.imports.push(...composition.imports);
@@ -129,7 +133,8 @@ export const getModel = (
       schema,
       schema.allOf,
       'allOf',
-      getModel
+      getModel,
+      model
     );
     model.export = composition.type;
     model.imports.push(...composition.imports);
@@ -167,6 +172,7 @@ export const getModel = (
       model.base = additionalProperties.base;
       model.template = additionalProperties.template;
       model.link = additionalProperties;
+      additionalProperties.refToParent = model;
       model.imports.push(...additionalProperties.imports);
       model.default = getModelDefault(schema, model);
       return model;

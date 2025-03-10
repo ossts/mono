@@ -2,11 +2,16 @@ import type Handlebars from 'handlebars/runtime';
 
 import type { AbstractGeneratorSettings } from './generator';
 
-export type CodegenHandlebarsHelperWrapperParams = {
+export type CodegenHandlebarsHelperWrapperParams<
+  TSettings extends AbstractGeneratorSettings = AbstractGeneratorSettings
+> = {
   handlebarsInstance: typeof Handlebars;
-  settings: AbstractGeneratorSettings;
+  settings: TSettings;
 };
 
-export type CodegenHandlebarsHelperWrapper<TParams extends object = object> = (
-  params: CodegenHandlebarsHelperWrapperParams & TParams
+export type CodegenHandlebarsHelperWrapper<
+  TSettings extends AbstractGeneratorSettings = AbstractGeneratorSettings,
+  TParams extends object = object
+> = (
+  params: CodegenHandlebarsHelperWrapperParams<TSettings> & TParams
 ) => Handlebars.HelperDelegate;

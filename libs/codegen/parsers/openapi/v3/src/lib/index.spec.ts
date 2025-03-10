@@ -11,5 +11,21 @@ it('Should be able to parse schema into required format', async () => {
   const schema = await parse(openApi);
 
   // serialization/deserialization here is required to remove empty/undefined values
-  expect(JSON.parse(JSON.stringify(schema))).toMatchSnapshot();
+  expect(
+    JSON.parse(
+      JSON.stringify(schema, (key, value) => {
+        // we have to process "refToParent" separately because it creates circular dependencies
+        if (key === 'refToParent') {
+          return {
+            name: value.name,
+            type: value.type,
+            export: value.export,
+            base: value.base,
+          };
+        }
+
+        return value;
+      })
+    )
+  ).toMatchSnapshot();
 });

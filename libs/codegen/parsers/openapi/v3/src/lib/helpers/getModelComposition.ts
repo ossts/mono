@@ -16,7 +16,8 @@ export const getModelComposition = (
   schema: OpenAPIV3SchemaWithEnumExtension,
   schemas: OpenAPIV3SchemaWithRef[],
   type: 'oneOf' | 'anyOf' | 'allOf',
-  getModel: GetModelFn
+  getModel: GetModelFn,
+  parent: ParsedModelOpenAPIV3
 ): ParsedModelCompositionOpenAPIV3 => {
   const composition: ParsedModelCompositionOpenAPIV3 = {
     type,
@@ -40,6 +41,7 @@ export const getModelComposition = (
     .forEach((model) => {
       composition.imports.push(...model.imports);
       composition.enums.push(...model.enums);
+      model.refToParent = parent;
       composition.properties.push(model);
     });
 
@@ -70,8 +72,8 @@ export const getModelComposition = (
   }
 
   if (properties.length) {
-    composition.properties.push({
-      name: 'properties',
+    const newProp: ParsedModelOpenAPIV3 = {
+      name: '',
       export: 'interface',
       type: 'any',
       base: 'any',
@@ -86,7 +88,13 @@ export const getModelComposition = (
       enum: [],
       enums: [],
       properties,
+      refToParent: parent,
+    };
+    properties.forEach((item) => {
+      item.refToParent = newProp;
     });
+
+    composition.properties.push(newProp);
   }
 
   return composition;

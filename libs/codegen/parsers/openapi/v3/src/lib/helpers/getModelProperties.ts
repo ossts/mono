@@ -24,6 +24,10 @@ export const getModelProperties = (
 
     properties.required = !!schema.required?.includes(name);
 
+    if (parent) {
+      properties.refToParent = parent;
+    }
+
     if (parent && discriminator?.propertyName == name) {
       Object.assign<ParsedModelOpenAPIV3, Partial<ParsedModelOpenAPIV3>>(
         properties,
