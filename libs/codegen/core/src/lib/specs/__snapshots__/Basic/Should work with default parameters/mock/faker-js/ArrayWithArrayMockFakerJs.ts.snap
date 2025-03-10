@@ -5,9 +5,9 @@ import { getModelWithStringMockFakerJs } from './ModelWithStringMockFakerJs';
 import type { MockFakerJSGeneratorParams } from './typesMockFakerJs';
 
 export const getArrayWithArrayMockFakerJs = (
-  params: MockFakerJSGeneratorParams
+  params?: MockFakerJSGeneratorParams
 ) => {
-  const { faker = fakerDefault } = params;
+  const { faker = fakerDefault } = params ?? {};
 
   return faker.helpers.arrayElements([
     faker.helpers.arrayElements([getModelWithStringMockFakerJs(params)]),

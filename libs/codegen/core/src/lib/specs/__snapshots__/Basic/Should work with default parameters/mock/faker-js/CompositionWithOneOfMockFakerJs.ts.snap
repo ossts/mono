@@ -8,9 +8,9 @@ import { getModelWithStringMockFakerJs } from './ModelWithStringMockFakerJs';
 import type { MockFakerJSGeneratorParams } from './typesMockFakerJs';
 
 export const getCompositionWithOneOfMockFakerJs = (
-  params: MockFakerJSGeneratorParams
+  params?: MockFakerJSGeneratorParams
 ) => {
-  const { faker = fakerDefault } = params;
+  const { faker = fakerDefault } = params ?? {};
 
   return {
     propA: faker.helpers.maybe(() =>

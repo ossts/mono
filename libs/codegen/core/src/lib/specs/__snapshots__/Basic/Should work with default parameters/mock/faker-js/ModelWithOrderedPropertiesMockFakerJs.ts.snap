@@ -4,9 +4,9 @@ import { faker as fakerDefault } from '@faker-js/faker';
 import type { MockFakerJSGeneratorParams } from './typesMockFakerJs';
 
 export const getModelWithOrderedPropertiesMockFakerJs = (
-  params: MockFakerJSGeneratorParams
+  params?: MockFakerJSGeneratorParams
 ) => {
-  const { faker = fakerDefault } = params;
+  const { faker = fakerDefault } = params ?? {};
 
   return {
     zebra: faker.helpers.maybe(() =>

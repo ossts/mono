@@ -1,6 +1,6 @@
-(params: MockFakerJSGeneratorParams) => {
+(params?: MockFakerJSGeneratorParams) => {
 	const {
 		faker = fakerDefault
-	} = params;
+	} = params ?? {};
 
 	return

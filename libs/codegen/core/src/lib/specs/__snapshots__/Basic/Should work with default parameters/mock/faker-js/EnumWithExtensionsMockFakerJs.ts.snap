@@ -5,9 +5,9 @@ import { EnumWithExtensions } from '../../common/models';
 import type { MockFakerJSGeneratorParams } from './typesMockFakerJs';
 
 export const getEnumWithExtensionsMockFakerJs = (
-  params: MockFakerJSGeneratorParams
+  params?: MockFakerJSGeneratorParams
 ) => {
-  const { faker = fakerDefault } = params;
+  const { faker = fakerDefault } = params ?? {};
 
   return faker.helpers.enumValue(EnumWithExtensions);
 };

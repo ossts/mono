@@ -3,8 +3,8 @@ import { faker as fakerDefault } from '@faker-js/faker';
 
 import type { MockFakerJSGeneratorParams } from './typesMockFakerJs';
 
-export const getPageableMockFakerJs = (params: MockFakerJSGeneratorParams) => {
-  const { faker = fakerDefault } = params;
+export const getPageableMockFakerJs = (params?: MockFakerJSGeneratorParams) => {
+  const { faker = fakerDefault } = params ?? {};
 
   return {
     page: faker.helpers.maybe(() => faker.number.int()),

@@ -6,9 +6,9 @@ import { getModelSquareMockFakerJs } from './ModelSquareMockFakerJs';
 import type { MockFakerJSGeneratorParams } from './typesMockFakerJs';
 
 export const getCompositionWithOneOfDiscriminatorMockFakerJs = (
-  params: MockFakerJSGeneratorParams
+  params?: MockFakerJSGeneratorParams
 ) => {
-  const { faker = fakerDefault } = params;
+  const { faker = fakerDefault } = params ?? {};
 
   return faker.helpers.arrayElement([
     getModelCircleMockFakerJs(params),

@@ -5,9 +5,9 @@ import { getModelWithPropertiesMockFakerJs } from './ModelWithPropertiesMockFake
 import type { MockFakerJSGeneratorParams } from './typesMockFakerJs';
 
 export const getModelWithReferenceMockFakerJs = (
-  params: MockFakerJSGeneratorParams
+  params?: MockFakerJSGeneratorParams
 ) => {
-  const { faker = fakerDefault } = params;
+  const { faker = fakerDefault } = params ?? {};
 
   return {
     prop: faker.helpers.maybe(() => getModelWithPropertiesMockFakerJs(params)),

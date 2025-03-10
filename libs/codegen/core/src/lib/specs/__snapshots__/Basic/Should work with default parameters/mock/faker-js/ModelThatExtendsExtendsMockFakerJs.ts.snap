@@ -6,9 +6,9 @@ import { getModelWithStringMockFakerJs } from './ModelWithStringMockFakerJs';
 import type { MockFakerJSGeneratorParams } from './typesMockFakerJs';
 
 export const getModelThatExtendsExtendsMockFakerJs = (
-  params: MockFakerJSGeneratorParams
+  params?: MockFakerJSGeneratorParams
 ) => {
-  const { faker = fakerDefault } = params;
+  const { faker = fakerDefault } = params ?? {};
 
   return {
     ...getModelWithStringMockFakerJs(params),

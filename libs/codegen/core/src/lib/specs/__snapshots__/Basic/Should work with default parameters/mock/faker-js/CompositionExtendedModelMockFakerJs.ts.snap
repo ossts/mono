@@ -5,9 +5,9 @@ import { getCompositionBaseModelMockFakerJs } from './CompositionBaseModelMockFa
 import type { MockFakerJSGeneratorParams } from './typesMockFakerJs';
 
 export const getCompositionExtendedModelMockFakerJs = (
-  params: MockFakerJSGeneratorParams
+  params?: MockFakerJSGeneratorParams
 ) => {
-  const { faker = fakerDefault } = params;
+  const { faker = fakerDefault } = params ?? {};
 
   return {
     ...getCompositionBaseModelMockFakerJs(params),

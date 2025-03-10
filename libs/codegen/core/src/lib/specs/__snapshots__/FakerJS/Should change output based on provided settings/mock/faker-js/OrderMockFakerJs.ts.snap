@@ -4,8 +4,8 @@ import { faker as fakerDefault } from '@faker-js/faker';
 import { Order } from '../../common/models';
 import type { MockFakerJSGeneratorParams } from './typesMockFakerJs';
 
-export const getOrderMockFakerJs = (params: MockFakerJSGeneratorParams) => {
-  const { faker = fakerDefault } = params;
+export const getOrderMockFakerJs = (params?: MockFakerJSGeneratorParams) => {
+  const { faker = fakerDefault } = params ?? {};
 
   return {
     id: faker.helpers.maybe(() => faker.string.uid()),

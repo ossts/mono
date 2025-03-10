@@ -6,8 +6,8 @@ import { getCategoryMockFakerJs } from './CategoryMockFakerJs';
 import { getTagMockFakerJs } from './TagMockFakerJs';
 import type { MockFakerJSGeneratorParams } from './typesMockFakerJs';
 
-export const getPetMockFakerJs = (params: MockFakerJSGeneratorParams) => {
-  const { faker = fakerDefault } = params;
+export const getPetMockFakerJs = (params?: MockFakerJSGeneratorParams) => {
+  const { faker = fakerDefault } = params ?? {};
 
   return {
     id: faker.helpers.maybe(() => faker.string.uid()),
