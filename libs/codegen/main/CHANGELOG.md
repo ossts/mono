@@ -1,3 +1,12 @@
+# [1.6.0](https://github.com/ossts/mono/compare/@ossts/codegen-v1.5.1...@ossts/codegen-v1.6.0) (2025-03-10)
+
+
+### Features
+
+* **codegen:** add 'refToParent' in parsed schema ([b26fd3f](https://github.com/ossts/mono/commit/b26fd3ff8aac4fe58a8867bae764e630459fda10))
+* **codegen:** add mock/faker-js generator with initial implementation ([a28e430](https://github.com/ossts/mono/commit/a28e43003212841e9bfc0fbdcfd2d678315e8c65))
+* **codegen:** improve FakerJS generator customization by adding new settings ([942cb05](https://github.com/ossts/mono/commit/942cb058717aea5d3ac7fa84a00874642a866f95))
+
 ## [1.5.1](https://github.com/ossts/mono/compare/@ossts/codegen-v1.5.0...@ossts/codegen-v1.5.1) (2024-05-08)
 
 
