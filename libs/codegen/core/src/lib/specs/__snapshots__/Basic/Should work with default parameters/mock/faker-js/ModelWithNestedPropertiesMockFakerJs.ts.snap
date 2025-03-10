@@ -1,0 +1,27 @@
+/* istanbul ignore file */
+import { faker as fakerDefault } from '@faker-js/faker';
+
+import type { MockFakerJSGeneratorParams } from './typesMockFakerJs';
+
+export const getModelWithNestedPropertiesMockFakerJs = (
+  params: MockFakerJSGeneratorParams
+) => {
+  const { faker = fakerDefault } = params;
+
+  return {
+    first: faker.helpers.arrayElement([
+      {
+        second: faker.helpers.arrayElement([
+          {
+            third: faker.helpers.arrayElement([
+              faker.string.alpha({ length: { min: 2, max: 10 } }),
+              null,
+            ]),
+          },
+          null,
+        ]),
+      },
+      null,
+    ]),
+  };
+};

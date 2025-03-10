@@ -1,0 +1,15 @@
+/* istanbul ignore file */
+import { faker as fakerDefault } from '@faker-js/faker';
+
+import type { MockFakerJSGeneratorParams } from './typesMockFakerJs';
+
+export const getCompositionBaseModelMockFakerJs = (
+  params: MockFakerJSGeneratorParams
+) => {
+  const { faker = fakerDefault } = params;
+
+  return {
+    firstName: faker.helpers.maybe(() => faker.person.firstName()),
+    lastname: faker.helpers.maybe(() => faker.person.lastName()),
+  };
+};

@@ -1,0 +1,24 @@
+/* istanbul ignore file */
+import { faker as fakerDefault } from '@faker-js/faker';
+
+import { Pet } from '../../common/models';
+import { getCategoryMockFakerJs } from './CategoryMockFakerJs';
+import { getTagMockFakerJs } from './TagMockFakerJs';
+import type { MockFakerJSGeneratorParams } from './typesMockFakerJs';
+
+export const getPetMockFakerJs = (params: MockFakerJSGeneratorParams) => {
+  const { faker = fakerDefault } = params;
+
+  return {
+    id: faker.helpers.maybe(() => faker.string.uid()),
+    category: faker.helpers.maybe(() => getCategoryMockFakerJs(params)),
+    name: faker.string.alpha(10),
+    photoUrls: faker.helpers.arrayElements([
+      faker.string.alpha({ length: { min: 2, max: 10 } }),
+    ]),
+    tags: faker.helpers.maybe(() =>
+      faker.helpers.arrayElements([getTagMockFakerJs(params)])
+    ),
+    status: faker.helpers.maybe(() => faker.helpers.enumValue(Pet.status)),
+  };
+};

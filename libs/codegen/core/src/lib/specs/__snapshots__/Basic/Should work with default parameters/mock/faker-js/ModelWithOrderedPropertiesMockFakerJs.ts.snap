@@ -1,0 +1,22 @@
+/* istanbul ignore file */
+import { faker as fakerDefault } from '@faker-js/faker';
+
+import type { MockFakerJSGeneratorParams } from './typesMockFakerJs';
+
+export const getModelWithOrderedPropertiesMockFakerJs = (
+  params: MockFakerJSGeneratorParams
+) => {
+  const { faker = fakerDefault } = params;
+
+  return {
+    zebra: faker.helpers.maybe(() =>
+      faker.string.alpha({ length: { min: 2, max: 10 } })
+    ),
+    apple: faker.helpers.maybe(() =>
+      faker.string.alpha({ length: { min: 2, max: 10 } })
+    ),
+    hawaii: faker.helpers.maybe(() =>
+      faker.string.alpha({ length: { min: 2, max: 10 } })
+    ),
+  };
+};

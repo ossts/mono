@@ -1,0 +1,6 @@
+/* istanbul ignore file */
+
+export type Tag = {
+  id?: number;
+  name?: string;
+};

@@ -1,6 +1,6 @@
 {{~#if link~}}
 faker.helpers.arrayElements([
-	{{#with link}}{{>fakerStart}}{{/with}}{{>fakerType link hasWrapperType=true}}
+	{{#with link}}{{>fakerStart}}{{/with}}{{>fakerType link}}
 ]{{>fakerArrayParams}})
 {{~else~}}
 faker.helpers.arrayElements([

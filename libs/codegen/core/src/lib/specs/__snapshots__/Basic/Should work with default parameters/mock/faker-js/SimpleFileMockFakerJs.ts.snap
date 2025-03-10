@@ -1,0 +1,12 @@
+/* istanbul ignore file */
+import { faker as fakerDefault } from '@faker-js/faker';
+
+import type { MockFakerJSGeneratorParams } from './typesMockFakerJs';
+
+export const getSimpleFileMockFakerJs = (
+  params: MockFakerJSGeneratorParams
+) => {
+  const { faker = fakerDefault } = params;
+
+  return faker.number.binary({ min: 0, max: 1024 });
+};

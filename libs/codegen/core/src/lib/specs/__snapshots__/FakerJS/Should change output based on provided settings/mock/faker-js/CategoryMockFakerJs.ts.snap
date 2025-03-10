@@ -1,0 +1,13 @@
+/* istanbul ignore file */
+import { faker as fakerDefault } from '@faker-js/faker';
+
+import type { MockFakerJSGeneratorParams } from './typesMockFakerJs';
+
+export const getCategoryMockFakerJs = (params: MockFakerJSGeneratorParams) => {
+  const { faker = fakerDefault } = params;
+
+  return {
+    id: faker.helpers.maybe(() => faker.string.uid()),
+    name: faker.helpers.maybe(() => faker.string.alpha(10)),
+  };
+};

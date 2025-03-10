@@ -1,0 +1,14 @@
+/* istanbul ignore file */
+import { faker as fakerDefault } from '@faker-js/faker';
+
+import type { MockFakerJSGeneratorParams } from './typesMockFakerJs';
+
+export const get_defaultMockFakerJs = (params: MockFakerJSGeneratorParams) => {
+  const { faker = fakerDefault } = params;
+
+  return {
+    name: faker.helpers.maybe(() =>
+      faker.string.alpha({ length: { min: 2, max: 10 } })
+    ),
+  };
+};

@@ -1,0 +1,18 @@
+/* istanbul ignore file */
+import { faker as fakerDefault } from '@faker-js/faker';
+
+import type { MockFakerJSGeneratorParams } from './typesMockFakerJs';
+
+export const getPageableMockFakerJs = (params: MockFakerJSGeneratorParams) => {
+  const { faker = fakerDefault } = params;
+
+  return {
+    page: faker.helpers.maybe(() => faker.number.int()),
+    size: faker.helpers.maybe(() => faker.number.int()),
+    sort: faker.helpers.maybe(() =>
+      faker.helpers.arrayElements([
+        faker.string.alpha({ length: { min: 2, max: 10 } }),
+      ])
+    ),
+  };
+};

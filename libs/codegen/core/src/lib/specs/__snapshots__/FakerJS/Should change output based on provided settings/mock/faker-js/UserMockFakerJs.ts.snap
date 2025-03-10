@@ -1,0 +1,26 @@
+/* istanbul ignore file */
+import { faker as fakerDefault } from '@faker-js/faker';
+
+import type { MockFakerJSGeneratorParams } from './typesMockFakerJs';
+
+export const getUserMockFakerJs = (params: MockFakerJSGeneratorParams) => {
+  const { faker = fakerDefault } = params;
+
+  return {
+    id: faker.helpers.maybe(() =>
+      faker.string.fromCharacters('abc_xyz', { min: 5, max: 20 })
+    ),
+    username: faker.helpers.maybe(() => faker.internet.username()),
+    firstName: faker.helpers.maybe(() => faker.person.firstName()),
+    lastName: faker.helpers.maybe(() => faker.person.lastName()),
+    email: faker.helpers.maybe(() =>
+      faker.internet.email({
+        provider: 'example.fakerjs.dev',
+        allowSpecialCharacters: true,
+      })
+    ),
+    password: faker.helpers.maybe(() => faker.internet.password()),
+    phone: faker.helpers.maybe(() => faker.phone.number()),
+    userStatus: faker.helpers.maybe(() => faker.helpers.fake('published')),
+  };
+};

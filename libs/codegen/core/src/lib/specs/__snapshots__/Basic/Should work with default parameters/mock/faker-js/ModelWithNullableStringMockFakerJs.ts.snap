@@ -1,0 +1,33 @@
+/* istanbul ignore file */
+import { faker as fakerDefault } from '@faker-js/faker';
+
+import type { MockFakerJSGeneratorParams } from './typesMockFakerJs';
+
+export const getModelWithNullableStringMockFakerJs = (
+  params: MockFakerJSGeneratorParams
+) => {
+  const { faker = fakerDefault } = params;
+
+  return {
+    nullableProp1: faker.helpers.maybe(() =>
+      faker.helpers.arrayElement([
+        faker.string.alpha({ length: { min: 2, max: 10 } }),
+        null,
+      ])
+    ),
+    nullableRequiredProp1: faker.helpers.arrayElement([
+      faker.string.alpha({ length: { min: 2, max: 10 } }),
+      null,
+    ]),
+    nullableProp2: faker.helpers.maybe(() =>
+      faker.helpers.arrayElement([
+        faker.string.alpha({ length: { min: 2, max: 10 } }),
+        null,
+      ])
+    ),
+    nullableRequiredProp2: faker.helpers.arrayElement([
+      faker.string.alpha({ length: { min: 2, max: 10 } }),
+      null,
+    ]),
+  };
+};

@@ -1,7 +1,7 @@
 {
 {{~#if properties~}}
   {{#each properties}}
-    {{{name}}}: {{>fakerOptionalAndNullableStart}}{{>fakerStart}}{{>fakerType parentName=../name}}{{>fakerOptionalAndNullableEnd}},
+    {{{name}}}: {{>fakerOptionalAndNullableStart}}{{>fakerStart}}{{>fakerType}}{{>fakerOptionalAndNullableEnd}},
   {{/each}}
 {{~/if~}}
 }

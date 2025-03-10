@@ -1,5 +1,5 @@
 {{~#unless isRoot~}}
-	{{#fakerEnumerator enum parentName name}}{{this}}{{/fakerEnumerator}}
+	{{#fakerEnumerator enum name}}{{this}}{{/fakerEnumerator}}
 {{~else~}}
 	faker.helpers.enumValue({{name}})
 {{~/unless}}

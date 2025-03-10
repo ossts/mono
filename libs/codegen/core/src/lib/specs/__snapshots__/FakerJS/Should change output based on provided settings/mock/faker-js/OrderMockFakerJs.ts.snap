@@ -1,0 +1,18 @@
+/* istanbul ignore file */
+import { faker as fakerDefault } from '@faker-js/faker';
+
+import { Order } from '../../common/models';
+import type { MockFakerJSGeneratorParams } from './typesMockFakerJs';
+
+export const getOrderMockFakerJs = (params: MockFakerJSGeneratorParams) => {
+  const { faker = fakerDefault } = params;
+
+  return {
+    id: faker.helpers.maybe(() => faker.string.uid()),
+    petId: faker.helpers.maybe(() => faker.number.int()),
+    quantity: faker.helpers.maybe(() => faker.number.int()),
+    shipDate: faker.helpers.maybe(() => faker.date.anytime()),
+    status: faker.helpers.maybe(() => faker.helpers.enumValue(Order.status)),
+    complete: faker.helpers.maybe(() => faker.datatype.boolean()),
+  };
+};

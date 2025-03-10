@@ -1,0 +1,20 @@
+/* istanbul ignore file */
+import { faker as fakerDefault } from '@faker-js/faker';
+
+import type { MockFakerJSGeneratorParams } from './typesMockFakerJs';
+
+export const getApiResponseMockFakerJs = (
+  params: MockFakerJSGeneratorParams
+) => {
+  const { faker = fakerDefault } = params;
+
+  return {
+    code: faker.helpers.maybe(() => faker.number.int()),
+    type: faker.helpers.maybe(() =>
+      faker.string.alpha({ length: { min: 2, max: 10 } })
+    ),
+    message: faker.helpers.maybe(() =>
+      faker.string.alpha({ length: { min: 2, max: 10 } })
+    ),
+  };
+};

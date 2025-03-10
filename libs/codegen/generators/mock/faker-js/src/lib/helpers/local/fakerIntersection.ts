@@ -8,9 +8,8 @@ export const fakerIntersection: CodegenHandlebarsHelperWrapper = ({
   settings,
 }) =>
   function (
-    this: unknown,
+    this: ParsedModelOpenAPIV3,
     properties: ParsedModelOpenAPIV3[],
-    parentName: string | undefined,
     options: Handlebars.HelperOptions
   ) {
     const type = handlebarsInstance.partials['fakerType'];
@@ -18,7 +17,7 @@ export const fakerIntersection: CodegenHandlebarsHelperWrapper = ({
       type({
         ...property,
         hasWrapperType: true,
-        parentName,
+        parentName: this.refToParent?.name,
         settings,
       })
     );
