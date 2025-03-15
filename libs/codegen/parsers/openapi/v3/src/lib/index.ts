@@ -14,7 +14,7 @@ export const parse = async (
 
   const version = openApi.info.version;
   const servers = getServers(openApi);
-  const models = getModels(openApi);
+  const models = getModels(openApi).sort((a, b) => (a.name > b.name ? 1 : -1));
   const services = getServices(openApi);
 
   return postProcess({

@@ -20,6 +20,16 @@ export class CommonModelsGenerator
 
     mergeObjectsWithSameShape(this, {}, config, {
       dependsOn: ['utils', ...(config?.dependsOn ?? [])],
+      entriesRenderCfg: {
+        AllApiEntities: {
+          dataPath: '',
+          nameFieldOrFn: () => 'AllApiEntities',
+        },
+        AllApiModels: {
+          dataPath: '',
+          nameFieldOrFn: () => 'AllApiModels',
+        },
+      },
     });
   }
 

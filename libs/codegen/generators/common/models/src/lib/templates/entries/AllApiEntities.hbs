@@ -1,0 +1,8 @@
+export type AllApiEntities =
+
+{{#with data}}
+	{{#each models}}
+		| '{{utilsLowerFirst name}}'
+	{{/each}}
+{{/with~}}
+;

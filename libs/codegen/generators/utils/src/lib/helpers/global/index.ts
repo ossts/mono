@@ -8,6 +8,7 @@ export * from './enumerator';
 export * from './escapeComment';
 export * from './escapeDescription';
 export * from './camelCase';
+export * from './lowerFirst';
 export * from './isPrimitive';
 export * from './startsWith';
 export * from './nameWithNS';
