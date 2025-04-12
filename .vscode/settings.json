@@ -16,5 +16,11 @@
     "uxname"
   ],
   "typescript.tsdk": "node_modules/typescript/lib",
-  "eslint.validate": ["json"]
+  "eslint.validate": ["json"],
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/bower_components": true,
+    "**/*.code-search": true,
+    "**/*.snap": true
+  }
 }

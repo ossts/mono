@@ -1,16 +1,56 @@
 /* istanbul ignore file */
 import { faker as fakerDefault } from '@faker-js/faker';
 
-import type { MockFakerJSGeneratorParams } from './typesMockFakerJs';
+import { ModelWithCircularReference } from '../../common/models';
+import { abstractGenerateFn, createCallStack } from './helpersMockFakerJs';
+import type {
+  MockFakerJSGeneratorParams,
+  MockFakerJSGeneratorParamsMode,
+  ModelOrIdNullable,
+} from './typesMockFakerJs';
 
-export const getModelWithCircularReferenceMockFakerJs = (
-  params?: MockFakerJSGeneratorParams
-) => {
-  const { faker = fakerDefault } = params ?? {};
+export function getModelWithCircularReferenceMockFakerJs<
+  TMode extends 'withReferences'
+>(
+  params?: MockFakerJSGeneratorParams<TMode>
+):
+  | ModelOrIdNullable<ModelWithCircularReference>
+  | null
+  | ModelWithCircularReference['id'];
 
-  return {
-    prop: faker.helpers.maybe(() =>
-      getModelWithCircularReferenceMockFakerJs(params)
-    ),
-  };
-};
+export function getModelWithCircularReferenceMockFakerJs<
+  TMode extends 'standalone'
+>(
+  params?: MockFakerJSGeneratorParams<TMode>
+): ModelWithCircularReference | null;
+
+export function getModelWithCircularReferenceMockFakerJs<
+  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences'
+>(
+  params: MockFakerJSGeneratorParams<TMode> = {}
+):
+  | ModelOrIdNullable<ModelWithCircularReference>
+  | null
+  | ModelWithCircularReference['id'] {
+  const modelName = 'ModelWithCircularReference';
+
+  const { faker = fakerDefault, fakerParams: { probability } = {} } = params;
+
+  return abstractGenerateFn<ModelWithCircularReference, TMode>(
+    modelName,
+    params,
+    (callStack) => ({
+      prop: faker.helpers.maybe(
+        () =>
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          getModelWithCircularReferenceMockFakerJs<any>({
+            ...params,
+            callStack: createCallStack(callStack, modelName, 'prop'),
+          }),
+        {
+          probability,
+        }
+      ),
+    })
+  );
+}

@@ -29,6 +29,10 @@ export class CommonModelsGenerator
           dataPath: '',
           nameFieldOrFn: () => 'AllApiModels',
         },
+        apiEntityToPrimaryKeyMapping: {
+          dataPath: '',
+          nameFieldOrFn: () => 'apiEntityToPrimaryKeyMapping',
+        },
       },
     });
   }

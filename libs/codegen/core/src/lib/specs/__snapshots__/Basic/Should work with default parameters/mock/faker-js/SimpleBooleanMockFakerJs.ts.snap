@@ -1,12 +1,29 @@
 /* istanbul ignore file */
 import { faker as fakerDefault } from '@faker-js/faker';
 
-import type { MockFakerJSGeneratorParams } from './typesMockFakerJs';
+import { SimpleBoolean } from '../../common/models';
+import { abstractGenerateFn, createCallStack } from './helpersMockFakerJs';
+import type {
+  MockFakerJSGeneratorParams,
+  MockFakerJSGeneratorParamsMode,
+  ModelOrIdNullable,
+} from './typesMockFakerJs';
 
-export const getSimpleBooleanMockFakerJs = (
-  params?: MockFakerJSGeneratorParams
-) => {
-  const { faker = fakerDefault } = params ?? {};
+export function getSimpleBooleanMockFakerJs<
+  TMode extends 'standalone' = 'standalone'
+>(params?: MockFakerJSGeneratorParams<TMode>): SimpleBoolean | null {
+  const modelName = 'SimpleBoolean';
 
-  return faker.datatype.boolean();
-};
+  const {
+    faker = fakerDefault,
+    fakerParams: { probability } = {},
+    mode = 'standalone',
+    callStack = createCallStack(),
+  } = params ?? {};
+
+  const callCount = callStack.entriesCallCount.get(modelName) ?? 0;
+  if (callCount > 10) return null;
+
+  const result: SimpleBoolean = faker.datatype.boolean();
+  return result;
+}

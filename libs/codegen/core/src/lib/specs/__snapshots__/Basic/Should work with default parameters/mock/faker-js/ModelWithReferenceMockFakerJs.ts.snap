@@ -1,15 +1,49 @@
 /* istanbul ignore file */
 import { faker as fakerDefault } from '@faker-js/faker';
 
+import { ModelWithReference } from '../../common/models';
 import { getModelWithPropertiesMockFakerJs } from './ModelWithPropertiesMockFakerJs';
-import type { MockFakerJSGeneratorParams } from './typesMockFakerJs';
+import { abstractGenerateFn, createCallStack } from './helpersMockFakerJs';
+import type {
+  MockFakerJSGeneratorParams,
+  MockFakerJSGeneratorParamsMode,
+  ModelOrIdNullable,
+} from './typesMockFakerJs';
 
-export const getModelWithReferenceMockFakerJs = (
-  params?: MockFakerJSGeneratorParams
-) => {
-  const { faker = fakerDefault } = params ?? {};
+export function getModelWithReferenceMockFakerJs<
+  TMode extends 'withReferences'
+>(
+  params?: MockFakerJSGeneratorParams<TMode>
+): ModelOrIdNullable<ModelWithReference> | null | ModelWithReference['id'];
 
-  return {
-    prop: faker.helpers.maybe(() => getModelWithPropertiesMockFakerJs(params)),
-  };
-};
+export function getModelWithReferenceMockFakerJs<TMode extends 'standalone'>(
+  params?: MockFakerJSGeneratorParams<TMode>
+): ModelWithReference | null;
+
+export function getModelWithReferenceMockFakerJs<
+  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences'
+>(
+  params: MockFakerJSGeneratorParams<TMode> = {}
+): ModelOrIdNullable<ModelWithReference> | null | ModelWithReference['id'] {
+  const modelName = 'ModelWithReference';
+
+  const { faker = fakerDefault, fakerParams: { probability } = {} } = params;
+
+  return abstractGenerateFn<ModelWithReference, TMode>(
+    modelName,
+    params,
+    (callStack) => ({
+      prop: faker.helpers.maybe(
+        () =>
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          getModelWithPropertiesMockFakerJs<any>({
+            ...params,
+            callStack: createCallStack(callStack, modelName, 'prop'),
+          }),
+        {
+          probability,
+        }
+      ),
+    })
+  );
+}

@@ -1,6 +1,7 @@
 import type {
   AbstractExternalGeneratorWithName,
   AbstractGenerateParams,
+  AbstractGeneratorSettings,
 } from '@ossts/codegen/common';
 
 import type { GeneratorName, GeneratorsWithAll } from './Generator';
@@ -16,3 +17,5 @@ export type GenerateParams<
   ResolvedGeneratorsMap<TGenerators>,
   GeneratorName<TGenerators>
 >;
+
+export type AllGeneratorsSettings = Map<string, AbstractGeneratorSettings>;

@@ -1,12 +1,31 @@
 /* istanbul ignore file */
 import { faker as fakerDefault } from '@faker-js/faker';
 
-import type { MockFakerJSGeneratorParams } from './typesMockFakerJs';
+import { CommentWithReservedCharacters } from '../../common/models';
+import { abstractGenerateFn, createCallStack } from './helpersMockFakerJs';
+import type {
+  MockFakerJSGeneratorParams,
+  MockFakerJSGeneratorParamsMode,
+  ModelOrIdNullable,
+} from './typesMockFakerJs';
 
-export const getCommentWithReservedCharactersMockFakerJs = (
-  params?: MockFakerJSGeneratorParams
-) => {
-  const { faker = fakerDefault } = params ?? {};
+export function getCommentWithReservedCharactersMockFakerJs<
+  TMode extends 'standalone' = 'standalone'
+>(
+  params?: MockFakerJSGeneratorParams<TMode>
+): CommentWithReservedCharacters | null {
+  const modelName = 'CommentWithReservedCharacters';
 
-  return faker.number.int();
-};
+  const {
+    faker = fakerDefault,
+    fakerParams: { probability } = {},
+    mode = 'standalone',
+    callStack = createCallStack(),
+  } = params ?? {};
+
+  const callCount = callStack.entriesCallCount.get(modelName) ?? 0;
+  if (callCount > 10) return null;
+
+  const result: CommentWithReservedCharacters = faker.number.int();
+  return result;
+}

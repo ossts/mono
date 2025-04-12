@@ -18,9 +18,9 @@ export interface MockFakerJSGeneratorGenerateParamsFnParams {
    */
   root: ParsedModelOpenAPIV3;
   /**
-   * Dot separated full path to current property
+   * Full path to current property
    *
-   * e.g. `ModelUser.fullName`
+   * e.g. `['ModelUser', 'fullName']`
    */
   fullPath: string[];
   /**

@@ -1,8 +1,9 @@
-export type AllApiEntities =
-
+export const allApiEntities = [
 {{#with data}}
 	{{#each models}}
-		| '{{utilsLowerFirst name}}'
+		'{{name}}',
 	{{/each}}
 {{/with~}}
-;
+] as const;
+
+export type AllApiEntities = typeof allApiEntities[number];

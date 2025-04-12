@@ -3,7 +3,7 @@ z.object({
 	{{#each properties}}
 		{{{name}}}: {{>zodStart}}{{>zodType parentName=../name}},
 	{{/each}}
-}){{>zodNullable}}{{>zodReadOnly}}
+}){{>zodDescribeRef}}{{>zodNullable}}{{>zodReadOnly}}
 {{~else~}}
 z.any()
 {{~/if~}}

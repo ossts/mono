@@ -1,22 +1,63 @@
 /* istanbul ignore file */
 import { faker as fakerDefault } from '@faker-js/faker';
 
-import type { MockFakerJSGeneratorParams } from './typesMockFakerJs';
+import { ModelWithOrderedProperties } from '../../common/models';
+import { abstractGenerateFn, createCallStack } from './helpersMockFakerJs';
+import type {
+  MockFakerJSGeneratorParams,
+  MockFakerJSGeneratorParamsMode,
+  ModelOrIdNullable,
+} from './typesMockFakerJs';
 
-export const getModelWithOrderedPropertiesMockFakerJs = (
-  params?: MockFakerJSGeneratorParams
-) => {
-  const { faker = fakerDefault } = params ?? {};
+export function getModelWithOrderedPropertiesMockFakerJs<
+  TMode extends 'withReferences'
+>(
+  params?: MockFakerJSGeneratorParams<TMode>
+):
+  | ModelOrIdNullable<ModelWithOrderedProperties>
+  | null
+  | ModelWithOrderedProperties['id'];
 
-  return {
-    zebra: faker.helpers.maybe(() =>
-      faker.string.alpha({ length: { min: 2, max: 10 } })
-    ),
-    apple: faker.helpers.maybe(() =>
-      faker.string.alpha({ length: { min: 2, max: 10 } })
-    ),
-    hawaii: faker.helpers.maybe(() =>
-      faker.string.alpha({ length: { min: 2, max: 10 } })
-    ),
-  };
-};
+export function getModelWithOrderedPropertiesMockFakerJs<
+  TMode extends 'standalone'
+>(
+  params?: MockFakerJSGeneratorParams<TMode>
+): ModelWithOrderedProperties | null;
+
+export function getModelWithOrderedPropertiesMockFakerJs<
+  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences'
+>(
+  params: MockFakerJSGeneratorParams<TMode> = {}
+):
+  | ModelOrIdNullable<ModelWithOrderedProperties>
+  | null
+  | ModelWithOrderedProperties['id'] {
+  const modelName = 'ModelWithOrderedProperties';
+
+  const { faker = fakerDefault, fakerParams: { probability } = {} } = params;
+
+  return abstractGenerateFn<ModelWithOrderedProperties, TMode>(
+    modelName,
+    params,
+    (callStack) => ({
+      zebra: faker.helpers.maybe(
+        () => faker.string.alpha({ length: { min: 2, max: 10 } }),
+        {
+          probability,
+        }
+      ),
+      apple: faker.helpers.maybe(
+        () => faker.string.alpha({ length: { min: 2, max: 10 } }),
+        {
+          probability,
+        }
+      ),
+      hawaii: faker.helpers.maybe(
+        () => faker.string.alpha({ length: { min: 2, max: 10 } }),
+        {
+          probability,
+        }
+      ),
+    })
+  );
+}

@@ -1,8 +1,10 @@
 /* istanbul ignore file */
 import { z } from 'zod';
 
-export const PageableSchemaZod = z.object({
-  page: z.number().optional(),
-  size: z.number().min(1).optional(),
-  sort: z.array(z.string()).optional(),
-});
+export const PageableSchemaZod = z
+  .object({
+    page: z.number().optional(),
+    size: z.number().min(1).optional(),
+    sort: z.array(z.string()).optional(),
+  })
+  .describe(`Model:Pageable`);

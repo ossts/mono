@@ -1,27 +1,76 @@
 /* istanbul ignore file */
 import { faker as fakerDefault } from '@faker-js/faker';
 
+import { CompositionWithAnyOfAndNullable } from '../../common/models';
 import { getModelWithArrayMockFakerJs } from './ModelWithArrayMockFakerJs';
 import { getModelWithDictionaryMockFakerJs } from './ModelWithDictionaryMockFakerJs';
 import { getModelWithEnumMockFakerJs } from './ModelWithEnumMockFakerJs';
-import type { MockFakerJSGeneratorParams } from './typesMockFakerJs';
+import { abstractGenerateFn, createCallStack } from './helpersMockFakerJs';
+import type {
+  MockFakerJSGeneratorParams,
+  MockFakerJSGeneratorParamsMode,
+  ModelOrIdNullable,
+} from './typesMockFakerJs';
 
-export const getCompositionWithAnyOfAndNullableMockFakerJs = (
-  params?: MockFakerJSGeneratorParams
-) => {
-  const { faker = fakerDefault } = params ?? {};
+export function getCompositionWithAnyOfAndNullableMockFakerJs<
+  TMode extends 'withReferences'
+>(
+  params?: MockFakerJSGeneratorParams<TMode>
+):
+  | ModelOrIdNullable<CompositionWithAnyOfAndNullable>
+  | null
+  | CompositionWithAnyOfAndNullable['id'];
 
-  return {
-    propA: faker.helpers.maybe(() =>
-      faker.helpers.arrayElement([
-        faker.helpers.arrayElement([
-          { boolean: faker.helpers.maybe(() => faker.datatype.boolean()) },
-          getModelWithEnumMockFakerJs(params),
-          getModelWithArrayMockFakerJs(params),
-          getModelWithDictionaryMockFakerJs(params),
-        ]),
-        null,
-      ])
-    ),
-  };
-};
+export function getCompositionWithAnyOfAndNullableMockFakerJs<
+  TMode extends 'standalone'
+>(
+  params?: MockFakerJSGeneratorParams<TMode>
+): CompositionWithAnyOfAndNullable | null;
+
+export function getCompositionWithAnyOfAndNullableMockFakerJs<
+  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences'
+>(
+  params: MockFakerJSGeneratorParams<TMode> = {}
+):
+  | ModelOrIdNullable<CompositionWithAnyOfAndNullable>
+  | null
+  | CompositionWithAnyOfAndNullable['id'] {
+  const modelName = 'CompositionWithAnyOfAndNullable';
+
+  const { faker = fakerDefault, fakerParams: { probability } = {} } = params;
+
+  return abstractGenerateFn<CompositionWithAnyOfAndNullable, TMode>(
+    modelName,
+    params,
+    (callStack) => ({
+      propA: faker.helpers.maybe(
+        () =>
+          faker.helpers.arrayElement([
+            faker.helpers.arrayElement([
+              {
+                boolean: faker.helpers.maybe(() => faker.datatype.boolean(), {
+                  probability,
+                }),
+              }, // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              getModelWithEnumMockFakerJs<any>({
+                ...params,
+                callStack: createCallStack(callStack, modelName),
+              }), // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              getModelWithArrayMockFakerJs<any>({
+                ...params,
+                callStack: createCallStack(callStack, modelName),
+              }), // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              getModelWithDictionaryMockFakerJs<any>({
+                ...params,
+                callStack: createCallStack(callStack, modelName),
+              }),
+            ]),
+            null,
+          ]),
+        {
+          probability,
+        }
+      ),
+    })
+  );
+}

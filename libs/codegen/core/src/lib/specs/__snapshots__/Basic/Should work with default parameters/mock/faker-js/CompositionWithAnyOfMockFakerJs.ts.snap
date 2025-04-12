@@ -1,25 +1,66 @@
 /* istanbul ignore file */
 import { faker as fakerDefault } from '@faker-js/faker';
 
+import { CompositionWithAnyOf } from '../../common/models';
 import { getModelWithArrayMockFakerJs } from './ModelWithArrayMockFakerJs';
 import { getModelWithDictionaryMockFakerJs } from './ModelWithDictionaryMockFakerJs';
 import { getModelWithEnumMockFakerJs } from './ModelWithEnumMockFakerJs';
 import { getModelWithStringMockFakerJs } from './ModelWithStringMockFakerJs';
-import type { MockFakerJSGeneratorParams } from './typesMockFakerJs';
+import { abstractGenerateFn, createCallStack } from './helpersMockFakerJs';
+import type {
+  MockFakerJSGeneratorParams,
+  MockFakerJSGeneratorParamsMode,
+  ModelOrIdNullable,
+} from './typesMockFakerJs';
 
-export const getCompositionWithAnyOfMockFakerJs = (
-  params?: MockFakerJSGeneratorParams
-) => {
-  const { faker = fakerDefault } = params ?? {};
+export function getCompositionWithAnyOfMockFakerJs<
+  TMode extends 'withReferences'
+>(
+  params?: MockFakerJSGeneratorParams<TMode>
+): ModelOrIdNullable<CompositionWithAnyOf> | null | CompositionWithAnyOf['id'];
 
-  return {
-    propA: faker.helpers.maybe(() =>
-      faker.helpers.arrayElement([
-        getModelWithStringMockFakerJs(params),
-        getModelWithEnumMockFakerJs(params),
-        getModelWithArrayMockFakerJs(params),
-        getModelWithDictionaryMockFakerJs(params),
-      ])
-    ),
-  };
-};
+export function getCompositionWithAnyOfMockFakerJs<TMode extends 'standalone'>(
+  params?: MockFakerJSGeneratorParams<TMode>
+): CompositionWithAnyOf | null;
+
+export function getCompositionWithAnyOfMockFakerJs<
+  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences'
+>(
+  params: MockFakerJSGeneratorParams<TMode> = {}
+): ModelOrIdNullable<CompositionWithAnyOf> | null | CompositionWithAnyOf['id'] {
+  const modelName = 'CompositionWithAnyOf';
+
+  const { faker = fakerDefault, fakerParams: { probability } = {} } = params;
+
+  return abstractGenerateFn<CompositionWithAnyOf, TMode>(
+    modelName,
+    params,
+    (callStack) => ({
+      propA: faker.helpers.maybe(
+        () =>
+          faker.helpers.arrayElement([
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            getModelWithStringMockFakerJs<any>({
+              ...params,
+              callStack: createCallStack(callStack, modelName),
+            }), // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            getModelWithEnumMockFakerJs<any>({
+              ...params,
+              callStack: createCallStack(callStack, modelName),
+            }), // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            getModelWithArrayMockFakerJs<any>({
+              ...params,
+              callStack: createCallStack(callStack, modelName),
+            }), // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            getModelWithDictionaryMockFakerJs<any>({
+              ...params,
+              callStack: createCallStack(callStack, modelName),
+            }),
+          ]),
+        {
+          probability,
+        }
+      ),
+    })
+  );
+}

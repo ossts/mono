@@ -1,25 +1,62 @@
 /* istanbul ignore file */
 import { faker as fakerDefault } from '@faker-js/faker';
 
+import { ModelThatExtendsExtends } from '../../common/models';
 import { getModelThatExtendsMockFakerJs } from './ModelThatExtendsMockFakerJs';
 import { getModelWithStringMockFakerJs } from './ModelWithStringMockFakerJs';
-import type { MockFakerJSGeneratorParams } from './typesMockFakerJs';
+import { abstractGenerateFn, createCallStack } from './helpersMockFakerJs';
+import type {
+  MockFakerJSGeneratorParams,
+  MockFakerJSGeneratorParamsMode,
+  ModelOrIdNullable,
+} from './typesMockFakerJs';
 
-export const getModelThatExtendsExtendsMockFakerJs = (
-  params?: MockFakerJSGeneratorParams
-) => {
-  const { faker = fakerDefault } = params ?? {};
+export function getModelThatExtendsExtendsMockFakerJs<
+  TMode extends 'standalone' = 'standalone'
+>(params?: MockFakerJSGeneratorParams<TMode>): ModelThatExtendsExtends | null {
+  const modelName = 'ModelThatExtendsExtends';
 
-  return {
-    ...getModelWithStringMockFakerJs(params),
-    ...getModelThatExtendsMockFakerJs(params),
+  const {
+    faker = fakerDefault,
+    fakerParams: { probability } = {},
+    mode = 'standalone',
+    callStack = createCallStack(),
+  } = params ?? {};
+
+  const callCount = callStack.entriesCallCount.get(modelName) ?? 0;
+  if (callCount > 10) return null;
+
+  const result: ModelThatExtendsExtends = {
+    ...// eslint-disable-next-line @typescript-eslint/no-explicit-any
+    getModelWithStringMockFakerJs<any>({
+      ...params,
+      callStack: createCallStack(callStack, modelName),
+    }),
+    ...// eslint-disable-next-line @typescript-eslint/no-explicit-any
+    getModelThatExtendsMockFakerJs<any>({
+      ...params,
+      callStack: createCallStack(callStack, modelName),
+    }),
     ...{
-      propExtendsC: faker.helpers.maybe(() =>
-        faker.string.alpha({ length: { min: 2, max: 10 } })
+      propExtendsC: faker.helpers.maybe(
+        () => faker.string.alpha({ length: { min: 2, max: 10 } }),
+        {
+          probability,
+        }
       ),
-      propExtendsD: faker.helpers.maybe(() =>
-        getModelWithStringMockFakerJs(params)
+      propExtendsD: faker.helpers.maybe(
+        () =>
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          getModelWithStringMockFakerJs<any>({
+            ...params,
+            callStack: createCallStack(callStack, modelName, 'propExtendsD'),
+          }),
+        {
+          probability,
+        }
       ),
     },
   };
-};
+
+  return result;
+}

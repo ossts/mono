@@ -1,21 +1,43 @@
 /* istanbul ignore file */
 import { faker as fakerDefault } from '@faker-js/faker';
 
-import type { MockFakerJSGeneratorParams } from './typesMockFakerJs';
+import { ArrayWithProperties } from '../../common/models';
+import { abstractGenerateFn, createCallStack } from './helpersMockFakerJs';
+import type {
+  MockFakerJSGeneratorParams,
+  MockFakerJSGeneratorParamsMode,
+  ModelOrIdNullable,
+} from './typesMockFakerJs';
 
-export const getArrayWithPropertiesMockFakerJs = (
-  params?: MockFakerJSGeneratorParams
-) => {
-  const { faker = fakerDefault } = params ?? {};
+export function getArrayWithPropertiesMockFakerJs<
+  TMode extends 'standalone' = 'standalone'
+>(params?: MockFakerJSGeneratorParams<TMode>): ArrayWithProperties | null {
+  const modelName = 'ArrayWithProperties';
 
-  return faker.helpers.arrayElements(
+  const {
+    faker = fakerDefault,
+    fakerParams: { probability } = {},
+    mode = 'standalone',
+    callStack = createCallStack(),
+  } = params ?? {};
+
+  const callCount = callStack.entriesCallCount.get(modelName) ?? 0;
+  if (callCount > 10) return null;
+
+  const result: ArrayWithProperties = faker.helpers.arrayElements(
     [
       {
-        foo: faker.helpers.maybe(() =>
-          faker.string.alpha({ length: { min: 2, max: 10 } })
+        foo: faker.helpers.maybe(
+          () => faker.string.alpha({ length: { min: 2, max: 10 } }),
+          {
+            probability,
+          }
         ),
-        bar: faker.helpers.maybe(() =>
-          faker.string.alpha({ length: { min: 2, max: 10 } })
+        bar: faker.helpers.maybe(
+          () => faker.string.alpha({ length: { min: 2, max: 10 } }),
+          {
+            probability,
+          }
         ),
       },
     ],
@@ -24,4 +46,6 @@ export const getArrayWithPropertiesMockFakerJs = (
       max: 20,
     }
   );
-};
+
+  return result;
+}

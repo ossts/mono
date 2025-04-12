@@ -4,8 +4,8 @@
  * This is a model with nested enums
  */
 export type ModelWithNestedEnums = {
-  dictionaryWithEnum?: Record<string, 'Success' | 'Warning' | 'Error'>;
-  dictionaryWithEnumFromDescription?: Record<string, number>;
+  dictionaryWithEnum?: Partial<Record<string, 'Success' | 'Warning' | 'Error'>>;
+  dictionaryWithEnumFromDescription?: Partial<Record<string, number>>;
   arrayWithEnum?: Array<'Success' | 'Warning' | 'Error'>;
   arrayWithDescription?: Array<number>;
 };

@@ -3,6 +3,10 @@ import { z } from 'zod';
 
 import { ModelWithStringSchemaZod } from './ModelWithStringSchemaZod';
 
-export const ModelWithDuplicatePropertiesSchemaZod = z.object({
-  prop: ModelWithStringSchemaZod,
-});
+export const ModelWithDuplicatePropertiesSchemaZod = z
+  .object({
+    prop: ModelWithStringSchemaZod,
+  })
+  .describe(
+    `Model:ModelWithDuplicateProperties---This is a model with duplicated properties`
+  );

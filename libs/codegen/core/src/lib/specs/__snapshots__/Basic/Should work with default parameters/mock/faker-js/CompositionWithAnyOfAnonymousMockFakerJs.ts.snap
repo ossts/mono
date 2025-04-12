@@ -1,24 +1,63 @@
 /* istanbul ignore file */
 import { faker as fakerDefault } from '@faker-js/faker';
 
-import type { MockFakerJSGeneratorParams } from './typesMockFakerJs';
+import { CompositionWithAnyOfAnonymous } from '../../common/models';
+import { abstractGenerateFn, createCallStack } from './helpersMockFakerJs';
+import type {
+  MockFakerJSGeneratorParams,
+  MockFakerJSGeneratorParamsMode,
+  ModelOrIdNullable,
+} from './typesMockFakerJs';
 
-export const getCompositionWithAnyOfAnonymousMockFakerJs = (
-  params?: MockFakerJSGeneratorParams
-) => {
-  const { faker = fakerDefault } = params ?? {};
+export function getCompositionWithAnyOfAnonymousMockFakerJs<
+  TMode extends 'withReferences'
+>(
+  params?: MockFakerJSGeneratorParams<TMode>
+):
+  | ModelOrIdNullable<CompositionWithAnyOfAnonymous>
+  | null
+  | CompositionWithAnyOfAnonymous['id'];
 
-  return {
-    propA: faker.helpers.maybe(() =>
-      faker.helpers.arrayElement([
+export function getCompositionWithAnyOfAnonymousMockFakerJs<
+  TMode extends 'standalone'
+>(
+  params?: MockFakerJSGeneratorParams<TMode>
+): CompositionWithAnyOfAnonymous | null;
+
+export function getCompositionWithAnyOfAnonymousMockFakerJs<
+  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences'
+>(
+  params: MockFakerJSGeneratorParams<TMode> = {}
+):
+  | ModelOrIdNullable<CompositionWithAnyOfAnonymous>
+  | null
+  | CompositionWithAnyOfAnonymous['id'] {
+  const modelName = 'CompositionWithAnyOfAnonymous';
+
+  const { faker = fakerDefault, fakerParams: { probability } = {} } = params;
+
+  return abstractGenerateFn<CompositionWithAnyOfAnonymous, TMode>(
+    modelName,
+    params,
+    (callStack) => ({
+      propA: faker.helpers.maybe(
+        () =>
+          faker.helpers.arrayElement([
+            {
+              propA: faker.helpers.maybe(
+                () => faker.string.alpha({ length: { min: 2, max: 10 } }),
+                {
+                  probability,
+                }
+              ),
+            },
+            faker.string.alpha({ length: { min: 2, max: 10 } }),
+            faker.number.int(),
+          ]),
         {
-          propA: faker.helpers.maybe(() =>
-            faker.string.alpha({ length: { min: 2, max: 10 } })
-          ),
-        },
-        faker.string.alpha({ length: { min: 2, max: 10 } }),
-        faker.number.int(),
-      ])
-    ),
-  };
-};
+          probability,
+        }
+      ),
+    })
+  );
+}

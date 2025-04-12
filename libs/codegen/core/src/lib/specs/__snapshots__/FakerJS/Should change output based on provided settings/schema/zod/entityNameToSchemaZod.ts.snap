@@ -1,0 +1,17 @@
+import {
+  ApiResponseSchemaZod,
+  CategorySchemaZod,
+  OrderSchemaZod,
+  PetSchemaZod,
+  TagSchemaZod,
+  UserSchemaZod,
+} from './';
+
+export const entityNameToSchemaZod = {
+  ApiResponse: ApiResponseSchemaZod,
+  Category: CategorySchemaZod,
+  Order: OrderSchemaZod,
+  Pet: PetSchemaZod,
+  Tag: TagSchemaZod,
+  User: UserSchemaZod,
+};

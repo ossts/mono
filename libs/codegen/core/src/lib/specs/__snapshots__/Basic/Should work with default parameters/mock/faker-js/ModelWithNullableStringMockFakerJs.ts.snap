@@ -1,33 +1,71 @@
 /* istanbul ignore file */
 import { faker as fakerDefault } from '@faker-js/faker';
 
-import type { MockFakerJSGeneratorParams } from './typesMockFakerJs';
+import { ModelWithNullableString } from '../../common/models';
+import { abstractGenerateFn, createCallStack } from './helpersMockFakerJs';
+import type {
+  MockFakerJSGeneratorParams,
+  MockFakerJSGeneratorParamsMode,
+  ModelOrIdNullable,
+} from './typesMockFakerJs';
 
-export const getModelWithNullableStringMockFakerJs = (
-  params?: MockFakerJSGeneratorParams
-) => {
-  const { faker = fakerDefault } = params ?? {};
+export function getModelWithNullableStringMockFakerJs<
+  TMode extends 'withReferences'
+>(
+  params?: MockFakerJSGeneratorParams<TMode>
+):
+  | ModelOrIdNullable<ModelWithNullableString>
+  | null
+  | ModelWithNullableString['id'];
 
-  return {
-    nullableProp1: faker.helpers.maybe(() =>
-      faker.helpers.arrayElement([
+export function getModelWithNullableStringMockFakerJs<
+  TMode extends 'standalone'
+>(params?: MockFakerJSGeneratorParams<TMode>): ModelWithNullableString | null;
+
+export function getModelWithNullableStringMockFakerJs<
+  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences'
+>(
+  params: MockFakerJSGeneratorParams<TMode> = {}
+):
+  | ModelOrIdNullable<ModelWithNullableString>
+  | null
+  | ModelWithNullableString['id'] {
+  const modelName = 'ModelWithNullableString';
+
+  const { faker = fakerDefault, fakerParams: { probability } = {} } = params;
+
+  return abstractGenerateFn<ModelWithNullableString, TMode>(
+    modelName,
+    params,
+    (callStack) => ({
+      nullableProp1: faker.helpers.maybe(
+        () =>
+          faker.helpers.arrayElement([
+            faker.string.alpha({ length: { min: 2, max: 10 } }),
+            null,
+          ]),
+        {
+          probability,
+        }
+      ),
+      nullableRequiredProp1: faker.helpers.arrayElement([
         faker.string.alpha({ length: { min: 2, max: 10 } }),
         null,
-      ])
-    ),
-    nullableRequiredProp1: faker.helpers.arrayElement([
-      faker.string.alpha({ length: { min: 2, max: 10 } }),
-      null,
-    ]),
-    nullableProp2: faker.helpers.maybe(() =>
-      faker.helpers.arrayElement([
+      ]),
+      nullableProp2: faker.helpers.maybe(
+        () =>
+          faker.helpers.arrayElement([
+            faker.string.alpha({ length: { min: 2, max: 10 } }),
+            null,
+          ]),
+        {
+          probability,
+        }
+      ),
+      nullableRequiredProp2: faker.helpers.arrayElement([
         faker.string.alpha({ length: { min: 2, max: 10 } }),
         null,
-      ])
-    ),
-    nullableRequiredProp2: faker.helpers.arrayElement([
-      faker.string.alpha({ length: { min: 2, max: 10 } }),
-      null,
-    ]),
-  };
-};
+      ]),
+    })
+  );
+}

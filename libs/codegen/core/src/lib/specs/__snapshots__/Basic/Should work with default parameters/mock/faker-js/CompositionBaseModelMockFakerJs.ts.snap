@@ -1,15 +1,43 @@
 /* istanbul ignore file */
 import { faker as fakerDefault } from '@faker-js/faker';
 
-import type { MockFakerJSGeneratorParams } from './typesMockFakerJs';
+import { CompositionBaseModel } from '../../common/models';
+import { abstractGenerateFn, createCallStack } from './helpersMockFakerJs';
+import type {
+  MockFakerJSGeneratorParams,
+  MockFakerJSGeneratorParamsMode,
+  ModelOrIdNullable,
+} from './typesMockFakerJs';
 
-export const getCompositionBaseModelMockFakerJs = (
-  params?: MockFakerJSGeneratorParams
-) => {
-  const { faker = fakerDefault } = params ?? {};
+export function getCompositionBaseModelMockFakerJs<
+  TMode extends 'withReferences'
+>(
+  params?: MockFakerJSGeneratorParams<TMode>
+): ModelOrIdNullable<CompositionBaseModel> | null | CompositionBaseModel['id'];
 
-  return {
-    firstName: faker.helpers.maybe(() => faker.person.firstName()),
-    lastname: faker.helpers.maybe(() => faker.person.lastName()),
-  };
-};
+export function getCompositionBaseModelMockFakerJs<TMode extends 'standalone'>(
+  params?: MockFakerJSGeneratorParams<TMode>
+): CompositionBaseModel | null;
+
+export function getCompositionBaseModelMockFakerJs<
+  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences'
+>(
+  params: MockFakerJSGeneratorParams<TMode> = {}
+): ModelOrIdNullable<CompositionBaseModel> | null | CompositionBaseModel['id'] {
+  const modelName = 'CompositionBaseModel';
+
+  const { faker = fakerDefault, fakerParams: { probability } = {} } = params;
+
+  return abstractGenerateFn<CompositionBaseModel, TMode>(
+    modelName,
+    params,
+    (callStack) => ({
+      firstName: faker.helpers.maybe(() => faker.person.firstName(), {
+        probability,
+      }),
+      lastname: faker.helpers.maybe(() => faker.person.lastName(), {
+        probability,
+      }),
+    })
+  );
+}

@@ -3,6 +3,10 @@ import { z } from 'zod';
 
 import { ModelWithPropertiesSchemaZod } from './ModelWithPropertiesSchemaZod';
 
-export const ModelWithReferenceSchemaZod = z.object({
-  prop: ModelWithPropertiesSchemaZod,
-});
+export const ModelWithReferenceSchemaZod = z
+  .object({
+    prop: ModelWithPropertiesSchemaZod,
+  })
+  .describe(
+    `Model:ModelWithReference---This is a model with one property containing a reference`
+  );

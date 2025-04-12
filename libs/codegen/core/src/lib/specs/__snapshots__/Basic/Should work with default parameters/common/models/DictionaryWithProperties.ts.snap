@@ -3,10 +3,12 @@
 /**
  * This is a complex dictionary
  */
-export type DictionaryWithProperties = Record<
-  string,
-  {
-    foo?: string;
-    bar?: string;
-  }
+export type DictionaryWithProperties = Partial<
+  Record<
+    string,
+    {
+      foo?: string;
+      bar?: string;
+    }
+  >
 >;

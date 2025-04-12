@@ -1,12 +1,38 @@
 /* istanbul ignore file */
 import { faker as fakerDefault } from '@faker-js/faker';
 
-import type { MockFakerJSGeneratorParams } from './typesMockFakerJs';
+import { ModelWithBoolean } from '../../common/models';
+import { abstractGenerateFn, createCallStack } from './helpersMockFakerJs';
+import type {
+  MockFakerJSGeneratorParams,
+  MockFakerJSGeneratorParamsMode,
+  ModelOrIdNullable,
+} from './typesMockFakerJs';
 
-export const getModelWithBooleanMockFakerJs = (
-  params?: MockFakerJSGeneratorParams
-) => {
-  const { faker = fakerDefault } = params ?? {};
+export function getModelWithBooleanMockFakerJs<TMode extends 'withReferences'>(
+  params?: MockFakerJSGeneratorParams<TMode>
+): ModelOrIdNullable<ModelWithBoolean> | null | ModelWithBoolean['id'];
 
-  return { prop: faker.helpers.maybe(() => faker.datatype.boolean()) };
-};
+export function getModelWithBooleanMockFakerJs<TMode extends 'standalone'>(
+  params?: MockFakerJSGeneratorParams<TMode>
+): ModelWithBoolean | null;
+
+export function getModelWithBooleanMockFakerJs<
+  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences'
+>(
+  params: MockFakerJSGeneratorParams<TMode> = {}
+): ModelOrIdNullable<ModelWithBoolean> | null | ModelWithBoolean['id'] {
+  const modelName = 'ModelWithBoolean';
+
+  const { faker = fakerDefault, fakerParams: { probability } = {} } = params;
+
+  return abstractGenerateFn<ModelWithBoolean, TMode>(
+    modelName,
+    params,
+    (callStack) => ({
+      prop: faker.helpers.maybe(() => faker.datatype.boolean(), {
+        probability,
+      }),
+    })
+  );
+}

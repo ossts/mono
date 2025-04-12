@@ -1,9 +1,13 @@
 /* istanbul ignore file */
 import { z } from 'zod';
 
-export const ModelWithNullableStringSchemaZod = z.object({
-  nullableProp1: z.string().optional().nullable(),
-  nullableRequiredProp1: z.string().nullable(),
-  nullableProp2: z.string().optional().nullable(),
-  nullableRequiredProp2: z.string().nullable(),
-});
+export const ModelWithNullableStringSchemaZod = z
+  .object({
+    nullableProp1: z.string().optional().nullable(),
+    nullableRequiredProp1: z.string().nullable(),
+    nullableProp2: z.string().optional().nullable(),
+    nullableRequiredProp2: z.string().nullable(),
+  })
+  .describe(
+    `Model:ModelWithNullableString---This is a model with one string property`
+  );

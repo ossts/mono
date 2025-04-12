@@ -1,12 +1,48 @@
 /* istanbul ignore file */
 import { faker as fakerDefault } from '@faker-js/faker';
 
-import type { MockFakerJSGeneratorParams } from './typesMockFakerJs';
+import { ModelWithEnumFromDescription } from '../../common/models';
+import { abstractGenerateFn, createCallStack } from './helpersMockFakerJs';
+import type {
+  MockFakerJSGeneratorParams,
+  MockFakerJSGeneratorParamsMode,
+  ModelOrIdNullable,
+} from './typesMockFakerJs';
 
-export const getModelWithEnumFromDescriptionMockFakerJs = (
-  params?: MockFakerJSGeneratorParams
-) => {
-  const { faker = fakerDefault } = params ?? {};
+export function getModelWithEnumFromDescriptionMockFakerJs<
+  TMode extends 'withReferences'
+>(
+  params?: MockFakerJSGeneratorParams<TMode>
+):
+  | ModelOrIdNullable<ModelWithEnumFromDescription>
+  | null
+  | ModelWithEnumFromDescription['id'];
 
-  return { test: faker.helpers.maybe(() => faker.number.int()) };
-};
+export function getModelWithEnumFromDescriptionMockFakerJs<
+  TMode extends 'standalone'
+>(
+  params?: MockFakerJSGeneratorParams<TMode>
+): ModelWithEnumFromDescription | null;
+
+export function getModelWithEnumFromDescriptionMockFakerJs<
+  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences'
+>(
+  params: MockFakerJSGeneratorParams<TMode> = {}
+):
+  | ModelOrIdNullable<ModelWithEnumFromDescription>
+  | null
+  | ModelWithEnumFromDescription['id'] {
+  const modelName = 'ModelWithEnumFromDescription';
+
+  const { faker = fakerDefault, fakerParams: { probability } = {} } = params;
+
+  return abstractGenerateFn<ModelWithEnumFromDescription, TMode>(
+    modelName,
+    params,
+    (callStack) => ({
+      test: faker.helpers.maybe(() => faker.number.int(), {
+        probability,
+      }),
+    })
+  );
+}

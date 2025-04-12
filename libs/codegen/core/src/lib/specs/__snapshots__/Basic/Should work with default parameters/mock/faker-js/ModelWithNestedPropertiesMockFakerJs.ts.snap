@@ -1,27 +1,57 @@
 /* istanbul ignore file */
 import { faker as fakerDefault } from '@faker-js/faker';
 
-import type { MockFakerJSGeneratorParams } from './typesMockFakerJs';
+import { ModelWithNestedProperties } from '../../common/models';
+import { abstractGenerateFn, createCallStack } from './helpersMockFakerJs';
+import type {
+  MockFakerJSGeneratorParams,
+  MockFakerJSGeneratorParamsMode,
+  ModelOrIdNullable,
+} from './typesMockFakerJs';
 
-export const getModelWithNestedPropertiesMockFakerJs = (
-  params?: MockFakerJSGeneratorParams
-) => {
-  const { faker = fakerDefault } = params ?? {};
+export function getModelWithNestedPropertiesMockFakerJs<
+  TMode extends 'withReferences'
+>(
+  params?: MockFakerJSGeneratorParams<TMode>
+):
+  | ModelOrIdNullable<ModelWithNestedProperties>
+  | null
+  | ModelWithNestedProperties['id'];
 
-  return {
-    first: faker.helpers.arrayElement([
-      {
-        second: faker.helpers.arrayElement([
-          {
-            third: faker.helpers.arrayElement([
-              faker.string.alpha({ length: { min: 2, max: 10 } }),
-              null,
-            ]),
-          },
-          null,
-        ]),
-      },
-      null,
-    ]),
-  };
-};
+export function getModelWithNestedPropertiesMockFakerJs<
+  TMode extends 'standalone'
+>(params?: MockFakerJSGeneratorParams<TMode>): ModelWithNestedProperties | null;
+
+export function getModelWithNestedPropertiesMockFakerJs<
+  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences'
+>(
+  params: MockFakerJSGeneratorParams<TMode> = {}
+):
+  | ModelOrIdNullable<ModelWithNestedProperties>
+  | null
+  | ModelWithNestedProperties['id'] {
+  const modelName = 'ModelWithNestedProperties';
+
+  const { faker = fakerDefault, fakerParams: { probability } = {} } = params;
+
+  return abstractGenerateFn<ModelWithNestedProperties, TMode>(
+    modelName,
+    params,
+    (callStack) => ({
+      first: faker.helpers.arrayElement([
+        {
+          second: faker.helpers.arrayElement([
+            {
+              third: faker.helpers.arrayElement([
+                faker.string.alpha({ length: { min: 2, max: 10 } }),
+                null,
+              ]),
+            },
+            null,
+          ]),
+        },
+        null,
+      ]),
+    })
+  );
+}

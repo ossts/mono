@@ -1,6 +1,10 @@
 /* istanbul ignore file */
 import { z } from 'zod';
 
-export const DeprecatedModelSchemaZod = z.object({
-  prop: z.string().optional(),
-});
+export const DeprecatedModelSchemaZod = z
+  .object({
+    prop: z.string().optional(),
+  })
+  .describe(
+    `Model:DeprecatedModel---This is a deprecated model with a deprecated property`
+  );

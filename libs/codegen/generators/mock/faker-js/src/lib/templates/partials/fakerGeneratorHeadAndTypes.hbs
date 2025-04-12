@@ -1,3 +1,8 @@
 import { faker as fakerDefault } from '@faker-js/faker';
 
-import type { MockFakerJSGeneratorParams } from './typesMockFakerJs';
+import type {
+	MockFakerJSGeneratorParams,
+	MockFakerJSGeneratorParamsMode,
+	ModelOrIdNullable
+} from './{{utilsNameWithNS 'types'}}';
+import { createCallStack, abstractGenerateFn } from './{{utilsNameWithNS 'helpers'}}';

@@ -1,0 +1,15 @@
+{{~#with data~}}
+import {
+	{{~#each models~}}
+		 {{utilsNameWithNS name}},
+	{{~/each}}
+} from './';
+{{/with}}
+
+export const {{utilsNameWithNS 'entityNameTo'}} = {
+{{#with data}}
+	{{#each models}}
+		{{name}}: {{utilsNameWithNS name}},
+	{{/each}}
+{{/with~}}
+};

@@ -1,0 +1,6 @@
+/* istanbul ignore file */
+
+export type Category = {
+  id?: number;
+  name?: string;
+};

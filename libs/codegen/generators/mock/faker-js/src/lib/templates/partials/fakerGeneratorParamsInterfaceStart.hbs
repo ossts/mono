@@ -1,0 +1,13 @@
+<
+  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences'
+>(params: MockFakerJSGeneratorParams<TMode> = {}): ModelOrIdNullable<{{name}}> | null {{#commonModelsEntityHasPrimaryKey @root.allSettings ~}}
+	| {{name}}['{{commonModelsEntityToPrimaryKeyNameMapping}}']
+{{~/commonModelsEntityHasPrimaryKey}} {
+	const modelName = '{{name}}';
+
+	const {
+    faker = fakerDefault,
+    fakerParams: { probability } = {},
+  } = params;
+
+	return abstractGenerateFn<{{name}}, TMode>(modelName, params, (callStack) => (

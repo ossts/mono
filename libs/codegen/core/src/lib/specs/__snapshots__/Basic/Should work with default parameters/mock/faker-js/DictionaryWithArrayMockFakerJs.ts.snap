@@ -1,22 +1,54 @@
 /* istanbul ignore file */
 import { faker as fakerDefault } from '@faker-js/faker';
 
+import { DictionaryWithArray } from '../../common/models';
 import { getModelWithStringMockFakerJs } from './ModelWithStringMockFakerJs';
-import type { MockFakerJSGeneratorParams } from './typesMockFakerJs';
+import { abstractGenerateFn, createCallStack } from './helpersMockFakerJs';
+import type {
+  MockFakerJSGeneratorParams,
+  MockFakerJSGeneratorParamsMode,
+  ModelOrIdNullable,
+} from './typesMockFakerJs';
 
-export const getDictionaryWithArrayMockFakerJs = (
-  params?: MockFakerJSGeneratorParams
-) => {
-  const { faker = fakerDefault } = params ?? {};
+export function getDictionaryWithArrayMockFakerJs<
+  TMode extends 'standalone' = 'standalone'
+>(params?: MockFakerJSGeneratorParams<TMode>): DictionaryWithArray | null {
+  const modelName = 'DictionaryWithArray';
 
-  return {
+  const {
+    faker = fakerDefault,
+    fakerParams: { probability } = {},
+    mode = 'standalone',
+    callStack = createCallStack(),
+  } = params ?? {};
+
+  const callCount = callStack.entriesCallCount.get(modelName) ?? 0;
+  if (callCount > 10) return null;
+
+  const result: DictionaryWithArray = {
     [faker.string.alpha({
       length: {
         min: 2,
         max: 10,
       },
-    })]: faker.helpers.maybe(() =>
-      faker.helpers.arrayElements([getModelWithStringMockFakerJs(params)])
+    })]: faker.helpers.maybe(
+      () =>
+        faker.helpers.arrayElements(
+          [
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            getModelWithStringMockFakerJs<any>({
+              ...params,
+              callStack: createCallStack(callStack, modelName),
+            }),
+          ]
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            .filter(Boolean) as any
+        ),
+      {
+        probability,
+      }
     ),
   };
-};
+
+  return result;
+}

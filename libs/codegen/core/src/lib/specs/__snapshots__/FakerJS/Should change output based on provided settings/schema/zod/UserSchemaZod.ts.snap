@@ -1,0 +1,15 @@
+/* istanbul ignore file */
+import { z } from 'zod';
+
+export const UserSchemaZod = z
+  .object({
+    id: z.number().optional(),
+    username: z.string().optional(),
+    firstName: z.string().optional(),
+    lastName: z.string().optional(),
+    email: z.string().optional(),
+    password: z.string().optional(),
+    phone: z.string().optional(),
+    userStatus: z.number().optional(),
+  })
+  .describe(`Model:User`);

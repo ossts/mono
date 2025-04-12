@@ -1,6 +1,16 @@
-(params?: MockFakerJSGeneratorParams) => {
+<
+  TMode extends 'standalone' = 'standalone'
+>(params?: MockFakerJSGeneratorParams<TMode>): {{name}} | null {
+	const modelName = '{{name}}';
+
 	const {
-		faker = fakerDefault
+		faker = fakerDefault,
+		fakerParams: { probability } = {},
+		mode = 'standalone',
+		callStack = createCallStack(),
 	} = params ?? {};
 
-	return
+	const callCount = callStack.entriesCallCount.get(modelName) ?? 0;
+  if (callCount > 10) return null;
+
+	const result: {{name}} =

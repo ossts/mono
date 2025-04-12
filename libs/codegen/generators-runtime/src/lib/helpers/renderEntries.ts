@@ -9,6 +9,7 @@ import type { AbstractExternalGeneratorWithName } from '@ossts/codegen/common';
 import type { DictionaryWithAny } from '@ossts/shared/typescript/helper-types';
 
 import type {
+  AllGeneratorsSettings,
   GenerateParams,
   ResolvedGenerator,
   ResolvedGeneratorsMap,
@@ -34,6 +35,13 @@ export const renderEntries = async <
   const prettierOptions = (await prettier.resolveConfig(process.cwd())) ?? {};
 
   const promises: Promise<void>[] = [];
+
+  const allSettings: AllGeneratorsSettings = new Map();
+
+  for (const generator of generators.values()) {
+    allSettings.set(generator.name, generator.settings ?? {});
+  }
+
   for (const generator of generators.values()) {
     if (
       generator.helpersOnly ||
@@ -45,7 +53,7 @@ export const renderEntries = async <
     if (beforeEach?.(generators as any, generator.name) === false) continue;
 
     rootFileNames.push(generator.outputPath);
-    const promise = render(generator, prettierOptions, {
+    const promise = render(generator, allSettings, prettierOptions, {
       output,
       ...other,
     });
@@ -71,6 +79,7 @@ const render = <
   TGenerators extends AbstractExternalGeneratorWithName = AbstractExternalGeneratorWithName
 >(
   generator: ResolvedGenerator<TGenerators>,
+  allSettings: AllGeneratorsSettings,
   prettierOptions: prettier.Options,
   { parsedSchema, output }: Pick<GenerateParams, 'output' | 'parsedSchema'>
 ) =>
@@ -139,6 +148,7 @@ const render = <
         const content = tpl({
           data,
           settings,
+          allSettings,
         });
 
         let formattedContent = content;

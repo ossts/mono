@@ -1,16 +1,41 @@
 /* istanbul ignore file */
 import { faker as fakerDefault } from '@faker-js/faker';
 
-import type { MockFakerJSGeneratorParams } from './typesMockFakerJs';
+import { DeprecatedModel } from '../../common/models';
+import { abstractGenerateFn, createCallStack } from './helpersMockFakerJs';
+import type {
+  MockFakerJSGeneratorParams,
+  MockFakerJSGeneratorParamsMode,
+  ModelOrIdNullable,
+} from './typesMockFakerJs';
 
-export const getDeprecatedModelMockFakerJs = (
-  params?: MockFakerJSGeneratorParams
-) => {
-  const { faker = fakerDefault } = params ?? {};
+export function getDeprecatedModelMockFakerJs<TMode extends 'withReferences'>(
+  params?: MockFakerJSGeneratorParams<TMode>
+): ModelOrIdNullable<DeprecatedModel> | null | DeprecatedModel['id'];
 
-  return {
-    prop: faker.helpers.maybe(() =>
-      faker.string.alpha({ length: { min: 2, max: 10 } })
-    ),
-  };
-};
+export function getDeprecatedModelMockFakerJs<TMode extends 'standalone'>(
+  params?: MockFakerJSGeneratorParams<TMode>
+): DeprecatedModel | null;
+
+export function getDeprecatedModelMockFakerJs<
+  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences'
+>(
+  params: MockFakerJSGeneratorParams<TMode> = {}
+): ModelOrIdNullable<DeprecatedModel> | null | DeprecatedModel['id'] {
+  const modelName = 'DeprecatedModel';
+
+  const { faker = fakerDefault, fakerParams: { probability } = {} } = params;
+
+  return abstractGenerateFn<DeprecatedModel, TMode>(
+    modelName,
+    params,
+    (callStack) => ({
+      prop: faker.helpers.maybe(
+        () => faker.string.alpha({ length: { min: 2, max: 10 } }),
+        {
+          probability,
+        }
+      ),
+    })
+  );
+}

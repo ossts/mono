@@ -1,0 +1,10 @@
+export const allApiEntities = [
+  'ApiResponse',
+  'Category',
+  'Order',
+  'Pet',
+  'Tag',
+  'User',
+] as const;
+
+export type AllApiEntities = (typeof allApiEntities)[number];

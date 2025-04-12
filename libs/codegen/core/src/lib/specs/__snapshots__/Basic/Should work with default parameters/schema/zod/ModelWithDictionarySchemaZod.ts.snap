@@ -1,6 +1,10 @@
 /* istanbul ignore file */
 import { z } from 'zod';
 
-export const ModelWithDictionarySchemaZod = z.object({
-  prop: z.record(z.string(), z.string()).optional(),
-});
+export const ModelWithDictionarySchemaZod = z
+  .object({
+    prop: z.record(z.string(), z.string()).optional(),
+  })
+  .describe(
+    `Model:ModelWithDictionary---This is a model with one property containing a dictionary`
+  );

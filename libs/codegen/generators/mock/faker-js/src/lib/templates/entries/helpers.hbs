@@ -1,0 +1,399 @@
+import { random } from 'lodash';
+import type { ZodFirstPartySchemaTypes } from 'zod';
+import { ZodFirstPartyTypeKind } from 'zod';
+
+import {
+  type AllApiEntities,
+  type AllApiModels,
+  allApiEntities,
+  apiEntityToPrimaryKeyMapping,
+} from '../../common/models';
+import { entityNameToSchemaZod } from '../../schema/zod/entityNameToSchemaZod';
+import * as generators from './';
+import type {
+  MockFakerJSGeneratorParams,
+  MockFakerJSGeneratorParamsCallStack,
+  MockFakerJSGeneratorParamsMode,
+  ModelOrIdNullable,
+} from './typesMockFakerJs';
+
+export function createCallStack(
+  ...args: never[]
+): MockFakerJSGeneratorParamsCallStack;
+
+export function createCallStack(
+  oldStack: MockFakerJSGeneratorParamsCallStack,
+  newEntryModelName: AllApiEntities,
+  newEntryPath?: string
+): MockFakerJSGeneratorParamsCallStack;
+
+export function createCallStack(
+  oldStack: MockFakerJSGeneratorParamsCallStack | undefined,
+  newEntryModelName: AllApiEntities,
+  newEntryPath?: string
+): MockFakerJSGeneratorParamsCallStack {
+  if (!oldStack) {
+    return {
+      stack: [],
+      entriesCallCount: new Map(),
+    };
+  }
+
+  const newStackStack: string[] = [...oldStack.stack, newEntryModelName];
+  if (newEntryPath) {
+    newStackStack.push(newEntryPath);
+  }
+
+  const newStackEntriesCallCount = new Map<AllApiEntities, number>(
+    oldStack.entriesCallCount
+  );
+
+  const newVal = (newStackEntriesCallCount.get(newEntryModelName) ?? 0) + 1;
+  newStackEntriesCallCount.set(newEntryModelName, newVal);
+
+  return {
+    stack: newStackStack,
+
+    entriesCallCount: newStackEntriesCallCount,
+  };
+}
+
+type DictionaryWithAny = Record<string, any>;
+
+// ------- Initialization -------
+
+/**
+ * Map of counts each entity should have after initialization
+ */
+const initialEntitiesCountMap = new Map<AllApiEntities, number>();
+
+/**
+ * Map of generated data foe each entity
+ */
+export const entityToDataMap = new Map<
+  AllApiEntities,
+  Map<string | number, AllApiModels>
+>();
+
+type InitializeFakerJSGenerateEntitiesCount = Partial<
+  Record<AllApiEntities | 'default', number | [number, number]>
+>;
+
+interface InitializeFakerJSParams {
+  /**
+   * Amount of items to generate based on entity model name.
+   *
+   * `default` key will be used if no explicit amount set for entity.
+   * Default value for it is `[5, 100]`.
+   */
+  generateEntitiesCount?: InitializeFakerJSGenerateEntitiesCount;
+
+  /**
+   * Initial data to use, instead of generating new one.
+   */
+  initialData?: [AllApiEntities, [string | number, DictionaryWithAny][]][];
+
+  /**
+   * Skip resolveDependencies step.
+   */
+  noResolve?: false;
+
+  /**
+   * Params that will be passed to FakerJS generator function
+   */
+  generatorParams?: MockFakerJSGeneratorParams;
+}
+
+type InitializeFakerJS = (params: InitializeFakerJSParams) => void;
+
+export const initialize: InitializeFakerJS = (params) => {
+  const { noResolve, initialData } = params;
+
+  resetState();
+
+  if (!initialData) {
+    setInitialEntitiesCounts(params);
+    generateInitialEntities(params);
+  } else {
+    restoreInitialState(initialData);
+  }
+
+  if (!noResolve) {
+    resolveDependencies(params);
+  }
+};
+
+/**
+ * This should reset any previous state so we can start from scratch
+ */
+const resetState = () => {
+  entityToDataMap.clear();
+  initialEntitiesCountMap.clear();
+
+  modelDependenciesMap.clear();
+  modelRefsMap.clear();
+
+  // we have to initialize "entityToDataMap" with empty maps for all models
+  // otherwise we can get error when model has dependencies
+  allApiEntities.map((entityName) => {
+    let dataMap = entityToDataMap.get(entityName);
+    if (dataMap) return;
+
+    dataMap = new Map();
+    entityToDataMap.set(entityName, dataMap);
+  });
+};
+
+/**
+ * Restores initial state from previously generated data.
+ */
+const restoreInitialState = (
+  data: Required<InitializeFakerJSParams>['initialData']
+) => data.forEach((item) => entityToDataMap.set(item[0], new Map(item[1])));
+
+const setInitialEntitiesCounts = (
+  params: InitializeFakerJSParams = {}
+): void => {
+  const { generateEntitiesCount = {} } = params;
+
+  const defaultCount = generateEntitiesCount.default ?? [5, 100];
+
+  allApiEntities.forEach((entityName) => {
+    const range = generateEntitiesCount[entityName] ?? defaultCount;
+    const rangeArray = Array.isArray(range) ? range : [range, range];
+    const count = random(rangeArray[0], rangeArray[1]);
+    initialEntitiesCountMap.set(entityName, count);
+  });
+};
+
+/**
+ * Map of current Model to all it's dependencies.
+ *
+ * This should be updated on any CRUD operation and kept in sync with `modelRefsMap`.
+ */
+export const modelDependenciesMap = new Map<AllApiModels, Set<AllApiModels>>();
+
+/**
+ *  Map of current Model to all Models which rely on it's existence.
+ *
+ * This should be updated on any CRUD operation and kept in sync with `modelDependenciesMap`.
+ */
+export const modelRefsMap = new Map<AllApiModels, Set<AllApiModels>>();
+
+const generateInitialEntities = (params: InitializeFakerJSParams = {}) =>
+  allApiEntities.forEach((entityName) => {
+    const count = initialEntitiesCountMap.get(entityName);
+    if (count === undefined)
+      throw new Error(`No counts available for entity "${entityName}"`);
+
+    const dataMap = entityToDataMap.get(entityName);
+    if (!dataMap) return;
+
+    if (count <= 0) return;
+
+    // we use condition here because entities can be called in result of creating dependencies for other entities
+    generateEntities(
+      entityName,
+      () => dataMap.size < count,
+      params.generatorParams
+    );
+  });
+
+/**
+ * Generates and returns ids
+ */
+const generateEntities = (
+  entityName: string,
+  countOrCondition: number | (() => boolean) = 1,
+  params?: MockFakerJSGeneratorParams
+): void => {
+  while (
+    typeof countOrCondition === 'number'
+      ? countOrCondition--
+      : countOrCondition()
+  ) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const generate = (generators as any)[`get${entityName}MockFakerJs`];
+    if (!generate)
+      throw new Error(`Unable to find generator for entity "${entityName}"`);
+
+    // the actual save into `entityToDataMap` will happen in faker generator
+    // this is required, because most of the models would have dependencies
+    generate(params);
+  }
+};
+
+const getRandomEntity = <TGenerate extends boolean>(
+  entityName: AllApiEntities,
+  generatorParams?: MockFakerJSGeneratorParams,
+  generateIfEmpty?: TGenerate
+): TGenerate extends false ? AllApiModels | null : AllApiModels => {
+  const dataMap = entityToDataMap.get(entityName);
+
+  if (!dataMap)
+    throw new Error(
+      `Unable to find dataMap for entity with name "${entityName}"`
+    );
+
+  if (dataMap?.size) {
+    if (!generateIfEmpty) return null;
+
+    generateEntities(entityName, 1, generatorParams);
+  }
+
+  const keys = [...dataMap.keys()];
+  const randIndex = random(0, keys.length);
+  const result = dataMap.get(keys[randIndex]);
+
+  // technically this should never happen, but makes TS happy
+  if (!result) return null;
+
+  return result;
+};
+
+const resolveDependencies = (params: InitializeFakerJSParams = {}) => {
+  for (const [entityName, modelsMap] of entityToDataMap) {
+    if (!modelsMap.size) continue;
+
+    const schema = entityNameToSchemaZod[entityName];
+
+    if (!('shape' in schema)) {
+      throw new Error(`Unhandled zod schema type "${schema._def.typeName}"`);
+    }
+
+    Object.entries(schema.shape).forEach(([fieldName, fieldVal]) => {
+      const refName = getReferenceName(fieldVal);
+
+      if (!refName) return;
+
+      const refModel = entityToDataMap.get(refName);
+      if (!refModel)
+        throw new Error(
+          `No model available in entityToDataMap for "${refName}}"`
+        );
+
+      for (const [id, model] of modelsMap) {
+        const modelAsRecord = model as DictionaryWithAny;
+        const modelFieldVal = modelAsRecord[fieldName];
+        if (!modelFieldVal) continue;
+
+        if (Array.isArray(modelFieldVal)) {
+          modelAsRecord[fieldName] = modelFieldVal
+            .filter(Boolean)
+            .map((val) => {
+              const refVal = refModel.get(val);
+
+              if (!refVal) {
+                throw new Error(`No matching record found for model "${refName}" with value "${val}"`);
+              }
+
+              addDependencyRelation(model, refVal);
+
+              return refVal;
+            });
+          continue;
+        }
+
+        const refVal = refModel.get(modelFieldVal);
+        if (!refVal) {
+          throw new Error(`No matching record found for model "${refName}" with value "${modelFieldVal}"`);
+        }
+
+        modelAsRecord[fieldName] = refModel.get(modelFieldVal);
+        addDependencyRelation(model, refVal);
+      }
+    });
+  }
+};
+
+/**
+ * Update dependency maps with new relation
+ */
+const addDependencyRelation = (model: AllApiModels, refModel: AllApiModels) => {
+  const dependenciesSet = modelDependenciesMap.get(model) ?? new Set();
+  dependenciesSet.add(refModel);
+  modelDependenciesMap.set(model, dependenciesSet);
+
+  const refsSet = modelRefsMap.get(refModel) ?? new Set();
+  refsSet.add(model);
+  modelRefsMap.set(refModel, refsSet);
+}
+
+const getReferenceName = (
+  val: ZodFirstPartySchemaTypes
+): AllApiEntities | null => {
+  const ref = getZodReference(val);
+  if (!ref) return null;
+
+  const modelName = ref.description?.split('---')[0]?.split(':')[1];
+
+  if (!modelName) {
+    throw new Error(
+      'Reference is detected, but no "Model:[ModelName]--" present in Zod schema description.'
+    );
+  }
+
+  return modelName as AllApiEntities;
+};
+
+const getZodReference = (
+  val: ZodFirstPartySchemaTypes
+): ZodFirstPartySchemaTypes | null => {
+  // TODO: handle types like union, array, intersection, etc.
+  switch (val._def.typeName) {
+    case ZodFirstPartyTypeKind.ZodObject:
+      return val;
+    case ZodFirstPartyTypeKind.ZodOptional:
+      return getZodReference(val._def.innerType);
+    case ZodFirstPartyTypeKind.ZodArray:
+      return getZodReference(val._def.type);
+    case ZodFirstPartyTypeKind.ZodUnion:
+      return getZodReference(val._def.options);
+  }
+
+  return null;
+};
+
+type AbstractGenerateFnDef<TModel extends AllApiModels> = (
+  callStack: MockFakerJSGeneratorParamsCallStack
+) => ModelOrIdNullable<TModel>;
+
+export function abstractGenerateFn<
+  TModel extends AllApiModels,
+  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences'
+>(
+  modelName: AllApiEntities,
+  params: MockFakerJSGeneratorParams<TMode>,
+  generatorFn: AbstractGenerateFnDef<TModel>
+): ModelOrIdNullable<TModel> | null {
+  const idProp = apiEntityToPrimaryKeyMapping[modelName];
+
+  const { mode = 'withReferences', callStack = createCallStack() } = params;
+
+  const callCount = callStack.entriesCallCount.get(modelName) ?? 0;
+  if (callCount > 10) return null;
+  const isRoot = callStack.stack.length === 0;
+
+  const result = generatorFn(callStack);
+
+  if (mode === 'standalone') return result;
+
+  const isRefModeSupported = !!idProp;
+
+  if (!isRefModeSupported) {
+    return isRoot ? result : null;
+  }
+
+  const targeMap = entityToDataMap.get(modelName);
+  if (!targeMap)
+    throw new Error(`No dataMap available for entity "${modelName}"`);
+
+  const idVal = result[idProp];
+  if (!idVal) {
+    return isRoot ? result : null;
+  }
+
+  targeMap.set(idVal, result);
+
+  return isRoot ? result : idVal;
+}

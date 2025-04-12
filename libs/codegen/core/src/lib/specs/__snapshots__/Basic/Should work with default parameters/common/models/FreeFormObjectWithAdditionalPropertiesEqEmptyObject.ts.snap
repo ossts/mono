@@ -3,7 +3,6 @@
 /**
  * This is a free-form object with additionalProperties: {}.
  */
-export type FreeFormObjectWithAdditionalPropertiesEqEmptyObject = Record<
-  string,
-  any
+export type FreeFormObjectWithAdditionalPropertiesEqEmptyObject = Partial<
+  Record<string, any>
 >;

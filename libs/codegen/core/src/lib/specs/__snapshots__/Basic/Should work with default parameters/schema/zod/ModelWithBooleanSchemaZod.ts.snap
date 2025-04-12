@@ -1,6 +1,10 @@
 /* istanbul ignore file */
 import { z } from 'zod';
 
-export const ModelWithBooleanSchemaZod = z.object({
-  prop: z.boolean().optional(),
-});
+export const ModelWithBooleanSchemaZod = z
+  .object({
+    prop: z.boolean().optional(),
+  })
+  .describe(
+    `Model:ModelWithBoolean---This is a model with one boolean property`
+  );

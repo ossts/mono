@@ -1,26 +1,55 @@
 /* istanbul ignore file */
 import { faker as fakerDefault } from '@faker-js/faker';
 
-import type { MockFakerJSGeneratorParams } from './typesMockFakerJs';
+import { DictionaryWithProperties } from '../../common/models';
+import { abstractGenerateFn, createCallStack } from './helpersMockFakerJs';
+import type {
+  MockFakerJSGeneratorParams,
+  MockFakerJSGeneratorParamsMode,
+  ModelOrIdNullable,
+} from './typesMockFakerJs';
 
-export const getDictionaryWithPropertiesMockFakerJs = (
-  params?: MockFakerJSGeneratorParams
-) => {
-  const { faker = fakerDefault } = params ?? {};
+export function getDictionaryWithPropertiesMockFakerJs<
+  TMode extends 'standalone' = 'standalone'
+>(params?: MockFakerJSGeneratorParams<TMode>): DictionaryWithProperties | null {
+  const modelName = 'DictionaryWithProperties';
 
-  return {
+  const {
+    faker = fakerDefault,
+    fakerParams: { probability } = {},
+    mode = 'standalone',
+    callStack = createCallStack(),
+  } = params ?? {};
+
+  const callCount = callStack.entriesCallCount.get(modelName) ?? 0;
+  if (callCount > 10) return null;
+
+  const result: DictionaryWithProperties = {
     [faker.string.alpha({
       length: {
         min: 2,
         max: 10,
       },
-    })]: faker.helpers.maybe(() => ({
-      foo: faker.helpers.maybe(() =>
-        faker.string.alpha({ length: { min: 2, max: 10 } })
-      ),
-      bar: faker.helpers.maybe(() =>
-        faker.string.alpha({ length: { min: 2, max: 10 } })
-      ),
-    })),
+    })]: faker.helpers.maybe(
+      () => ({
+        foo: faker.helpers.maybe(
+          () => faker.string.alpha({ length: { min: 2, max: 10 } }),
+          {
+            probability,
+          }
+        ),
+        bar: faker.helpers.maybe(
+          () => faker.string.alpha({ length: { min: 2, max: 10 } }),
+          {
+            probability,
+          }
+        ),
+      }),
+      {
+        probability,
+      }
+    ),
   };
-};
+
+  return result;
+}

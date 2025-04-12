@@ -26,6 +26,10 @@ export class SchemaZodGenerator
             dataPath: 'models',
             nameFieldOrFn: (data) => `${data['name'].replace(/Schema/g, '')}`,
           },
+          entityNameTo: {
+            dataPath: '',
+            nameFieldOrFn: () => 'entityNameTo',
+          },
         },
         dependsOn: ['utils', 'common/models', ...(config?.dependsOn ?? [])],
       },

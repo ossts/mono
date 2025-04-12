@@ -5,16 +5,20 @@ import { ModelWithArraySchemaZod } from './ModelWithArraySchemaZod';
 import { ModelWithDictionarySchemaZod } from './ModelWithDictionarySchemaZod';
 import { ModelWithEnumSchemaZod } from './ModelWithEnumSchemaZod';
 
-export const CompositionWithOneOfAndNullableSchemaZod = z.object({
-  propA: z
-    .union([
-      z.object({
-        boolean: z.boolean().optional(),
-      }),
-      ModelWithEnumSchemaZod,
-      ModelWithArraySchemaZod,
-      ModelWithDictionarySchemaZod,
-    ])
-    .nullable()
-    .optional(),
-});
+export const CompositionWithOneOfAndNullableSchemaZod = z
+  .object({
+    propA: z
+      .union([
+        z.object({
+          boolean: z.boolean().optional(),
+        }),
+        ModelWithEnumSchemaZod,
+        ModelWithArraySchemaZod,
+        ModelWithDictionarySchemaZod,
+      ])
+      .nullable()
+      .optional(),
+  })
+  .describe(
+    `Model:CompositionWithOneOfAndNullable---This is a model with one property with a 'one of' relationship`
+  );

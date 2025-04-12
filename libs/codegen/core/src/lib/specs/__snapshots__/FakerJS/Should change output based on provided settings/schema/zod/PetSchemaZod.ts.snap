@@ -1,0 +1,17 @@
+/* istanbul ignore file */
+import { z } from 'zod';
+
+import { Pet } from '../../common/models';
+import { CategorySchemaZod } from './CategorySchemaZod';
+import { TagSchemaZod } from './TagSchemaZod';
+
+export const PetSchemaZod = z
+  .object({
+    id: z.number().optional(),
+    category: CategorySchemaZod,
+    name: z.coerce.string(),
+    photoUrls: z.array(z.string()),
+    tags: z.array(TagSchemaZod).optional(),
+    status: z.nativeEnum(Pet.status).optional(),
+  })
+  .describe(`Model:Pet`);

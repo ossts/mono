@@ -1,0 +1,10 @@
+/* istanbul ignore file */
+import { z } from 'zod';
+
+export const ApiResponseSchemaZod = z
+  .object({
+    code: z.number().optional(),
+    type: z.string().optional(),
+    message: z.string().optional(),
+  })
+  .describe(`Model:ApiResponse`);

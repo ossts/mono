@@ -12,3 +12,4 @@ export * from './lowerFirst';
 export * from './isPrimitive';
 export * from './startsWith';
 export * from './nameWithNS';
+export * from './fullPath';

@@ -5,15 +5,19 @@ import { ModelWithArraySchemaZod } from './ModelWithArraySchemaZod';
 import { ModelWithDictionarySchemaZod } from './ModelWithDictionarySchemaZod';
 import { ModelWithEnumSchemaZod } from './ModelWithEnumSchemaZod';
 
-export const CompositionWithAllOfAndNullableSchemaZod = z.object({
-  propA: z
-    .intersection([
-      z.object({
-        boolean: z.boolean().optional(),
-      }),
-      ModelWithEnumSchemaZod,
-      ModelWithArraySchemaZod,
-      ModelWithDictionarySchemaZod,
-    ])
-    .nullable(),
-});
+export const CompositionWithAllOfAndNullableSchemaZod = z
+  .object({
+    propA: z
+      .intersection([
+        z.object({
+          boolean: z.boolean().optional(),
+        }),
+        ModelWithEnumSchemaZod,
+        ModelWithArraySchemaZod,
+        ModelWithDictionarySchemaZod,
+      ])
+      .nullable(),
+  })
+  .describe(
+    `Model:CompositionWithAllOfAndNullable---This is a model with one property with a 'all of' relationship`
+  );

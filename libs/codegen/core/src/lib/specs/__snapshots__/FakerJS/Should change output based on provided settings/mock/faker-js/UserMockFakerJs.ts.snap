@@ -1,26 +1,65 @@
 /* istanbul ignore file */
 import { faker as fakerDefault } from '@faker-js/faker';
 
-import type { MockFakerJSGeneratorParams } from './typesMockFakerJs';
+import { User } from '../../common/models';
+import { abstractGenerateFn, createCallStack } from './helpersMockFakerJs';
+import type {
+  MockFakerJSGeneratorParams,
+  MockFakerJSGeneratorParamsMode,
+  ModelOrIdNullable,
+} from './typesMockFakerJs';
 
-export const getUserMockFakerJs = (params?: MockFakerJSGeneratorParams) => {
-  const { faker = fakerDefault } = params ?? {};
+export function getUserMockFakerJs<TMode extends 'withReferences'>(
+  params?: MockFakerJSGeneratorParams<TMode>
+): ModelOrIdNullable<User> | null | User['id'];
 
-  return {
-    id: faker.helpers.maybe(() =>
-      faker.string.fromCharacters('abc_xyz', { min: 5, max: 20 })
+export function getUserMockFakerJs<TMode extends 'standalone'>(
+  params?: MockFakerJSGeneratorParams<TMode>
+): User | null;
+
+export function getUserMockFakerJs<
+  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences'
+>(
+  params: MockFakerJSGeneratorParams<TMode> = {}
+): ModelOrIdNullable<User> | null | User['id'] {
+  const modelName = 'User';
+
+  const { faker = fakerDefault, fakerParams: { probability } = {} } = params;
+
+  return abstractGenerateFn<User, TMode>(modelName, params, (callStack) => ({
+    id: faker.helpers.maybe(
+      () => faker.string.fromCharacters('abc_xyz', { min: 5, max: 20 }),
+      {
+        probability,
+      }
     ),
-    username: faker.helpers.maybe(() => faker.internet.username()),
-    firstName: faker.helpers.maybe(() => faker.person.firstName()),
-    lastName: faker.helpers.maybe(() => faker.person.lastName()),
-    email: faker.helpers.maybe(() =>
-      faker.internet.email({
-        provider: 'example.fakerjs.dev',
-        allowSpecialCharacters: true,
-      })
+    username: faker.helpers.maybe(() => faker.internet.username(), {
+      probability,
+    }),
+    firstName: faker.helpers.maybe(() => faker.person.firstName(), {
+      probability,
+    }),
+    lastName: faker.helpers.maybe(() => faker.person.lastName(), {
+      probability,
+    }),
+    email: faker.helpers.maybe(
+      () =>
+        faker.internet.email({
+          provider: 'example.fakerjs.dev',
+          allowSpecialCharacters: true,
+        }),
+      {
+        probability,
+      }
     ),
-    password: faker.helpers.maybe(() => faker.internet.password()),
-    phone: faker.helpers.maybe(() => faker.phone.number()),
-    userStatus: faker.helpers.maybe(() => faker.helpers.fake('published')),
-  };
-};
+    password: faker.helpers.maybe(() => faker.internet.password(), {
+      probability,
+    }),
+    phone: faker.helpers.maybe(() => faker.phone.number(), {
+      probability,
+    }),
+    userStatus: faker.helpers.maybe(() => faker.helpers.fake('published'), {
+      probability,
+    }),
+  }));
+}

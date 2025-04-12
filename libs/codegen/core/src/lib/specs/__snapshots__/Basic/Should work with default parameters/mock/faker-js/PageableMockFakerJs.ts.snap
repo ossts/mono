@@ -1,18 +1,50 @@
 /* istanbul ignore file */
 import { faker as fakerDefault } from '@faker-js/faker';
 
-import type { MockFakerJSGeneratorParams } from './typesMockFakerJs';
+import { Pageable } from '../../common/models';
+import { abstractGenerateFn, createCallStack } from './helpersMockFakerJs';
+import type {
+  MockFakerJSGeneratorParams,
+  MockFakerJSGeneratorParamsMode,
+  ModelOrIdNullable,
+} from './typesMockFakerJs';
 
-export const getPageableMockFakerJs = (params?: MockFakerJSGeneratorParams) => {
-  const { faker = fakerDefault } = params ?? {};
+export function getPageableMockFakerJs<TMode extends 'withReferences'>(
+  params?: MockFakerJSGeneratorParams<TMode>
+): ModelOrIdNullable<Pageable> | null | Pageable['id'];
 
-  return {
-    page: faker.helpers.maybe(() => faker.number.int()),
-    size: faker.helpers.maybe(() => faker.number.int()),
-    sort: faker.helpers.maybe(() =>
-      faker.helpers.arrayElements([
-        faker.string.alpha({ length: { min: 2, max: 10 } }),
-      ])
-    ),
-  };
-};
+export function getPageableMockFakerJs<TMode extends 'standalone'>(
+  params?: MockFakerJSGeneratorParams<TMode>
+): Pageable | null;
+
+export function getPageableMockFakerJs<
+  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences'
+>(
+  params: MockFakerJSGeneratorParams<TMode> = {}
+): ModelOrIdNullable<Pageable> | null | Pageable['id'] {
+  const modelName = 'Pageable';
+
+  const { faker = fakerDefault, fakerParams: { probability } = {} } = params;
+
+  return abstractGenerateFn<Pageable, TMode>(
+    modelName,
+    params,
+    (callStack) => ({
+      page: faker.helpers.maybe(() => faker.number.int(), {
+        probability,
+      }),
+      size: faker.helpers.maybe(() => faker.number.int(), {
+        probability,
+      }),
+      sort: faker.helpers.maybe(
+        () =>
+          faker.helpers.arrayElements([
+            faker.string.alpha({ length: { min: 2, max: 10 } }),
+          ]),
+        {
+          probability,
+        }
+      ),
+    })
+  );
+}

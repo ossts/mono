@@ -1,19 +1,41 @@
 /* istanbul ignore file */
 import { faker as fakerDefault } from '@faker-js/faker';
 
-import type { MockFakerJSGeneratorParams } from './typesMockFakerJs';
+import { FreeFormObjectWithAdditionalPropertiesEqTrue } from '../../common/models';
+import { abstractGenerateFn, createCallStack } from './helpersMockFakerJs';
+import type {
+  MockFakerJSGeneratorParams,
+  MockFakerJSGeneratorParamsMode,
+  ModelOrIdNullable,
+} from './typesMockFakerJs';
 
-export const getFreeFormObjectWithAdditionalPropertiesEqTrueMockFakerJs = (
-  params?: MockFakerJSGeneratorParams
-) => {
-  const { faker = fakerDefault } = params ?? {};
+export function getFreeFormObjectWithAdditionalPropertiesEqTrueMockFakerJs<
+  TMode extends 'standalone' = 'standalone'
+>(
+  params?: MockFakerJSGeneratorParams<TMode>
+): FreeFormObjectWithAdditionalPropertiesEqTrue | null {
+  const modelName = 'FreeFormObjectWithAdditionalPropertiesEqTrue';
 
-  return {
+  const {
+    faker = fakerDefault,
+    fakerParams: { probability } = {},
+    mode = 'standalone',
+    callStack = createCallStack(),
+  } = params ?? {};
+
+  const callCount = callStack.entriesCallCount.get(modelName) ?? 0;
+  if (callCount > 10) return null;
+
+  const result: FreeFormObjectWithAdditionalPropertiesEqTrue = {
     [faker.string.alpha({
       length: {
         min: 2,
         max: 10,
       },
-    })]: faker.helpers.maybe(() => ({})),
+    })]: faker.helpers.maybe(() => ({}), {
+      probability,
+    }),
   };
-};
+
+  return result;
+}

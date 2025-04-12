@@ -1,12 +1,31 @@
 /* istanbul ignore file */
 import { faker as fakerDefault } from '@faker-js/faker';
 
-import type { MockFakerJSGeneratorParams } from './typesMockFakerJs';
+import { CommentWithExpressionPlaceholders } from '../../common/models';
+import { abstractGenerateFn, createCallStack } from './helpersMockFakerJs';
+import type {
+  MockFakerJSGeneratorParams,
+  MockFakerJSGeneratorParamsMode,
+  ModelOrIdNullable,
+} from './typesMockFakerJs';
 
-export const getCommentWithExpressionPlaceholdersMockFakerJs = (
-  params?: MockFakerJSGeneratorParams
-) => {
-  const { faker = fakerDefault } = params ?? {};
+export function getCommentWithExpressionPlaceholdersMockFakerJs<
+  TMode extends 'standalone' = 'standalone'
+>(
+  params?: MockFakerJSGeneratorParams<TMode>
+): CommentWithExpressionPlaceholders | null {
+  const modelName = 'CommentWithExpressionPlaceholders';
 
-  return faker.number.int();
-};
+  const {
+    faker = fakerDefault,
+    fakerParams: { probability } = {},
+    mode = 'standalone',
+    callStack = createCallStack(),
+  } = params ?? {};
+
+  const callCount = callStack.entriesCallCount.get(modelName) ?? 0;
+  if (callCount > 10) return null;
+
+  const result: CommentWithExpressionPlaceholders = faker.number.int();
+  return result;
+}

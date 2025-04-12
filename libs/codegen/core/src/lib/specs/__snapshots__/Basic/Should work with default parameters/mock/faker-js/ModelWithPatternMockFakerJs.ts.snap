@@ -1,24 +1,58 @@
 /* istanbul ignore file */
 import { faker as fakerDefault } from '@faker-js/faker';
 
-import type { MockFakerJSGeneratorParams } from './typesMockFakerJs';
+import { ModelWithPattern } from '../../common/models';
+import { abstractGenerateFn, createCallStack } from './helpersMockFakerJs';
+import type {
+  MockFakerJSGeneratorParams,
+  MockFakerJSGeneratorParamsMode,
+  ModelOrIdNullable,
+} from './typesMockFakerJs';
 
-export const getModelWithPatternMockFakerJs = (
-  params?: MockFakerJSGeneratorParams
-) => {
-  const { faker = fakerDefault } = params ?? {};
+export function getModelWithPatternMockFakerJs<TMode extends 'withReferences'>(
+  params?: MockFakerJSGeneratorParams<TMode>
+): ModelOrIdNullable<ModelWithPattern> | null | ModelWithPattern['id'];
 
-  return {
-    key: faker.string.alpha({ length: { min: 2, max: 10 } }),
-    name: faker.string.alpha({ length: { min: 2, max: 10 } }),
-    enabled: faker.helpers.maybe(() => faker.datatype.boolean()),
-    modified: faker.helpers.maybe(() => faker.date.anytime()),
-    id: faker.helpers.maybe(() => faker.string.uuid()),
-    text: faker.helpers.maybe(() =>
-      faker.string.alpha({ length: { min: 2, max: 10 } })
-    ),
-    patternWithSingleQuotes: faker.helpers.maybe(() =>
-      faker.string.alpha({ length: { min: 2, max: 10 } })
-    ),
-  };
-};
+export function getModelWithPatternMockFakerJs<TMode extends 'standalone'>(
+  params?: MockFakerJSGeneratorParams<TMode>
+): ModelWithPattern | null;
+
+export function getModelWithPatternMockFakerJs<
+  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences'
+>(
+  params: MockFakerJSGeneratorParams<TMode> = {}
+): ModelOrIdNullable<ModelWithPattern> | null | ModelWithPattern['id'] {
+  const modelName = 'ModelWithPattern';
+
+  const { faker = fakerDefault, fakerParams: { probability } = {} } = params;
+
+  return abstractGenerateFn<ModelWithPattern, TMode>(
+    modelName,
+    params,
+    (callStack) => ({
+      key: faker.string.alpha({ length: { min: 2, max: 10 } }),
+      name: faker.string.alpha({ length: { min: 2, max: 10 } }),
+      enabled: faker.helpers.maybe(() => faker.datatype.boolean(), {
+        probability,
+      }),
+      modified: faker.helpers.maybe(() => faker.date.anytime(), {
+        probability,
+      }),
+      id: faker.helpers.maybe(() => faker.string.uuid(), {
+        probability,
+      }),
+      text: faker.helpers.maybe(
+        () => faker.string.alpha({ length: { min: 2, max: 10 } }),
+        {
+          probability,
+        }
+      ),
+      patternWithSingleQuotes: faker.helpers.maybe(
+        () => faker.string.alpha({ length: { min: 2, max: 10 } }),
+        {
+          probability,
+        }
+      ),
+    })
+  );
+}

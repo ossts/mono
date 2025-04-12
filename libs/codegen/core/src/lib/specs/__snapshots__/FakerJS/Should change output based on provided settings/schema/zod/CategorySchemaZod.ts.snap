@@ -1,0 +1,9 @@
+/* istanbul ignore file */
+import { z } from 'zod';
+
+export const CategorySchemaZod = z
+  .object({
+    id: z.number().optional(),
+    name: z.string().optional(),
+  })
+  .describe(`Model:Category`);

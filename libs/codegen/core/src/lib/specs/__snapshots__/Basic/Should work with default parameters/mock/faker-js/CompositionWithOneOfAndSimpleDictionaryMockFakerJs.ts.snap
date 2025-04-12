@@ -1,26 +1,64 @@
 /* istanbul ignore file */
 import { faker as fakerDefault } from '@faker-js/faker';
 
-import type { MockFakerJSGeneratorParams } from './typesMockFakerJs';
+import { CompositionWithOneOfAndSimpleDictionary } from '../../common/models';
+import { abstractGenerateFn, createCallStack } from './helpersMockFakerJs';
+import type {
+  MockFakerJSGeneratorParams,
+  MockFakerJSGeneratorParamsMode,
+  ModelOrIdNullable,
+} from './typesMockFakerJs';
 
-export const getCompositionWithOneOfAndSimpleDictionaryMockFakerJs = (
-  params?: MockFakerJSGeneratorParams
-) => {
-  const { faker = fakerDefault } = params ?? {};
+export function getCompositionWithOneOfAndSimpleDictionaryMockFakerJs<
+  TMode extends 'withReferences'
+>(
+  params?: MockFakerJSGeneratorParams<TMode>
+):
+  | ModelOrIdNullable<CompositionWithOneOfAndSimpleDictionary>
+  | null
+  | CompositionWithOneOfAndSimpleDictionary['id'];
 
-  return {
-    propA: faker.helpers.maybe(() =>
-      faker.helpers.arrayElement([
-        faker.datatype.boolean(),
-        {
-          [faker.string.alpha({
-            length: {
-              min: 2,
-              max: 10,
+export function getCompositionWithOneOfAndSimpleDictionaryMockFakerJs<
+  TMode extends 'standalone'
+>(
+  params?: MockFakerJSGeneratorParams<TMode>
+): CompositionWithOneOfAndSimpleDictionary | null;
+
+export function getCompositionWithOneOfAndSimpleDictionaryMockFakerJs<
+  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences'
+>(
+  params: MockFakerJSGeneratorParams<TMode> = {}
+):
+  | ModelOrIdNullable<CompositionWithOneOfAndSimpleDictionary>
+  | null
+  | CompositionWithOneOfAndSimpleDictionary['id'] {
+  const modelName = 'CompositionWithOneOfAndSimpleDictionary';
+
+  const { faker = fakerDefault, fakerParams: { probability } = {} } = params;
+
+  return abstractGenerateFn<CompositionWithOneOfAndSimpleDictionary, TMode>(
+    modelName,
+    params,
+    (callStack) => ({
+      propA: faker.helpers.maybe(
+        () =>
+          faker.helpers.arrayElement([
+            faker.datatype.boolean(),
+            {
+              [faker.string.alpha({
+                length: {
+                  min: 2,
+                  max: 10,
+                },
+              })]: faker.helpers.maybe(() => faker.number.int(), {
+                probability,
+              }),
             },
-          })]: faker.helpers.maybe(() => faker.number.int()),
-        },
-      ])
-    ),
-  };
-};
+          ]),
+        {
+          probability,
+        }
+      ),
+    })
+  );
+}

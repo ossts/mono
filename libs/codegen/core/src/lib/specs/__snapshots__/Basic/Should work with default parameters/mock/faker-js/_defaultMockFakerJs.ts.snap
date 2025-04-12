@@ -1,14 +1,41 @@
 /* istanbul ignore file */
 import { faker as fakerDefault } from '@faker-js/faker';
 
-import type { MockFakerJSGeneratorParams } from './typesMockFakerJs';
+import { _default } from '../../common/models';
+import { abstractGenerateFn, createCallStack } from './helpersMockFakerJs';
+import type {
+  MockFakerJSGeneratorParams,
+  MockFakerJSGeneratorParamsMode,
+  ModelOrIdNullable,
+} from './typesMockFakerJs';
 
-export const get_defaultMockFakerJs = (params?: MockFakerJSGeneratorParams) => {
-  const { faker = fakerDefault } = params ?? {};
+export function get_defaultMockFakerJs<TMode extends 'withReferences'>(
+  params?: MockFakerJSGeneratorParams<TMode>
+): ModelOrIdNullable<_default> | null | _default['id'];
 
-  return {
-    name: faker.helpers.maybe(() =>
-      faker.string.alpha({ length: { min: 2, max: 10 } })
-    ),
-  };
-};
+export function get_defaultMockFakerJs<TMode extends 'standalone'>(
+  params?: MockFakerJSGeneratorParams<TMode>
+): _default | null;
+
+export function get_defaultMockFakerJs<
+  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences'
+>(
+  params: MockFakerJSGeneratorParams<TMode> = {}
+): ModelOrIdNullable<_default> | null | _default['id'] {
+  const modelName = '_default';
+
+  const { faker = fakerDefault, fakerParams: { probability } = {} } = params;
+
+  return abstractGenerateFn<_default, TMode>(
+    modelName,
+    params,
+    (callStack) => ({
+      name: faker.helpers.maybe(
+        () => faker.string.alpha({ length: { min: 2, max: 10 } }),
+        {
+          probability,
+        }
+      ),
+    })
+  );
+}

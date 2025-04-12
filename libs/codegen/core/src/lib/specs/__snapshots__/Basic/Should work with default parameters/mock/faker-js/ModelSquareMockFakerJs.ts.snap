@@ -1,15 +1,39 @@
 /* istanbul ignore file */
 import { faker as fakerDefault } from '@faker-js/faker';
 
-import type { MockFakerJSGeneratorParams } from './typesMockFakerJs';
+import { ModelSquare } from '../../common/models';
+import { abstractGenerateFn, createCallStack } from './helpersMockFakerJs';
+import type {
+  MockFakerJSGeneratorParams,
+  MockFakerJSGeneratorParamsMode,
+  ModelOrIdNullable,
+} from './typesMockFakerJs';
 
-export const getModelSquareMockFakerJs = (
-  params?: MockFakerJSGeneratorParams
-) => {
-  const { faker = fakerDefault } = params ?? {};
+export function getModelSquareMockFakerJs<TMode extends 'withReferences'>(
+  params?: MockFakerJSGeneratorParams<TMode>
+): ModelOrIdNullable<ModelSquare> | null | ModelSquare['id'];
 
-  return {
-    kind: faker.helpers.fake('square'),
-    sideLength: faker.helpers.maybe(() => faker.number.int()),
-  };
-};
+export function getModelSquareMockFakerJs<TMode extends 'standalone'>(
+  params?: MockFakerJSGeneratorParams<TMode>
+): ModelSquare | null;
+
+export function getModelSquareMockFakerJs<
+  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences'
+>(
+  params: MockFakerJSGeneratorParams<TMode> = {}
+): ModelOrIdNullable<ModelSquare> | null | ModelSquare['id'] {
+  const modelName = 'ModelSquare';
+
+  const { faker = fakerDefault, fakerParams: { probability } = {} } = params;
+
+  return abstractGenerateFn<ModelSquare, TMode>(
+    modelName,
+    params,
+    (callStack) => ({
+      kind: 'square' as const,
+      sideLength: faker.helpers.maybe(() => faker.number.int(), {
+        probability,
+      }),
+    })
+  );
+}

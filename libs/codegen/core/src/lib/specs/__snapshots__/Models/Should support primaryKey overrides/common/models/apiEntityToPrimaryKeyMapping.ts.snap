@@ -1,0 +1,8 @@
+export const apiEntityToPrimaryKeyMapping = {
+  ApiResponse: '' as const,
+  Category: 'uuid' as const,
+  Order: 'orderId' as const,
+  Pet: 'uuid' as const,
+  Tag: 'idTag' as const,
+  User: 'uuid' as const,
+} as const;

@@ -1,5 +1,59 @@
-import type { Faker } from '@faker-js/faker';
+import { type Faker, SimpleHelpersModule } from '@faker-js/faker';
 
-export type MockFakerJSGeneratorParams = {
+import type { AllApiEntities, AllApiModels } from '../../common/models';
+
+/**
+ * `standalone` - generated result will have all required information
+ *
+ * `withReferences` - will only generate fields of current entity. All reference type will have actual references.
+ */
+export type MockFakerJSGeneratorParamsMode = 'standalone' | 'withReferences';
+
+export type MockFakerJSGeneratorParamsCallStack = {
+  /**
+   * Full path to current property.
+   *
+   * Will always start with `$$root$$` if any nesting is present
+   */
+  stack: string[];
+
+  /**
+   * Keep track for number of times specific entity has been called.
+   * This is required to prevent endless recursion calls.
+   */
+  entriesCallCount: Map<AllApiEntities, number>;
+};
+
+export type MockFakerJSGeneratorParams<
+  TMode extends MockFakerJSGeneratorParamsMode = MockFakerJSGeneratorParamsMode
+> = {
+  /**
+   * Faker instance
+   */
   faker?: Faker;
+
+  /**
+   * Various settings to allow override of defaults
+   */
+  fakerParams?: MockFakerJSGeneratorParamsFakerParams;
+
+  /**
+   * Defaults to `withReferences`
+   */
+  mode?: TMode;
+
+  callStack?: MockFakerJSGeneratorParamsCallStack;
+};
+
+export interface MockFakerJSGeneratorParamsFakerParams {
+  /**
+   * This would override probability change of https://fakerjs.dev/api/helpers#maybe.
+   */
+  probability?: number;
+}
+
+export type ModelOrIdNullable<TModel extends AllApiModels> = {
+  [Property in keyof TModel]?: Required<TModel>[Property] extends AllApiModels
+    ? TModel[Property] | string | number | null
+    : TModel[Property];
 };

@@ -19,7 +19,14 @@ export const fakerTypeFormat: CodegenHandlebarsHelperWrapper<
   MockFakerJsGeneratorSettings
 > = ({ handlebarsInstance, settings: generatorSettings }) =>
   function (this: ParsedModelOpenAPIV3, options: Handlebars.HelperOptions) {
-    const fullPath = getFullPath(this, true);
+    const fullPathHelper: Handlebars.HelperDelegate =
+      handlebarsInstance.helpers['utilsFullPath'];
+
+    // here we transform value to lower case to make it match more formats
+    // passed values are already transform to lower case during initialization
+    const fullPath = fullPathHelper
+      .call(this, options)
+      .map((item: string) => item.toLowerCase());
 
     const paramsGeneratorFnParams: MockFakerJSGeneratorGenerateParamsFnParams =
       {
@@ -257,36 +264,4 @@ const formatDefaultBasedOnType = (
   }
 
   return string;
-};
-
-const getFullPath = (
-  type: ParsedModelOpenAPIV3,
-  firstCall = false
-): string[] => {
-  let path: string[] = [];
-
-  // we should only return path if deepest node has name
-  if (firstCall && !type.name) return [];
-
-  if (type.name) {
-    path.push(type.name);
-  }
-
-  if (!type.isRoot) {
-    if (type.refToParent) {
-      const tmp = getFullPath(type.refToParent);
-
-      if (tmp.length) {
-        path = tmp.concat(path);
-      }
-    } else {
-      // eslint-disable-next-line no-debugger
-      debugger;
-      throw new Error(
-        'No "refToParent" available for type. This should never happen'
-      );
-    }
-  }
-
-  return path.map((item) => item.toLowerCase());
 };

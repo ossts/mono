@@ -2,12 +2,29 @@
 import { faker as fakerDefault } from '@faker-js/faker';
 
 import { EnumWithNumbers } from '../../common/models';
-import type { MockFakerJSGeneratorParams } from './typesMockFakerJs';
+import { abstractGenerateFn, createCallStack } from './helpersMockFakerJs';
+import type {
+  MockFakerJSGeneratorParams,
+  MockFakerJSGeneratorParamsMode,
+  ModelOrIdNullable,
+} from './typesMockFakerJs';
 
-export const getEnumWithNumbersMockFakerJs = (
-  params?: MockFakerJSGeneratorParams
-) => {
-  const { faker = fakerDefault } = params ?? {};
+export function getEnumWithNumbersMockFakerJs<
+  TMode extends 'standalone' = 'standalone'
+>(params?: MockFakerJSGeneratorParams<TMode>): EnumWithNumbers | null {
+  const modelName = 'EnumWithNumbers';
 
-  return faker.helpers.enumValue(EnumWithNumbers);
-};
+  const {
+    faker = fakerDefault,
+    fakerParams: { probability } = {},
+    mode = 'standalone',
+    callStack = createCallStack(),
+  } = params ?? {};
+
+  const callCount = callStack.entriesCallCount.get(modelName) ?? 0;
+  if (callCount > 10) return null;
+
+  const result: EnumWithNumbers = faker.helpers.enumValue(EnumWithNumbers);
+
+  return result;
+}

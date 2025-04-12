@@ -36,8 +36,17 @@ export class MockFakerJsGenerator
             nameFieldOrFn: () => 'types',
             doNotAddToIndex: true,
           },
+          helpers: {
+            dataPath: '',
+            nameFieldOrFn: () => 'helpers',
+          },
         },
-        dependsOn: ['utils', 'common/models', ...(config?.dependsOn ?? [])],
+        dependsOn: [
+          'utils',
+          'common/models',
+          'schema/zod',
+          ...(config?.dependsOn ?? []),
+        ],
       },
       config,
       {

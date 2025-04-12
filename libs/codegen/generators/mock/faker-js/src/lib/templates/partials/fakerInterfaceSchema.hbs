@@ -1,6 +1,17 @@
-{{#if enums}}
 import { {{name}} } from '../../common/models';
-{{/if}}
 
-export const get{{{utilsNameWithNS name}}} = {{>fakerGeneratorParamsStart}} {{>fakerTypeInterface}}
-{{>fakerGeneratorParamsEnd}}
+{{!-- this overload required to make proper return types for generator --}}
+export function get{{{utilsNameWithNS name}}} <
+  TMode extends 'withReferences'
+>(params?: MockFakerJSGeneratorParams<TMode>): ModelOrIdNullable<{{name}}> | null
+{{#commonModelsEntityHasPrimaryKey @root.allSettings ~}}
+	| {{name}}['{{commonModelsEntityToPrimaryKeyNameMapping}}']
+{{~/commonModelsEntityHasPrimaryKey}};
+
+{{!-- this overload required to make proper return types for generator --}}
+export function get{{{utilsNameWithNS name}}} <
+  TMode extends 'standalone'
+>(params?: MockFakerJSGeneratorParams<TMode>): {{name}} | null;
+
+export function get{{{utilsNameWithNS name}}} {{>fakerGeneratorParamsInterfaceStart}} {{>fakerTypeInterface}}
+{{>fakerGeneratorParamsInterfaceEnd}}

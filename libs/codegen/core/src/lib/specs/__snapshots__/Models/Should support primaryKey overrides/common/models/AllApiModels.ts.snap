@@ -1,0 +1,3 @@
+import { ApiResponse, Category, Order, Pet, Tag, User } from './';
+
+export type AllApiModels = ApiResponse | Category | Order | Pet | Tag | User;

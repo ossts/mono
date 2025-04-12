@@ -1,6 +1,10 @@
 /* istanbul ignore file */
 import { z } from 'zod';
 
-export const ModelWithCircularReferenceSchemaZod = z.object({
-  prop: ModelWithCircularReferenceSchemaZod,
-});
+export const ModelWithCircularReferenceSchemaZod = z
+  .object({
+    prop: ModelWithCircularReferenceSchemaZod,
+  })
+  .describe(
+    `Model:ModelWithCircularReference---This is a model with one property containing a circular reference`
+  );

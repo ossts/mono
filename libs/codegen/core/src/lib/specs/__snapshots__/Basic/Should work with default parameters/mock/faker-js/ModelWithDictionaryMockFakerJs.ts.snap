@@ -1,23 +1,55 @@
 /* istanbul ignore file */
 import { faker as fakerDefault } from '@faker-js/faker';
 
-import type { MockFakerJSGeneratorParams } from './typesMockFakerJs';
+import { ModelWithDictionary } from '../../common/models';
+import { abstractGenerateFn, createCallStack } from './helpersMockFakerJs';
+import type {
+  MockFakerJSGeneratorParams,
+  MockFakerJSGeneratorParamsMode,
+  ModelOrIdNullable,
+} from './typesMockFakerJs';
 
-export const getModelWithDictionaryMockFakerJs = (
-  params?: MockFakerJSGeneratorParams
-) => {
-  const { faker = fakerDefault } = params ?? {};
+export function getModelWithDictionaryMockFakerJs<
+  TMode extends 'withReferences'
+>(
+  params?: MockFakerJSGeneratorParams<TMode>
+): ModelOrIdNullable<ModelWithDictionary> | null | ModelWithDictionary['id'];
 
-  return {
-    prop: faker.helpers.maybe(() => ({
-      [faker.string.alpha({
-        length: {
-          min: 2,
-          max: 10,
-        },
-      })]: faker.helpers.maybe(() =>
-        faker.string.alpha({ length: { min: 2, max: 10 } })
+export function getModelWithDictionaryMockFakerJs<TMode extends 'standalone'>(
+  params?: MockFakerJSGeneratorParams<TMode>
+): ModelWithDictionary | null;
+
+export function getModelWithDictionaryMockFakerJs<
+  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences'
+>(
+  params: MockFakerJSGeneratorParams<TMode> = {}
+): ModelOrIdNullable<ModelWithDictionary> | null | ModelWithDictionary['id'] {
+  const modelName = 'ModelWithDictionary';
+
+  const { faker = fakerDefault, fakerParams: { probability } = {} } = params;
+
+  return abstractGenerateFn<ModelWithDictionary, TMode>(
+    modelName,
+    params,
+    (callStack) => ({
+      prop: faker.helpers.maybe(
+        () => ({
+          [faker.string.alpha({
+            length: {
+              min: 2,
+              max: 10,
+            },
+          })]: faker.helpers.maybe(
+            () => faker.string.alpha({ length: { min: 2, max: 10 } }),
+            {
+              probability,
+            }
+          ),
+        }),
+        {
+          probability,
+        }
       ),
-    })),
-  };
-};
+    })
+  );
+}

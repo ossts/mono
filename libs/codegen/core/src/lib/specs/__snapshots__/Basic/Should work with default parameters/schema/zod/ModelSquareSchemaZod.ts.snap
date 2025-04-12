@@ -1,7 +1,9 @@
 /* istanbul ignore file */
 import { z } from 'zod';
 
-export const ModelSquareSchemaZod = z.object({
-  kind: z.literal('square'),
-  sideLength: z.number().optional(),
-});
+export const ModelSquareSchemaZod = z
+  .object({
+    kind: z.literal('square'),
+    sideLength: z.number().optional(),
+  })
+  .describe(`Model:ModelSquare---Square`);

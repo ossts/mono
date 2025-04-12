@@ -1,0 +1,5 @@
+{{#with data}}
+export const apiEntityToPrimaryKeyMapping = {
+	{{#each models}}'{{name}}': '{{commonModelsEntityToPrimaryKeyNameMapping}}' as const,{{/each}}
+} as const;
+{{/with}}

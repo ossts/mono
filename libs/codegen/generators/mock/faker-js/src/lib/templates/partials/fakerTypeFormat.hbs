@@ -1,10 +1,10 @@
 {{~#utilsEquals export 'dictionary'~}}
-	get{{{utilsNameWithNS type}}}(params)
+	{{>fakerReference}}
 {{~else utilsEquals export 'reference'~}}
 	{{~#utilsStartsWith base "'"~}}
-		faker.helpers.fake({{base}})
+		{{base}} as const
 	{{~else~}}
-		get{{{utilsNameWithNS type}}}(params)
+		{{>fakerReference}}
 	{{~/utilsStartsWith~}}
 {{~else~}}
 	{{fakerTypeFormat}}

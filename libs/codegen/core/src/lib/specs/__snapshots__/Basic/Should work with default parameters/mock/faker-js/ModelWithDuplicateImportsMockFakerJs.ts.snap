@@ -1,17 +1,77 @@
 /* istanbul ignore file */
 import { faker as fakerDefault } from '@faker-js/faker';
 
+import { ModelWithDuplicateImports } from '../../common/models';
 import { getModelWithStringMockFakerJs } from './ModelWithStringMockFakerJs';
-import type { MockFakerJSGeneratorParams } from './typesMockFakerJs';
+import { abstractGenerateFn, createCallStack } from './helpersMockFakerJs';
+import type {
+  MockFakerJSGeneratorParams,
+  MockFakerJSGeneratorParamsMode,
+  ModelOrIdNullable,
+} from './typesMockFakerJs';
 
-export const getModelWithDuplicateImportsMockFakerJs = (
-  params?: MockFakerJSGeneratorParams
-) => {
-  const { faker = fakerDefault } = params ?? {};
+export function getModelWithDuplicateImportsMockFakerJs<
+  TMode extends 'withReferences'
+>(
+  params?: MockFakerJSGeneratorParams<TMode>
+):
+  | ModelOrIdNullable<ModelWithDuplicateImports>
+  | null
+  | ModelWithDuplicateImports['id'];
 
-  return {
-    propA: faker.helpers.maybe(() => getModelWithStringMockFakerJs(params)),
-    propB: faker.helpers.maybe(() => getModelWithStringMockFakerJs(params)),
-    propC: faker.helpers.maybe(() => getModelWithStringMockFakerJs(params)),
-  };
-};
+export function getModelWithDuplicateImportsMockFakerJs<
+  TMode extends 'standalone'
+>(params?: MockFakerJSGeneratorParams<TMode>): ModelWithDuplicateImports | null;
+
+export function getModelWithDuplicateImportsMockFakerJs<
+  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences'
+>(
+  params: MockFakerJSGeneratorParams<TMode> = {}
+):
+  | ModelOrIdNullable<ModelWithDuplicateImports>
+  | null
+  | ModelWithDuplicateImports['id'] {
+  const modelName = 'ModelWithDuplicateImports';
+
+  const { faker = fakerDefault, fakerParams: { probability } = {} } = params;
+
+  return abstractGenerateFn<ModelWithDuplicateImports, TMode>(
+    modelName,
+    params,
+    (callStack) => ({
+      propA: faker.helpers.maybe(
+        () =>
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          getModelWithStringMockFakerJs<any>({
+            ...params,
+            callStack: createCallStack(callStack, modelName, 'propA'),
+          }),
+        {
+          probability,
+        }
+      ),
+      propB: faker.helpers.maybe(
+        () =>
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          getModelWithStringMockFakerJs<any>({
+            ...params,
+            callStack: createCallStack(callStack, modelName, 'propB'),
+          }),
+        {
+          probability,
+        }
+      ),
+      propC: faker.helpers.maybe(
+        () =>
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          getModelWithStringMockFakerJs<any>({
+            ...params,
+            callStack: createCallStack(callStack, modelName, 'propC'),
+          }),
+        {
+          probability,
+        }
+      ),
+    })
+  );
+}

@@ -1,0 +1,7 @@
+{{#if refToParent}}
+{{#if description}}
+.describe(`{{description}}`)
+{{/if}}
+{{else}}
+.describe(`Model:{{name}}{{#if description}}---{{description}}{{/if}}`)
+{{/if}}

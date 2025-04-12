@@ -1,6 +1,10 @@
 /* istanbul ignore file */
 import { z } from 'zod';
 
-export const ModelWithIntegerSchemaZod = z.object({
-  prop: z.number().optional(),
-});
+export const ModelWithIntegerSchemaZod = z
+  .object({
+    prop: z.number().optional(),
+  })
+  .describe(
+    `Model:ModelWithInteger---This is a model with one number property`
+  );

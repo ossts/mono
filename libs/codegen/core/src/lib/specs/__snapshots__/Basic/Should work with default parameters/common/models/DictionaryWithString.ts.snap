@@ -3,4 +3,4 @@
 /**
  * This is a string dictionary
  */
-export type DictionaryWithString = Record<string, string>;
+export type DictionaryWithString = Partial<Record<string, string>>;

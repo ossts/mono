@@ -1,18 +1,47 @@
 /* istanbul ignore file */
 import { faker as fakerDefault } from '@faker-js/faker';
 
-import type { MockFakerJSGeneratorParams } from './typesMockFakerJs';
+import { File } from '../../common/models';
+import { abstractGenerateFn, createCallStack } from './helpersMockFakerJs';
+import type {
+  MockFakerJSGeneratorParams,
+  MockFakerJSGeneratorParamsMode,
+  ModelOrIdNullable,
+} from './typesMockFakerJs';
 
-export const getFileMockFakerJs = (params?: MockFakerJSGeneratorParams) => {
-  const { faker = fakerDefault } = params ?? {};
+export function getFileMockFakerJs<TMode extends 'withReferences'>(
+  params?: MockFakerJSGeneratorParams<TMode>
+): ModelOrIdNullable<File> | null | File['id'];
 
-  return {
-    id: faker.helpers.maybe(() => faker.string.uuid()),
-    updated_at: faker.helpers.maybe(() => faker.date.anytime()),
-    created_at: faker.helpers.maybe(() => faker.date.anytime()),
+export function getFileMockFakerJs<TMode extends 'standalone'>(
+  params?: MockFakerJSGeneratorParams<TMode>
+): File | null;
+
+export function getFileMockFakerJs<
+  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences'
+>(
+  params: MockFakerJSGeneratorParams<TMode> = {}
+): ModelOrIdNullable<File> | null | File['id'] {
+  const modelName = 'File';
+
+  const { faker = fakerDefault, fakerParams: { probability } = {} } = params;
+
+  return abstractGenerateFn<File, TMode>(modelName, params, (callStack) => ({
+    id: faker.helpers.maybe(() => faker.string.uuid(), {
+      probability,
+    }),
+    updated_at: faker.helpers.maybe(() => faker.date.anytime(), {
+      probability,
+    }),
+    created_at: faker.helpers.maybe(() => faker.date.anytime(), {
+      probability,
+    }),
     mime: faker.string.alpha({ length: { min: 2, max: 10 } }),
-    file: faker.helpers.maybe(() =>
-      faker.string.alpha({ length: { min: 2, max: 10 } })
+    file: faker.helpers.maybe(
+      () => faker.string.alpha({ length: { min: 2, max: 10 } }),
+      {
+        probability,
+      }
     ),
-  };
-};
+  }));
+}

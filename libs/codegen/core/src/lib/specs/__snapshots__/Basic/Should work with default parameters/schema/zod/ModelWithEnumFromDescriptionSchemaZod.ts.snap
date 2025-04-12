@@ -1,6 +1,10 @@
 /* istanbul ignore file */
 import { z } from 'zod';
 
-export const ModelWithEnumFromDescriptionSchemaZod = z.object({
-  test: z.number().optional(),
-});
+export const ModelWithEnumFromDescriptionSchemaZod = z
+  .object({
+    test: z.number().optional(),
+  })
+  .describe(
+    `Model:ModelWithEnumFromDescription---This is a model with one enum`
+  );

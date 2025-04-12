@@ -2,17 +2,48 @@
 import { faker as fakerDefault } from '@faker-js/faker';
 
 import { Order } from '../../common/models';
-import type { MockFakerJSGeneratorParams } from './typesMockFakerJs';
+import { abstractGenerateFn, createCallStack } from './helpersMockFakerJs';
+import type {
+  MockFakerJSGeneratorParams,
+  MockFakerJSGeneratorParamsMode,
+  ModelOrIdNullable,
+} from './typesMockFakerJs';
 
-export const getOrderMockFakerJs = (params?: MockFakerJSGeneratorParams) => {
-  const { faker = fakerDefault } = params ?? {};
+export function getOrderMockFakerJs<TMode extends 'withReferences'>(
+  params?: MockFakerJSGeneratorParams<TMode>
+): ModelOrIdNullable<Order> | null | Order['id'];
 
-  return {
-    id: faker.helpers.maybe(() => faker.string.uid()),
-    petId: faker.helpers.maybe(() => faker.number.int()),
-    quantity: faker.helpers.maybe(() => faker.number.int()),
-    shipDate: faker.helpers.maybe(() => faker.date.anytime()),
-    status: faker.helpers.maybe(() => faker.helpers.enumValue(Order.status)),
-    complete: faker.helpers.maybe(() => faker.datatype.boolean()),
-  };
-};
+export function getOrderMockFakerJs<TMode extends 'standalone'>(
+  params?: MockFakerJSGeneratorParams<TMode>
+): Order | null;
+
+export function getOrderMockFakerJs<
+  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences'
+>(
+  params: MockFakerJSGeneratorParams<TMode> = {}
+): ModelOrIdNullable<Order> | null | Order['id'] {
+  const modelName = 'Order';
+
+  const { faker = fakerDefault, fakerParams: { probability } = {} } = params;
+
+  return abstractGenerateFn<Order, TMode>(modelName, params, (callStack) => ({
+    id: faker.helpers.maybe(() => faker.string.uid(), {
+      probability,
+    }),
+    petId: faker.helpers.maybe(() => faker.number.int(), {
+      probability,
+    }),
+    quantity: faker.helpers.maybe(() => faker.number.int(), {
+      probability,
+    }),
+    shipDate: faker.helpers.maybe(() => faker.date.anytime(), {
+      probability,
+    }),
+    status: faker.helpers.maybe(() => faker.helpers.enumValue(Order.status), {
+      probability,
+    }),
+    complete: faker.helpers.maybe(() => faker.datatype.boolean(), {
+      probability,
+    }),
+  }));
+}

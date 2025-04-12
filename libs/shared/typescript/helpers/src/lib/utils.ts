@@ -1,8 +1,8 @@
 /**
  * A reusable empty function.
  */
-// eslint-disable-next-line @typescript-eslint/no-empty-function
-const emptyFn = () => {};
+// eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars
+const emptyFn = (...args: any[]): any => {};
 
 /**
  * A reusable identity function that simply returns its first argument.

@@ -1,33 +1,72 @@
 /* istanbul ignore file */
 import { faker as fakerDefault } from '@faker-js/faker';
 
-import type { MockFakerJSGeneratorParams } from './typesMockFakerJs';
+import { CompositionWithOneOfAndComplexArrayDictionary } from '../../common/models';
+import { abstractGenerateFn, createCallStack } from './helpersMockFakerJs';
+import type {
+  MockFakerJSGeneratorParams,
+  MockFakerJSGeneratorParamsMode,
+  ModelOrIdNullable,
+} from './typesMockFakerJs';
 
-export const getCompositionWithOneOfAndComplexArrayDictionaryMockFakerJs = (
-  params?: MockFakerJSGeneratorParams
-) => {
-  const { faker = fakerDefault } = params ?? {};
+export function getCompositionWithOneOfAndComplexArrayDictionaryMockFakerJs<
+  TMode extends 'withReferences'
+>(
+  params?: MockFakerJSGeneratorParams<TMode>
+):
+  | ModelOrIdNullable<CompositionWithOneOfAndComplexArrayDictionary>
+  | null
+  | CompositionWithOneOfAndComplexArrayDictionary['id'];
 
-  return {
-    propA: faker.helpers.maybe(() =>
-      faker.helpers.arrayElement([
-        faker.datatype.boolean(),
-        {
-          [faker.string.alpha({
-            length: {
-              min: 2,
-              max: 10,
-            },
-          })]: faker.helpers.maybe(() =>
-            faker.helpers.arrayElements([
-              faker.helpers.arrayElement([
-                faker.number.int(),
-                faker.string.alpha({ length: { min: 2, max: 10 } }),
-              ]),
-            ])
-          ),
-        },
-      ])
+export function getCompositionWithOneOfAndComplexArrayDictionaryMockFakerJs<
+  TMode extends 'standalone'
+>(
+  params?: MockFakerJSGeneratorParams<TMode>
+): CompositionWithOneOfAndComplexArrayDictionary | null;
+
+export function getCompositionWithOneOfAndComplexArrayDictionaryMockFakerJs<
+  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences'
+>(
+  params: MockFakerJSGeneratorParams<TMode> = {}
+):
+  | ModelOrIdNullable<CompositionWithOneOfAndComplexArrayDictionary>
+  | null
+  | CompositionWithOneOfAndComplexArrayDictionary['id'] {
+  const modelName = 'CompositionWithOneOfAndComplexArrayDictionary';
+
+  const { faker = fakerDefault, fakerParams: { probability } = {} } = params;
+
+  return abstractGenerateFn<
+    CompositionWithOneOfAndComplexArrayDictionary,
+    TMode
+  >(modelName, params, (callStack) => ({
+    propA: faker.helpers.maybe(
+      () =>
+        faker.helpers.arrayElement([
+          faker.datatype.boolean(),
+          {
+            [faker.string.alpha({
+              length: {
+                min: 2,
+                max: 10,
+              },
+            })]: faker.helpers.maybe(
+              () =>
+                faker.helpers.arrayElements([
+                  faker.helpers.arrayElement([
+                    faker.number.int(),
+                    faker.string.alpha({ length: { min: 2, max: 10 } }),
+                  ]),
+                ]),
+              {
+                probability,
+              }
+            ),
+          },
+        ]),
+      {
+        probability,
+      }
     ),
-  };
-};
+  }));
+}

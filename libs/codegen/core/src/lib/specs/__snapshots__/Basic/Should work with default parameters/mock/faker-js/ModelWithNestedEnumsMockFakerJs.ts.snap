@@ -1,47 +1,94 @@
 /* istanbul ignore file */
 import { faker as fakerDefault } from '@faker-js/faker';
 
-import type { MockFakerJSGeneratorParams } from './typesMockFakerJs';
+import { ModelWithNestedEnums } from '../../common/models';
+import { abstractGenerateFn, createCallStack } from './helpersMockFakerJs';
+import type {
+  MockFakerJSGeneratorParams,
+  MockFakerJSGeneratorParamsMode,
+  ModelOrIdNullable,
+} from './typesMockFakerJs';
 
-export const getModelWithNestedEnumsMockFakerJs = (
-  params?: MockFakerJSGeneratorParams
-) => {
-  const { faker = fakerDefault } = params ?? {};
+export function getModelWithNestedEnumsMockFakerJs<
+  TMode extends 'withReferences'
+>(
+  params?: MockFakerJSGeneratorParams<TMode>
+): ModelOrIdNullable<ModelWithNestedEnums> | null | ModelWithNestedEnums['id'];
 
-  return {
-    dictionaryWithEnum: faker.helpers.maybe(() => ({
-      [faker.string.alpha({
-        length: {
-          min: 2,
-          max: 10,
-        },
-      })]: faker.helpers.maybe(() =>
-        faker.helpers.arrayElement([
-          faker.helpers.fake('Success'),
-          faker.helpers.fake('Warning'),
-          faker.helpers.fake('Error'),
-        ])
+export function getModelWithNestedEnumsMockFakerJs<TMode extends 'standalone'>(
+  params?: MockFakerJSGeneratorParams<TMode>
+): ModelWithNestedEnums | null;
+
+export function getModelWithNestedEnumsMockFakerJs<
+  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences'
+>(
+  params: MockFakerJSGeneratorParams<TMode> = {}
+): ModelOrIdNullable<ModelWithNestedEnums> | null | ModelWithNestedEnums['id'] {
+  const modelName = 'ModelWithNestedEnums';
+
+  const { faker = fakerDefault, fakerParams: { probability } = {} } = params;
+
+  return abstractGenerateFn<ModelWithNestedEnums, TMode>(
+    modelName,
+    params,
+    (callStack) => ({
+      dictionaryWithEnum: faker.helpers.maybe(
+        () => ({
+          [faker.string.alpha({
+            length: {
+              min: 2,
+              max: 10,
+            },
+          })]: faker.helpers.maybe(
+            () =>
+              faker.helpers.arrayElement([
+                faker.helpers.fake('Success'),
+                faker.helpers.fake('Warning'),
+                faker.helpers.fake('Error'),
+              ]),
+            {
+              probability,
+            }
+          ),
+        }),
+        {
+          probability,
+        }
       ),
-    })),
-    dictionaryWithEnumFromDescription: faker.helpers.maybe(() => ({
-      [faker.string.alpha({
-        length: {
-          min: 2,
-          max: 10,
-        },
-      })]: faker.helpers.maybe(() => faker.number.int()),
-    })),
-    arrayWithEnum: faker.helpers.maybe(() =>
-      faker.helpers.arrayElements([
-        faker.helpers.arrayElement([
-          faker.helpers.fake('Success'),
-          faker.helpers.fake('Warning'),
-          faker.helpers.fake('Error'),
-        ]),
-      ])
-    ),
-    arrayWithDescription: faker.helpers.maybe(() =>
-      faker.helpers.arrayElements([faker.number.int()])
-    ),
-  };
-};
+      dictionaryWithEnumFromDescription: faker.helpers.maybe(
+        () => ({
+          [faker.string.alpha({
+            length: {
+              min: 2,
+              max: 10,
+            },
+          })]: faker.helpers.maybe(() => faker.number.int(), {
+            probability,
+          }),
+        }),
+        {
+          probability,
+        }
+      ),
+      arrayWithEnum: faker.helpers.maybe(
+        () =>
+          faker.helpers.arrayElements([
+            faker.helpers.arrayElement([
+              faker.helpers.fake('Success'),
+              faker.helpers.fake('Warning'),
+              faker.helpers.fake('Error'),
+            ]),
+          ]),
+        {
+          probability,
+        }
+      ),
+      arrayWithDescription: faker.helpers.maybe(
+        () => faker.helpers.arrayElements([faker.number.int()]),
+        {
+          probability,
+        }
+      ),
+    })
+  );
+}

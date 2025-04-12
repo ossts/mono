@@ -6,13 +6,17 @@ import { ModelWithDictionarySchemaZod } from './ModelWithDictionarySchemaZod';
 import { ModelWithEnumSchemaZod } from './ModelWithEnumSchemaZod';
 import { ModelWithStringSchemaZod } from './ModelWithStringSchemaZod';
 
-export const CompositionWithAnyOfSchemaZod = z.object({
-  propA: z
-    .union([
-      ModelWithStringSchemaZod,
-      ModelWithEnumSchemaZod,
-      ModelWithArraySchemaZod,
-      ModelWithDictionarySchemaZod,
-    ])
-    .optional(),
-});
+export const CompositionWithAnyOfSchemaZod = z
+  .object({
+    propA: z
+      .union([
+        ModelWithStringSchemaZod,
+        ModelWithEnumSchemaZod,
+        ModelWithArraySchemaZod,
+        ModelWithDictionarySchemaZod,
+      ])
+      .optional(),
+  })
+  .describe(
+    `Model:CompositionWithAnyOf---This is a model with one property with a 'any of' relationship`
+  );

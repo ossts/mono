@@ -1,28 +1,66 @@
 /* istanbul ignore file */
 import { faker as fakerDefault } from '@faker-js/faker';
 
-import type { MockFakerJSGeneratorParams } from './typesMockFakerJs';
+import { CompositionWithOneOfAndSimpleArrayDictionary } from '../../common/models';
+import { abstractGenerateFn, createCallStack } from './helpersMockFakerJs';
+import type {
+  MockFakerJSGeneratorParams,
+  MockFakerJSGeneratorParamsMode,
+  ModelOrIdNullable,
+} from './typesMockFakerJs';
 
-export const getCompositionWithOneOfAndSimpleArrayDictionaryMockFakerJs = (
-  params?: MockFakerJSGeneratorParams
-) => {
-  const { faker = fakerDefault } = params ?? {};
+export function getCompositionWithOneOfAndSimpleArrayDictionaryMockFakerJs<
+  TMode extends 'withReferences'
+>(
+  params?: MockFakerJSGeneratorParams<TMode>
+):
+  | ModelOrIdNullable<CompositionWithOneOfAndSimpleArrayDictionary>
+  | null
+  | CompositionWithOneOfAndSimpleArrayDictionary['id'];
 
-  return {
-    propA: faker.helpers.maybe(() =>
-      faker.helpers.arrayElement([
-        faker.datatype.boolean(),
-        {
-          [faker.string.alpha({
-            length: {
-              min: 2,
-              max: 10,
-            },
-          })]: faker.helpers.maybe(() =>
-            faker.helpers.arrayElements([faker.datatype.boolean()])
-          ),
-        },
-      ])
+export function getCompositionWithOneOfAndSimpleArrayDictionaryMockFakerJs<
+  TMode extends 'standalone'
+>(
+  params?: MockFakerJSGeneratorParams<TMode>
+): CompositionWithOneOfAndSimpleArrayDictionary | null;
+
+export function getCompositionWithOneOfAndSimpleArrayDictionaryMockFakerJs<
+  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences'
+>(
+  params: MockFakerJSGeneratorParams<TMode> = {}
+):
+  | ModelOrIdNullable<CompositionWithOneOfAndSimpleArrayDictionary>
+  | null
+  | CompositionWithOneOfAndSimpleArrayDictionary['id'] {
+  const modelName = 'CompositionWithOneOfAndSimpleArrayDictionary';
+
+  const { faker = fakerDefault, fakerParams: { probability } = {} } = params;
+
+  return abstractGenerateFn<
+    CompositionWithOneOfAndSimpleArrayDictionary,
+    TMode
+  >(modelName, params, (callStack) => ({
+    propA: faker.helpers.maybe(
+      () =>
+        faker.helpers.arrayElement([
+          faker.datatype.boolean(),
+          {
+            [faker.string.alpha({
+              length: {
+                min: 2,
+                max: 10,
+              },
+            })]: faker.helpers.maybe(
+              () => faker.helpers.arrayElements([faker.datatype.boolean()]),
+              {
+                probability,
+              }
+            ),
+          },
+        ]),
+      {
+        probability,
+      }
     ),
-  };
-};
+  }));
+}
