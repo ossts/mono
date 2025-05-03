@@ -63,7 +63,7 @@
       }
     }
   },
-  "nxCloudAccessToken": "OTRiYzlhOTUtYjhlYS00ZjhkLWFlOTQtMTdkNjY1MWQ2YmFifHJlYWQtd3JpdGU=",
   "useInferencePlugins": false,
-  "useLegacyCache": true
+  "useLegacyCache": true,
+  "nxCloudId": "63bc209cd565450ffa787298"
 }
