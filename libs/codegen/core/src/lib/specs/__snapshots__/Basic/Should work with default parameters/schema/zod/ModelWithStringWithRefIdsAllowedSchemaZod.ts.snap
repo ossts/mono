@@ -1,0 +1,10 @@
+/* istanbul ignore file */
+import { z } from 'zod';
+
+export const ModelWithStringWithRefIdsAllowedSchemaZod = z
+  .object({
+    prop: z.string().optional(),
+  })
+  .describe(`Model:ModelWithString---This is a model with one string property`);
+export const ModelWithStringWithRefIdsAllowedSchemaZodNoPrimaryKey =
+  ModelWithStringWithRefIdsAllowedSchemaZod;

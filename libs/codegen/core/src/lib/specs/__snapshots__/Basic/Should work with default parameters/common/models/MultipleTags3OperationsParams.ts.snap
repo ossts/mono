@@ -1,0 +1,5 @@
+/* istanbul ignore file */
+
+export namespace MultipleTags3OperationsParams {
+  export namespace DummyB {}
+}

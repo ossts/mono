@@ -1,0 +1,9 @@
+{{#if @root.rootNameSuffix}}
+	{{#utilsEquals @root.rootNameSuffix 'WithRefIdsAllowed'}}
+		{{{utilsNameWithNS name}}}.or(z.string()).or(z.number()){{#unless required}}.optional().nullable(){{/unless}}
+	{{else utilsEquals @root.rootNameSuffix 'WithRefIdsOnly'}}
+		z.string().or(z.number()){{#unless required}}.optional().nullable(){{/unless}}
+	{{/utilsEquals}}
+{{else}}
+	{{{utilsNameWithNS name}}}{{#unless required}}.optional().nullable(){{/unless}}
+{{/if}}

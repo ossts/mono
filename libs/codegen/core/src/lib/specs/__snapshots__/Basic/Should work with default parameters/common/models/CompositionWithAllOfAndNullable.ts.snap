@@ -15,3 +15,7 @@ export type CompositionWithAllOfAndNullable = {
         ModelWithDictionary)
     | null;
 };
+
+export namespace CompositionWithAllOfAndNullable {
+  export type NoPrimaryKey = CompositionWithAllOfAndNullable;
+}

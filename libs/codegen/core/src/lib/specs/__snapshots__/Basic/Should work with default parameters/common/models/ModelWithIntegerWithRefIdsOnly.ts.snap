@@ -1,0 +1,15 @@
+/* istanbul ignore file */
+
+/**
+ * This is a model with one number property
+ */
+export type ModelWithIntegerWithRefIdsOnly = {
+  /**
+   * This is a simple number property
+   */
+  prop?: number;
+};
+
+export namespace ModelWithIntegerWithRefIdsOnly {
+  export type NoPrimaryKey = ModelWithIntegerWithRefIdsOnly;
+}

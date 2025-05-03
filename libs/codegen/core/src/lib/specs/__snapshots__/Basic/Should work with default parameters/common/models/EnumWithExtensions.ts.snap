@@ -17,3 +17,7 @@ export enum EnumWithExtensions {
    */
   CUSTOM_ERROR = 500,
 }
+
+export namespace EnumWithExtensions {
+  export type NoPrimaryKey = EnumWithExtensions;
+}

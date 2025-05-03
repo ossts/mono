@@ -1,0 +1,11 @@
+case 'create': {
+	const data = allFaker.createEntity(
+		variant.model,
+		body,
+		params.persistence.initializerParams?.generatorParams
+	);
+
+	if (variant.isVoid) return getVoidResponse();
+
+	return HttpResponse.json(data);
+}

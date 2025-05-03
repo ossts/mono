@@ -2,3 +2,5 @@
 import { z } from 'zod';
 
 export const CommentWithQuotesSchemaZod = z.number();
+export const CommentWithQuotesSchemaZodNoPrimaryKey =
+  CommentWithQuotesSchemaZod;

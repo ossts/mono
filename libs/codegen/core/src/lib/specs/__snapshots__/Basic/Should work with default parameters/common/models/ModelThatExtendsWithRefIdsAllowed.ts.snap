@@ -1,0 +1,15 @@
+/* istanbul ignore file */
+import type { ModelWithStringWithRefIdsAllowed } from './ModelWithStringWithRefIdsAllowed';
+
+/**
+ * This is a model that extends another model
+ */
+export type ModelThatExtendsWithRefIdsAllowed =
+  ModelWithStringWithRefIdsAllowed & {
+    propExtendsA?: string;
+    propExtendsB?: ModelWithStringWithRefIdsAllowed;
+  };
+
+export namespace ModelThatExtendsWithRefIdsAllowed {
+  export type NoPrimaryKey = ModelThatExtendsWithRefIdsAllowed;
+}

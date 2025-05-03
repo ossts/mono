@@ -1,0 +1,6 @@
+/* istanbul ignore file */
+import { z } from 'zod';
+
+export const EnumFromDescriptionWithRefIdsOnlySchemaZod = z.number();
+export const EnumFromDescriptionWithRefIdsOnlySchemaZodNoPrimaryKey =
+  EnumFromDescriptionWithRefIdsOnlySchemaZod;

@@ -1,0 +1,17 @@
+/* istanbul ignore file */
+import { z } from 'zod';
+
+import { Order } from '../../common/models';
+
+export const OrderWithRefIdsAllowedSchemaZod = z
+  .object({
+    id: z.number().optional(),
+    petId: z.number().optional(),
+    quantity: z.number().optional(),
+    shipDate: z.string().datetime().optional(),
+    status: z.nativeEnum(Order.status).optional(),
+    complete: z.boolean().optional(),
+  })
+  .describe(`Model:Order`);
+export const OrderWithRefIdsAllowedSchemaZodNoPrimaryKey =
+  OrderWithRefIdsAllowedSchemaZod.omit({ id: true });

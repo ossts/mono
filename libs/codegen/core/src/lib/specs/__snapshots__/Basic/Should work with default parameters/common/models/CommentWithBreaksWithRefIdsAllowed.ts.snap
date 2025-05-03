@@ -1,0 +1,13 @@
+/* istanbul ignore file */
+
+/**
+ * Testing multiline comments in string: First line
+ * Second line
+ *
+ * Fourth line
+ */
+export type CommentWithBreaksWithRefIdsAllowed = number;
+
+export namespace CommentWithBreaksWithRefIdsAllowed {
+  export type NoPrimaryKey = CommentWithBreaksWithRefIdsAllowed;
+}

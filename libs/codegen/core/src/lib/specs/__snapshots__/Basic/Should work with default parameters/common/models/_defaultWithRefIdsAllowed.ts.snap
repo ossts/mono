@@ -1,0 +1,9 @@
+/* istanbul ignore file */
+
+export type _defaultWithRefIdsAllowed = {
+  name?: string;
+};
+
+export namespace _defaultWithRefIdsAllowed {
+  export type NoPrimaryKey = _defaultWithRefIdsAllowed;
+}

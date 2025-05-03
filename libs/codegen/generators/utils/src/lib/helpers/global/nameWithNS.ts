@@ -6,9 +6,13 @@ export const nameWithNS: CodegenHandlebarsHelperWrapper = ({
   function (
     this: unknown,
     name: string,
-    options: Handlebars.HelperOptions
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    ...args: any[]
   ): string {
+    const options: Handlebars.HelperOptions = args.pop();
     const nameWithoutSchema = name.replace(/Schema/g, '');
 
-    return `${nameWithoutSchema}${globalNS}`;
+    const suffix = options.data?.root?.rootNameSuffix ?? '';
+
+    return `${nameWithoutSchema}${suffix}${globalNS}`;
   };

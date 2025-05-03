@@ -8,3 +8,5 @@ export const DictionaryWithPropertiesSchemaZod = z.record(
     bar: z.string().optional(),
   })
 );
+export const DictionaryWithPropertiesSchemaZodNoPrimaryKey =
+  DictionaryWithPropertiesSchemaZod;

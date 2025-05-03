@@ -4,3 +4,7 @@
  * This is a simple string
  */
 export type SimpleStringWithPattern = string | null;
+
+export namespace SimpleStringWithPattern {
+  export type NoPrimaryKey = SimpleStringWithPattern;
+}

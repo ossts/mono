@@ -11,3 +11,5 @@ export const ModelWithNullableStringSchemaZod = z
   .describe(
     `Model:ModelWithNullableString---This is a model with one string property`
   );
+export const ModelWithNullableStringSchemaZodNoPrimaryKey =
+  ModelWithNullableStringSchemaZod;

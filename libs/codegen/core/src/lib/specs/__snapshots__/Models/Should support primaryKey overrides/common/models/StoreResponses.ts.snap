@@ -1,0 +1,36 @@
+/* istanbul ignore file */
+import type { Order } from './Order';
+
+export namespace StoreServiceResponses {
+  /**
+   * Method: `GET`
+   *
+   * Returns a map of status codes to quantities
+   *
+   * successful operation
+   */
+  export type GetInventoryGET = Partial<Record<string, number>>;
+
+  /**
+   * Method: `POST`
+   *
+   * successful operation
+   */
+  export type PlaceOrderPOST = Order;
+
+  /**
+   * Method: `GET`
+   *
+   * For valid response try integer IDs with value >= 1 and <= 10. Other values will generated exceptions
+   *
+   * successful operation
+   */
+  export type GetOrderByIdGET = Order;
+
+  /**
+   * Method: `DELETE`
+   *
+   * For valid response try integer IDs with positive integer value. Negative or non-integer values will generate API errors
+   */
+  export type DeleteOrderDELETE = void;
+}

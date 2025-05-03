@@ -1,27 +1,2 @@
-{{#with data}}
-{{>utilsHeader}}
-
-{{#if imports}}
-{{#each imports}}
-import type { {{{this}}} } from './{{{this}}}';
-{{/each}}
-{{/if}}
-
-{{#utilsEquals export 'interface'}}
-{{>exportInterface}}
-{{else utilsEquals export 'oneOf'}}
-{{>exportComposition}}
-{{else utilsEquals export 'anyOf'}}
-{{>exportComposition}}
-{{else utilsEquals export 'allOf'}}
-{{>exportComposition}}
-{{else utilsEquals export 'enum'}}
-{{#if @root.settings.useUnionTypes}}
-{{>exportType}}
-{{else}}
-{{>exportEnum}}
-{{/if}}
-{{else}}
-{{>exportType}}
-{{/utilsEquals}}
-{{/with}}
+{{utilsSetRootProperty 'rootNameSuffix' ''}}
+{{>modelEntry}}

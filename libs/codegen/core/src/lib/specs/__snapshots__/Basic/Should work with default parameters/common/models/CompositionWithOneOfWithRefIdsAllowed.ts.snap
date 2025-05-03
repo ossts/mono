@@ -1,0 +1,20 @@
+/* istanbul ignore file */
+import type { ModelWithArrayWithRefIdsAllowed } from './ModelWithArrayWithRefIdsAllowed';
+import type { ModelWithDictionaryWithRefIdsAllowed } from './ModelWithDictionaryWithRefIdsAllowed';
+import type { ModelWithEnumWithRefIdsAllowed } from './ModelWithEnumWithRefIdsAllowed';
+import type { ModelWithStringWithRefIdsAllowed } from './ModelWithStringWithRefIdsAllowed';
+
+/**
+ * This is a model with one property with a 'one of' relationship
+ */
+export type CompositionWithOneOfWithRefIdsAllowed = {
+  propA?:
+    | ModelWithStringWithRefIdsAllowed
+    | ModelWithEnumWithRefIdsAllowed
+    | ModelWithArrayWithRefIdsAllowed
+    | ModelWithDictionaryWithRefIdsAllowed;
+};
+
+export namespace CompositionWithOneOfWithRefIdsAllowed {
+  export type NoPrimaryKey = CompositionWithOneOfWithRefIdsAllowed;
+}

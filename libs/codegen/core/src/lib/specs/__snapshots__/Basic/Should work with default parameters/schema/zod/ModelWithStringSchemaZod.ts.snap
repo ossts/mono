@@ -6,3 +6,4 @@ export const ModelWithStringSchemaZod = z
     prop: z.string().optional(),
   })
   .describe(`Model:ModelWithString---This is a model with one string property`);
+export const ModelWithStringSchemaZodNoPrimaryKey = ModelWithStringSchemaZod;

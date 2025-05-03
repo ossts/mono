@@ -1,6 +1,7 @@
 import type { JSONSchema } from '@apidevtools/json-schema-ref-parser/dist/lib/types';
 
 import type {
+  AbstractCodegenParsedClient,
   AbstractExternalGeneratorWithName,
   SchemaParsers,
 } from '@ossts/codegen/common';
@@ -27,4 +28,10 @@ export interface Config<
    * @TJS-ignore
    */
   parseOnly?: boolean;
+
+  /**
+   * Previously parsed schema.
+   * This can be used to avoid unnecessary parsing if original schema didn't changed
+   */
+  parsedSchema?: AbstractCodegenParsedClient | null;
 }

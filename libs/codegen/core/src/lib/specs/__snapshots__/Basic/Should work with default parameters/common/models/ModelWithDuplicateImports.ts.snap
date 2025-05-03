@@ -9,3 +9,7 @@ export type ModelWithDuplicateImports = {
   propB?: ModelWithString;
   propC?: ModelWithString;
 };
+
+export namespace ModelWithDuplicateImports {
+  export type NoPrimaryKey = ModelWithDuplicateImports;
+}

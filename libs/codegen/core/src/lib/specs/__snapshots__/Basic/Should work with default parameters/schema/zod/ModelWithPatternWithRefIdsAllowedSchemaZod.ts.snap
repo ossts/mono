@@ -1,0 +1,30 @@
+/* istanbul ignore file */
+import { z } from 'zod';
+
+export const ModelWithPatternWithRefIdsAllowedSchemaZod = z
+  .object({
+    key: z.coerce
+      .string()
+      .max(64)
+      .regex(/^[a-zA-Z0-9_]*$/),
+    name: z.coerce.string().max(255),
+    enabled: z.boolean().optional().readonly(),
+    modified: z.string().datetime().optional().readonly(),
+    id: z
+      .string()
+      .regex(/^\\d{2}-\\d{3}-\\d{4}$/)
+      .optional(),
+    text: z
+      .string()
+      .regex(/^\\w+$/)
+      .optional(),
+    patternWithSingleQuotes: z
+      .string()
+      .regex(/^[a-zA-Z0-9\']*$/)
+      .optional(),
+  })
+  .describe(
+    `Model:ModelWithPattern---This is a model that contains a some patterns`
+  );
+export const ModelWithPatternWithRefIdsAllowedSchemaZodNoPrimaryKey =
+  ModelWithPatternWithRefIdsAllowedSchemaZod.omit({ id: true });

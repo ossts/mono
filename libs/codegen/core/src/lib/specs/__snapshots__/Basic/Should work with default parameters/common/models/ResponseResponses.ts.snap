@@ -1,0 +1,50 @@
+/* istanbul ignore file */
+import type { ModelThatExtends } from './ModelThatExtends';
+import type { ModelThatExtendsExtends } from './ModelThatExtendsExtends';
+import type { ModelWithString } from './ModelWithString';
+
+export namespace ResponseServiceResponses {
+  /**
+   * Method: `GET`
+   */
+  export type CallWithResponseGETDefault = ModelWithString;
+
+  /**
+   * Method: `POST`
+   *
+   * Message for default response
+   */
+  export type CallWithDuplicateResponsesPOSTDefault = ModelWithString;
+
+  /**
+   * Method: `PUT`
+   *
+   * Message for default response
+   */
+  export type CallWithResponsesPUTDefault = ModelWithString;
+
+  /**
+   * Method: `PUT`
+   *
+   * Message for 200 response
+   */
+  export type CallWithResponsesPUT = {
+    readonly '@namespace.string'?: string;
+    readonly '@namespace.integer'?: number;
+    readonly value?: Array<ModelWithString>;
+  };
+
+  /**
+   * Method: `PUT`
+   *
+   * Message for 201 response
+   */
+  export type CallWithResponsesPUT201 = ModelThatExtends;
+
+  /**
+   * Method: `PUT`
+   *
+   * Message for 202 response
+   */
+  export type CallWithResponsesPUT202 = ModelThatExtendsExtends;
+}

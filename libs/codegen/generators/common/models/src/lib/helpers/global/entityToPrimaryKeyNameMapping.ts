@@ -6,25 +6,36 @@ import type { Dictionary } from '@ossts/shared/typescript/helper-types';
 
 import type { CommonModelsGeneratorSettings } from '../../types';
 
-export const entityToPrimaryKeyNameMapping: CodegenHandlebarsHelperWrapper<
-  CommonModelsGeneratorSettings
-> = ({ handlebarsInstance, settings: generatorSettings }) =>
-  function (this: ParsedModelOpenAPIV3, options: Handlebars.HelperOptions) {
-    const fullPathHelper: Handlebars.HelperDelegate =
-      handlebarsInstance.helpers['utilsFullPath'];
+export const entityToPrimaryKeyNameMapping: CodegenHandlebarsHelperWrapper<CommonModelsGeneratorSettings> =
+  (() => {
+    const cache = new Map<ParsedModelOpenAPIV3, string>();
 
-    const fullPath = fullPathHelper.call(this, options);
+    return ({ handlebarsInstance, settings: generatorSettings }) =>
+      function (
+        this: ParsedModelOpenAPIV3,
+        options: Handlebars.HelperOptions
+      ): string | undefined {
+        if (cache.has(this)) return cache.get(this);
 
-    let result: string | undefined = undefined;
+        const fullPathHelper: Handlebars.HelperDelegate =
+          handlebarsInstance.helpers['utilsFullPath'];
 
-    result = getIdPropPathBased(
-      this,
-      generatorSettings.entityToPrimaryKeyNameMapping,
-      fullPath
-    );
+        const fullPath = fullPathHelper.call(this, options);
 
-    return result ?? generatorSettings.primaryKeyName ?? 'id';
-  };
+        let result: string | undefined = undefined;
+
+        result = getIdPropPathBased(
+          this,
+          generatorSettings.entityToPrimaryKeyNameMapping,
+          fullPath
+        );
+
+        result = result ?? generatorSettings.primaryKeyName ?? 'id';
+        cache.set(this, result);
+
+        return result;
+      };
+  })();
 
 const getIdPropPathBased = (
   type: ParsedModelOpenAPIV3,

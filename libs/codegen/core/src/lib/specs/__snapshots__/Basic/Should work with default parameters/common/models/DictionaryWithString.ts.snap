@@ -4,3 +4,7 @@
  * This is a string dictionary
  */
 export type DictionaryWithString = Partial<Record<string, string>>;
+
+export namespace DictionaryWithString {
+  export type NoPrimaryKey = DictionaryWithString;
+}

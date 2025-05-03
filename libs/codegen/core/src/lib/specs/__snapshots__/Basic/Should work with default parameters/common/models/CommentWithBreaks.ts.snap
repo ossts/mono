@@ -7,3 +7,7 @@
  * Fourth line
  */
 export type CommentWithBreaks = number;
+
+export namespace CommentWithBreaks {
+  export type NoPrimaryKey = CommentWithBreaks;
+}

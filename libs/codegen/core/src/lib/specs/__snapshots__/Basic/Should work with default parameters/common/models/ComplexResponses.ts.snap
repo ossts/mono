@@ -1,0 +1,21 @@
+/* istanbul ignore file */
+import type { ModelWithArray } from './ModelWithArray';
+import type { ModelWithDictionary } from './ModelWithDictionary';
+import type { ModelWithEnum } from './ModelWithEnum';
+import type { ModelWithString } from './ModelWithString';
+
+export namespace ComplexServiceResponses {
+  /**
+   * Method: `GET`
+   *
+   * Successful response
+   */
+  export type ComplexTypesGET = Array<ModelWithString>;
+
+  /**
+   * Method: `PUT`
+   *
+   * Success
+   */
+  export type ComplexParamsPUT = ModelWithString;
+}

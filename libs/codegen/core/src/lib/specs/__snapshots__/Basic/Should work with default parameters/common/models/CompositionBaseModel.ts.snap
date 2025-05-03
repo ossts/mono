@@ -7,3 +7,7 @@ export type CompositionBaseModel = {
   firstName?: string;
   lastname?: string;
 };
+
+export namespace CompositionBaseModel {
+  export type NoPrimaryKey = CompositionBaseModel;
+}

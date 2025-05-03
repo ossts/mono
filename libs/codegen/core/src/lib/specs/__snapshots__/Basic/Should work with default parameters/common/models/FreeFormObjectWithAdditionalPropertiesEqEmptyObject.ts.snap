@@ -6,3 +6,8 @@
 export type FreeFormObjectWithAdditionalPropertiesEqEmptyObject = Partial<
   Record<string, any>
 >;
+
+export namespace FreeFormObjectWithAdditionalPropertiesEqEmptyObject {
+  export type NoPrimaryKey =
+    FreeFormObjectWithAdditionalPropertiesEqEmptyObject;
+}

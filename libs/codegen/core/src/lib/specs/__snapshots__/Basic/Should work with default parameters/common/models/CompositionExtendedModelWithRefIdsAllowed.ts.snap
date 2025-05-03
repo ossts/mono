@@ -1,0 +1,16 @@
+/* istanbul ignore file */
+import type { CompositionBaseModelWithRefIdsAllowed } from './CompositionBaseModelWithRefIdsAllowed';
+
+/**
+ * This is a model that extends the base model
+ */
+export type CompositionExtendedModelWithRefIdsAllowed =
+  CompositionBaseModelWithRefIdsAllowed & {
+    firstName: string;
+    lastname: string;
+    age: number;
+  };
+
+export namespace CompositionExtendedModelWithRefIdsAllowed {
+  export type NoPrimaryKey = CompositionExtendedModelWithRefIdsAllowed;
+}

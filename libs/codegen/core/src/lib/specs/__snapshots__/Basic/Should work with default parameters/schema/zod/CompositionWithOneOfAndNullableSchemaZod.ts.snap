@@ -12,9 +12,9 @@ export const CompositionWithOneOfAndNullableSchemaZod = z
         z.object({
           boolean: z.boolean().optional(),
         }),
-        ModelWithEnumSchemaZod,
-        ModelWithArraySchemaZod,
-        ModelWithDictionarySchemaZod,
+        ModelWithEnumSchemaZod.optional().nullable(),
+        ModelWithArraySchemaZod.optional().nullable(),
+        ModelWithDictionarySchemaZod.optional().nullable(),
       ])
       .nullable()
       .optional(),
@@ -22,3 +22,5 @@ export const CompositionWithOneOfAndNullableSchemaZod = z
   .describe(
     `Model:CompositionWithOneOfAndNullable---This is a model with one property with a 'one of' relationship`
   );
+export const CompositionWithOneOfAndNullableSchemaZodNoPrimaryKey =
+  CompositionWithOneOfAndNullableSchemaZod;

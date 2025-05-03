@@ -7,3 +7,7 @@ export type ModelCircle = {
   kind: 'circle';
   radius?: number;
 };
+
+export namespace ModelCircle {
+  export type NoPrimaryKey = ModelCircle;
+}

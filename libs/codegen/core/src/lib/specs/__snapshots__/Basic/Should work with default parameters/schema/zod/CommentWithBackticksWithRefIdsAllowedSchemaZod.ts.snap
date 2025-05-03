@@ -1,0 +1,6 @@
+/* istanbul ignore file */
+import { z } from 'zod';
+
+export const CommentWithBackticksWithRefIdsAllowedSchemaZod = z.number();
+export const CommentWithBackticksWithRefIdsAllowedSchemaZodNoPrimaryKey =
+  CommentWithBackticksWithRefIdsAllowedSchemaZod;

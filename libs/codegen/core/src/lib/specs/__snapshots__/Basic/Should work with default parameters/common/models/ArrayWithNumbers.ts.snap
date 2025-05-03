@@ -4,3 +4,7 @@
  * This is a simple array with numbers
  */
 export type ArrayWithNumbers = Array<number>;
+
+export namespace ArrayWithNumbers {
+  export type NoPrimaryKey = ArrayWithNumbers;
+}

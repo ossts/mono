@@ -6,3 +6,5 @@ export const SimpleStringWithPatternSchemaZod = z
   .max(64)
   .regex(/^[a-zA-Z0-9_]*$/)
   .nullable();
+export const SimpleStringWithPatternSchemaZodNoPrimaryKey =
+  SimpleStringWithPatternSchemaZod;

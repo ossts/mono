@@ -8,3 +8,4 @@ export const ApiResponseSchemaZod = z
     message: z.string().optional(),
   })
   .describe(`Model:ApiResponse`);
+export const ApiResponseSchemaZodNoPrimaryKey = ApiResponseSchemaZod;

@@ -6,3 +6,7 @@
 export type ModelWithDictionary = {
   prop?: Partial<Record<string, string>>;
 };
+
+export namespace ModelWithDictionary {
+  export type NoPrimaryKey = ModelWithDictionary;
+}

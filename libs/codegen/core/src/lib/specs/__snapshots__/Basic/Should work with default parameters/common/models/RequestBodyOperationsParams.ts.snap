@@ -1,0 +1,11 @@
+/* istanbul ignore file */
+import type { ModelWithString } from './ModelWithString';
+
+export namespace RequestBodyOperationsParams {
+  export namespace PostApiRequestBody {
+    export type Query = {
+      parameter: string;
+      requestBody: ModelWithString;
+    };
+  }
+}

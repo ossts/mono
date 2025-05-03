@@ -10,3 +10,7 @@ export type ModelWithNestedProperties = {
     } | null;
   } | null;
 };
+
+export namespace ModelWithNestedProperties {
+  export type NoPrimaryKey = ModelWithNestedProperties;
+}

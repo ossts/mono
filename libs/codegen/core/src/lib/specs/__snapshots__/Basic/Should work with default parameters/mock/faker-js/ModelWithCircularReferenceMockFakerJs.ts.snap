@@ -13,10 +13,7 @@ export function getModelWithCircularReferenceMockFakerJs<
   TMode extends 'withReferences'
 >(
   params?: MockFakerJSGeneratorParams<TMode>
-):
-  | ModelOrIdNullable<ModelWithCircularReference>
-  | null
-  | ModelWithCircularReference['id'];
+): ModelOrIdNullable<ModelWithCircularReference> | null;
 
 export function getModelWithCircularReferenceMockFakerJs<
   TMode extends 'standalone'
@@ -25,13 +22,14 @@ export function getModelWithCircularReferenceMockFakerJs<
 ): ModelWithCircularReference | null;
 
 export function getModelWithCircularReferenceMockFakerJs<
+  TMode extends 'primaryKey'
+>(params?: MockFakerJSGeneratorParams<TMode>): number | null;
+
+export function getModelWithCircularReferenceMockFakerJs<
   TMode extends MockFakerJSGeneratorParamsMode = 'withReferences'
 >(
   params: MockFakerJSGeneratorParams<TMode> = {}
-):
-  | ModelOrIdNullable<ModelWithCircularReference>
-  | null
-  | ModelWithCircularReference['id'] {
+): ModelOrIdNullable<ModelWithCircularReference> | null {
   const modelName = 'ModelWithCircularReference';
 
   const { faker = fakerDefault, fakerParams: { probability } = {} } = params;

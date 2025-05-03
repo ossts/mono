@@ -1,0 +1,27 @@
+/* istanbul ignore file */
+
+/**
+ * This is a model with one string property
+ */
+export type ModelWithNullableStringWithRefIdsOnly = {
+  /**
+   * This is a simple string property
+   */
+  nullableProp1?: string | null;
+  /**
+   * This is a simple string property
+   */
+  nullableRequiredProp1: string | null;
+  /**
+   * This is a simple string property
+   */
+  nullableProp2?: string | null;
+  /**
+   * This is a simple string property
+   */
+  nullableRequiredProp2: string | null;
+};
+
+export namespace ModelWithNullableStringWithRefIdsOnly {
+  export type NoPrimaryKey = ModelWithNullableStringWithRefIdsOnly;
+}

@@ -13,3 +13,7 @@ export type User = {
    */
   userStatus?: number;
 };
+
+export namespace User {
+  export type NoPrimaryKey = Omit<User, 'id'>;
+}

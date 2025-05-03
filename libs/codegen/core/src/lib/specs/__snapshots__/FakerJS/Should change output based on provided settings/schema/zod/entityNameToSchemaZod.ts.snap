@@ -1,11 +1,15 @@
 import {
   ApiResponseSchemaZod,
+  ApiResponseSchemaZodNoPrimaryKey,
+} from './ApiResponseSchemaZod';
+import {
   CategorySchemaZod,
-  OrderSchemaZod,
-  PetSchemaZod,
-  TagSchemaZod,
-  UserSchemaZod,
-} from './';
+  CategorySchemaZodNoPrimaryKey,
+} from './CategorySchemaZod';
+import { OrderSchemaZod, OrderSchemaZodNoPrimaryKey } from './OrderSchemaZod';
+import { PetSchemaZod, PetSchemaZodNoPrimaryKey } from './PetSchemaZod';
+import { TagSchemaZod, TagSchemaZodNoPrimaryKey } from './TagSchemaZod';
+import { UserSchemaZod, UserSchemaZodNoPrimaryKey } from './UserSchemaZod';
 
 export const entityNameToSchemaZod = {
   ApiResponse: ApiResponseSchemaZod,
@@ -14,4 +18,13 @@ export const entityNameToSchemaZod = {
   Pet: PetSchemaZod,
   Tag: TagSchemaZod,
   User: UserSchemaZod,
+};
+
+export const entityNameToSchemaZodNoPrimaryKey = {
+  ApiResponse: ApiResponseSchemaZodNoPrimaryKey,
+  Category: CategorySchemaZodNoPrimaryKey,
+  Order: OrderSchemaZodNoPrimaryKey,
+  Pet: PetSchemaZodNoPrimaryKey,
+  Tag: TagSchemaZodNoPrimaryKey,
+  User: UserSchemaZodNoPrimaryKey,
 };

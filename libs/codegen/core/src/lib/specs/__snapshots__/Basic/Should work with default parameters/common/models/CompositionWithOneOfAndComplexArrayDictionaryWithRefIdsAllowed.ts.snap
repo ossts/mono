@@ -1,0 +1,13 @@
+/* istanbul ignore file */
+
+/**
+ * This is a model that contains a dictionary of complex arrays (composited) within composition
+ */
+export type CompositionWithOneOfAndComplexArrayDictionaryWithRefIdsAllowed = {
+  propA?: boolean | Partial<Record<string, Array<number | string>>>;
+};
+
+export namespace CompositionWithOneOfAndComplexArrayDictionaryWithRefIdsAllowed {
+  export type NoPrimaryKey =
+    CompositionWithOneOfAndComplexArrayDictionaryWithRefIdsAllowed;
+}

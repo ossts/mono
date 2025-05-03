@@ -12,3 +12,7 @@ export type DictionaryWithProperties = Partial<
     }
   >
 >;
+
+export namespace DictionaryWithProperties {
+  export type NoPrimaryKey = DictionaryWithProperties;
+}

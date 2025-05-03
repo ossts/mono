@@ -1,0 +1,6 @@
+export type NoPrimaryKey =
+	{{#commonModelsEntityHasPrimaryKey @root.allSettings}}
+		Omit<{{{utilsNameWithNS name}}}, '{{commonModelsEntityToPrimaryKeyNameMapping}}'>
+	{{else}}
+		{{utilsNameWithNS name}}
+	{{/commonModelsEntityHasPrimaryKey}};

@@ -1,0 +1,10 @@
+/* istanbul ignore file */
+
+/**
+ * Testing reserved characters in string: * inline * and ** inline ** should work
+ */
+export type CommentWithReservedCharactersWithRefIdsAllowed = number;
+
+export namespace CommentWithReservedCharactersWithRefIdsAllowed {
+  export type NoPrimaryKey = CommentWithReservedCharactersWithRefIdsAllowed;
+}

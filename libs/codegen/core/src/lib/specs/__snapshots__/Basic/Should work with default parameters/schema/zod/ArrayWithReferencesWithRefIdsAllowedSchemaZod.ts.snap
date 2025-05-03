@@ -1,0 +1,13 @@
+/* istanbul ignore file */
+import { z } from 'zod';
+
+import { ModelWithStringWithRefIdsAllowedSchemaZod } from './ModelWithStringWithRefIdsAllowedSchemaZod';
+
+export const ArrayWithReferencesWithRefIdsAllowedSchemaZod = z.array(
+  ModelWithStringWithRefIdsAllowedSchemaZod.or(z.string())
+    .or(z.number())
+    .optional()
+    .nullable()
+);
+export const ArrayWithReferencesWithRefIdsAllowedSchemaZodNoPrimaryKey =
+  ArrayWithReferencesWithRefIdsAllowedSchemaZod;

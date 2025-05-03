@@ -1,0 +1,10 @@
+/* istanbul ignore file */
+
+/**
+ * This is a simple number
+ */
+export type SimpleIntegerWithRefIdsOnly = number;
+
+export namespace SimpleIntegerWithRefIdsOnly {
+  export type NoPrimaryKey = SimpleIntegerWithRefIdsOnly;
+}

@@ -13,17 +13,21 @@ export function getModelWithDictionaryMockFakerJs<
   TMode extends 'withReferences'
 >(
   params?: MockFakerJSGeneratorParams<TMode>
-): ModelOrIdNullable<ModelWithDictionary> | null | ModelWithDictionary['id'];
+): ModelOrIdNullable<ModelWithDictionary> | null;
 
 export function getModelWithDictionaryMockFakerJs<TMode extends 'standalone'>(
   params?: MockFakerJSGeneratorParams<TMode>
 ): ModelWithDictionary | null;
 
+export function getModelWithDictionaryMockFakerJs<TMode extends 'primaryKey'>(
+  params?: MockFakerJSGeneratorParams<TMode>
+): number | null;
+
 export function getModelWithDictionaryMockFakerJs<
   TMode extends MockFakerJSGeneratorParamsMode = 'withReferences'
 >(
   params: MockFakerJSGeneratorParams<TMode> = {}
-): ModelOrIdNullable<ModelWithDictionary> | null | ModelWithDictionary['id'] {
+): ModelOrIdNullable<ModelWithDictionary> | null {
   const modelName = 'ModelWithDictionary';
 
   const { faker = fakerDefault, fakerParams: { probability } = {} } = params;

@@ -1,0 +1,13 @@
+/* istanbul ignore file */
+import type { ModelWithStringWithRefIdsOnly } from './ModelWithStringWithRefIdsOnly';
+
+/**
+ * This is a string reference
+ */
+export type DictionaryWithReferenceWithRefIdsOnly = Partial<
+  Record<string, ModelWithStringWithRefIdsOnly>
+>;
+
+export namespace DictionaryWithReferenceWithRefIdsOnly {
+  export type NoPrimaryKey = DictionaryWithReferenceWithRefIdsOnly;
+}

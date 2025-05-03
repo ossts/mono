@@ -1,0 +1,8 @@
+/* istanbul ignore file */
+import type { ModelWithStringWithRefIdsOnly } from './ModelWithStringWithRefIdsOnly';
+
+export type SimpleReferenceWithRefIdsOnly = ModelWithStringWithRefIdsOnly;
+
+export namespace SimpleReferenceWithRefIdsOnly {
+  export type NoPrimaryKey = SimpleReferenceWithRefIdsOnly;
+}

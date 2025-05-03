@@ -4,4 +4,5 @@ export const generatorNamesBuiltIn = [
   'schema/zod',
   'utils',
   'mock/faker-js',
+  'mock/msw',
 ] as const;

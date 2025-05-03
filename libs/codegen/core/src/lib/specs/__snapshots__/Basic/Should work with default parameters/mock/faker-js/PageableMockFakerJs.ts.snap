@@ -11,17 +11,21 @@ import type {
 
 export function getPageableMockFakerJs<TMode extends 'withReferences'>(
   params?: MockFakerJSGeneratorParams<TMode>
-): ModelOrIdNullable<Pageable> | null | Pageable['id'];
+): ModelOrIdNullable<Pageable> | null;
 
 export function getPageableMockFakerJs<TMode extends 'standalone'>(
   params?: MockFakerJSGeneratorParams<TMode>
 ): Pageable | null;
 
+export function getPageableMockFakerJs<TMode extends 'primaryKey'>(
+  params?: MockFakerJSGeneratorParams<TMode>
+): number | null;
+
 export function getPageableMockFakerJs<
   TMode extends MockFakerJSGeneratorParamsMode = 'withReferences'
 >(
   params: MockFakerJSGeneratorParams<TMode> = {}
-): ModelOrIdNullable<Pageable> | null | Pageable['id'] {
+): ModelOrIdNullable<Pageable> | null {
   const modelName = 'Pageable';
 
   const { faker = fakerDefault, fakerParams: { probability } = {} } = params;

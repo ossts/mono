@@ -17,6 +17,10 @@ export function getFileMockFakerJs<TMode extends 'standalone'>(
   params?: MockFakerJSGeneratorParams<TMode>
 ): File | null;
 
+export function getFileMockFakerJs<TMode extends 'primaryKey'>(
+  params?: MockFakerJSGeneratorParams<TMode>
+): number | null;
+
 export function getFileMockFakerJs<
   TMode extends MockFakerJSGeneratorParamsMode = 'withReferences'
 >(
@@ -30,10 +34,10 @@ export function getFileMockFakerJs<
     id: faker.helpers.maybe(() => faker.string.uuid(), {
       probability,
     }),
-    updated_at: faker.helpers.maybe(() => faker.date.anytime(), {
+    updated_at: faker.helpers.maybe(() => faker.date.anytime().toISOString(), {
       probability,
     }),
-    created_at: faker.helpers.maybe(() => faker.date.anytime(), {
+    created_at: faker.helpers.maybe(() => faker.date.anytime().toISOString(), {
       probability,
     }),
     mime: faker.string.alpha({ length: { min: 2, max: 10 } }),

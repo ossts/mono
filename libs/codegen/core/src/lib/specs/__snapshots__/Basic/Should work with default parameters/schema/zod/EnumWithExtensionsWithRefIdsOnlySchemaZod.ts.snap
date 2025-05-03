@@ -1,0 +1,9 @@
+/* istanbul ignore file */
+import { z } from 'zod';
+
+import { EnumWithExtensions } from '../../common/models';
+
+export const EnumWithExtensionsWithRefIdsOnlySchemaZod =
+  z.nativeEnum(EnumWithExtensions);
+export const EnumWithExtensionsWithRefIdsOnlySchemaZodNoPrimaryKey =
+  EnumWithExtensionsWithRefIdsOnlySchemaZod;

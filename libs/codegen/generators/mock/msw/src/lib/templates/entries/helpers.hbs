@@ -1,0 +1,83 @@
+import { HttpResponse } from 'msw';
+import { random } from 'lodash';
+
+{{!-- For some reason "entityToDataMap" undefined if we run test in JS debug console of VSCode --}}
+import * as allFaker from '../faker-js';
+
+import type { MockMSWRESTType, MockMSWProcessResults } from './{{utilsNameWithNS 'types'}}';
+
+export const processResults: MockMSWProcessResults = async ({
+	params,
+	methodParams,
+	idProp,
+	resultsParams,
+	defaultRESTTypes,
+}) => {
+	const { request, params: pathParams, cookies } = methodParams;
+	const {
+		headers,
+		// formData,
+		// body,
+		url: urlString
+	} = request;
+	{{!-- TODO: we have to read this conditionally --}}
+	// const formData = request.formData ? await request.formData() : null;
+	const body: any = request.body ? await request.json() : null;
+
+	const url = new URL(urlString);
+	const query = url.searchParams;
+
+	if (params.enableDebugLogging) {
+		console.log(`---- ${url} -----`);
+		{{!-- Do not stringify this, it will cause circular dependencies error --}}
+		console.log('Called with params => ', params);
+		console.log(`url => `, JSON.stringify(url, null, 2));
+		console.log(`query => `, JSON.stringify(query, null, 2));
+		console.log(`pathParams => `, JSON.stringify(pathParams, null, 2));
+		console.log(`body => `, JSON.stringify(body, null, 2));
+		console.log(`headers => `, JSON.stringify(headers, null, 2));
+		// console.log(`formData => `, JSON.stringify(formData, null, 2));
+		console.log(`cookies => `, JSON.stringify(cookies, null, 2));
+	}
+
+	const restTypeResolver = params.RESTTypeResolver?.Pet?.addPet;
+
+	const results = resultsParams.map((variant, index) => () => {
+		if (!variant.model) return getNotImplementedResponse();
+
+		let restType: MockMSWRESTType | null =
+			restTypeResolver ?
+				typeof restTypeResolver === 'function' ?
+				restTypeResolver(params, methodParams) : restTypeResolver:
+				null;
+
+		if (!restType) {
+			restType = defaultRESTTypes[index];
+		}
+
+		switch (restType) {
+			{{>caseList}}
+			{{>caseCreate}}
+			{{>caseUpdate}}
+			{{>caseDetail}}
+			{{>caseDelete}}
+			{{>caseDefault}}
+		}
+	});
+
+	const resultIndex = random(results.length - 1);
+
+	return results[resultIndex]();
+}
+
+export const getVoidResponse = () => HttpResponse.json(null);
+
+export const getNotImplementedResponse = () => HttpResponse.json({
+	message: 'Not implemented yet',
+}, {
+	status: 405,
+});
+
+export const getBadRequestResponse = (message?: string) => new HttpResponse(message ?? null, {
+	status: 400,
+});

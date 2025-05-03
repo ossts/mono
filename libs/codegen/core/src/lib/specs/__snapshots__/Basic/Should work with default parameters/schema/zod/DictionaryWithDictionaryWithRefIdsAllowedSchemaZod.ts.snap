@@ -1,0 +1,9 @@
+/* istanbul ignore file */
+import { z } from 'zod';
+
+export const DictionaryWithDictionaryWithRefIdsAllowedSchemaZod = z.record(
+  z.string(),
+  z.record(z.string(), z.string())
+);
+export const DictionaryWithDictionaryWithRefIdsAllowedSchemaZodNoPrimaryKey =
+  DictionaryWithDictionaryWithRefIdsAllowedSchemaZod;

@@ -1,0 +1,681 @@
+import {
+  ArrayWithArrayWithRefIdsAllowedSchemaZod,
+  ArrayWithArrayWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './ArrayWithArrayWithRefIdsAllowedSchemaZod';
+import {
+  ArrayWithBooleansWithRefIdsAllowedSchemaZod,
+  ArrayWithBooleansWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './ArrayWithBooleansWithRefIdsAllowedSchemaZod';
+import {
+  ArrayWithNumbersWithRefIdsAllowedSchemaZod,
+  ArrayWithNumbersWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './ArrayWithNumbersWithRefIdsAllowedSchemaZod';
+import {
+  ArrayWithPropertiesWithRefIdsAllowedSchemaZod,
+  ArrayWithPropertiesWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './ArrayWithPropertiesWithRefIdsAllowedSchemaZod';
+import {
+  ArrayWithReferencesWithRefIdsAllowedSchemaZod,
+  ArrayWithReferencesWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './ArrayWithReferencesWithRefIdsAllowedSchemaZod';
+import {
+  ArrayWithStringsWithRefIdsAllowedSchemaZod,
+  ArrayWithStringsWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './ArrayWithStringsWithRefIdsAllowedSchemaZod';
+import {
+  CommentWithBackticksWithRefIdsAllowedSchemaZod,
+  CommentWithBackticksWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './CommentWithBackticksWithRefIdsAllowedSchemaZod';
+import {
+  CommentWithBreaksWithRefIdsAllowedSchemaZod,
+  CommentWithBreaksWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './CommentWithBreaksWithRefIdsAllowedSchemaZod';
+import {
+  CommentWithExpressionPlaceholdersWithRefIdsAllowedSchemaZod,
+  CommentWithExpressionPlaceholdersWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './CommentWithExpressionPlaceholdersWithRefIdsAllowedSchemaZod';
+import {
+  CommentWithQuotesWithRefIdsAllowedSchemaZod,
+  CommentWithQuotesWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './CommentWithQuotesWithRefIdsAllowedSchemaZod';
+import {
+  CommentWithReservedCharactersWithRefIdsAllowedSchemaZod,
+  CommentWithReservedCharactersWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './CommentWithReservedCharactersWithRefIdsAllowedSchemaZod';
+import {
+  CommentWithSlashesWithRefIdsAllowedSchemaZod,
+  CommentWithSlashesWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './CommentWithSlashesWithRefIdsAllowedSchemaZod';
+import {
+  CompositionBaseModelWithRefIdsAllowedSchemaZod,
+  CompositionBaseModelWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './CompositionBaseModelWithRefIdsAllowedSchemaZod';
+import {
+  CompositionExtendedModelWithRefIdsAllowedSchemaZod,
+  CompositionExtendedModelWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './CompositionExtendedModelWithRefIdsAllowedSchemaZod';
+import {
+  CompositionWithAllOfAndNullableWithRefIdsAllowedSchemaZod,
+  CompositionWithAllOfAndNullableWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './CompositionWithAllOfAndNullableWithRefIdsAllowedSchemaZod';
+import {
+  CompositionWithAnyOfAndNullableWithRefIdsAllowedSchemaZod,
+  CompositionWithAnyOfAndNullableWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './CompositionWithAnyOfAndNullableWithRefIdsAllowedSchemaZod';
+import {
+  CompositionWithAnyOfAnonymousWithRefIdsAllowedSchemaZod,
+  CompositionWithAnyOfAnonymousWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './CompositionWithAnyOfAnonymousWithRefIdsAllowedSchemaZod';
+import {
+  CompositionWithAnyOfWithRefIdsAllowedSchemaZod,
+  CompositionWithAnyOfWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './CompositionWithAnyOfWithRefIdsAllowedSchemaZod';
+import {
+  CompositionWithOneOfAndComplexArrayDictionaryWithRefIdsAllowedSchemaZod,
+  CompositionWithOneOfAndComplexArrayDictionaryWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './CompositionWithOneOfAndComplexArrayDictionaryWithRefIdsAllowedSchemaZod';
+import {
+  CompositionWithOneOfAndNullableWithRefIdsAllowedSchemaZod,
+  CompositionWithOneOfAndNullableWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './CompositionWithOneOfAndNullableWithRefIdsAllowedSchemaZod';
+import {
+  CompositionWithOneOfAndSimpleArrayDictionaryWithRefIdsAllowedSchemaZod,
+  CompositionWithOneOfAndSimpleArrayDictionaryWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './CompositionWithOneOfAndSimpleArrayDictionaryWithRefIdsAllowedSchemaZod';
+import {
+  CompositionWithOneOfAndSimpleDictionaryWithRefIdsAllowedSchemaZod,
+  CompositionWithOneOfAndSimpleDictionaryWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './CompositionWithOneOfAndSimpleDictionaryWithRefIdsAllowedSchemaZod';
+import {
+  CompositionWithOneOfAnonymousWithRefIdsAllowedSchemaZod,
+  CompositionWithOneOfAnonymousWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './CompositionWithOneOfAnonymousWithRefIdsAllowedSchemaZod';
+import {
+  CompositionWithOneOfDiscriminatorWithRefIdsAllowedSchemaZod,
+  CompositionWithOneOfDiscriminatorWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './CompositionWithOneOfDiscriminatorWithRefIdsAllowedSchemaZod';
+import {
+  CompositionWithOneOfWithRefIdsAllowedSchemaZod,
+  CompositionWithOneOfWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './CompositionWithOneOfWithRefIdsAllowedSchemaZod';
+import {
+  DeprecatedModelWithRefIdsAllowedSchemaZod,
+  DeprecatedModelWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './DeprecatedModelWithRefIdsAllowedSchemaZod';
+import {
+  DictionaryWithArrayWithRefIdsAllowedSchemaZod,
+  DictionaryWithArrayWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './DictionaryWithArrayWithRefIdsAllowedSchemaZod';
+import {
+  DictionaryWithDictionaryWithRefIdsAllowedSchemaZod,
+  DictionaryWithDictionaryWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './DictionaryWithDictionaryWithRefIdsAllowedSchemaZod';
+import {
+  DictionaryWithPropertiesWithRefIdsAllowedSchemaZod,
+  DictionaryWithPropertiesWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './DictionaryWithPropertiesWithRefIdsAllowedSchemaZod';
+import {
+  DictionaryWithReferenceWithRefIdsAllowedSchemaZod,
+  DictionaryWithReferenceWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './DictionaryWithReferenceWithRefIdsAllowedSchemaZod';
+import {
+  DictionaryWithStringWithRefIdsAllowedSchemaZod,
+  DictionaryWithStringWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './DictionaryWithStringWithRefIdsAllowedSchemaZod';
+import {
+  EnumFromDescriptionWithRefIdsAllowedSchemaZod,
+  EnumFromDescriptionWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './EnumFromDescriptionWithRefIdsAllowedSchemaZod';
+import {
+  EnumWithExtensionsWithRefIdsAllowedSchemaZod,
+  EnumWithExtensionsWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './EnumWithExtensionsWithRefIdsAllowedSchemaZod';
+import {
+  EnumWithNumbersWithRefIdsAllowedSchemaZod,
+  EnumWithNumbersWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './EnumWithNumbersWithRefIdsAllowedSchemaZod';
+import {
+  EnumWithStringsWithRefIdsAllowedSchemaZod,
+  EnumWithStringsWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './EnumWithStringsWithRefIdsAllowedSchemaZod';
+import {
+  FileWithRefIdsAllowedSchemaZod,
+  FileWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './FileWithRefIdsAllowedSchemaZod';
+import {
+  FreeFormObjectWithAdditionalPropertiesEqEmptyObjectWithRefIdsAllowedSchemaZod,
+  FreeFormObjectWithAdditionalPropertiesEqEmptyObjectWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './FreeFormObjectWithAdditionalPropertiesEqEmptyObjectWithRefIdsAllowedSchemaZod';
+import {
+  FreeFormObjectWithAdditionalPropertiesEqTrueWithRefIdsAllowedSchemaZod,
+  FreeFormObjectWithAdditionalPropertiesEqTrueWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './FreeFormObjectWithAdditionalPropertiesEqTrueWithRefIdsAllowedSchemaZod';
+import {
+  FreeFormObjectWithoutAdditionalPropertiesWithRefIdsAllowedSchemaZod,
+  FreeFormObjectWithoutAdditionalPropertiesWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './FreeFormObjectWithoutAdditionalPropertiesWithRefIdsAllowedSchemaZod';
+import {
+  ModelCircleWithRefIdsAllowedSchemaZod,
+  ModelCircleWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './ModelCircleWithRefIdsAllowedSchemaZod';
+import {
+  ModelSquareWithRefIdsAllowedSchemaZod,
+  ModelSquareWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './ModelSquareWithRefIdsAllowedSchemaZod';
+import {
+  ModelThatExtendsExtendsWithRefIdsAllowedSchemaZod,
+  ModelThatExtendsExtendsWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './ModelThatExtendsExtendsWithRefIdsAllowedSchemaZod';
+import {
+  ModelThatExtendsWithRefIdsAllowedSchemaZod,
+  ModelThatExtendsWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './ModelThatExtendsWithRefIdsAllowedSchemaZod';
+import {
+  ModelWithArrayWithRefIdsAllowedSchemaZod,
+  ModelWithArrayWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './ModelWithArrayWithRefIdsAllowedSchemaZod';
+import {
+  ModelWithBooleanWithRefIdsAllowedSchemaZod,
+  ModelWithBooleanWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './ModelWithBooleanWithRefIdsAllowedSchemaZod';
+import {
+  ModelWithCircularReferenceWithRefIdsAllowedSchemaZod,
+  ModelWithCircularReferenceWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './ModelWithCircularReferenceWithRefIdsAllowedSchemaZod';
+import {
+  ModelWithDictionaryWithRefIdsAllowedSchemaZod,
+  ModelWithDictionaryWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './ModelWithDictionaryWithRefIdsAllowedSchemaZod';
+import {
+  ModelWithDuplicateImportsWithRefIdsAllowedSchemaZod,
+  ModelWithDuplicateImportsWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './ModelWithDuplicateImportsWithRefIdsAllowedSchemaZod';
+import {
+  ModelWithDuplicatePropertiesWithRefIdsAllowedSchemaZod,
+  ModelWithDuplicatePropertiesWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './ModelWithDuplicatePropertiesWithRefIdsAllowedSchemaZod';
+import {
+  ModelWithEnumFromDescriptionWithRefIdsAllowedSchemaZod,
+  ModelWithEnumFromDescriptionWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './ModelWithEnumFromDescriptionWithRefIdsAllowedSchemaZod';
+import {
+  ModelWithEnumWithRefIdsAllowedSchemaZod,
+  ModelWithEnumWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './ModelWithEnumWithRefIdsAllowedSchemaZod';
+import {
+  ModelWithIntegerWithRefIdsAllowedSchemaZod,
+  ModelWithIntegerWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './ModelWithIntegerWithRefIdsAllowedSchemaZod';
+import {
+  ModelWithNestedEnumsWithRefIdsAllowedSchemaZod,
+  ModelWithNestedEnumsWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './ModelWithNestedEnumsWithRefIdsAllowedSchemaZod';
+import {
+  ModelWithNestedPropertiesWithRefIdsAllowedSchemaZod,
+  ModelWithNestedPropertiesWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './ModelWithNestedPropertiesWithRefIdsAllowedSchemaZod';
+import {
+  ModelWithNullableStringWithRefIdsAllowedSchemaZod,
+  ModelWithNullableStringWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './ModelWithNullableStringWithRefIdsAllowedSchemaZod';
+import {
+  ModelWithOrderedPropertiesWithRefIdsAllowedSchemaZod,
+  ModelWithOrderedPropertiesWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './ModelWithOrderedPropertiesWithRefIdsAllowedSchemaZod';
+import {
+  ModelWithPatternWithRefIdsAllowedSchemaZod,
+  ModelWithPatternWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './ModelWithPatternWithRefIdsAllowedSchemaZod';
+import {
+  ModelWithPropertiesWithRefIdsAllowedSchemaZod,
+  ModelWithPropertiesWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './ModelWithPropertiesWithRefIdsAllowedSchemaZod';
+import {
+  ModelWithReferenceWithRefIdsAllowedSchemaZod,
+  ModelWithReferenceWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './ModelWithReferenceWithRefIdsAllowedSchemaZod';
+import {
+  ModelWithStringWithRefIdsAllowedSchemaZod,
+  ModelWithStringWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './ModelWithStringWithRefIdsAllowedSchemaZod';
+import {
+  PageableWithRefIdsAllowedSchemaZod,
+  PageableWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './PageableWithRefIdsAllowedSchemaZod';
+import {
+  SimpleBooleanWithRefIdsAllowedSchemaZod,
+  SimpleBooleanWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './SimpleBooleanWithRefIdsAllowedSchemaZod';
+import {
+  SimpleFileWithRefIdsAllowedSchemaZod,
+  SimpleFileWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './SimpleFileWithRefIdsAllowedSchemaZod';
+import {
+  SimpleIntegerWithRefIdsAllowedSchemaZod,
+  SimpleIntegerWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './SimpleIntegerWithRefIdsAllowedSchemaZod';
+import {
+  SimpleReferenceWithRefIdsAllowedSchemaZod,
+  SimpleReferenceWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './SimpleReferenceWithRefIdsAllowedSchemaZod';
+import {
+  SimpleStringWithPatternWithRefIdsAllowedSchemaZod,
+  SimpleStringWithPatternWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './SimpleStringWithPatternWithRefIdsAllowedSchemaZod';
+import {
+  SimpleStringWithRefIdsAllowedSchemaZod,
+  SimpleStringWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './SimpleStringWithRefIdsAllowedSchemaZod';
+import {
+  _defaultWithRefIdsAllowedSchemaZod,
+  _defaultWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './_defaultWithRefIdsAllowedSchemaZod';
+
+import {
+  CompositionWithAnyOfAndNullableWithRefIdsAllowedSchemaZod,
+  CompositionWithAnyOfAndNullableWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './CompositionWithAnyOfAndNullableWithRefIdsAllowedSchemaZod';
+import {
+  CompositionWithAnyOfAnonymousWithRefIdsAllowedSchemaZod,
+  CompositionWithAnyOfAnonymousWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './CompositionWithAnyOfAnonymousWithRefIdsAllowedSchemaZod';
+import {
+  CompositionWithOneOfWithRefIdsAllowedSchemaZod,
+  CompositionWithOneOfWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './CompositionWithOneOfWithRefIdsAllowedSchemaZod';
+import {
+  CompositionWithOneOfAndComplexArrayDictionaryWithRefIdsAllowedSchemaZod,
+  CompositionWithOneOfAndComplexArrayDictionaryWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './CompositionWithOneOfAndComplexArrayDictionaryWithRefIdsAllowedSchemaZod';
+import {
+  CompositionWithOneOfAndNullableWithRefIdsAllowedSchemaZod,
+  CompositionWithOneOfAndNullableWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './CompositionWithOneOfAndNullableWithRefIdsAllowedSchemaZod';
+import {
+  CompositionWithOneOfAndSimpleArrayDictionaryWithRefIdsAllowedSchemaZod,
+  CompositionWithOneOfAndSimpleArrayDictionaryWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './CompositionWithOneOfAndSimpleArrayDictionaryWithRefIdsAllowedSchemaZod';
+import {
+  CompositionWithOneOfAndSimpleDictionaryWithRefIdsAllowedSchemaZod,
+  CompositionWithOneOfAndSimpleDictionaryWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './CompositionWithOneOfAndSimpleDictionaryWithRefIdsAllowedSchemaZod';
+import {
+  CompositionWithOneOfAnonymousWithRefIdsAllowedSchemaZod,
+  CompositionWithOneOfAnonymousWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './CompositionWithOneOfAnonymousWithRefIdsAllowedSchemaZod';
+import {
+  CompositionWithOneOfDiscriminatorWithRefIdsAllowedSchemaZod,
+  CompositionWithOneOfDiscriminatorWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './CompositionWithOneOfDiscriminatorWithRefIdsAllowedSchemaZod';
+import {
+  DeprecatedModelWithRefIdsAllowedSchemaZod,
+  DeprecatedModelWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './DeprecatedModelWithRefIdsAllowedSchemaZod';
+import {
+  DictionaryWithArrayWithRefIdsAllowedSchemaZod,
+  DictionaryWithArrayWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './DictionaryWithArrayWithRefIdsAllowedSchemaZod';
+import {
+  DictionaryWithDictionaryWithRefIdsAllowedSchemaZod,
+  DictionaryWithDictionaryWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './DictionaryWithDictionaryWithRefIdsAllowedSchemaZod';
+import {
+  DictionaryWithPropertiesWithRefIdsAllowedSchemaZod,
+  DictionaryWithPropertiesWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './DictionaryWithPropertiesWithRefIdsAllowedSchemaZod';
+import {
+  DictionaryWithReferenceWithRefIdsAllowedSchemaZod,
+  DictionaryWithReferenceWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './DictionaryWithReferenceWithRefIdsAllowedSchemaZod';
+import {
+  DictionaryWithStringWithRefIdsAllowedSchemaZod,
+  DictionaryWithStringWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './DictionaryWithStringWithRefIdsAllowedSchemaZod';
+import {
+  EnumFromDescriptionWithRefIdsAllowedSchemaZod,
+  EnumFromDescriptionWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './EnumFromDescriptionWithRefIdsAllowedSchemaZod';
+import {
+  EnumWithExtensionsWithRefIdsAllowedSchemaZod,
+  EnumWithExtensionsWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './EnumWithExtensionsWithRefIdsAllowedSchemaZod';
+import {
+  EnumWithNumbersWithRefIdsAllowedSchemaZod,
+  EnumWithNumbersWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './EnumWithNumbersWithRefIdsAllowedSchemaZod';
+import {
+  EnumWithStringsWithRefIdsAllowedSchemaZod,
+  EnumWithStringsWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './EnumWithStringsWithRefIdsAllowedSchemaZod';
+import {
+  FileWithRefIdsAllowedSchemaZod,
+  FileWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './FileWithRefIdsAllowedSchemaZod';
+import {
+  FreeFormObjectWithAdditionalPropertiesEqEmptyObjectWithRefIdsAllowedSchemaZod,
+  FreeFormObjectWithAdditionalPropertiesEqEmptyObjectWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './FreeFormObjectWithAdditionalPropertiesEqEmptyObjectWithRefIdsAllowedSchemaZod';
+import {
+  FreeFormObjectWithAdditionalPropertiesEqTrueWithRefIdsAllowedSchemaZod,
+  FreeFormObjectWithAdditionalPropertiesEqTrueWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './FreeFormObjectWithAdditionalPropertiesEqTrueWithRefIdsAllowedSchemaZod';
+import {
+  FreeFormObjectWithoutAdditionalPropertiesWithRefIdsAllowedSchemaZod,
+  FreeFormObjectWithoutAdditionalPropertiesWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './FreeFormObjectWithoutAdditionalPropertiesWithRefIdsAllowedSchemaZod';
+import {
+  ModelCircleWithRefIdsAllowedSchemaZod,
+  ModelCircleWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './ModelCircleWithRefIdsAllowedSchemaZod';
+import {
+  ModelSquareWithRefIdsAllowedSchemaZod,
+  ModelSquareWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './ModelSquareWithRefIdsAllowedSchemaZod';
+import {
+  ModelThatExtendsWithRefIdsAllowedSchemaZod,
+  ModelThatExtendsWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './ModelThatExtendsWithRefIdsAllowedSchemaZod';
+import {
+  ModelThatExtendsExtendsWithRefIdsAllowedSchemaZod,
+  ModelThatExtendsExtendsWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './ModelThatExtendsExtendsWithRefIdsAllowedSchemaZod';
+import {
+  ModelWithArrayWithRefIdsAllowedSchemaZod,
+  ModelWithArrayWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './ModelWithArrayWithRefIdsAllowedSchemaZod';
+import {
+  ModelWithBooleanWithRefIdsAllowedSchemaZod,
+  ModelWithBooleanWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './ModelWithBooleanWithRefIdsAllowedSchemaZod';
+import {
+  ModelWithCircularReferenceWithRefIdsAllowedSchemaZod,
+  ModelWithCircularReferenceWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './ModelWithCircularReferenceWithRefIdsAllowedSchemaZod';
+import {
+  ModelWithDictionaryWithRefIdsAllowedSchemaZod,
+  ModelWithDictionaryWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './ModelWithDictionaryWithRefIdsAllowedSchemaZod';
+import {
+  ModelWithDuplicateImportsWithRefIdsAllowedSchemaZod,
+  ModelWithDuplicateImportsWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './ModelWithDuplicateImportsWithRefIdsAllowedSchemaZod';
+import {
+  ModelWithDuplicatePropertiesWithRefIdsAllowedSchemaZod,
+  ModelWithDuplicatePropertiesWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './ModelWithDuplicatePropertiesWithRefIdsAllowedSchemaZod';
+import {
+  ModelWithEnumWithRefIdsAllowedSchemaZod,
+  ModelWithEnumWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './ModelWithEnumWithRefIdsAllowedSchemaZod';
+import {
+  ModelWithEnumFromDescriptionWithRefIdsAllowedSchemaZod,
+  ModelWithEnumFromDescriptionWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './ModelWithEnumFromDescriptionWithRefIdsAllowedSchemaZod';
+import {
+  ModelWithIntegerWithRefIdsAllowedSchemaZod,
+  ModelWithIntegerWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './ModelWithIntegerWithRefIdsAllowedSchemaZod';
+import {
+  ModelWithNestedEnumsWithRefIdsAllowedSchemaZod,
+  ModelWithNestedEnumsWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './ModelWithNestedEnumsWithRefIdsAllowedSchemaZod';
+import {
+  ModelWithNestedPropertiesWithRefIdsAllowedSchemaZod,
+  ModelWithNestedPropertiesWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './ModelWithNestedPropertiesWithRefIdsAllowedSchemaZod';
+import {
+  ModelWithNullableStringWithRefIdsAllowedSchemaZod,
+  ModelWithNullableStringWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './ModelWithNullableStringWithRefIdsAllowedSchemaZod';
+import {
+  ModelWithOrderedPropertiesWithRefIdsAllowedSchemaZod,
+  ModelWithOrderedPropertiesWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './ModelWithOrderedPropertiesWithRefIdsAllowedSchemaZod';
+import {
+  ModelWithPatternWithRefIdsAllowedSchemaZod,
+  ModelWithPatternWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './ModelWithPatternWithRefIdsAllowedSchemaZod';
+import {
+  ModelWithPropertiesWithRefIdsAllowedSchemaZod,
+  ModelWithPropertiesWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './ModelWithPropertiesWithRefIdsAllowedSchemaZod';
+import {
+  ModelWithReferenceWithRefIdsAllowedSchemaZod,
+  ModelWithReferenceWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './ModelWithReferenceWithRefIdsAllowedSchemaZod';
+import {
+  ModelWithStringWithRefIdsAllowedSchemaZod,
+  ModelWithStringWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './ModelWithStringWithRefIdsAllowedSchemaZod';
+import {
+  PageableWithRefIdsAllowedSchemaZod,
+  PageableWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './PageableWithRefIdsAllowedSchemaZod';
+import {
+  SimpleBooleanWithRefIdsAllowedSchemaZod,
+  SimpleBooleanWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './SimpleBooleanWithRefIdsAllowedSchemaZod';
+import {
+  SimpleFileWithRefIdsAllowedSchemaZod,
+  SimpleFileWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './SimpleFileWithRefIdsAllowedSchemaZod';
+import {
+  SimpleIntegerWithRefIdsAllowedSchemaZod,
+  SimpleIntegerWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './SimpleIntegerWithRefIdsAllowedSchemaZod';
+import {
+  SimpleReferenceWithRefIdsAllowedSchemaZod,
+  SimpleReferenceWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './SimpleReferenceWithRefIdsAllowedSchemaZod';
+import {
+  SimpleStringWithRefIdsAllowedSchemaZod,
+  SimpleStringWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './SimpleStringWithRefIdsAllowedSchemaZod';
+import {
+  SimpleStringWithPatternWithRefIdsAllowedSchemaZod,
+  SimpleStringWithPatternWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './SimpleStringWithPatternWithRefIdsAllowedSchemaZod';
+import {
+  _defaultWithRefIdsAllowedSchemaZod,
+  _defaultWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './_defaultWithRefIdsAllowedSchemaZod';
+export const entityNameToWithRefIdsAllowedSchemaZod = {
+  ArrayWithArray: ArrayWithArrayWithRefIdsAllowedSchemaZod,
+  ArrayWithBooleans: ArrayWithBooleansWithRefIdsAllowedSchemaZod,
+  ArrayWithNumbers: ArrayWithNumbersWithRefIdsAllowedSchemaZod,
+  ArrayWithProperties: ArrayWithPropertiesWithRefIdsAllowedSchemaZod,
+  ArrayWithReferences: ArrayWithReferencesWithRefIdsAllowedSchemaZod,
+  ArrayWithStrings: ArrayWithStringsWithRefIdsAllowedSchemaZod,
+  CommentWithBackticks: CommentWithBackticksWithRefIdsAllowedSchemaZod,
+  CommentWithBreaks: CommentWithBreaksWithRefIdsAllowedSchemaZod,
+  CommentWithExpressionPlaceholders:
+    CommentWithExpressionPlaceholdersWithRefIdsAllowedSchemaZod,
+  CommentWithQuotes: CommentWithQuotesWithRefIdsAllowedSchemaZod,
+  CommentWithReservedCharacters:
+    CommentWithReservedCharactersWithRefIdsAllowedSchemaZod,
+  CommentWithSlashes: CommentWithSlashesWithRefIdsAllowedSchemaZod,
+  CompositionBaseModel: CompositionBaseModelWithRefIdsAllowedSchemaZod,
+  CompositionExtendedModel: CompositionExtendedModelWithRefIdsAllowedSchemaZod,
+  CompositionWithAllOfAndNullable:
+    CompositionWithAllOfAndNullableWithRefIdsAllowedSchemaZod,
+  CompositionWithAnyOf: CompositionWithAnyOfWithRefIdsAllowedSchemaZod,
+  CompositionWithAnyOfAndNullable:
+    CompositionWithAnyOfAndNullableWithRefIdsAllowedSchemaZod,
+  CompositionWithAnyOfAnonymous:
+    CompositionWithAnyOfAnonymousWithRefIdsAllowedSchemaZod,
+  CompositionWithOneOf: CompositionWithOneOfWithRefIdsAllowedSchemaZod,
+  CompositionWithOneOfAndComplexArrayDictionary:
+    CompositionWithOneOfAndComplexArrayDictionaryWithRefIdsAllowedSchemaZod,
+  CompositionWithOneOfAndNullable:
+    CompositionWithOneOfAndNullableWithRefIdsAllowedSchemaZod,
+  CompositionWithOneOfAndSimpleArrayDictionary:
+    CompositionWithOneOfAndSimpleArrayDictionaryWithRefIdsAllowedSchemaZod,
+  CompositionWithOneOfAndSimpleDictionary:
+    CompositionWithOneOfAndSimpleDictionaryWithRefIdsAllowedSchemaZod,
+  CompositionWithOneOfAnonymous:
+    CompositionWithOneOfAnonymousWithRefIdsAllowedSchemaZod,
+  CompositionWithOneOfDiscriminator:
+    CompositionWithOneOfDiscriminatorWithRefIdsAllowedSchemaZod,
+  DeprecatedModel: DeprecatedModelWithRefIdsAllowedSchemaZod,
+  DictionaryWithArray: DictionaryWithArrayWithRefIdsAllowedSchemaZod,
+  DictionaryWithDictionary: DictionaryWithDictionaryWithRefIdsAllowedSchemaZod,
+  DictionaryWithProperties: DictionaryWithPropertiesWithRefIdsAllowedSchemaZod,
+  DictionaryWithReference: DictionaryWithReferenceWithRefIdsAllowedSchemaZod,
+  DictionaryWithString: DictionaryWithStringWithRefIdsAllowedSchemaZod,
+  EnumFromDescription: EnumFromDescriptionWithRefIdsAllowedSchemaZod,
+  EnumWithExtensions: EnumWithExtensionsWithRefIdsAllowedSchemaZod,
+  EnumWithNumbers: EnumWithNumbersWithRefIdsAllowedSchemaZod,
+  EnumWithStrings: EnumWithStringsWithRefIdsAllowedSchemaZod,
+  File: FileWithRefIdsAllowedSchemaZod,
+  FreeFormObjectWithAdditionalPropertiesEqEmptyObject:
+    FreeFormObjectWithAdditionalPropertiesEqEmptyObjectWithRefIdsAllowedSchemaZod,
+  FreeFormObjectWithAdditionalPropertiesEqTrue:
+    FreeFormObjectWithAdditionalPropertiesEqTrueWithRefIdsAllowedSchemaZod,
+  FreeFormObjectWithoutAdditionalProperties:
+    FreeFormObjectWithoutAdditionalPropertiesWithRefIdsAllowedSchemaZod,
+  ModelCircle: ModelCircleWithRefIdsAllowedSchemaZod,
+  ModelSquare: ModelSquareWithRefIdsAllowedSchemaZod,
+  ModelThatExtends: ModelThatExtendsWithRefIdsAllowedSchemaZod,
+  ModelThatExtendsExtends: ModelThatExtendsExtendsWithRefIdsAllowedSchemaZod,
+  ModelWithArray: ModelWithArrayWithRefIdsAllowedSchemaZod,
+  ModelWithBoolean: ModelWithBooleanWithRefIdsAllowedSchemaZod,
+  ModelWithCircularReference:
+    ModelWithCircularReferenceWithRefIdsAllowedSchemaZod,
+  ModelWithDictionary: ModelWithDictionaryWithRefIdsAllowedSchemaZod,
+  ModelWithDuplicateImports:
+    ModelWithDuplicateImportsWithRefIdsAllowedSchemaZod,
+  ModelWithDuplicateProperties:
+    ModelWithDuplicatePropertiesWithRefIdsAllowedSchemaZod,
+  ModelWithEnum: ModelWithEnumWithRefIdsAllowedSchemaZod,
+  ModelWithEnumFromDescription:
+    ModelWithEnumFromDescriptionWithRefIdsAllowedSchemaZod,
+  ModelWithInteger: ModelWithIntegerWithRefIdsAllowedSchemaZod,
+  ModelWithNestedEnums: ModelWithNestedEnumsWithRefIdsAllowedSchemaZod,
+  ModelWithNestedProperties:
+    ModelWithNestedPropertiesWithRefIdsAllowedSchemaZod,
+  ModelWithNullableString: ModelWithNullableStringWithRefIdsAllowedSchemaZod,
+  ModelWithOrderedProperties:
+    ModelWithOrderedPropertiesWithRefIdsAllowedSchemaZod,
+  ModelWithPattern: ModelWithPatternWithRefIdsAllowedSchemaZod,
+  ModelWithProperties: ModelWithPropertiesWithRefIdsAllowedSchemaZod,
+  ModelWithReference: ModelWithReferenceWithRefIdsAllowedSchemaZod,
+  ModelWithString: ModelWithStringWithRefIdsAllowedSchemaZod,
+  Pageable: PageableWithRefIdsAllowedSchemaZod,
+  SimpleBoolean: SimpleBooleanWithRefIdsAllowedSchemaZod,
+  SimpleFile: SimpleFileWithRefIdsAllowedSchemaZod,
+  SimpleInteger: SimpleIntegerWithRefIdsAllowedSchemaZod,
+  SimpleReference: SimpleReferenceWithRefIdsAllowedSchemaZod,
+  SimpleString: SimpleStringWithRefIdsAllowedSchemaZod,
+  SimpleStringWithPattern: SimpleStringWithPatternWithRefIdsAllowedSchemaZod,
+  _default: _defaultWithRefIdsAllowedSchemaZod,
+};
+
+export const entityNameToWithRefIdsAllowedSchemaZodNoPrimaryKey = {
+  ArrayWithArray: ArrayWithArrayWithRefIdsAllowedSchemaZodNoPrimaryKey,
+  ArrayWithBooleans: ArrayWithBooleansWithRefIdsAllowedSchemaZodNoPrimaryKey,
+  ArrayWithNumbers: ArrayWithNumbersWithRefIdsAllowedSchemaZodNoPrimaryKey,
+  ArrayWithProperties:
+    ArrayWithPropertiesWithRefIdsAllowedSchemaZodNoPrimaryKey,
+  ArrayWithReferences:
+    ArrayWithReferencesWithRefIdsAllowedSchemaZodNoPrimaryKey,
+  ArrayWithStrings: ArrayWithStringsWithRefIdsAllowedSchemaZodNoPrimaryKey,
+  CommentWithBackticks:
+    CommentWithBackticksWithRefIdsAllowedSchemaZodNoPrimaryKey,
+  CommentWithBreaks: CommentWithBreaksWithRefIdsAllowedSchemaZodNoPrimaryKey,
+  CommentWithExpressionPlaceholders:
+    CommentWithExpressionPlaceholdersWithRefIdsAllowedSchemaZodNoPrimaryKey,
+  CommentWithQuotes: CommentWithQuotesWithRefIdsAllowedSchemaZodNoPrimaryKey,
+  CommentWithReservedCharacters:
+    CommentWithReservedCharactersWithRefIdsAllowedSchemaZodNoPrimaryKey,
+  CommentWithSlashes: CommentWithSlashesWithRefIdsAllowedSchemaZodNoPrimaryKey,
+  CompositionBaseModel:
+    CompositionBaseModelWithRefIdsAllowedSchemaZodNoPrimaryKey,
+  CompositionExtendedModel:
+    CompositionExtendedModelWithRefIdsAllowedSchemaZodNoPrimaryKey,
+  CompositionWithAllOfAndNullable:
+    CompositionWithAllOfAndNullableWithRefIdsAllowedSchemaZodNoPrimaryKey,
+  CompositionWithAnyOf:
+    CompositionWithAnyOfWithRefIdsAllowedSchemaZodNoPrimaryKey,
+  CompositionWithAnyOfAndNullable:
+    CompositionWithAnyOfAndNullableWithRefIdsAllowedSchemaZodNoPrimaryKey,
+  CompositionWithAnyOfAnonymous:
+    CompositionWithAnyOfAnonymousWithRefIdsAllowedSchemaZodNoPrimaryKey,
+  CompositionWithOneOf:
+    CompositionWithOneOfWithRefIdsAllowedSchemaZodNoPrimaryKey,
+  CompositionWithOneOfAndComplexArrayDictionary:
+    CompositionWithOneOfAndComplexArrayDictionaryWithRefIdsAllowedSchemaZodNoPrimaryKey,
+  CompositionWithOneOfAndNullable:
+    CompositionWithOneOfAndNullableWithRefIdsAllowedSchemaZodNoPrimaryKey,
+  CompositionWithOneOfAndSimpleArrayDictionary:
+    CompositionWithOneOfAndSimpleArrayDictionaryWithRefIdsAllowedSchemaZodNoPrimaryKey,
+  CompositionWithOneOfAndSimpleDictionary:
+    CompositionWithOneOfAndSimpleDictionaryWithRefIdsAllowedSchemaZodNoPrimaryKey,
+  CompositionWithOneOfAnonymous:
+    CompositionWithOneOfAnonymousWithRefIdsAllowedSchemaZodNoPrimaryKey,
+  CompositionWithOneOfDiscriminator:
+    CompositionWithOneOfDiscriminatorWithRefIdsAllowedSchemaZodNoPrimaryKey,
+  DeprecatedModel: DeprecatedModelWithRefIdsAllowedSchemaZodNoPrimaryKey,
+  DictionaryWithArray:
+    DictionaryWithArrayWithRefIdsAllowedSchemaZodNoPrimaryKey,
+  DictionaryWithDictionary:
+    DictionaryWithDictionaryWithRefIdsAllowedSchemaZodNoPrimaryKey,
+  DictionaryWithProperties:
+    DictionaryWithPropertiesWithRefIdsAllowedSchemaZodNoPrimaryKey,
+  DictionaryWithReference:
+    DictionaryWithReferenceWithRefIdsAllowedSchemaZodNoPrimaryKey,
+  DictionaryWithString:
+    DictionaryWithStringWithRefIdsAllowedSchemaZodNoPrimaryKey,
+  EnumFromDescription:
+    EnumFromDescriptionWithRefIdsAllowedSchemaZodNoPrimaryKey,
+  EnumWithExtensions: EnumWithExtensionsWithRefIdsAllowedSchemaZodNoPrimaryKey,
+  EnumWithNumbers: EnumWithNumbersWithRefIdsAllowedSchemaZodNoPrimaryKey,
+  EnumWithStrings: EnumWithStringsWithRefIdsAllowedSchemaZodNoPrimaryKey,
+  File: FileWithRefIdsAllowedSchemaZodNoPrimaryKey,
+  FreeFormObjectWithAdditionalPropertiesEqEmptyObject:
+    FreeFormObjectWithAdditionalPropertiesEqEmptyObjectWithRefIdsAllowedSchemaZodNoPrimaryKey,
+  FreeFormObjectWithAdditionalPropertiesEqTrue:
+    FreeFormObjectWithAdditionalPropertiesEqTrueWithRefIdsAllowedSchemaZodNoPrimaryKey,
+  FreeFormObjectWithoutAdditionalProperties:
+    FreeFormObjectWithoutAdditionalPropertiesWithRefIdsAllowedSchemaZodNoPrimaryKey,
+  ModelCircle: ModelCircleWithRefIdsAllowedSchemaZodNoPrimaryKey,
+  ModelSquare: ModelSquareWithRefIdsAllowedSchemaZodNoPrimaryKey,
+  ModelThatExtends: ModelThatExtendsWithRefIdsAllowedSchemaZodNoPrimaryKey,
+  ModelThatExtendsExtends:
+    ModelThatExtendsExtendsWithRefIdsAllowedSchemaZodNoPrimaryKey,
+  ModelWithArray: ModelWithArrayWithRefIdsAllowedSchemaZodNoPrimaryKey,
+  ModelWithBoolean: ModelWithBooleanWithRefIdsAllowedSchemaZodNoPrimaryKey,
+  ModelWithCircularReference:
+    ModelWithCircularReferenceWithRefIdsAllowedSchemaZodNoPrimaryKey,
+  ModelWithDictionary:
+    ModelWithDictionaryWithRefIdsAllowedSchemaZodNoPrimaryKey,
+  ModelWithDuplicateImports:
+    ModelWithDuplicateImportsWithRefIdsAllowedSchemaZodNoPrimaryKey,
+  ModelWithDuplicateProperties:
+    ModelWithDuplicatePropertiesWithRefIdsAllowedSchemaZodNoPrimaryKey,
+  ModelWithEnum: ModelWithEnumWithRefIdsAllowedSchemaZodNoPrimaryKey,
+  ModelWithEnumFromDescription:
+    ModelWithEnumFromDescriptionWithRefIdsAllowedSchemaZodNoPrimaryKey,
+  ModelWithInteger: ModelWithIntegerWithRefIdsAllowedSchemaZodNoPrimaryKey,
+  ModelWithNestedEnums:
+    ModelWithNestedEnumsWithRefIdsAllowedSchemaZodNoPrimaryKey,
+  ModelWithNestedProperties:
+    ModelWithNestedPropertiesWithRefIdsAllowedSchemaZodNoPrimaryKey,
+  ModelWithNullableString:
+    ModelWithNullableStringWithRefIdsAllowedSchemaZodNoPrimaryKey,
+  ModelWithOrderedProperties:
+    ModelWithOrderedPropertiesWithRefIdsAllowedSchemaZodNoPrimaryKey,
+  ModelWithPattern: ModelWithPatternWithRefIdsAllowedSchemaZodNoPrimaryKey,
+  ModelWithProperties:
+    ModelWithPropertiesWithRefIdsAllowedSchemaZodNoPrimaryKey,
+  ModelWithReference: ModelWithReferenceWithRefIdsAllowedSchemaZodNoPrimaryKey,
+  ModelWithString: ModelWithStringWithRefIdsAllowedSchemaZodNoPrimaryKey,
+  Pageable: PageableWithRefIdsAllowedSchemaZodNoPrimaryKey,
+  SimpleBoolean: SimpleBooleanWithRefIdsAllowedSchemaZodNoPrimaryKey,
+  SimpleFile: SimpleFileWithRefIdsAllowedSchemaZodNoPrimaryKey,
+  SimpleInteger: SimpleIntegerWithRefIdsAllowedSchemaZodNoPrimaryKey,
+  SimpleReference: SimpleReferenceWithRefIdsAllowedSchemaZodNoPrimaryKey,
+  SimpleString: SimpleStringWithRefIdsAllowedSchemaZodNoPrimaryKey,
+  SimpleStringWithPattern:
+    SimpleStringWithPatternWithRefIdsAllowedSchemaZodNoPrimaryKey,
+  _default: _defaultWithRefIdsAllowedSchemaZodNoPrimaryKey,
+};

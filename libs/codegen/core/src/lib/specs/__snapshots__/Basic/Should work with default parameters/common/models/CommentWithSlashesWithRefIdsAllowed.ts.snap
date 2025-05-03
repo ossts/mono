@@ -1,0 +1,10 @@
+/* istanbul ignore file */
+
+/**
+ * Testing slashes in string: \backwards\\\ and /forwards/// should work
+ */
+export type CommentWithSlashesWithRefIdsAllowed = number;
+
+export namespace CommentWithSlashesWithRefIdsAllowed {
+  export type NoPrimaryKey = CommentWithSlashesWithRefIdsAllowed;
+}

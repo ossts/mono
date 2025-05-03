@@ -1,0 +1,21 @@
+/* istanbul ignore file */
+import type { ModelWithArrayWithRefIdsOnly } from './ModelWithArrayWithRefIdsOnly';
+import type { ModelWithDictionaryWithRefIdsOnly } from './ModelWithDictionaryWithRefIdsOnly';
+import type { ModelWithEnumWithRefIdsOnly } from './ModelWithEnumWithRefIdsOnly';
+
+/**
+ * This is a model with one property with a 'all of' relationship
+ */
+export type CompositionWithAllOfAndNullableWithRefIdsOnly = {
+  propA?:
+    | ({
+        boolean?: boolean;
+      } & ModelWithEnumWithRefIdsOnly &
+        ModelWithArrayWithRefIdsOnly &
+        ModelWithDictionaryWithRefIdsOnly)
+    | null;
+};
+
+export namespace CompositionWithAllOfAndNullableWithRefIdsOnly {
+  export type NoPrimaryKey = CompositionWithAllOfAndNullableWithRefIdsOnly;
+}

@@ -3,4 +3,8 @@ import { z } from 'zod';
 
 import { ModelWithStringSchemaZod } from './ModelWithStringSchemaZod';
 
-export const ArrayWithReferencesSchemaZod = z.array(ModelWithStringSchemaZod);
+export const ArrayWithReferencesSchemaZod = z.array(
+  ModelWithStringSchemaZod.optional().nullable()
+);
+export const ArrayWithReferencesSchemaZodNoPrimaryKey =
+  ArrayWithReferencesSchemaZod;

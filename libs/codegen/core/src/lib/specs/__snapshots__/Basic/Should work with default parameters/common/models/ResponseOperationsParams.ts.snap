@@ -1,0 +1,12 @@
+/* istanbul ignore file */
+import type { ModelThatExtends } from './ModelThatExtends';
+import type { ModelThatExtendsExtends } from './ModelThatExtendsExtends';
+import type { ModelWithString } from './ModelWithString';
+
+export namespace ResponseOperationsParams {
+  export namespace CallWithResponse {}
+
+  export namespace CallWithDuplicateResponses {}
+
+  export namespace CallWithResponses {}
+}

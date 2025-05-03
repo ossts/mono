@@ -1,0 +1,14 @@
+/* istanbul ignore file */
+
+/**
+ * This is a model with ordered properties
+ */
+export type ModelWithOrderedPropertiesWithRefIdsOnly = {
+  zebra?: string;
+  apple?: string;
+  hawaii?: string;
+};
+
+export namespace ModelWithOrderedPropertiesWithRefIdsOnly {
+  export type NoPrimaryKey = ModelWithOrderedPropertiesWithRefIdsOnly;
+}

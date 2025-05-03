@@ -1,0 +1,53 @@
+/* istanbul ignore file */
+import type { ApiResponse } from './ApiResponse';
+import type { Pet } from './Pet';
+
+export namespace PetOperationsParams {
+  export namespace UpdatePet {}
+
+  export namespace AddPet {}
+
+  export namespace FindPetsByStatus {
+    export type Query = {
+      status: Array<'available' | 'pending' | 'sold'>;
+    };
+  }
+
+  export namespace FindPetsByTags {
+    export type Query = {
+      tags: Array<string>;
+    };
+  }
+
+  export namespace GetPetById {
+    export type Path = {
+      petId: number;
+    };
+  }
+
+  export namespace UpdatePetWithForm {
+    export type Path = {
+      petId: number;
+      formData: any;
+    };
+  }
+
+  export namespace DeletePet {
+    export type Path = {
+      petId: number;
+      apiKey: string;
+    };
+
+    export type Header = {
+      petId: number;
+      apiKey: string;
+    };
+  }
+
+  export namespace UploadFile {
+    export type Path = {
+      petId: number;
+      formData: any;
+    };
+  }
+}

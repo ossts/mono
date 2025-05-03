@@ -14,3 +14,7 @@ export type CompositionWithOneOf = {
     | ModelWithArray
     | ModelWithDictionary;
 };
+
+export namespace CompositionWithOneOf {
+  export type NoPrimaryKey = CompositionWithOneOf;
+}

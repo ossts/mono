@@ -7,3 +7,7 @@ export type File = {
   mime: string;
   readonly file?: string;
 };
+
+export namespace File {
+  export type NoPrimaryKey = Omit<File, 'id'>;
+}

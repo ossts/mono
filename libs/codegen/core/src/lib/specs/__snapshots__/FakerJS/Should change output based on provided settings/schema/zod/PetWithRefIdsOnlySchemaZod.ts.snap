@@ -1,0 +1,19 @@
+/* istanbul ignore file */
+import { z } from 'zod';
+
+import { Pet } from '../../common/models';
+import { CategoryWithRefIdsOnlySchemaZod } from './CategoryWithRefIdsOnlySchemaZod';
+import { TagWithRefIdsOnlySchemaZod } from './TagWithRefIdsOnlySchemaZod';
+
+export const PetWithRefIdsOnlySchemaZod = z
+  .object({
+    id: z.number().optional(),
+    category: z.string().or(z.number()).optional().nullable(),
+    name: z.coerce.string(),
+    photoUrls: z.array(z.string()),
+    tags: z.array(z.string().or(z.number()).optional().nullable()).optional(),
+    status: z.nativeEnum(Pet.status).optional(),
+  })
+  .describe(`Model:Pet`);
+export const PetWithRefIdsOnlySchemaZodNoPrimaryKey =
+  PetWithRefIdsOnlySchemaZod.omit({ id: true });

@@ -13,10 +13,7 @@ export function getCompositionWithOneOfAnonymousMockFakerJs<
   TMode extends 'withReferences'
 >(
   params?: MockFakerJSGeneratorParams<TMode>
-):
-  | ModelOrIdNullable<CompositionWithOneOfAnonymous>
-  | null
-  | CompositionWithOneOfAnonymous['id'];
+): ModelOrIdNullable<CompositionWithOneOfAnonymous> | null;
 
 export function getCompositionWithOneOfAnonymousMockFakerJs<
   TMode extends 'standalone'
@@ -25,13 +22,14 @@ export function getCompositionWithOneOfAnonymousMockFakerJs<
 ): CompositionWithOneOfAnonymous | null;
 
 export function getCompositionWithOneOfAnonymousMockFakerJs<
+  TMode extends 'primaryKey'
+>(params?: MockFakerJSGeneratorParams<TMode>): number | null;
+
+export function getCompositionWithOneOfAnonymousMockFakerJs<
   TMode extends MockFakerJSGeneratorParamsMode = 'withReferences'
 >(
   params: MockFakerJSGeneratorParams<TMode> = {}
-):
-  | ModelOrIdNullable<CompositionWithOneOfAnonymous>
-  | null
-  | CompositionWithOneOfAnonymous['id'] {
+): ModelOrIdNullable<CompositionWithOneOfAnonymous> | null {
   const modelName = 'CompositionWithOneOfAnonymous';
 
   const { faker = fakerDefault, fakerParams: { probability } = {} } = params;

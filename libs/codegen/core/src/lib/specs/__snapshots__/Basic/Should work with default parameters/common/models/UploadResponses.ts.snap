@@ -1,0 +1,8 @@
+/* istanbul ignore file */
+
+export namespace UploadServiceResponses {
+  /**
+   * Method: `POST`
+   */
+  export type UploadFilePOST = boolean;
+}

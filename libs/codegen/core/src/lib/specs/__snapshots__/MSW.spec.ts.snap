@@ -1,0 +1,90 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`MSW > Should return pregenerated data 1`] = `
+[
+  [
+    1121421804185562,
+    {
+      "category": {
+        "id": 7359110404475709,
+        "name": "mQmnw",
+      },
+      "id": 1121421804185562,
+      "name": "HLKOsIFKV",
+      "photoUrls": [
+        "XOzGuASmXT",
+      ],
+      "status": "sold",
+      "tags": [
+        {
+          "id": 1187511739297481,
+          "name": "LqSgCz",
+        },
+      ],
+    },
+  ],
+  [
+    586467142318126,
+    {
+      "category": {
+        "id": 6642786955815996,
+        "name": "RNoeH",
+      },
+      "id": 586467142318126,
+      "name": "FPh",
+      "photoUrls": [
+        "SBG",
+      ],
+      "status": "pending",
+      "tags": [
+        {
+          "id": 4369758229012556,
+          "name": "EoNdw",
+        },
+      ],
+    },
+  ],
+  [
+    3779784600009883,
+    {
+      "category": {
+        "id": 3487945888158228,
+        "name": "pLz",
+      },
+      "id": 3779784600009883,
+      "name": "YUq",
+      "photoUrls": [
+        "UGdzdntJA",
+      ],
+      "status": "available",
+      "tags": [
+        {
+          "id": 1993479585813963,
+          "name": "jNmNyjY",
+        },
+      ],
+    },
+  ],
+]
+`;
+
+exports[`MSW > Should return pregenerated data 2`] = `
+{
+  "category": {
+    "id": 6642786955815996,
+    "name": "RNoeH",
+  },
+  "id": 586467142318126,
+  "name": "FPh",
+  "photoUrls": [
+    "SBG",
+  ],
+  "status": "pending",
+  "tags": [
+    {
+      "id": 4369758229012556,
+      "name": "EoNdw",
+    },
+  ],
+}
+`;

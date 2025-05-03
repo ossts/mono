@@ -1,0 +1,27 @@
+/* istanbul ignore file */
+
+export namespace TypesOperationsParams {
+  export namespace Types {
+    export type Path = {
+      parameterArray: Array<string> | null;
+      parameterDictionary: Record<string, any> | null;
+      parameterEnum: 'Success' | 'Warning' | 'Error' | null;
+      parameterNumber: number;
+      parameterString: string | null;
+      parameterBoolean: boolean | null;
+      parameterObject: Record<string, any> | null;
+      id: number;
+    };
+
+    export type Query = {
+      parameterArray: Array<string> | null;
+      parameterDictionary: Record<string, any> | null;
+      parameterEnum: 'Success' | 'Warning' | 'Error' | null;
+      parameterNumber: number;
+      parameterString: string | null;
+      parameterBoolean: boolean | null;
+      parameterObject: Record<string, any> | null;
+      id: number;
+    };
+  }
+}

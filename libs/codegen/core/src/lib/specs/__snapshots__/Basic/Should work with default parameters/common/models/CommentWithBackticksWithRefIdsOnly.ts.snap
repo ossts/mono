@@ -1,0 +1,10 @@
+/* istanbul ignore file */
+
+/**
+ * Testing backticks in string: `backticks` and ```multiple backticks``` should work
+ */
+export type CommentWithBackticksWithRefIdsOnly = number;
+
+export namespace CommentWithBackticksWithRefIdsOnly {
+  export type NoPrimaryKey = CommentWithBackticksWithRefIdsOnly;
+}

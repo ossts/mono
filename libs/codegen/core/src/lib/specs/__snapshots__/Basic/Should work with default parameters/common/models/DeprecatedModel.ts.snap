@@ -11,3 +11,7 @@ export type DeprecatedModel = {
    */
   prop?: string;
 };
+
+export namespace DeprecatedModel {
+  export type NoPrimaryKey = DeprecatedModel;
+}

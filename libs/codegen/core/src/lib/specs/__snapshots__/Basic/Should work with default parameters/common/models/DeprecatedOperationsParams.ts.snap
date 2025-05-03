@@ -1,0 +1,10 @@
+/* istanbul ignore file */
+import type { DeprecatedModel } from './DeprecatedModel';
+
+export namespace DeprecatedOperationsParams {
+  export namespace DeprecatedCall {
+    export type Header = {
+      parameter: DeprecatedModel | null;
+    };
+  }
+}

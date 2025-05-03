@@ -8,3 +8,7 @@ export type ModelThatExtends = ModelWithString & {
   propExtendsA?: string;
   propExtendsB?: ModelWithString;
 };
+
+export namespace ModelThatExtends {
+  export type NoPrimaryKey = ModelThatExtends;
+}

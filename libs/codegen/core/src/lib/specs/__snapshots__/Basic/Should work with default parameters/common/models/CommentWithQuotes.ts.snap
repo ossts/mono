@@ -4,3 +4,7 @@
  * Testing quotes in string: 'single quote''' and "double quotes""" should work
  */
 export type CommentWithQuotes = number;
+
+export namespace CommentWithQuotes {
+  export type NoPrimaryKey = CommentWithQuotes;
+}

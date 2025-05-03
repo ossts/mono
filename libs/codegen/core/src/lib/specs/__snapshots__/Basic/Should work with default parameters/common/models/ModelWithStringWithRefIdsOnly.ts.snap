@@ -1,0 +1,15 @@
+/* istanbul ignore file */
+
+/**
+ * This is a model with one string property
+ */
+export type ModelWithStringWithRefIdsOnly = {
+  /**
+   * This is a simple string property
+   */
+  prop?: string;
+};
+
+export namespace ModelWithStringWithRefIdsOnly {
+  export type NoPrimaryKey = ModelWithStringWithRefIdsOnly;
+}

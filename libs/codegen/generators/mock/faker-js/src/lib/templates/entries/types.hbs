@@ -1,4 +1,4 @@
-import { type Faker, SimpleHelpersModule } from '@faker-js/faker';
+import { type Faker } from '@faker-js/faker';
 
 import type { AllApiEntities, AllApiModels } from '../../common/models';
 
@@ -7,7 +7,10 @@ import type { AllApiEntities, AllApiModels } from '../../common/models';
  *
  * `withReferences` - will only generate fields of current entity. All reference type will have actual references.
  */
-export type MockFakerJSGeneratorParamsMode = 'standalone' | 'withReferences';
+export type MockFakerJSGeneratorParamsMode =
+  | 'standalone'
+  | 'withReferences'
+  | 'primaryKey';
 
 export type MockFakerJSGeneratorParamsCallStack = {
   /**
@@ -42,6 +45,21 @@ export type MockFakerJSGeneratorParams<
    */
   mode?: TMode;
 
+  /**
+   * If `true` - will prevent automatic reference resolving for newly created entities.
+   *
+   * This can be useful if you want to generate set of data and store it somewhere.
+   *
+   * Only applicable if `mode="withReferences"`.
+   *
+   * Default to `false`
+   */
+  preventReferenceResolve?: boolean;
+
+  /**
+   * Callstack of all references up to this moment.
+   * This is required to prevent infinite circular references.
+   */
   callStack?: MockFakerJSGeneratorParamsCallStack;
 };
 
@@ -57,3 +75,14 @@ export type ModelOrIdNullable<TModel extends AllApiModels> = {
     ? TModel[Property] | string | number | null
     : TModel[Property];
 };
+
+export type MockFakerJSEntityToDataMapValue = Map<
+  string | number,
+  AllApiModels
+>;
+
+export interface MockFakerJSEForEachEntityRefCallbackParams {
+  fieldName: string;
+  refName: AllApiEntities;
+  refModelsMap: MockFakerJSEntityToDataMapValue;
+}

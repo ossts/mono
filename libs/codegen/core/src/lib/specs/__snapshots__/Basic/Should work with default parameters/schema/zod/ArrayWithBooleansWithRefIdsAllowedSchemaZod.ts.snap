@@ -1,0 +1,6 @@
+/* istanbul ignore file */
+import { z } from 'zod';
+
+export const ArrayWithBooleansWithRefIdsAllowedSchemaZod = z.array(z.boolean());
+export const ArrayWithBooleansWithRefIdsAllowedSchemaZodNoPrimaryKey =
+  ArrayWithBooleansWithRefIdsAllowedSchemaZod;

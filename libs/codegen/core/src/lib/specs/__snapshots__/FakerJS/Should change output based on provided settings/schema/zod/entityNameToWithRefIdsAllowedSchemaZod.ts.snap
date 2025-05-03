@@ -1,0 +1,42 @@
+import {
+  ApiResponseWithRefIdsAllowedSchemaZod,
+  ApiResponseWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './ApiResponseWithRefIdsAllowedSchemaZod';
+import {
+  CategoryWithRefIdsAllowedSchemaZod,
+  CategoryWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './CategoryWithRefIdsAllowedSchemaZod';
+import {
+  OrderWithRefIdsAllowedSchemaZod,
+  OrderWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './OrderWithRefIdsAllowedSchemaZod';
+import {
+  PetWithRefIdsAllowedSchemaZod,
+  PetWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './PetWithRefIdsAllowedSchemaZod';
+import {
+  TagWithRefIdsAllowedSchemaZod,
+  TagWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './TagWithRefIdsAllowedSchemaZod';
+import {
+  UserWithRefIdsAllowedSchemaZod,
+  UserWithRefIdsAllowedSchemaZodNoPrimaryKey,
+} from './UserWithRefIdsAllowedSchemaZod';
+
+export const entityNameToWithRefIdsAllowedSchemaZod = {
+  ApiResponse: ApiResponseWithRefIdsAllowedSchemaZod,
+  Category: CategoryWithRefIdsAllowedSchemaZod,
+  Order: OrderWithRefIdsAllowedSchemaZod,
+  Pet: PetWithRefIdsAllowedSchemaZod,
+  Tag: TagWithRefIdsAllowedSchemaZod,
+  User: UserWithRefIdsAllowedSchemaZod,
+};
+
+export const entityNameToWithRefIdsAllowedSchemaZodNoPrimaryKey = {
+  ApiResponse: ApiResponseWithRefIdsAllowedSchemaZodNoPrimaryKey,
+  Category: CategoryWithRefIdsAllowedSchemaZodNoPrimaryKey,
+  Order: OrderWithRefIdsAllowedSchemaZodNoPrimaryKey,
+  Pet: PetWithRefIdsAllowedSchemaZodNoPrimaryKey,
+  Tag: TagWithRefIdsAllowedSchemaZodNoPrimaryKey,
+  User: UserWithRefIdsAllowedSchemaZodNoPrimaryKey,
+};

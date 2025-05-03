@@ -11,17 +11,21 @@ import type {
 
 export function getModelWithEnumMockFakerJs<TMode extends 'withReferences'>(
   params?: MockFakerJSGeneratorParams<TMode>
-): ModelOrIdNullable<ModelWithEnum> | null | ModelWithEnum['id'];
+): ModelOrIdNullable<ModelWithEnum> | null;
 
 export function getModelWithEnumMockFakerJs<TMode extends 'standalone'>(
   params?: MockFakerJSGeneratorParams<TMode>
 ): ModelWithEnum | null;
 
+export function getModelWithEnumMockFakerJs<TMode extends 'primaryKey'>(
+  params?: MockFakerJSGeneratorParams<TMode>
+): number | null;
+
 export function getModelWithEnumMockFakerJs<
   TMode extends MockFakerJSGeneratorParamsMode = 'withReferences'
 >(
   params: MockFakerJSGeneratorParams<TMode> = {}
-): ModelOrIdNullable<ModelWithEnum> | null | ModelWithEnum['id'] {
+): ModelOrIdNullable<ModelWithEnum> | null {
   const modelName = 'ModelWithEnum';
 
   const { faker = fakerDefault, fakerParams: { probability } = {} } = params;

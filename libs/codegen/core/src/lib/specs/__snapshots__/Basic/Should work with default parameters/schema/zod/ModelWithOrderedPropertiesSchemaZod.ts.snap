@@ -10,3 +10,5 @@ export const ModelWithOrderedPropertiesSchemaZod = z
   .describe(
     `Model:ModelWithOrderedProperties---This is a model with ordered properties`
   );
+export const ModelWithOrderedPropertiesSchemaZodNoPrimaryKey =
+  ModelWithOrderedPropertiesSchemaZod;

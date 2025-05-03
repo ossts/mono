@@ -13,10 +13,7 @@ export function getModelWithEnumFromDescriptionMockFakerJs<
   TMode extends 'withReferences'
 >(
   params?: MockFakerJSGeneratorParams<TMode>
-):
-  | ModelOrIdNullable<ModelWithEnumFromDescription>
-  | null
-  | ModelWithEnumFromDescription['id'];
+): ModelOrIdNullable<ModelWithEnumFromDescription> | null;
 
 export function getModelWithEnumFromDescriptionMockFakerJs<
   TMode extends 'standalone'
@@ -25,13 +22,14 @@ export function getModelWithEnumFromDescriptionMockFakerJs<
 ): ModelWithEnumFromDescription | null;
 
 export function getModelWithEnumFromDescriptionMockFakerJs<
+  TMode extends 'primaryKey'
+>(params?: MockFakerJSGeneratorParams<TMode>): number | null;
+
+export function getModelWithEnumFromDescriptionMockFakerJs<
   TMode extends MockFakerJSGeneratorParamsMode = 'withReferences'
 >(
   params: MockFakerJSGeneratorParams<TMode> = {}
-):
-  | ModelOrIdNullable<ModelWithEnumFromDescription>
-  | null
-  | ModelWithEnumFromDescription['id'] {
+): ModelOrIdNullable<ModelWithEnumFromDescription> | null {
   const modelName = 'ModelWithEnumFromDescription';
 
   const { faker = fakerDefault, fakerParams: { probability } = {} } = params;

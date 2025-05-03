@@ -8,4 +8,8 @@
 {{/if}}
  */
 {{/utilsIfdef}}
-export type {{{name}}} = {{>utilsType}};
+export type {{{utilsNameWithNS name}}} = {{>utilsType}};
+
+export namespace {{{utilsNameWithNS name}}} {
+	{{>exportNoPrimaryKey}}
+}

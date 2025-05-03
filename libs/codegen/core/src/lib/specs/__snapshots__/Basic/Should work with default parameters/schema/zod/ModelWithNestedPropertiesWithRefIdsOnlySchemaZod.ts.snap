@@ -1,0 +1,22 @@
+/* istanbul ignore file */
+import { z } from 'zod';
+
+export const ModelWithNestedPropertiesWithRefIdsOnlySchemaZod = z
+  .object({
+    first: z
+      .object({
+        second: z
+          .object({
+            third: z.string().nullable().readonly(),
+          })
+          .nullable()
+          .readonly(),
+      })
+      .nullable()
+      .readonly(),
+  })
+  .describe(
+    `Model:ModelWithNestedProperties---This is a model with one nested property`
+  );
+export const ModelWithNestedPropertiesWithRefIdsOnlySchemaZodNoPrimaryKey =
+  ModelWithNestedPropertiesWithRefIdsOnlySchemaZod;

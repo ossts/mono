@@ -21,9 +21,10 @@ export const getOperationResults = (
   const operationResults: ParsedOperationResponseOpenAPIV3[] = [];
 
   // Filter out success response codes, but skip "204 No Content"
+  // -1 - required to identify "default" response which can handle multiple codes
   operationResponses.forEach((operationResponse) => {
     const { code } = operationResponse;
-    if (code && code !== 204 && code >= 200 && code < 300) {
+    if ((code && code !== 204 && code >= 200 && code < 300) || code === -1) {
       operationResults.push(operationResponse);
     }
   });

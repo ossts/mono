@@ -1,0 +1,32 @@
+/* istanbul ignore file */
+import { z } from 'zod';
+
+export const ModelWithNestedEnumsWithRefIdsOnlySchemaZod = z
+  .object({
+    dictionaryWithEnum: z
+      .record(
+        z.string(),
+        z.union([
+          z.literal('Success'),
+          z.literal('Warning'),
+          z.literal('Error'),
+        ])
+      )
+      .optional(),
+    dictionaryWithEnumFromDescription: z
+      .record(z.string(), z.number())
+      .optional(),
+    arrayWithEnum: z
+      .array(
+        z.union([
+          z.literal('Success'),
+          z.literal('Warning'),
+          z.literal('Error'),
+        ])
+      )
+      .optional(),
+    arrayWithDescription: z.array(z.number()).optional(),
+  })
+  .describe(`Model:ModelWithNestedEnums---This is a model with nested enums`);
+export const ModelWithNestedEnumsWithRefIdsOnlySchemaZodNoPrimaryKey =
+  ModelWithNestedEnumsWithRefIdsOnlySchemaZod;

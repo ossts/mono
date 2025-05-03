@@ -1,0 +1,12 @@
+/* istanbul ignore file */
+
+/**
+ * This is a string dictionary
+ */
+export type DictionaryWithDictionaryWithRefIdsAllowed = Partial<
+  Record<string, Partial<Record<string, string>>>
+>;
+
+export namespace DictionaryWithDictionaryWithRefIdsAllowed {
+  export type NoPrimaryKey = DictionaryWithDictionaryWithRefIdsAllowed;
+}

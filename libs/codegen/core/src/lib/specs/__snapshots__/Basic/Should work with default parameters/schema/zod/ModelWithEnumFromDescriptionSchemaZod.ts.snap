@@ -8,3 +8,5 @@ export const ModelWithEnumFromDescriptionSchemaZod = z
   .describe(
     `Model:ModelWithEnumFromDescription---This is a model with one enum`
   );
+export const ModelWithEnumFromDescriptionSchemaZodNoPrimaryKey =
+  ModelWithEnumFromDescriptionSchemaZod;

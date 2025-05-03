@@ -8,3 +8,4 @@ export const PageableSchemaZod = z
     sort: z.array(z.string()).optional(),
   })
   .describe(`Model:Pageable`);
+export const PageableSchemaZodNoPrimaryKey = PageableSchemaZod;

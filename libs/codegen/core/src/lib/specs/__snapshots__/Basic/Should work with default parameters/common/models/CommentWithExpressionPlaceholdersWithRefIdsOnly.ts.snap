@@ -1,0 +1,10 @@
+/* istanbul ignore file */
+
+/**
+ * Testing expression placeholders in string: ${expression} should work
+ */
+export type CommentWithExpressionPlaceholdersWithRefIdsOnly = number;
+
+export namespace CommentWithExpressionPlaceholdersWithRefIdsOnly {
+  export type NoPrimaryKey = CommentWithExpressionPlaceholdersWithRefIdsOnly;
+}

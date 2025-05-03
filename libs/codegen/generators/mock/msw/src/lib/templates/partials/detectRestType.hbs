@@ -1,0 +1,17 @@
+{{#utilsEquals operation.method 'POST'}}
+	'create'
+{{else utilsEquals operation.method 'PUT'}}
+	'update'
+{{else utilsEquals operation.method 'DELETE'}}
+	'delete'
+{{else utilsEquals operation.method 'GET'}}
+	{{#utilsEquals export 'reference'}}
+		{{>detectListOrDetail operation}}
+	{{else utilsEquals export 'array'}}
+		{{>detectListOrDetail operation}}
+	{{else}}
+		null
+	{{/utilsEquals}}
+{{else}}
+	null
+{{/utilsEquals}}

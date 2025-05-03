@@ -12,3 +12,7 @@ export type ModelWithPattern = {
   text?: string;
   patternWithSingleQuotes?: string;
 };
+
+export namespace ModelWithPattern {
+  export type NoPrimaryKey = Omit<ModelWithPattern, 'id'>;
+}

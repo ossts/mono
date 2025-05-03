@@ -9,3 +9,7 @@ export type CompositionExtendedModel = CompositionBaseModel & {
   lastname: string;
   age: number;
 };
+
+export namespace CompositionExtendedModel {
+  export type NoPrimaryKey = CompositionExtendedModel;
+}

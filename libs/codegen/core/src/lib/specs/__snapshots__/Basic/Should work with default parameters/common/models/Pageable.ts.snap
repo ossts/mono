@@ -5,3 +5,7 @@ export type Pageable = {
   size?: number;
   sort?: Array<string>;
 };
+
+export namespace Pageable {
+  export type NoPrimaryKey = Pageable;
+}

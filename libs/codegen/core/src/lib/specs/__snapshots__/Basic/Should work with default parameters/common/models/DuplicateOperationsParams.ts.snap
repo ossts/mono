@@ -1,0 +1,11 @@
+/* istanbul ignore file */
+
+export namespace DuplicateOperationsParams {
+  export namespace DuplicateName {}
+
+  export namespace DuplicateName1 {}
+
+  export namespace DuplicateName2 {}
+
+  export namespace DuplicateName3 {}
+}

@@ -1,0 +1,12 @@
+/* istanbul ignore file */
+
+/**
+ * This is a model with one property containing a dictionary
+ */
+export type ModelWithDictionaryWithRefIdsAllowed = {
+  prop?: Partial<Record<string, string>>;
+};
+
+export namespace ModelWithDictionaryWithRefIdsAllowed {
+  export type NoPrimaryKey = ModelWithDictionaryWithRefIdsAllowed;
+}

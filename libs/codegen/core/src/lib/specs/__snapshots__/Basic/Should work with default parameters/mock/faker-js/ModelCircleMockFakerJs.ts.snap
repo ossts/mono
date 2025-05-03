@@ -11,17 +11,21 @@ import type {
 
 export function getModelCircleMockFakerJs<TMode extends 'withReferences'>(
   params?: MockFakerJSGeneratorParams<TMode>
-): ModelOrIdNullable<ModelCircle> | null | ModelCircle['id'];
+): ModelOrIdNullable<ModelCircle> | null;
 
 export function getModelCircleMockFakerJs<TMode extends 'standalone'>(
   params?: MockFakerJSGeneratorParams<TMode>
 ): ModelCircle | null;
 
+export function getModelCircleMockFakerJs<TMode extends 'primaryKey'>(
+  params?: MockFakerJSGeneratorParams<TMode>
+): number | null;
+
 export function getModelCircleMockFakerJs<
   TMode extends MockFakerJSGeneratorParamsMode = 'withReferences'
 >(
   params: MockFakerJSGeneratorParams<TMode> = {}
-): ModelOrIdNullable<ModelCircle> | null | ModelCircle['id'] {
+): ModelOrIdNullable<ModelCircle> | null {
   const modelName = 'ModelCircle';
 
   const { faker = fakerDefault, fakerParams: { probability } = {} } = params;

@@ -1,0 +1,13 @@
+/* istanbul ignore file */
+
+export namespace CollectionFormatOperationsParams {
+  export namespace CollectionFormat {
+    export type Query = {
+      parameterArrayCsv: Array<string> | null;
+      parameterArraySsv: Array<string> | null;
+      parameterArrayTsv: Array<string> | null;
+      parameterArrayPipes: Array<string> | null;
+      parameterArrayMulti: Array<string> | null;
+    };
+  }
+}

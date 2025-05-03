@@ -1,0 +1,43 @@
+/* istanbul ignore file */
+
+/**
+ * This is a model with one enum
+ */
+export type ModelWithEnumWithRefIdsAllowed = {
+  /**
+   * This is a simple enum with strings
+   */
+  test?: ModelWithEnumWithRefIdsAllowed.test;
+  /**
+   * These are the HTTP error code enums
+   */
+  statusCode?: ModelWithEnumWithRefIdsAllowed.statusCode;
+  /**
+   * Simple boolean enum
+   */
+  bool?: boolean;
+};
+
+export namespace ModelWithEnumWithRefIdsAllowed {
+  export type NoPrimaryKey = ModelWithEnumWithRefIdsAllowed;
+  /**
+   * This is a simple enum with strings
+   */
+  export enum test {
+    SUCCESS = 'Success',
+    WARNING = 'Warning',
+    ERROR = 'Error',
+  }
+
+  /**
+   * These are the HTTP error code enums
+   */
+  export enum statusCode {
+    _100 = '100',
+    _200_FOO = '200 FOO',
+    _300_FOO_BAR = '300 FOO_BAR',
+    _400_FOO_BAR = '400 foo-bar',
+    _500_FOO_BAR = '500 foo.bar',
+    _600_FOO_BAR = '600 foo&bar',
+  }
+}

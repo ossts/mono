@@ -1,0 +1,6 @@
+/* istanbul ignore file */
+import { z } from 'zod';
+
+export const SimpleBooleanWithRefIdsOnlySchemaZod = z.boolean();
+export const SimpleBooleanWithRefIdsOnlySchemaZodNoPrimaryKey =
+  SimpleBooleanWithRefIdsOnlySchemaZod;

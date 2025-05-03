@@ -1,0 +1,14 @@
+/* istanbul ignore file */
+import { z } from 'zod';
+
+import { ModelWithEnum } from '../../common/models';
+
+export const ModelWithEnumWithRefIdsOnlySchemaZod = z
+  .object({
+    test: z.nativeEnum(ModelWithEnum.test).optional(),
+    statusCode: z.nativeEnum(ModelWithEnum.statusCode).optional(),
+    bool: z.boolean().optional(),
+  })
+  .describe(`Model:ModelWithEnum---This is a model with one enum`);
+export const ModelWithEnumWithRefIdsOnlySchemaZodNoPrimaryKey =
+  ModelWithEnumWithRefIdsOnlySchemaZod;

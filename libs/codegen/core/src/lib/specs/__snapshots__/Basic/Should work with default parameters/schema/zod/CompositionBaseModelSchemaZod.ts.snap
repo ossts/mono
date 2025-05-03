@@ -9,3 +9,5 @@ export const CompositionBaseModelSchemaZod = z
   .describe(
     `Model:CompositionBaseModel---This is a base model with two simple optional properties`
   );
+export const CompositionBaseModelSchemaZodNoPrimaryKey =
+  CompositionBaseModelSchemaZod;

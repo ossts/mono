@@ -10,3 +10,5 @@ export const ArrayWithPropertiesSchemaZod = z
   )
   .min(1)
   .max(20);
+export const ArrayWithPropertiesSchemaZodNoPrimaryKey =
+  ArrayWithPropertiesSchemaZod;

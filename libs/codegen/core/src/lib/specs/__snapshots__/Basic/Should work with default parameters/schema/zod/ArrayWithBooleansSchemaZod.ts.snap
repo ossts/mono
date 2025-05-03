@@ -2,3 +2,5 @@
 import { z } from 'zod';
 
 export const ArrayWithBooleansSchemaZod = z.array(z.boolean());
+export const ArrayWithBooleansSchemaZodNoPrimaryKey =
+  ArrayWithBooleansSchemaZod;

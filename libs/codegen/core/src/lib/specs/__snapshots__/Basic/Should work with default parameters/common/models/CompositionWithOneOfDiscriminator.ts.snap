@@ -6,3 +6,7 @@ import type { ModelSquare } from './ModelSquare';
  * This is a model with one property with a 'one of' relationship where the options are not $ref
  */
 export type CompositionWithOneOfDiscriminator = ModelCircle | ModelSquare;
+
+export namespace CompositionWithOneOfDiscriminator {
+  export type NoPrimaryKey = CompositionWithOneOfDiscriminator;
+}

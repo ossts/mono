@@ -10,3 +10,4 @@ export const FileSchemaZod = z
     file: z.string().url().optional().readonly(),
   })
   .describe(`Model:File`);
+export const FileSchemaZodNoPrimaryKey = FileSchemaZod.omit({ id: true });

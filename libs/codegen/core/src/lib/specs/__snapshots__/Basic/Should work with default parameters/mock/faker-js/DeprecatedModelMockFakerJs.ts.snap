@@ -11,17 +11,21 @@ import type {
 
 export function getDeprecatedModelMockFakerJs<TMode extends 'withReferences'>(
   params?: MockFakerJSGeneratorParams<TMode>
-): ModelOrIdNullable<DeprecatedModel> | null | DeprecatedModel['id'];
+): ModelOrIdNullable<DeprecatedModel> | null;
 
 export function getDeprecatedModelMockFakerJs<TMode extends 'standalone'>(
   params?: MockFakerJSGeneratorParams<TMode>
 ): DeprecatedModel | null;
 
+export function getDeprecatedModelMockFakerJs<TMode extends 'primaryKey'>(
+  params?: MockFakerJSGeneratorParams<TMode>
+): number | null;
+
 export function getDeprecatedModelMockFakerJs<
   TMode extends MockFakerJSGeneratorParamsMode = 'withReferences'
 >(
   params: MockFakerJSGeneratorParams<TMode> = {}
-): ModelOrIdNullable<DeprecatedModel> | null | DeprecatedModel['id'] {
+): ModelOrIdNullable<DeprecatedModel> | null {
   const modelName = 'DeprecatedModel';
 
   const { faker = fakerDefault, fakerParams: { probability } = {} } = params;

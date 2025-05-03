@@ -7,3 +7,7 @@ export type ModelSquare = {
   kind: 'square';
   sideLength?: number;
 };
+
+export namespace ModelSquare {
+  export type NoPrimaryKey = ModelSquare;
+}

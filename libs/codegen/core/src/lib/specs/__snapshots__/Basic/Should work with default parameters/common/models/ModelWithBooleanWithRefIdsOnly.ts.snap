@@ -1,0 +1,15 @@
+/* istanbul ignore file */
+
+/**
+ * This is a model with one boolean property
+ */
+export type ModelWithBooleanWithRefIdsOnly = {
+  /**
+   * This is a simple boolean property
+   */
+  prop?: boolean;
+};
+
+export namespace ModelWithBooleanWithRefIdsOnly {
+  export type NoPrimaryKey = ModelWithBooleanWithRefIdsOnly;
+}

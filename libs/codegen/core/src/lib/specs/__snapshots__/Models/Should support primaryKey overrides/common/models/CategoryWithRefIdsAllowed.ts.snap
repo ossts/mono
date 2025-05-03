@@ -1,0 +1,10 @@
+/* istanbul ignore file */
+
+export type CategoryWithRefIdsAllowed = {
+  id?: number;
+  name?: string;
+};
+
+export namespace CategoryWithRefIdsAllowed {
+  export type NoPrimaryKey = Omit<CategoryWithRefIdsAllowed, 'uuid'>;
+}

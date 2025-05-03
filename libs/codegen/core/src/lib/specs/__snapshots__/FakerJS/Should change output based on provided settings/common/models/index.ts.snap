@@ -4,6 +4,30 @@ export * from './AllApiModels';
 
 export * from './apiEntityToPrimaryKeyMapping';
 
+export * from './ApiResponseWithRefIdsAllowed';
+
+export * from './CategoryWithRefIdsAllowed';
+
+export * from './OrderWithRefIdsAllowed';
+
+export * from './PetWithRefIdsAllowed';
+
+export * from './TagWithRefIdsAllowed';
+
+export * from './UserWithRefIdsAllowed';
+
+export * from './ApiResponseWithRefIdsOnly';
+
+export * from './CategoryWithRefIdsOnly';
+
+export * from './OrderWithRefIdsOnly';
+
+export * from './PetWithRefIdsOnly';
+
+export * from './TagWithRefIdsOnly';
+
+export * from './UserWithRefIdsOnly';
+
 export * from './ApiResponse';
 
 export * from './Category';
@@ -15,3 +39,15 @@ export * from './Pet';
 export * from './Tag';
 
 export * from './User';
+
+export * from './PetOperationsParams';
+
+export * from './StoreOperationsParams';
+
+export * from './UserOperationsParams';
+
+export * from './PetResponses';
+
+export * from './StoreResponses';
+
+export * from './UserResponses';

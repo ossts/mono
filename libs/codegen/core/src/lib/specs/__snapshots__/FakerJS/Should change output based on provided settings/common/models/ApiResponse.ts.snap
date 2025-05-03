@@ -5,3 +5,7 @@ export type ApiResponse = {
   type?: string;
   message?: string;
 };
+
+export namespace ApiResponse {
+  export type NoPrimaryKey = ApiResponse;
+}

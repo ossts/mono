@@ -1,0 +1,13 @@
+/* istanbul ignore file */
+import type { ModelWithPropertiesWithRefIdsOnly } from './ModelWithPropertiesWithRefIdsOnly';
+
+/**
+ * This is a model with one property containing a reference
+ */
+export type ModelWithReferenceWithRefIdsOnly = {
+  prop?: ModelWithPropertiesWithRefIdsOnly;
+};
+
+export namespace ModelWithReferenceWithRefIdsOnly {
+  export type NoPrimaryKey = ModelWithReferenceWithRefIdsOnly;
+}

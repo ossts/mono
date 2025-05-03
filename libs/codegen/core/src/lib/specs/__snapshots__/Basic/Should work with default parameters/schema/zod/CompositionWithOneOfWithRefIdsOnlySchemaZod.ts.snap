@@ -1,0 +1,24 @@
+/* istanbul ignore file */
+import { z } from 'zod';
+
+import { ModelWithArrayWithRefIdsOnlySchemaZod } from './ModelWithArrayWithRefIdsOnlySchemaZod';
+import { ModelWithDictionaryWithRefIdsOnlySchemaZod } from './ModelWithDictionaryWithRefIdsOnlySchemaZod';
+import { ModelWithEnumWithRefIdsOnlySchemaZod } from './ModelWithEnumWithRefIdsOnlySchemaZod';
+import { ModelWithStringWithRefIdsOnlySchemaZod } from './ModelWithStringWithRefIdsOnlySchemaZod';
+
+export const CompositionWithOneOfWithRefIdsOnlySchemaZod = z
+  .object({
+    propA: z
+      .union([
+        ModelWithStringSchemaZod.optional().nullable(),
+        ModelWithEnumSchemaZod.optional().nullable(),
+        ModelWithArraySchemaZod.optional().nullable(),
+        ModelWithDictionarySchemaZod.optional().nullable(),
+      ])
+      .optional(),
+  })
+  .describe(
+    `Model:CompositionWithOneOf---This is a model with one property with a 'one of' relationship`
+  );
+export const CompositionWithOneOfWithRefIdsOnlySchemaZodNoPrimaryKey =
+  CompositionWithOneOfWithRefIdsOnlySchemaZod;

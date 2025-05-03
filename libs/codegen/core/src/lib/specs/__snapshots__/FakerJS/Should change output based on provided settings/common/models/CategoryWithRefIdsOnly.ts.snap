@@ -1,0 +1,10 @@
+/* istanbul ignore file */
+
+export type CategoryWithRefIdsOnly = {
+  id?: number;
+  name?: string;
+};
+
+export namespace CategoryWithRefIdsOnly {
+  export type NoPrimaryKey = Omit<CategoryWithRefIdsOnly, 'id'>;
+}

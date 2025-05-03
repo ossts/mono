@@ -9,3 +9,7 @@ export type ModelWithBoolean = {
    */
   prop?: boolean;
 };
+
+export namespace ModelWithBoolean {
+  export type NoPrimaryKey = ModelWithBoolean;
+}

@@ -121,6 +121,13 @@ export abstract class AbstractGenerator {
   settings?: AbstractGeneratorSettings;
 
   /**
+   * Set this to `true` to disable specific generator
+   *
+   * Defaults to `false`
+   */
+  disabled?: boolean;
+
+  /**
    * Path to generator source code.
    *
    * If not provided, generator `name` will be used.

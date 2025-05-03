@@ -19,4 +19,4 @@ export const complexTypesEndpoint = '/api/v{api-version}/complex';
  *
  * `requestBody?: any` in `body`
  */
-export const complexParamsEndpoint = '/api/v{api-version}/complex/{id}';
+export const complexParamsEndpoint = '/api/v{api-version}/complex/:id';

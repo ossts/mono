@@ -6,6 +6,8 @@ export const validateConfig = <
   TGenerators extends AbstractExternalGeneratorWithName = AbstractExternalGeneratorWithName
 >({
   input,
+  parsedSchema,
 }: Config<TGenerators>) => {
-  if (!input) throw new Error(`"input" is required`);
+  if (!input && !parsedSchema)
+    throw new Error(`Either "input" or "parsedSchema" required`);
 };

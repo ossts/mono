@@ -4,3 +4,7 @@ export type Category = {
   id?: number;
   name?: string;
 };
+
+export namespace Category {
+  export type NoPrimaryKey = Omit<Category, 'id'>;
+}

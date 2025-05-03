@@ -1,0 +1,9 @@
+/* istanbul ignore file */
+
+export namespace ErrorOperationsParams {
+  export namespace TestErrorCode {
+    export type Query = {
+      status: number;
+    };
+  }
+}

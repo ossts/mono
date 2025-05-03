@@ -1,0 +1,13 @@
+/* istanbul ignore file */
+
+/**
+ * This is a base model with two simple optional properties
+ */
+export type CompositionBaseModelWithRefIdsOnly = {
+  firstName?: string;
+  lastname?: string;
+};
+
+export namespace CompositionBaseModelWithRefIdsOnly {
+  export type NoPrimaryKey = CompositionBaseModelWithRefIdsOnly;
+}

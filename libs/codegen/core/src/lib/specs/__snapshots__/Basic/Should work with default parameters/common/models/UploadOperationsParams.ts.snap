@@ -1,0 +1,9 @@
+/* istanbul ignore file */
+
+export namespace UploadOperationsParams {
+  export namespace UploadFile {
+    export type FormData = {
+      file: Blob;
+    };
+  }
+}

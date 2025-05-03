@@ -1,0 +1,27 @@
+/* istanbul ignore file */
+import type { CategoryWithRefIdsOnly } from './CategoryWithRefIdsOnly';
+import type { TagWithRefIdsOnly } from './TagWithRefIdsOnly';
+
+export type PetWithRefIdsOnly = {
+  id?: number;
+  category?: number | string;
+  name: string;
+  photoUrls: Array<string>;
+  tags?: Array<number | string>;
+  /**
+   * pet status in the store
+   */
+  status?: PetWithRefIdsOnly.status;
+};
+
+export namespace PetWithRefIdsOnly {
+  export type NoPrimaryKey = Omit<PetWithRefIdsOnly, 'uuid'>;
+  /**
+   * pet status in the store
+   */
+  export enum status {
+    AVAILABLE = 'available',
+    PENDING = 'pending',
+    SOLD = 'sold',
+  }
+}

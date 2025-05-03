@@ -1,0 +1,16 @@
+/* istanbul ignore file */
+import { z } from 'zod';
+
+import { CompositionBaseModelWithRefIdsAllowedSchemaZod } from './CompositionBaseModelWithRefIdsAllowedSchemaZod';
+
+export const CompositionExtendedModelWithRefIdsAllowedSchemaZod =
+  z.intersection([
+    CompositionBaseModelSchemaZod.optional().nullable(),
+    z.object({
+      firstName: z.coerce.string(),
+      lastname: z.coerce.string(),
+      age: z.coerce.number(),
+    }),
+  ]);
+export const CompositionExtendedModelWithRefIdsAllowedSchemaZodNoPrimaryKey =
+  CompositionExtendedModelWithRefIdsAllowedSchemaZod;

@@ -1,0 +1,8 @@
+/* istanbul ignore file */
+
+export namespace NoContentServiceResponses {
+  /**
+   * Method: `GET`
+   */
+  export type CallWithNoContentResponseGET = void;
+}

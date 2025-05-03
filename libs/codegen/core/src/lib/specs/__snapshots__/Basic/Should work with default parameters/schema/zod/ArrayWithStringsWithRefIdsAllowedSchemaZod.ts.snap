@@ -1,0 +1,6 @@
+/* istanbul ignore file */
+import { z } from 'zod';
+
+export const ArrayWithStringsWithRefIdsAllowedSchemaZod = z.array(z.string());
+export const ArrayWithStringsWithRefIdsAllowedSchemaZodNoPrimaryKey =
+  ArrayWithStringsWithRefIdsAllowedSchemaZod;

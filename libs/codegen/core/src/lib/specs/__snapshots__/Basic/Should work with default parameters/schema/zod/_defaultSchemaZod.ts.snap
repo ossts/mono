@@ -6,3 +6,4 @@ export const _defaultSchemaZod = z
     name: z.string().optional(),
   })
   .describe(`Model:_default`);
+export const _defaultSchemaZodNoPrimaryKey = _defaultSchemaZod;

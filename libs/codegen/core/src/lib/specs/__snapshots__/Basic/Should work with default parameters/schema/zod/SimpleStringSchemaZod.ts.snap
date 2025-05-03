@@ -2,3 +2,4 @@
 import { z } from 'zod';
 
 export const SimpleStringSchemaZod = z.string();
+export const SimpleStringSchemaZodNoPrimaryKey = SimpleStringSchemaZod;

@@ -1,0 +1,64 @@
+{{#with data}}
+	{{>utilsHeader}}
+
+	{{#if imports}}
+		{{#each imports}}
+			import type { {{{this}}} } from './{{{this}}}';
+		{{/each}}
+	{{/if}}
+
+	export namespace {{name}}OperationsParams {
+		{{#each operations}}
+			export namespace {{utilsUpperFirst name}} {
+				{{#utilsHasLength parametersPath}}
+					export type Path = {
+						{{#each parameters}}
+							'{{name}}': {{>utilsType}}
+						{{/each}}
+					};
+				{{/utilsHasLength}}
+
+				{{#utilsHasLength parametersQuery}}
+					export type Query = {
+						{{#each parameters}}
+							'{{name}}': {{>utilsType}}
+						{{/each}}
+					};
+				{{/utilsHasLength}}
+
+				{{#utilsHasLength parametersFormData}}
+					export type FormData = {
+						{{#each parameters}}
+							'{{name}}': {{>utilsType}}
+						{{/each}}
+					};
+				{{/utilsHasLength}}
+
+				{{#utilsHasLength parametersHeader}}
+					export type Header = {
+						{{#each parameters}}
+							'{{name}}': {{>utilsType}}
+						{{/each}}
+					};
+				{{/utilsHasLength}}
+
+				{{#utilsHasLength parametersCookie}}
+					export type Cookie = {
+						{{#each parameters}}
+							'{{name}}': {{>utilsType}}
+						{{/each}}
+					};
+				{{/utilsHasLength}}
+
+				{{#utilsHasLength parametersBody}}
+					export type Body = {
+						{{#each parameters}}
+							'{{name}}': {{>utilsType}}
+						{{/each}}
+					};
+				{{/utilsHasLength}}
+			}
+
+		{{/each}}
+	}
+{{/with}}

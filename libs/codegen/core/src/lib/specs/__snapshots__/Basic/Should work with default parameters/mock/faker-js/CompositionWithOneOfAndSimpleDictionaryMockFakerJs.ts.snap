@@ -13,10 +13,7 @@ export function getCompositionWithOneOfAndSimpleDictionaryMockFakerJs<
   TMode extends 'withReferences'
 >(
   params?: MockFakerJSGeneratorParams<TMode>
-):
-  | ModelOrIdNullable<CompositionWithOneOfAndSimpleDictionary>
-  | null
-  | CompositionWithOneOfAndSimpleDictionary['id'];
+): ModelOrIdNullable<CompositionWithOneOfAndSimpleDictionary> | null;
 
 export function getCompositionWithOneOfAndSimpleDictionaryMockFakerJs<
   TMode extends 'standalone'
@@ -25,13 +22,14 @@ export function getCompositionWithOneOfAndSimpleDictionaryMockFakerJs<
 ): CompositionWithOneOfAndSimpleDictionary | null;
 
 export function getCompositionWithOneOfAndSimpleDictionaryMockFakerJs<
+  TMode extends 'primaryKey'
+>(params?: MockFakerJSGeneratorParams<TMode>): number | null;
+
+export function getCompositionWithOneOfAndSimpleDictionaryMockFakerJs<
   TMode extends MockFakerJSGeneratorParamsMode = 'withReferences'
 >(
   params: MockFakerJSGeneratorParams<TMode> = {}
-):
-  | ModelOrIdNullable<CompositionWithOneOfAndSimpleDictionary>
-  | null
-  | CompositionWithOneOfAndSimpleDictionary['id'] {
+): ModelOrIdNullable<CompositionWithOneOfAndSimpleDictionary> | null {
   const modelName = 'CompositionWithOneOfAndSimpleDictionary';
 
   const { faker = fakerDefault, fakerParams: { probability } = {} } = params;

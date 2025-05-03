@@ -1,0 +1,10 @@
+/* istanbul ignore file */
+
+export namespace ErrorServiceResponses {
+  /**
+   * Method: `POST`
+   *
+   * Custom message: Successful response
+   */
+  export type TestErrorCodePOST = any;
+}

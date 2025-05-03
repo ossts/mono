@@ -21,3 +21,7 @@ export type ModelWithNullableString = {
    */
   nullableRequiredProp2: string | null;
 };
+
+export namespace ModelWithNullableString {
+  export type NoPrimaryKey = ModelWithNullableString;
+}

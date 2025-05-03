@@ -4,3 +4,7 @@
  * Testing expression placeholders in string: ${expression} should work
  */
 export type CommentWithExpressionPlaceholders = number;
+
+export namespace CommentWithExpressionPlaceholders {
+  export type NoPrimaryKey = CommentWithExpressionPlaceholders;
+}

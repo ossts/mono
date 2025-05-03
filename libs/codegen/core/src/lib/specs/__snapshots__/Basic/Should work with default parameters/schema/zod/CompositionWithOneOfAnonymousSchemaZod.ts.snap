@@ -18,3 +18,5 @@ export const CompositionWithOneOfAnonymousSchemaZod = z
   .describe(
     `Model:CompositionWithOneOfAnonymous---This is a model with one property with a 'one of' relationship where the options are not $ref`
   );
+export const CompositionWithOneOfAnonymousSchemaZodNoPrimaryKey =
+  CompositionWithOneOfAnonymousSchemaZod;

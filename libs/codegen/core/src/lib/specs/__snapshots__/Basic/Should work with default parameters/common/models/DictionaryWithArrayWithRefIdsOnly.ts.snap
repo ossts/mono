@@ -1,0 +1,13 @@
+/* istanbul ignore file */
+import type { ModelWithStringWithRefIdsOnly } from './ModelWithStringWithRefIdsOnly';
+
+/**
+ * This is a complex dictionary
+ */
+export type DictionaryWithArrayWithRefIdsOnly = Partial<
+  Record<string, Array<ModelWithStringWithRefIdsOnly>>
+>;
+
+export namespace DictionaryWithArrayWithRefIdsOnly {
+  export type NoPrimaryKey = DictionaryWithArrayWithRefIdsOnly;
+}

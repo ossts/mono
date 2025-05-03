@@ -138,3 +138,75 @@ export type AllApiModels =
   | SimpleString
   | SimpleStringWithPattern
   | _default;
+
+export namespace AllApiModels {
+  export type NoPrimaryKey =
+    | ArrayWithArray.NoPrimaryKey
+    | ArrayWithBooleans.NoPrimaryKey
+    | ArrayWithNumbers.NoPrimaryKey
+    | ArrayWithProperties.NoPrimaryKey
+    | ArrayWithReferences.NoPrimaryKey
+    | ArrayWithStrings.NoPrimaryKey
+    | CommentWithBackticks.NoPrimaryKey
+    | CommentWithBreaks.NoPrimaryKey
+    | CommentWithExpressionPlaceholders.NoPrimaryKey
+    | CommentWithQuotes.NoPrimaryKey
+    | CommentWithReservedCharacters.NoPrimaryKey
+    | CommentWithSlashes.NoPrimaryKey
+    | CompositionBaseModel.NoPrimaryKey
+    | CompositionExtendedModel.NoPrimaryKey
+    | CompositionWithAllOfAndNullable.NoPrimaryKey
+    | CompositionWithAnyOf.NoPrimaryKey
+    | CompositionWithAnyOfAndNullable.NoPrimaryKey
+    | CompositionWithAnyOfAnonymous.NoPrimaryKey
+    | CompositionWithOneOf.NoPrimaryKey
+    | CompositionWithOneOfAndComplexArrayDictionary.NoPrimaryKey
+    | CompositionWithOneOfAndNullable.NoPrimaryKey
+    | CompositionWithOneOfAndSimpleArrayDictionary.NoPrimaryKey
+    | CompositionWithOneOfAndSimpleDictionary.NoPrimaryKey
+    | CompositionWithOneOfAnonymous.NoPrimaryKey
+    | CompositionWithOneOfDiscriminator.NoPrimaryKey
+    | DeprecatedModel.NoPrimaryKey
+    | DictionaryWithArray.NoPrimaryKey
+    | DictionaryWithDictionary.NoPrimaryKey
+    | DictionaryWithProperties.NoPrimaryKey
+    | DictionaryWithReference.NoPrimaryKey
+    | DictionaryWithString.NoPrimaryKey
+    | EnumFromDescription.NoPrimaryKey
+    | EnumWithExtensions.NoPrimaryKey
+    | EnumWithNumbers.NoPrimaryKey
+    | EnumWithStrings.NoPrimaryKey
+    | File.NoPrimaryKey
+    | FreeFormObjectWithAdditionalPropertiesEqEmptyObject.NoPrimaryKey
+    | FreeFormObjectWithAdditionalPropertiesEqTrue.NoPrimaryKey
+    | FreeFormObjectWithoutAdditionalProperties.NoPrimaryKey
+    | ModelCircle.NoPrimaryKey
+    | ModelSquare.NoPrimaryKey
+    | ModelThatExtends.NoPrimaryKey
+    | ModelThatExtendsExtends.NoPrimaryKey
+    | ModelWithArray.NoPrimaryKey
+    | ModelWithBoolean.NoPrimaryKey
+    | ModelWithCircularReference.NoPrimaryKey
+    | ModelWithDictionary.NoPrimaryKey
+    | ModelWithDuplicateImports.NoPrimaryKey
+    | ModelWithDuplicateProperties.NoPrimaryKey
+    | ModelWithEnum.NoPrimaryKey
+    | ModelWithEnumFromDescription.NoPrimaryKey
+    | ModelWithInteger.NoPrimaryKey
+    | ModelWithNestedEnums.NoPrimaryKey
+    | ModelWithNestedProperties.NoPrimaryKey
+    | ModelWithNullableString.NoPrimaryKey
+    | ModelWithOrderedProperties.NoPrimaryKey
+    | ModelWithPattern.NoPrimaryKey
+    | ModelWithProperties.NoPrimaryKey
+    | ModelWithReference.NoPrimaryKey
+    | ModelWithString.NoPrimaryKey
+    | Pageable.NoPrimaryKey
+    | SimpleBoolean.NoPrimaryKey
+    | SimpleFile.NoPrimaryKey
+    | SimpleInteger.NoPrimaryKey
+    | SimpleReference.NoPrimaryKey
+    | SimpleString.NoPrimaryKey
+    | SimpleStringWithPattern.NoPrimaryKey
+    | _default.NoPrimaryKey;
+}

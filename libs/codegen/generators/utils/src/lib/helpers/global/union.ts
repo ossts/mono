@@ -15,11 +15,14 @@ export const union: CodegenHandlebarsHelperWrapper = ({
   ) {
     const type = handlebarsInstance.partials['utilsType'];
     const types = properties.map((property) =>
-      type({
-        ...property,
-        parent,
-        settings,
-      })
+      type(
+        {
+          ...property,
+          parent,
+          settings,
+        },
+        options
+      )
     );
     const uniqueTypes = [...new Set(types)];
     let uniqueTypesString = uniqueTypes.join(' | ');

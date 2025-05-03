@@ -1,0 +1,10 @@
+/* istanbul ignore file */
+import { z } from 'zod';
+
+export const SimpleStringWithPatternWithRefIdsAllowedSchemaZod = z
+  .string()
+  .max(64)
+  .regex(/^[a-zA-Z0-9_]*$/)
+  .nullable();
+export const SimpleStringWithPatternWithRefIdsAllowedSchemaZodNoPrimaryKey =
+  SimpleStringWithPatternWithRefIdsAllowedSchemaZod;

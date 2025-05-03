@@ -8,3 +8,5 @@ export const ModelWithDictionarySchemaZod = z
   .describe(
     `Model:ModelWithDictionary---This is a model with one property containing a dictionary`
   );
+export const ModelWithDictionarySchemaZodNoPrimaryKey =
+  ModelWithDictionarySchemaZod;

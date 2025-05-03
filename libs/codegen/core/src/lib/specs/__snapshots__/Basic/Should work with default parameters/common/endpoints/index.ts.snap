@@ -1,42 +1,38 @@
-export * from './common';
-import * as common from './common';
-export { common }
+export * from './collectionFormat';
+import * as collectionFormat from './collectionFormat';
+export { collectionFormat }
 
-export * from './simple';
-import * as simple from './simple';
-export { simple }
-
-export * from './descriptions';
-import * as descriptions from './descriptions';
-export { descriptions }
-
-export * from './deprecated';
-import * as deprecated from './deprecated';
-export { deprecated }
-
-export * from './parameters';
-import * as parameters from './parameters';
-export { parameters }
-
-export * from './requestBody';
-import * as requestBody from './requestBody';
-export { requestBody }
-
-export * from './formData';
-import * as formData from './formData';
-export { formData }
+export * from './complex';
+import * as complex from './complex';
+export { complex }
 
 export * from './defaults';
 import * as defaults from './defaults';
 export { defaults }
 
+export * from './descriptions';
+import * as descriptions from './descriptions';
+export { descriptions }
+
 export * from './duplicate';
 import * as duplicate from './duplicate';
 export { duplicate }
 
-export * from './noContent';
-import * as noContent from './noContent';
-export { noContent }
+export * from './error';
+import * as error from './error';
+export { error }
+
+export * from './formData';
+import * as formData from './formData';
+export { formData }
+
+export * from './header';
+import * as header from './header';
+export { header }
+
+export * from './multipart';
+import * as multipart from './multipart';
+export { multipart }
 
 export * from './multipleTags1';
 import * as multipleTags1 from './multipleTags1';
@@ -50,13 +46,33 @@ export * from './multipleTags3';
 import * as multipleTags3 from './multipleTags3';
 export { multipleTags3 }
 
+export * from './noContent';
+import * as noContent from './noContent';
+export { noContent }
+
+export * from './common';
+import * as common from './common';
+export { common }
+
+export * from './parameters';
+import * as parameters from './parameters';
+export { parameters }
+
+export * from './deprecated';
+import * as deprecated from './deprecated';
+export { deprecated }
+
+export * from './requestBody';
+import * as requestBody from './requestBody';
+export { requestBody }
+
 export * from './response';
 import * as response from './response';
 export { response }
 
-export * from './collectionFormat';
-import * as collectionFormat from './collectionFormat';
-export { collectionFormat }
+export * from './simple';
+import * as simple from './simple';
+export { simple }
 
 export * from './types';
 import * as types from './types';
@@ -66,44 +82,28 @@ export * from './upload';
 import * as upload from './upload';
 export { upload }
 
-export * from './complex';
-import * as complex from './complex';
-export { complex }
-
-export * from './multipart';
-import * as multipart from './multipart';
-export { multipart }
-
-export * from './header';
-import * as header from './header';
-export { header }
-
-export * from './error';
-import * as error from './error';
-export { error }
-
 export const allApiEndpoints = {
-  common,
-  simple,
-  descriptions,
-  deprecated,
-  parameters,
-  requestBody,
-  formData,
+  collectionFormat,
+  complex,
   defaults,
+  descriptions,
   duplicate,
-  noContent,
+  error,
+  formData,
+  header,
+  multipart,
   multipleTags1,
   multipleTags2,
   multipleTags3,
+  noContent,
+  common,
+  parameters,
+  deprecated,
+  requestBody,
   response,
-  collectionFormat,
+  simple,
   types,
   upload,
-  complex,
-  multipart,
-  header,
-  error,
 };
 
 export type AllApiEndpoints = typeof allApiEndpoints;

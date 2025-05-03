@@ -4,9 +4,10 @@ import { z } from 'zod';
 import { ModelWithStringSchemaZod } from './ModelWithStringSchemaZod';
 
 export const ModelThatExtendsSchemaZod = z.intersection([
-  ModelWithStringSchemaZod,
+  ModelWithStringSchemaZod.optional().nullable(),
   z.object({
     propExtendsA: z.string().optional(),
-    propExtendsB: ModelWithStringSchemaZod,
+    propExtendsB: ModelWithStringSchemaZod.optional().nullable(),
   }),
 ]);
+export const ModelThatExtendsSchemaZodNoPrimaryKey = ModelThatExtendsSchemaZod;

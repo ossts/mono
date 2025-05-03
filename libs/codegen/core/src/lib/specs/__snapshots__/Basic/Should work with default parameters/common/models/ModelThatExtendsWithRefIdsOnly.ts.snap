@@ -1,0 +1,14 @@
+/* istanbul ignore file */
+import type { ModelWithStringWithRefIdsOnly } from './ModelWithStringWithRefIdsOnly';
+
+/**
+ * This is a model that extends another model
+ */
+export type ModelThatExtendsWithRefIdsOnly = ModelWithStringWithRefIdsOnly & {
+  propExtendsA?: string;
+  propExtendsB?: ModelWithStringWithRefIdsOnly;
+};
+
+export namespace ModelThatExtendsWithRefIdsOnly {
+  export type NoPrimaryKey = ModelThatExtendsWithRefIdsOnly;
+}

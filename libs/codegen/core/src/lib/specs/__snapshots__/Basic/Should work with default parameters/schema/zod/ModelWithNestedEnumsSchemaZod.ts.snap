@@ -28,3 +28,5 @@ export const ModelWithNestedEnumsSchemaZod = z
     arrayWithDescription: z.array(z.number()).optional(),
   })
   .describe(`Model:ModelWithNestedEnums---This is a model with nested enums`);
+export const ModelWithNestedEnumsSchemaZodNoPrimaryKey =
+  ModelWithNestedEnumsSchemaZod;

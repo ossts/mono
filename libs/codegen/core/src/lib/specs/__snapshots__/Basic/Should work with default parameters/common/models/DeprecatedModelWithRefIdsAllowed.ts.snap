@@ -1,0 +1,17 @@
+/* istanbul ignore file */
+
+/**
+ * This is a deprecated model with a deprecated property
+ * @deprecated
+ */
+export type DeprecatedModelWithRefIdsAllowed = {
+  /**
+   * This is a deprecated property
+   * @deprecated
+   */
+  prop?: string;
+};
+
+export namespace DeprecatedModelWithRefIdsAllowed {
+  export type NoPrimaryKey = DeprecatedModelWithRefIdsAllowed;
+}

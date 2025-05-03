@@ -1,0 +1,153 @@
+import type { HttpResponse, HttpHandler, HttpResponseResolver } from 'msw';
+
+import type { InitializeFakerJSParams } from '../faker-js';
+import type { AllApiEntities } from '../../common/models';
+
+export type MockMSWRESTType = 'list' | 'detail' | 'create' | 'update' | 'delete';
+
+export type MockMSWRESTTypeResolverFn = (
+	params: MockMSWGetServerParams,
+	methodParams: Parameters<HttpResponseResolver>[0]
+) => MockMSWRESTType;
+export interface MockMSWRESTTypeResolver {
+	{{#with data}}
+	{{#each services}}
+		"{{name}}"?: {
+			{{#each operations}}
+				"{{name}}"?: MockMSWRESTType | MockMSWRESTTypeResolverFn;
+			{{/each}}
+		}
+	{{/each}}
+	{{/with}}
+}
+
+export type MockMSWRequestHandlerOverrideFn = (params: MockMSWGetServerParams) => HttpHandler | null;
+
+export interface MockMSWRequestHandlerOverride {
+	{{#with data}}
+	{{#each services}}
+		"{{name}}"?: {
+			{{#each operations}}
+				"{{name}}"?: MockMSWRequestHandlerOverrideFn;
+			{{/each}}
+		}
+	{{/each}}
+	{{/with}}
+}
+
+export interface MockMSWPersistence {
+  /**
+   * Controls operation mode:
+   *
+   * `new` - always generate new data from scratch.
+   *
+   * `latest` - will attempt to restore previous state based on `cacheName`.
+   *
+   * Defaults to `new`
+   */
+  mode: 'new' | 'latest';
+
+  /**
+   * Set this to `false` to prevent writing/restoring state to/from disk.
+   *
+   * Defaults to `true`.
+   */
+  enabled: boolean;
+
+  /**
+   * Name of folder where cache will stored.
+   *
+   * Defaults to `default`.
+   */
+  cacheName: string;
+
+  /**
+   * Name of cache folder.
+   *
+   * Defaults to `__mswCache__`.
+   */
+  cacheFolderName: string;
+
+  /**
+   * Absolute path to folder in which cache will be stored.
+   *
+   * Defaults to  `path.resolve(__dirname, cacheFolderName)`
+   */
+  cacheDir: string;
+
+	/**
+	 * Parameters that will be passed to underlying initialize method.
+	 */
+	initializerParams?: InitializeFakerJSParams;
+}
+
+export type MockMSWGetServerParams = {
+  /**
+   * Preset to use.
+   *
+   * Defaults to `REST`
+   */
+  preset: 'REST';
+
+  /**
+   * Base URL to use for all requests
+   *
+   * Defaults to `http://localhost:3000`
+   */
+  baseUrl: string;
+
+  /**
+   * REST method type resolver.
+   *
+   * This can be used if default logic for detecting type is not enough.
+   *
+   * If you want to completely override response handler - use `requestHandlerOverride`.
+   */
+  RESTTypeResolver?: MockMSWRESTTypeResolver;
+
+  /**
+   * Use this to completely override response.
+   * Returning `null` will fallback to default REST handler.
+   *
+   * If you still want to use REST handlers but change generation type - use `RESTTypeResolver`
+   */
+  requestHandlerOverride?: MockMSWRequestHandlerOverride;
+
+  /**
+   * Initial loaded data generation and persistence config
+   */
+  persistence: MockMSWPersistence;
+
+	/**
+	 * Controls whether debug logging enabled.
+	 *
+	 * Defaults to `false`
+	 */
+	enableDebugLogging: false,
+};
+
+
+export type MockMSWGetServerParamsOptional = Partial<Omit<MockMSWGetServerParams, 'persistence'>> & {
+	persistence?: Partial<MockMSWGetServerParams['persistence']>
+}
+
+export type MockMSWGetServer = (
+  params?: MockMSWGetServerParamsOptional
+) => HttpResponse;
+
+export interface MockMSWResultsParams {
+	status: number,
+	model: AllApiEntities | null,
+	isArray: boolean,
+	isVoid: boolean,
+};
+
+export interface MockMSWProcessResultsParams {
+	params: MockMSWGetServerParams,
+	methodParams: Parameters<HttpResponseResolver>[0],
+	idProp: string,
+	resultsParams: MockMSWResultsParams[],
+	defaultRESTTypes: (MockMSWRESTType | null)[],
+}
+
+export type MockMSWProcessResults = (params: MockMSWProcessResultsParams) => HttpResponse;

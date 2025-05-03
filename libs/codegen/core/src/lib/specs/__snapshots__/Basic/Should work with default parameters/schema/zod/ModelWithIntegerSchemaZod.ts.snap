@@ -8,3 +8,4 @@ export const ModelWithIntegerSchemaZod = z
   .describe(
     `Model:ModelWithInteger---This is a model with one number property`
   );
+export const ModelWithIntegerSchemaZodNoPrimaryKey = ModelWithIntegerSchemaZod;

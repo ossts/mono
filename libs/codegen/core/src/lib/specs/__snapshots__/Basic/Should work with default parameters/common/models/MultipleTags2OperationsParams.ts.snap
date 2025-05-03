@@ -1,0 +1,7 @@
+/* istanbul ignore file */
+
+export namespace MultipleTags2OperationsParams {
+  export namespace DummyA {}
+
+  export namespace DummyB {}
+}

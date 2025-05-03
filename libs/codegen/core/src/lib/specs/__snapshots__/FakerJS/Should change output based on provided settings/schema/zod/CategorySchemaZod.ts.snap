@@ -7,3 +7,6 @@ export const CategorySchemaZod = z
     name: z.string().optional(),
   })
   .describe(`Model:Category`);
+export const CategorySchemaZodNoPrimaryKey = CategorySchemaZod.omit({
+  id: true,
+});

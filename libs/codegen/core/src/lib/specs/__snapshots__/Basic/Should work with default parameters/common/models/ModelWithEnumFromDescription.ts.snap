@@ -9,3 +9,7 @@ export type ModelWithEnumFromDescription = {
    */
   test?: number;
 };
+
+export namespace ModelWithEnumFromDescription {
+  export type NoPrimaryKey = ModelWithEnumFromDescription;
+}

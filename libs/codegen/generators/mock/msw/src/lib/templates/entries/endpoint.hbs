@@ -1,0 +1,75 @@
+import { type HttpHandler, HttpResponse, http } from 'msw';
+
+import { allApiEntities } from '../../common/models';
+import type { MockMSWGetServerParams, MockMSWRESTType, MockMSWResultsParams } from './{{utilsNameWithNS 'types'}}';
+import { processResults } from './{{utilsNameWithNS 'helpers'}}';
+
+{{#with data}}
+{{>utilsHeader}}
+
+{{#each operations}}
+/**
+ * Method: {{method}}
+ {{#if deprecated}}
+ *
+ * @deprecated
+ {{/if}}
+ {{#if description}}
+ *
+ * {{{utilsEscapeComment description ../gap}}}
+ {{/if}}
+ {{#if parameters}}
+ *
+ * Parameters:
+ {{#each parameters}}
+ *
+ * `{{prop}}{{>utilsRequired}}: {{type}}{{#if default}} = {{default}}{{/if}}` in `{{in}}`
+ {{~#if description}} - {{{utilsEscapeComment description ../gap}}}{{~/if}}
+ {{/each}}
+ {{/if}}
+ */
+export const {{{utilsNameWithNS name}}} = (
+	params: MockMSWGetServerParams
+): HttpHandler =>
+	params.requestHandlerOverride?.{{../name}}?.{{name}}?.(params) ??
+	http.{{utilsLowerCase method}}(`${params.baseUrl}{{path}}`, (methodParams) => {
+		{{!-- TODO: add option to skip current handler. This may be useful when there are multiple request handles and we want to skip some of them --}}
+
+		try {
+			const idProp = '{{extractIdParamFromPath path}}';
+
+			{{!-- This is required because it's possible to return multiple results --}}
+			const resultsParams: MockMSWResultsParams[] = [
+				{{#each results}}
+					{{>resultsParams operation=..}},
+				{{/each}}
+			];
+
+			const defaultRESTTypes: (MockMSWRESTType | null)[] = [
+				{{#each results}}
+					{{>detectRestType operation=..}},
+				{{/each}}
+			];
+
+			return processResults({
+				params,
+				methodParams,
+				idProp,
+				resultsParams,
+				defaultRESTTypes,
+			})
+		} catch (err) {
+			{{>serverError}}
+		}
+	});
+{{/each}}
+
+export const get{{{utilsNameWithNS name}}}Handlers = (
+	params: MockMSWGetServerParams
+): HttpHandler[] => [
+	{{#each operations}}
+		{{{utilsNameWithNS name}}}(params),
+	{{/each}}
+];
+
+{{/with}}

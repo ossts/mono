@@ -4,3 +4,7 @@
  * This is a simple file
  */
 export type SimpleFile = Blob;
+
+export namespace SimpleFile {
+  export type NoPrimaryKey = SimpleFile;
+}

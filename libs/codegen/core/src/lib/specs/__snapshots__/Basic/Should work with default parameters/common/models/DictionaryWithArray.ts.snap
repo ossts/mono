@@ -7,3 +7,7 @@ import type { ModelWithString } from './ModelWithString';
 export type DictionaryWithArray = Partial<
   Record<string, Array<ModelWithString>>
 >;
+
+export namespace DictionaryWithArray {
+  export type NoPrimaryKey = DictionaryWithArray;
+}

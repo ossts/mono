@@ -1,0 +1,13 @@
+/* istanbul ignore file */
+
+export namespace MultipleTags2ServiceResponses {
+  /**
+   * Method: `GET`
+   */
+  export type DummyAGET = void;
+
+  /**
+   * Method: `GET`
+   */
+  export type DummyBGET = void;
+}

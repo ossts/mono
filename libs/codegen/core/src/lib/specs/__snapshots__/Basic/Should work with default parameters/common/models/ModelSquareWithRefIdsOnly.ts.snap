@@ -1,0 +1,13 @@
+/* istanbul ignore file */
+
+/**
+ * Square
+ */
+export type ModelSquareWithRefIdsOnly = {
+  kind: 'square';
+  sideLength?: number;
+};
+
+export namespace ModelSquareWithRefIdsOnly {
+  export type NoPrimaryKey = ModelSquareWithRefIdsOnly;
+}

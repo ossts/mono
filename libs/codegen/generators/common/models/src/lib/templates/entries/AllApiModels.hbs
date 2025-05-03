@@ -1,16 +1,25 @@
 {{~#with data~}}
 import {
 	{{~#each models~}}
-		 {{name}},
+		{{name}},
 	{{~/each}}
 } from './';
 {{/with}}
 
 export type AllApiModels =
-
 {{#with data}}
 	{{#each models}}
 		| {{name}}
 	{{/each}}
 {{/with~}}
 ;
+
+export namespace AllApiModels {
+	export type NoPrimaryKey =
+	{{#with data}}
+		{{#each models}}
+			| {{name}}.NoPrimaryKey
+		{{/each}}
+	{{/with~}}
+	;
+}

@@ -1,0 +1,8 @@
+/* istanbul ignore file */
+import type { ModelWithString } from './ModelWithString';
+
+export namespace MultipartOperationsParams {
+  export namespace MultipartRequest {}
+
+  export namespace MultipartResponse {}
+}

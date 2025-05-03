@@ -7,3 +7,4 @@ export const TagSchemaZod = z
     name: z.string().optional(),
   })
   .describe(`Model:Tag`);
+export const TagSchemaZodNoPrimaryKey = TagSchemaZod.omit({ id: true });

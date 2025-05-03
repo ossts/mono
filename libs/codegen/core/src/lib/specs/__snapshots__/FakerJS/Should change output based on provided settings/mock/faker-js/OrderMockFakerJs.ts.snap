@@ -17,6 +17,10 @@ export function getOrderMockFakerJs<TMode extends 'standalone'>(
   params?: MockFakerJSGeneratorParams<TMode>
 ): Order | null;
 
+export function getOrderMockFakerJs<TMode extends 'primaryKey'>(
+  params?: MockFakerJSGeneratorParams<TMode>
+): number | null;
+
 export function getOrderMockFakerJs<
   TMode extends MockFakerJSGeneratorParamsMode = 'withReferences'
 >(
@@ -36,7 +40,7 @@ export function getOrderMockFakerJs<
     quantity: faker.helpers.maybe(() => faker.number.int(), {
       probability,
     }),
-    shipDate: faker.helpers.maybe(() => faker.date.anytime(), {
+    shipDate: faker.helpers.maybe(() => faker.date.anytime().toISOString(), {
       probability,
     }),
     status: faker.helpers.maybe(() => faker.helpers.enumValue(Order.status), {

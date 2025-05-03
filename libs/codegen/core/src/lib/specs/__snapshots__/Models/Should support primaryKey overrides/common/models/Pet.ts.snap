@@ -15,6 +15,7 @@ export type Pet = {
 };
 
 export namespace Pet {
+  export type NoPrimaryKey = Omit<Pet, 'uuid'>;
   /**
    * pet status in the store
    */

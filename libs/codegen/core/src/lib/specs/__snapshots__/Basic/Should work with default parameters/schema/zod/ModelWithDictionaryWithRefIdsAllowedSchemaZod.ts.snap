@@ -1,0 +1,12 @@
+/* istanbul ignore file */
+import { z } from 'zod';
+
+export const ModelWithDictionaryWithRefIdsAllowedSchemaZod = z
+  .object({
+    prop: z.record(z.string(), z.string()).optional(),
+  })
+  .describe(
+    `Model:ModelWithDictionary---This is a model with one property containing a dictionary`
+  );
+export const ModelWithDictionaryWithRefIdsAllowedSchemaZodNoPrimaryKey =
+  ModelWithDictionaryWithRefIdsAllowedSchemaZod;

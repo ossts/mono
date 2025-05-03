@@ -1,5 +1,9 @@
 export * from './entityNameToSchemaZod';
 
+export * from './entityNameToWithRefIdsAllowedSchemaZod';
+
+export * from './entityNameToWithRefIdsOnlySchemaZod';
+
 export * from './ApiResponseSchemaZod';
 
 export * from './CategorySchemaZod';
@@ -11,3 +15,27 @@ export * from './PetSchemaZod';
 export * from './TagSchemaZod';
 
 export * from './UserSchemaZod';
+
+export * from './ApiResponseWithRefIdsAllowedSchemaZod';
+
+export * from './CategoryWithRefIdsAllowedSchemaZod';
+
+export * from './OrderWithRefIdsAllowedSchemaZod';
+
+export * from './PetWithRefIdsAllowedSchemaZod';
+
+export * from './TagWithRefIdsAllowedSchemaZod';
+
+export * from './UserWithRefIdsAllowedSchemaZod';
+
+export * from './ApiResponseWithRefIdsOnlySchemaZod';
+
+export * from './CategoryWithRefIdsOnlySchemaZod';
+
+export * from './OrderWithRefIdsOnlySchemaZod';
+
+export * from './PetWithRefIdsOnlySchemaZod';
+
+export * from './TagWithRefIdsOnlySchemaZod';
+
+export * from './UserWithRefIdsOnlySchemaZod';

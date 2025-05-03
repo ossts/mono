@@ -1,34 +1,31 @@
 /* istanbul ignore file */
 
 /**
- * Method: POST
- *
- * `parameterHeader: string` in `header`
- *
- * This is the parameter that goes into the header
- *
- * `parameterQuery: string` in `query`
- *
- * This is the parameter that goes into the query params
- *
- * `parameterForm: string` in `formData`
- *
- * This is the parameter that goes into the form data
- *
- * `parameterCookie: string` in `cookie`
- *
- * This is the parameter that goes into the cookie
- *
- * `parameterPath: string` in `path`
- *
- * This is the parameter that goes into the path
+ * Method: GET
  *
  * `requestBody: ModelWithString` in `body`
  *
- * This is the parameter that goes into the body
+ * This is a required parameter
+ *
+ * `parameter?: string` in `query`
+ *
+ * This is an optional parameter
  */
-export const callWithParametersEndpoint =
-  '/api/v{api-version}/parameters/{parameterPath}';
+export const getCallWithOptionalParamEndpoint =
+  '/api/v{api-version}/parameters/';
+/**
+ * Method: POST
+ *
+ * `parameter: Pageable` in `query`
+ *
+ * This is a required parameter
+ *
+ * `requestBody?: ModelWithString` in `body`
+ *
+ * This is an optional parameter
+ */
+export const postCallWithOptionalParamEndpoint =
+  '/api/v{api-version}/parameters/';
 /**
  * Method: POST
  *
@@ -69,30 +66,33 @@ export const callWithParametersEndpoint =
  * This is the parameter with a reserved keyword
  */
 export const callWithWeirdParameterNamesEndpoint =
-  '/api/v{api-version}/parameters/{parameter.path.1}/{parameter-path-2}/{PARAMETER-PATH-3}';
-/**
- * Method: GET
- *
- * `requestBody: ModelWithString` in `body`
- *
- * This is a required parameter
- *
- * `parameter?: string` in `query`
- *
- * This is an optional parameter
- */
-export const getCallWithOptionalParamEndpoint =
-  '/api/v{api-version}/parameters/';
+  '/api/v{api-version}/parameters/:parameter.path.1/:parameter-path-2/:PARAMETER-PATH-3';
 /**
  * Method: POST
  *
- * `parameter: Pageable` in `query`
+ * `parameterHeader: string` in `header`
  *
- * This is a required parameter
+ * This is the parameter that goes into the header
  *
- * `requestBody?: ModelWithString` in `body`
+ * `parameterQuery: string` in `query`
  *
- * This is an optional parameter
+ * This is the parameter that goes into the query params
+ *
+ * `parameterForm: string` in `formData`
+ *
+ * This is the parameter that goes into the form data
+ *
+ * `parameterCookie: string` in `cookie`
+ *
+ * This is the parameter that goes into the cookie
+ *
+ * `parameterPath: string` in `path`
+ *
+ * This is the parameter that goes into the path
+ *
+ * `requestBody: ModelWithString` in `body`
+ *
+ * This is the parameter that goes into the body
  */
-export const postCallWithOptionalParamEndpoint =
-  '/api/v{api-version}/parameters/';
+export const callWithParametersEndpoint =
+  '/api/v{api-version}/parameters/:parameterPath';

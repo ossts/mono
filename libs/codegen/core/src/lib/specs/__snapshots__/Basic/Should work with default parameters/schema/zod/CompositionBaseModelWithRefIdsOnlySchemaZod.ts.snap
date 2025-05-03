@@ -1,0 +1,13 @@
+/* istanbul ignore file */
+import { z } from 'zod';
+
+export const CompositionBaseModelWithRefIdsOnlySchemaZod = z
+  .object({
+    firstName: z.string().optional(),
+    lastname: z.string().optional(),
+  })
+  .describe(
+    `Model:CompositionBaseModel---This is a base model with two simple optional properties`
+  );
+export const CompositionBaseModelWithRefIdsOnlySchemaZodNoPrimaryKey =
+  CompositionBaseModelWithRefIdsOnlySchemaZod;

@@ -1,0 +1,13 @@
+/* istanbul ignore file */
+
+/**
+ * This is a model that contains a dictionary of simple arrays within composition
+ */
+export type CompositionWithOneOfAndSimpleArrayDictionaryWithRefIdsOnly = {
+  propA?: boolean | Partial<Record<string, Array<boolean>>>;
+};
+
+export namespace CompositionWithOneOfAndSimpleArrayDictionaryWithRefIdsOnly {
+  export type NoPrimaryKey =
+    CompositionWithOneOfAndSimpleArrayDictionaryWithRefIdsOnly;
+}

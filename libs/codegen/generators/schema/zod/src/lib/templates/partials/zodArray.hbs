@@ -1,5 +1,5 @@
 {{~#if link~}}
 z.array({{#with link}}{{>zodStart}}{{/with}}{{>zodType link hasWrapperType=true}}){{>zodValidationRules}}{{#unless hasWrapperType}}{{>zodRequired}}{{/unless}}{{>zodNullable}}
 {{~else~}}
-z.array({{{utilsNameWithNS type}}}){{>zodValidationRules}}{{#unless hasWrapperType}}{{>zodRequired}}{{/unless}}{{>zodNullable}}
+z.array({{>zodReferenceValue name=type}}){{>zodValidationRules}}{{#unless hasWrapperType}}{{>zodRequired}}{{/unless}}{{>zodNullable}}
 {{~/if~}}

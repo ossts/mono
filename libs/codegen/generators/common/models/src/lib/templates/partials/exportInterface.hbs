@@ -8,7 +8,7 @@
 {{/if}}
  */
 {{/utilsIfdef}}
-export type {{{name}}} = {
+export type {{{utilsNameWithNS name}}} = {
 	{{#each properties}}
 	{{#utilsIfdef description deprecated}}
 	/**
@@ -23,11 +23,12 @@ export type {{{name}}} = {
 	{{>utilsReadOnly}}{{{name}}}{{>utilsRequired}}: {{>utilsType parent=../name}};
 	{{/each}}
 };
-{{#if enums}}
-{{#unless @root.settings.useUnionTypes}}
 
-export namespace {{{name}}} {
+export namespace {{{utilsNameWithNS name}}} {
+	{{>exportNoPrimaryKey}}
 
+	{{#if enums}}
+	{{#unless @root.settings.useUnionTypes}}
 	{{#each enums}}
 	{{#if description}}
 	/**
@@ -41,7 +42,7 @@ export namespace {{{name}}} {
 	}
 
 	{{/each}}
+	{{/unless}}
+	{{/if}}
 
 }
-{{/unless}}
-{{/if}}

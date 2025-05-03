@@ -10,13 +10,15 @@ export const CompositionWithAnyOfSchemaZod = z
   .object({
     propA: z
       .union([
-        ModelWithStringSchemaZod,
-        ModelWithEnumSchemaZod,
-        ModelWithArraySchemaZod,
-        ModelWithDictionarySchemaZod,
+        ModelWithStringSchemaZod.optional().nullable(),
+        ModelWithEnumSchemaZod.optional().nullable(),
+        ModelWithArraySchemaZod.optional().nullable(),
+        ModelWithDictionarySchemaZod.optional().nullable(),
       ])
       .optional(),
   })
   .describe(
     `Model:CompositionWithAnyOf---This is a model with one property with a 'any of' relationship`
   );
+export const CompositionWithAnyOfSchemaZodNoPrimaryKey =
+  CompositionWithAnyOfSchemaZod;

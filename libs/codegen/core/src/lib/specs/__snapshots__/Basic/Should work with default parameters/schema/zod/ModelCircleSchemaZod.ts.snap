@@ -7,3 +7,4 @@ export const ModelCircleSchemaZod = z
     radius: z.number().optional(),
   })
   .describe(`Model:ModelCircle---Circle`);
+export const ModelCircleSchemaZodNoPrimaryKey = ModelCircleSchemaZod;

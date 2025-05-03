@@ -251,7 +251,7 @@ const formatDefaultBasedOnType = (
       switch (type.format) {
         case 'date':
         case 'date-time':
-          return '.date.anytime($$params$$)';
+          return '.date.anytime($$params$$).toISOString()';
       }
       return string;
     }

@@ -1,0 +1,4 @@
+/* istanbul ignore file */
+import type { DeprecatedModel } from './DeprecatedModel';
+
+export namespace DeprecatedServiceResponses {}

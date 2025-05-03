@@ -1,0 +1,17 @@
+/* istanbul ignore file */
+import { z } from 'zod';
+
+import { ModelWithPropertiesWithRefIdsAllowedSchemaZod } from './ModelWithPropertiesWithRefIdsAllowedSchemaZod';
+
+export const ModelWithReferenceWithRefIdsAllowedSchemaZod = z
+  .object({
+    prop: ModelWithPropertiesWithRefIdsAllowedSchemaZod.or(z.string())
+      .or(z.number())
+      .optional()
+      .nullable(),
+  })
+  .describe(
+    `Model:ModelWithReference---This is a model with one property containing a reference`
+  );
+export const ModelWithReferenceWithRefIdsAllowedSchemaZodNoPrimaryKey =
+  ModelWithReferenceWithRefIdsAllowedSchemaZod;

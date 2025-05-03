@@ -1,5 +1,9 @@
 export * from './entityNameToSchemaZod';
 
+export * from './entityNameToWithRefIdsAllowedSchemaZod';
+
+export * from './entityNameToWithRefIdsOnlySchemaZod';
+
 export * from './ArrayWithArraySchemaZod';
 
 export * from './ArrayWithBooleansSchemaZod';
@@ -135,3 +139,275 @@ export * from './SimpleStringSchemaZod';
 export * from './SimpleStringWithPatternSchemaZod';
 
 export * from './_defaultSchemaZod';
+
+export * from './ArrayWithArrayWithRefIdsAllowedSchemaZod';
+
+export * from './ArrayWithBooleansWithRefIdsAllowedSchemaZod';
+
+export * from './ArrayWithNumbersWithRefIdsAllowedSchemaZod';
+
+export * from './ArrayWithPropertiesWithRefIdsAllowedSchemaZod';
+
+export * from './ArrayWithReferencesWithRefIdsAllowedSchemaZod';
+
+export * from './ArrayWithStringsWithRefIdsAllowedSchemaZod';
+
+export * from './CommentWithBackticksWithRefIdsAllowedSchemaZod';
+
+export * from './CommentWithBreaksWithRefIdsAllowedSchemaZod';
+
+export * from './CommentWithExpressionPlaceholdersWithRefIdsAllowedSchemaZod';
+
+export * from './CommentWithQuotesWithRefIdsAllowedSchemaZod';
+
+export * from './CommentWithReservedCharactersWithRefIdsAllowedSchemaZod';
+
+export * from './CommentWithSlashesWithRefIdsAllowedSchemaZod';
+
+export * from './CompositionBaseModelWithRefIdsAllowedSchemaZod';
+
+export * from './CompositionExtendedModelWithRefIdsAllowedSchemaZod';
+
+export * from './CompositionWithAllOfAndNullableWithRefIdsAllowedSchemaZod';
+
+export * from './CompositionWithAnyOfWithRefIdsAllowedSchemaZod';
+
+export * from './CompositionWithAnyOfAndNullableWithRefIdsAllowedSchemaZod';
+
+export * from './CompositionWithAnyOfAnonymousWithRefIdsAllowedSchemaZod';
+
+export * from './CompositionWithOneOfWithRefIdsAllowedSchemaZod';
+
+export * from './CompositionWithOneOfAndComplexArrayDictionaryWithRefIdsAllowedSchemaZod';
+
+export * from './CompositionWithOneOfAndNullableWithRefIdsAllowedSchemaZod';
+
+export * from './CompositionWithOneOfAndSimpleArrayDictionaryWithRefIdsAllowedSchemaZod';
+
+export * from './CompositionWithOneOfAndSimpleDictionaryWithRefIdsAllowedSchemaZod';
+
+export * from './CompositionWithOneOfAnonymousWithRefIdsAllowedSchemaZod';
+
+export * from './CompositionWithOneOfDiscriminatorWithRefIdsAllowedSchemaZod';
+
+export * from './DeprecatedModelWithRefIdsAllowedSchemaZod';
+
+export * from './DictionaryWithArrayWithRefIdsAllowedSchemaZod';
+
+export * from './DictionaryWithDictionaryWithRefIdsAllowedSchemaZod';
+
+export * from './DictionaryWithPropertiesWithRefIdsAllowedSchemaZod';
+
+export * from './DictionaryWithReferenceWithRefIdsAllowedSchemaZod';
+
+export * from './DictionaryWithStringWithRefIdsAllowedSchemaZod';
+
+export * from './EnumFromDescriptionWithRefIdsAllowedSchemaZod';
+
+export * from './EnumWithExtensionsWithRefIdsAllowedSchemaZod';
+
+export * from './EnumWithNumbersWithRefIdsAllowedSchemaZod';
+
+export * from './EnumWithStringsWithRefIdsAllowedSchemaZod';
+
+export * from './FileWithRefIdsAllowedSchemaZod';
+
+export * from './FreeFormObjectWithAdditionalPropertiesEqEmptyObjectWithRefIdsAllowedSchemaZod';
+
+export * from './FreeFormObjectWithAdditionalPropertiesEqTrueWithRefIdsAllowedSchemaZod';
+
+export * from './FreeFormObjectWithoutAdditionalPropertiesWithRefIdsAllowedSchemaZod';
+
+export * from './ModelCircleWithRefIdsAllowedSchemaZod';
+
+export * from './ModelSquareWithRefIdsAllowedSchemaZod';
+
+export * from './ModelThatExtendsWithRefIdsAllowedSchemaZod';
+
+export * from './ModelThatExtendsExtendsWithRefIdsAllowedSchemaZod';
+
+export * from './ModelWithArrayWithRefIdsAllowedSchemaZod';
+
+export * from './ModelWithBooleanWithRefIdsAllowedSchemaZod';
+
+export * from './ModelWithCircularReferenceWithRefIdsAllowedSchemaZod';
+
+export * from './ModelWithDictionaryWithRefIdsAllowedSchemaZod';
+
+export * from './ModelWithDuplicateImportsWithRefIdsAllowedSchemaZod';
+
+export * from './ModelWithDuplicatePropertiesWithRefIdsAllowedSchemaZod';
+
+export * from './ModelWithEnumWithRefIdsAllowedSchemaZod';
+
+export * from './ModelWithEnumFromDescriptionWithRefIdsAllowedSchemaZod';
+
+export * from './ModelWithIntegerWithRefIdsAllowedSchemaZod';
+
+export * from './ModelWithNestedEnumsWithRefIdsAllowedSchemaZod';
+
+export * from './ModelWithNestedPropertiesWithRefIdsAllowedSchemaZod';
+
+export * from './ModelWithNullableStringWithRefIdsAllowedSchemaZod';
+
+export * from './ModelWithOrderedPropertiesWithRefIdsAllowedSchemaZod';
+
+export * from './ModelWithPatternWithRefIdsAllowedSchemaZod';
+
+export * from './ModelWithPropertiesWithRefIdsAllowedSchemaZod';
+
+export * from './ModelWithReferenceWithRefIdsAllowedSchemaZod';
+
+export * from './ModelWithStringWithRefIdsAllowedSchemaZod';
+
+export * from './PageableWithRefIdsAllowedSchemaZod';
+
+export * from './SimpleBooleanWithRefIdsAllowedSchemaZod';
+
+export * from './SimpleFileWithRefIdsAllowedSchemaZod';
+
+export * from './SimpleIntegerWithRefIdsAllowedSchemaZod';
+
+export * from './SimpleReferenceWithRefIdsAllowedSchemaZod';
+
+export * from './SimpleStringWithRefIdsAllowedSchemaZod';
+
+export * from './SimpleStringWithPatternWithRefIdsAllowedSchemaZod';
+
+export * from './_defaultWithRefIdsAllowedSchemaZod';
+
+export * from './ArrayWithArrayWithRefIdsOnlySchemaZod';
+
+export * from './ArrayWithBooleansWithRefIdsOnlySchemaZod';
+
+export * from './ArrayWithNumbersWithRefIdsOnlySchemaZod';
+
+export * from './ArrayWithPropertiesWithRefIdsOnlySchemaZod';
+
+export * from './ArrayWithReferencesWithRefIdsOnlySchemaZod';
+
+export * from './ArrayWithStringsWithRefIdsOnlySchemaZod';
+
+export * from './CommentWithBackticksWithRefIdsOnlySchemaZod';
+
+export * from './CommentWithBreaksWithRefIdsOnlySchemaZod';
+
+export * from './CommentWithExpressionPlaceholdersWithRefIdsOnlySchemaZod';
+
+export * from './CommentWithQuotesWithRefIdsOnlySchemaZod';
+
+export * from './CommentWithReservedCharactersWithRefIdsOnlySchemaZod';
+
+export * from './CommentWithSlashesWithRefIdsOnlySchemaZod';
+
+export * from './CompositionBaseModelWithRefIdsOnlySchemaZod';
+
+export * from './CompositionExtendedModelWithRefIdsOnlySchemaZod';
+
+export * from './CompositionWithAllOfAndNullableWithRefIdsOnlySchemaZod';
+
+export * from './CompositionWithAnyOfWithRefIdsOnlySchemaZod';
+
+export * from './CompositionWithAnyOfAndNullableWithRefIdsOnlySchemaZod';
+
+export * from './CompositionWithAnyOfAnonymousWithRefIdsOnlySchemaZod';
+
+export * from './CompositionWithOneOfWithRefIdsOnlySchemaZod';
+
+export * from './CompositionWithOneOfAndComplexArrayDictionaryWithRefIdsOnlySchemaZod';
+
+export * from './CompositionWithOneOfAndNullableWithRefIdsOnlySchemaZod';
+
+export * from './CompositionWithOneOfAndSimpleArrayDictionaryWithRefIdsOnlySchemaZod';
+
+export * from './CompositionWithOneOfAndSimpleDictionaryWithRefIdsOnlySchemaZod';
+
+export * from './CompositionWithOneOfAnonymousWithRefIdsOnlySchemaZod';
+
+export * from './CompositionWithOneOfDiscriminatorWithRefIdsOnlySchemaZod';
+
+export * from './DeprecatedModelWithRefIdsOnlySchemaZod';
+
+export * from './DictionaryWithArrayWithRefIdsOnlySchemaZod';
+
+export * from './DictionaryWithDictionaryWithRefIdsOnlySchemaZod';
+
+export * from './DictionaryWithPropertiesWithRefIdsOnlySchemaZod';
+
+export * from './DictionaryWithReferenceWithRefIdsOnlySchemaZod';
+
+export * from './DictionaryWithStringWithRefIdsOnlySchemaZod';
+
+export * from './EnumFromDescriptionWithRefIdsOnlySchemaZod';
+
+export * from './EnumWithExtensionsWithRefIdsOnlySchemaZod';
+
+export * from './EnumWithNumbersWithRefIdsOnlySchemaZod';
+
+export * from './EnumWithStringsWithRefIdsOnlySchemaZod';
+
+export * from './FileWithRefIdsOnlySchemaZod';
+
+export * from './FreeFormObjectWithAdditionalPropertiesEqEmptyObjectWithRefIdsOnlySchemaZod';
+
+export * from './FreeFormObjectWithAdditionalPropertiesEqTrueWithRefIdsOnlySchemaZod';
+
+export * from './FreeFormObjectWithoutAdditionalPropertiesWithRefIdsOnlySchemaZod';
+
+export * from './ModelCircleWithRefIdsOnlySchemaZod';
+
+export * from './ModelSquareWithRefIdsOnlySchemaZod';
+
+export * from './ModelThatExtendsWithRefIdsOnlySchemaZod';
+
+export * from './ModelThatExtendsExtendsWithRefIdsOnlySchemaZod';
+
+export * from './ModelWithArrayWithRefIdsOnlySchemaZod';
+
+export * from './ModelWithBooleanWithRefIdsOnlySchemaZod';
+
+export * from './ModelWithCircularReferenceWithRefIdsOnlySchemaZod';
+
+export * from './ModelWithDictionaryWithRefIdsOnlySchemaZod';
+
+export * from './ModelWithDuplicateImportsWithRefIdsOnlySchemaZod';
+
+export * from './ModelWithDuplicatePropertiesWithRefIdsOnlySchemaZod';
+
+export * from './ModelWithEnumWithRefIdsOnlySchemaZod';
+
+export * from './ModelWithEnumFromDescriptionWithRefIdsOnlySchemaZod';
+
+export * from './ModelWithIntegerWithRefIdsOnlySchemaZod';
+
+export * from './ModelWithNestedEnumsWithRefIdsOnlySchemaZod';
+
+export * from './ModelWithNestedPropertiesWithRefIdsOnlySchemaZod';
+
+export * from './ModelWithNullableStringWithRefIdsOnlySchemaZod';
+
+export * from './ModelWithOrderedPropertiesWithRefIdsOnlySchemaZod';
+
+export * from './ModelWithPatternWithRefIdsOnlySchemaZod';
+
+export * from './ModelWithPropertiesWithRefIdsOnlySchemaZod';
+
+export * from './ModelWithReferenceWithRefIdsOnlySchemaZod';
+
+export * from './ModelWithStringWithRefIdsOnlySchemaZod';
+
+export * from './PageableWithRefIdsOnlySchemaZod';
+
+export * from './SimpleBooleanWithRefIdsOnlySchemaZod';
+
+export * from './SimpleFileWithRefIdsOnlySchemaZod';
+
+export * from './SimpleIntegerWithRefIdsOnlySchemaZod';
+
+export * from './SimpleReferenceWithRefIdsOnlySchemaZod';
+
+export * from './SimpleStringWithRefIdsOnlySchemaZod';
+
+export * from './SimpleStringWithPatternWithRefIdsOnlySchemaZod';
+
+export * from './_defaultWithRefIdsOnlySchemaZod';

@@ -1,0 +1,15 @@
+/* istanbul ignore file */
+import { z } from 'zod';
+
+export const CompositionWithOneOfAndSimpleDictionaryWithRefIdsAllowedSchemaZod =
+  z
+    .object({
+      propA: z
+        .union([z.boolean(), z.record(z.string(), z.number())])
+        .optional(),
+    })
+    .describe(
+      `Model:CompositionWithOneOfAndSimpleDictionary---This is a model that contains a simple dictionary within composition`
+    );
+export const CompositionWithOneOfAndSimpleDictionaryWithRefIdsAllowedSchemaZodNoPrimaryKey =
+  CompositionWithOneOfAndSimpleDictionaryWithRefIdsAllowedSchemaZod;

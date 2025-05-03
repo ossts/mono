@@ -186,7 +186,7 @@ const render = <
             importAllName = upperFirst(importAllName);
           }
 
-          content += `\nimport * as ${importAllName} from './${name}';`;
+          content += `\nimport * as ${importAllName} from './${name}${generatorNS}';`;
           if (generator.settings?.withEntryExportAll) {
             content += `\nexport { ${importAllName} }`;
           }

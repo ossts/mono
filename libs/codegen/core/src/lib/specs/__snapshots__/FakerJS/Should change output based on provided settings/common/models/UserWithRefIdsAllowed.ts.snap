@@ -1,0 +1,19 @@
+/* istanbul ignore file */
+
+export type UserWithRefIdsAllowed = {
+  id?: number;
+  username?: string;
+  firstName?: string;
+  lastName?: string;
+  email?: string;
+  password?: string;
+  phone?: string;
+  /**
+   * User Status
+   */
+  userStatus?: number;
+};
+
+export namespace UserWithRefIdsAllowed {
+  export type NoPrimaryKey = Omit<UserWithRefIdsAllowed, 'id'>;
+}

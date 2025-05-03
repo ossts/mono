@@ -5,3 +5,5 @@ export const FreeFormObjectWithAdditionalPropertiesEqTrueSchemaZod = z.record(
   z.string(),
   z.any()
 );
+export const FreeFormObjectWithAdditionalPropertiesEqTrueSchemaZodNoPrimaryKey =
+  FreeFormObjectWithAdditionalPropertiesEqTrueSchemaZod;

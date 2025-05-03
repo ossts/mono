@@ -13,17 +13,21 @@ export function getModelWithNestedEnumsMockFakerJs<
   TMode extends 'withReferences'
 >(
   params?: MockFakerJSGeneratorParams<TMode>
-): ModelOrIdNullable<ModelWithNestedEnums> | null | ModelWithNestedEnums['id'];
+): ModelOrIdNullable<ModelWithNestedEnums> | null;
 
 export function getModelWithNestedEnumsMockFakerJs<TMode extends 'standalone'>(
   params?: MockFakerJSGeneratorParams<TMode>
 ): ModelWithNestedEnums | null;
 
+export function getModelWithNestedEnumsMockFakerJs<TMode extends 'primaryKey'>(
+  params?: MockFakerJSGeneratorParams<TMode>
+): number | null;
+
 export function getModelWithNestedEnumsMockFakerJs<
   TMode extends MockFakerJSGeneratorParamsMode = 'withReferences'
 >(
   params: MockFakerJSGeneratorParams<TMode> = {}
-): ModelOrIdNullable<ModelWithNestedEnums> | null | ModelWithNestedEnums['id'] {
+): ModelOrIdNullable<ModelWithNestedEnums> | null {
   const modelName = 'ModelWithNestedEnums';
 
   const { faker = fakerDefault, fakerParams: { probability } = {} } = params;

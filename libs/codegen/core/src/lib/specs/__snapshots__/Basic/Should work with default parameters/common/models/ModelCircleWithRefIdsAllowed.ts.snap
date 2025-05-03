@@ -1,0 +1,13 @@
+/* istanbul ignore file */
+
+/**
+ * Circle
+ */
+export type ModelCircleWithRefIdsAllowed = {
+  kind: 'circle';
+  radius?: number;
+};
+
+export namespace ModelCircleWithRefIdsAllowed {
+  export type NoPrimaryKey = ModelCircleWithRefIdsAllowed;
+}

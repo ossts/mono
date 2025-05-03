@@ -1,0 +1,69 @@
+import path from 'node:path';
+
+import { setupServer } from 'msw/node';
+
+import { initialize } from '../faker-js';
+
+import type {
+	MockMSWGetServerParams,
+	MockMSWGetServerParamsOptional,
+} from './{{utilsNameWithNS 'types'}}'
+
+{{#with data}}
+import {
+	{{#each services}}
+		get{{utilsUpperFirst name}}MockMswHandlers,
+	{{/each}}
+} from  '.';
+
+{{>utilsHeader}}
+
+export const getHandlers = (params: MockMSWGetServerParams) => [
+	{{#each services}}
+		...get{{utilsUpperFirst name}}MockMswHandlers(params),
+	{{/each}}
+];
+
+export const getServer = (paramsInput?: MockMSWGetServerParamsOptional) => {
+	const params = validateAndNormalizeParams(paramsInput);
+
+	setInitialData(params);
+
+	return setupServer(...getHandlers(params))
+}
+{{/with}}
+
+const validateAndNormalizeParams = (paramsInput: MockMSWGetServerParamsOptional = {}) => {
+  const params: MockMSWGetServerParams = {
+    preset: 'REST',
+    baseUrl: 'http://localhost:3000',
+		enableDebugLogging: false,
+    ...paramsInput,
+    persistence: {
+      mode: 'new',
+      enabled: true,
+      cacheName: 'default',
+      cacheFolderName: '__mswCache__',
+      cacheDir: '',
+      ...paramsInput.persistence,
+    },
+  };
+
+  if (params.persistence.cacheDir === '') {
+    params.persistence.cacheDir = path.resolve(
+      __dirname,
+      params.persistence.cacheFolderName
+    );
+  }
+
+  return params;
+};
+
+const setInitialData = (params: MockMSWGetServerParams) => {
+	if (params.persistence.mode === 'new') return generateNewData(params);
+
+	// TODO: restore data from cache (if available) or generate new
+}
+
+const generateNewData = (params: MockMSWGetServerParams) =>
+	initialize(params.persistence.initializerParams ?? {});

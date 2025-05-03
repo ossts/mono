@@ -19,6 +19,7 @@ export type ModelWithEnum = {
 };
 
 export namespace ModelWithEnum {
+  export type NoPrimaryKey = ModelWithEnum;
   /**
    * This is a simple enum with strings
    */

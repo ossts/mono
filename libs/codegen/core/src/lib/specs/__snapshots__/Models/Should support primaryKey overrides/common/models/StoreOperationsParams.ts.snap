@@ -1,0 +1,20 @@
+/* istanbul ignore file */
+import type { Order } from './Order';
+
+export namespace StoreOperationsParams {
+  export namespace GetInventory {}
+
+  export namespace PlaceOrder {}
+
+  export namespace GetOrderById {
+    export type Path = {
+      orderId: number;
+    };
+  }
+
+  export namespace DeleteOrder {
+    export type Path = {
+      orderId: number;
+    };
+  }
+}

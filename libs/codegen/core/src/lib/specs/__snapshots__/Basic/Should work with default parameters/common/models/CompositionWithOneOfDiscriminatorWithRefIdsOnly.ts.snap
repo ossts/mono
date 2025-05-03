@@ -1,0 +1,14 @@
+/* istanbul ignore file */
+import type { ModelCircleWithRefIdsOnly } from './ModelCircleWithRefIdsOnly';
+import type { ModelSquareWithRefIdsOnly } from './ModelSquareWithRefIdsOnly';
+
+/**
+ * This is a model with one property with a 'one of' relationship where the options are not $ref
+ */
+export type CompositionWithOneOfDiscriminatorWithRefIdsOnly =
+  | ModelCircleWithRefIdsOnly
+  | ModelSquareWithRefIdsOnly;
+
+export namespace CompositionWithOneOfDiscriminatorWithRefIdsOnly {
+  export type NoPrimaryKey = CompositionWithOneOfDiscriminatorWithRefIdsOnly;
+}

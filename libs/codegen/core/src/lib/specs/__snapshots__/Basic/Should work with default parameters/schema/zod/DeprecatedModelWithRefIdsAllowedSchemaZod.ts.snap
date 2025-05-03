@@ -1,0 +1,12 @@
+/* istanbul ignore file */
+import { z } from 'zod';
+
+export const DeprecatedModelWithRefIdsAllowedSchemaZod = z
+  .object({
+    prop: z.string().optional(),
+  })
+  .describe(
+    `Model:DeprecatedModel---This is a deprecated model with a deprecated property`
+  );
+export const DeprecatedModelWithRefIdsAllowedSchemaZodNoPrimaryKey =
+  DeprecatedModelWithRefIdsAllowedSchemaZod;

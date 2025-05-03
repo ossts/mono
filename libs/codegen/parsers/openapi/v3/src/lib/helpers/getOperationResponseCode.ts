@@ -1,9 +1,9 @@
 export const getOperationResponseCode = (
   value: string | 'default'
 ): number | null => {
-  // You can specify a "default" response, this is treated as HTTP code 200
+  // Since "default" can handle multiple status codes we set it to -1 to identify it later in generators
   if (value === 'default') {
-    return 200;
+    return -1;
   }
 
   // Check if we can parse the code and return of successful.

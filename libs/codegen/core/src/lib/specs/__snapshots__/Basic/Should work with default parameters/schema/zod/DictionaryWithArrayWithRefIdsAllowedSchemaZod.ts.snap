@@ -1,0 +1,16 @@
+/* istanbul ignore file */
+import { z } from 'zod';
+
+import { ModelWithStringWithRefIdsAllowedSchemaZod } from './ModelWithStringWithRefIdsAllowedSchemaZod';
+
+export const DictionaryWithArrayWithRefIdsAllowedSchemaZod = z.record(
+  z.string(),
+  z.array(
+    ModelWithStringWithRefIdsAllowedSchemaZod.or(z.string())
+      .or(z.number())
+      .optional()
+      .nullable()
+  )
+);
+export const DictionaryWithArrayWithRefIdsAllowedSchemaZodNoPrimaryKey =
+  DictionaryWithArrayWithRefIdsAllowedSchemaZod;

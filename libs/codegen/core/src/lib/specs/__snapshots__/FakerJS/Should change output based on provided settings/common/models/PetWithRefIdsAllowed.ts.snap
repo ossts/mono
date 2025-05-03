@@ -1,0 +1,27 @@
+/* istanbul ignore file */
+import type { CategoryWithRefIdsAllowed } from './CategoryWithRefIdsAllowed';
+import type { TagWithRefIdsAllowed } from './TagWithRefIdsAllowed';
+
+export type PetWithRefIdsAllowed = {
+  id?: number;
+  category?: CategoryWithRefIdsAllowed | number | string;
+  name: string;
+  photoUrls: Array<string>;
+  tags?: Array<TagWithRefIdsAllowed | number | string>;
+  /**
+   * pet status in the store
+   */
+  status?: PetWithRefIdsAllowed.status;
+};
+
+export namespace PetWithRefIdsAllowed {
+  export type NoPrimaryKey = Omit<PetWithRefIdsAllowed, 'id'>;
+  /**
+   * pet status in the store
+   */
+  export enum status {
+    AVAILABLE = 'available',
+    PENDING = 'pending',
+    SOLD = 'sold',
+  }
+}

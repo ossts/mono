@@ -9,3 +9,7 @@ export type ModelWithInteger = {
    */
   prop?: number;
 };
+
+export namespace ModelWithInteger {
+  export type NoPrimaryKey = ModelWithInteger;
+}

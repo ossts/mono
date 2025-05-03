@@ -9,3 +9,7 @@ export type ModelWithArray = {
   propWithFile?: Array<Blob>;
   propWithNumber?: Array<number>;
 };
+
+export namespace ModelWithArray {
+  export type NoPrimaryKey = ModelWithArray;
+}

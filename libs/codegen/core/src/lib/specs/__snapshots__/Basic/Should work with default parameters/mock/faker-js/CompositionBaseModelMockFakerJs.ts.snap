@@ -13,17 +13,21 @@ export function getCompositionBaseModelMockFakerJs<
   TMode extends 'withReferences'
 >(
   params?: MockFakerJSGeneratorParams<TMode>
-): ModelOrIdNullable<CompositionBaseModel> | null | CompositionBaseModel['id'];
+): ModelOrIdNullable<CompositionBaseModel> | null;
 
 export function getCompositionBaseModelMockFakerJs<TMode extends 'standalone'>(
   params?: MockFakerJSGeneratorParams<TMode>
 ): CompositionBaseModel | null;
 
+export function getCompositionBaseModelMockFakerJs<TMode extends 'primaryKey'>(
+  params?: MockFakerJSGeneratorParams<TMode>
+): number | null;
+
 export function getCompositionBaseModelMockFakerJs<
   TMode extends MockFakerJSGeneratorParamsMode = 'withReferences'
 >(
   params: MockFakerJSGeneratorParams<TMode> = {}
-): ModelOrIdNullable<CompositionBaseModel> | null | CompositionBaseModel['id'] {
+): ModelOrIdNullable<CompositionBaseModel> | null {
   const modelName = 'CompositionBaseModel';
 
   const { faker = fakerDefault, fakerParams: { probability } = {} } = params;

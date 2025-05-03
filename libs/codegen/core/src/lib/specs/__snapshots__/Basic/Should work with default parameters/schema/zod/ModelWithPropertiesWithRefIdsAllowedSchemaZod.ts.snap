@@ -1,0 +1,28 @@
+/* istanbul ignore file */
+import { z } from 'zod';
+
+import { ModelWithStringWithRefIdsAllowedSchemaZod } from './ModelWithStringWithRefIdsAllowedSchemaZod';
+
+export const ModelWithPropertiesWithRefIdsAllowedSchemaZod = z
+  .object({
+    required: z.coerce.string(),
+    requiredAndReadOnly: z.coerce.string().readonly(),
+    requiredAndNullable: z.string().nullable(),
+    string: z.string().optional(),
+    number: z.number().optional(),
+    boolean: z.boolean().optional(),
+    reference: ModelWithStringWithRefIdsAllowedSchemaZod.or(z.string())
+      .or(z.number())
+      .optional()
+      .nullable(),
+    'property with space': z.string().optional(),
+    default: z.string().optional(),
+    try: z.string().optional(),
+    '@namespace.string': z.string().optional().readonly(),
+    '@namespace.integer': z.number().optional().readonly(),
+  })
+  .describe(
+    `Model:ModelWithProperties---This is a model with one nested property`
+  );
+export const ModelWithPropertiesWithRefIdsAllowedSchemaZodNoPrimaryKey =
+  ModelWithPropertiesWithRefIdsAllowedSchemaZod;

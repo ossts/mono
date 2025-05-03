@@ -13,3 +13,4 @@ export const OrderSchemaZod = z
     complete: z.boolean().optional(),
   })
   .describe(`Model:Order`);
+export const OrderSchemaZodNoPrimaryKey = OrderSchemaZod.omit({ id: true });

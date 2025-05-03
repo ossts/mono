@@ -1,10 +1,10 @@
 {{~#utilsEquals export 'dictionary'~}}
-	{{{utilsNameWithNS type}}}
+	{{>zodReferenceValue name=type}}
 {{~else utilsEquals export 'reference'~}}
 	{{~#utilsStartsWith base "'"~}}
 		z.literal({{base}})
 	{{~else~}}
-		{{{utilsNameWithNS type}}}
+		{{>zodReferenceValue name=type}}
 	{{~/utilsStartsWith~}}
 {{~else utilsEquals format 'date-time'~}}
 	.string().datetime()

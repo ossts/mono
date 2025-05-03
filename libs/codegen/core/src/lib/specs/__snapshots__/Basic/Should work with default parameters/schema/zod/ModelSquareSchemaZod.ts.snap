@@ -7,3 +7,4 @@ export const ModelSquareSchemaZod = z
     sideLength: z.number().optional(),
   })
   .describe(`Model:ModelSquare---Square`);
+export const ModelSquareSchemaZodNoPrimaryKey = ModelSquareSchemaZod;

@@ -1,0 +1,13 @@
+/* istanbul ignore file */
+import { z } from 'zod';
+
+import { ModelCircleWithRefIdsAllowedSchemaZod } from './ModelCircleWithRefIdsAllowedSchemaZod';
+import { ModelSquareWithRefIdsAllowedSchemaZod } from './ModelSquareWithRefIdsAllowedSchemaZod';
+
+export const CompositionWithOneOfDiscriminatorWithRefIdsAllowedSchemaZod =
+  z.union([
+    ModelCircleSchemaZod.optional().nullable(),
+    ModelSquareSchemaZod.optional().nullable(),
+  ]);
+export const CompositionWithOneOfDiscriminatorWithRefIdsAllowedSchemaZodNoPrimaryKey =
+  CompositionWithOneOfDiscriminatorWithRefIdsAllowedSchemaZod;

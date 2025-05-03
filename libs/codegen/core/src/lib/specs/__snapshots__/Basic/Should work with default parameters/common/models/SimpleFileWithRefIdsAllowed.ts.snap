@@ -1,0 +1,10 @@
+/* istanbul ignore file */
+
+/**
+ * This is a simple file
+ */
+export type SimpleFileWithRefIdsAllowed = Blob;
+
+export namespace SimpleFileWithRefIdsAllowed {
+  export type NoPrimaryKey = SimpleFileWithRefIdsAllowed;
+}

@@ -11,7 +11,7 @@ export const enumerator: CodegenHandlebarsHelperWrapper = () =>
     options: Handlebars.HelperOptions
   ) {
     if (!useUnionTypes && parent && name) {
-      return `${parent}.${name}`;
+      return `${parent}${options.data?.root?.rootNameSuffix ?? ''}.${name}`;
     }
 
     const enums = enumerators.map((enumerator) => enumerator.value);

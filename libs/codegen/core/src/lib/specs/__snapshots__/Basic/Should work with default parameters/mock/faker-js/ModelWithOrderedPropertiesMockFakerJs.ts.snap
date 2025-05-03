@@ -13,10 +13,7 @@ export function getModelWithOrderedPropertiesMockFakerJs<
   TMode extends 'withReferences'
 >(
   params?: MockFakerJSGeneratorParams<TMode>
-):
-  | ModelOrIdNullable<ModelWithOrderedProperties>
-  | null
-  | ModelWithOrderedProperties['id'];
+): ModelOrIdNullable<ModelWithOrderedProperties> | null;
 
 export function getModelWithOrderedPropertiesMockFakerJs<
   TMode extends 'standalone'
@@ -25,13 +22,14 @@ export function getModelWithOrderedPropertiesMockFakerJs<
 ): ModelWithOrderedProperties | null;
 
 export function getModelWithOrderedPropertiesMockFakerJs<
+  TMode extends 'primaryKey'
+>(params?: MockFakerJSGeneratorParams<TMode>): number | null;
+
+export function getModelWithOrderedPropertiesMockFakerJs<
   TMode extends MockFakerJSGeneratorParamsMode = 'withReferences'
 >(
   params: MockFakerJSGeneratorParams<TMode> = {}
-):
-  | ModelOrIdNullable<ModelWithOrderedProperties>
-  | null
-  | ModelWithOrderedProperties['id'] {
+): ModelOrIdNullable<ModelWithOrderedProperties> | null {
   const modelName = 'ModelWithOrderedProperties';
 
   const { faker = fakerDefault, fakerParams: { probability } = {} } = params;

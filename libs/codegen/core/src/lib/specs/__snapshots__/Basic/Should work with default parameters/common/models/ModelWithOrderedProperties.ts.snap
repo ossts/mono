@@ -8,3 +8,7 @@ export type ModelWithOrderedProperties = {
   apple?: string;
   hawaii?: string;
 };
+
+export namespace ModelWithOrderedProperties {
+  export type NoPrimaryKey = ModelWithOrderedProperties;
+}

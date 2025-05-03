@@ -1,0 +1,10 @@
+/* istanbul ignore file */
+
+/**
+ * This is a simple string
+ */
+export type SimpleStringWithRefIdsOnly = string;
+
+export namespace SimpleStringWithRefIdsOnly {
+  export type NoPrimaryKey = SimpleStringWithRefIdsOnly;
+}

@@ -1,0 +1,10 @@
+/* istanbul ignore file */
+
+/**
+ * This is a simple array with strings
+ */
+export type ArrayWithStringsWithRefIdsOnly = Array<string>;
+
+export namespace ArrayWithStringsWithRefIdsOnly {
+  export type NoPrimaryKey = ArrayWithStringsWithRefIdsOnly;
+}

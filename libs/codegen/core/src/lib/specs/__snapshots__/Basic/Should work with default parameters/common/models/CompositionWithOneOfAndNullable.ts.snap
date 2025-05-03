@@ -18,3 +18,7 @@ export type CompositionWithOneOfAndNullable = {
       )
     | null;
 };
+
+export namespace CompositionWithOneOfAndNullable {
+  export type NoPrimaryKey = CompositionWithOneOfAndNullable;
+}

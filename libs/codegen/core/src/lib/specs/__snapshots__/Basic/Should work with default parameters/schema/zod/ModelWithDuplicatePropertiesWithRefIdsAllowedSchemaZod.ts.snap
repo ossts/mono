@@ -1,0 +1,17 @@
+/* istanbul ignore file */
+import { z } from 'zod';
+
+import { ModelWithStringWithRefIdsAllowedSchemaZod } from './ModelWithStringWithRefIdsAllowedSchemaZod';
+
+export const ModelWithDuplicatePropertiesWithRefIdsAllowedSchemaZod = z
+  .object({
+    prop: ModelWithStringWithRefIdsAllowedSchemaZod.or(z.string())
+      .or(z.number())
+      .optional()
+      .nullable(),
+  })
+  .describe(
+    `Model:ModelWithDuplicateProperties---This is a model with duplicated properties`
+  );
+export const ModelWithDuplicatePropertiesWithRefIdsAllowedSchemaZodNoPrimaryKey =
+  ModelWithDuplicatePropertiesWithRefIdsAllowedSchemaZod;

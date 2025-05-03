@@ -1,0 +1,10 @@
+/* istanbul ignore file */
+
+/**
+ * Success=1,Warning=2,Error=3
+ */
+export type EnumFromDescriptionWithRefIdsOnly = number;
+
+export namespace EnumFromDescriptionWithRefIdsOnly {
+  export type NoPrimaryKey = EnumFromDescriptionWithRefIdsOnly;
+}

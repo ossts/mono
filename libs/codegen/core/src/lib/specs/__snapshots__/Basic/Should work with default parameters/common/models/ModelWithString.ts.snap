@@ -9,3 +9,7 @@ export type ModelWithString = {
    */
   prop?: string;
 };
+
+export namespace ModelWithString {
+  export type NoPrimaryKey = ModelWithString;
+}

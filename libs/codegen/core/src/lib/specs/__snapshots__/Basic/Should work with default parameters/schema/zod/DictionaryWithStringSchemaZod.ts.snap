@@ -2,3 +2,5 @@
 import { z } from 'zod';
 
 export const DictionaryWithStringSchemaZod = z.record(z.string(), z.string());
+export const DictionaryWithStringSchemaZodNoPrimaryKey =
+  DictionaryWithStringSchemaZod;

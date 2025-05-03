@@ -1,0 +1,32 @@
+{{#with data}}
+{{>utilsHeader}}
+
+import { z } from 'zod';
+{{#if imports}}
+	{{#each imports}}
+		import { {{{utilsNameWithNS this}}} } from './{{{utilsNameWithNS this}}}';
+	{{/each}}
+{{/if}}
+
+{{#utilsEquals export 'interface'}}
+	{{>zodExportInterface}}
+{{else utilsEquals export 'oneOf'}}
+	{{>zodExportComposition}}
+{{else utilsEquals export 'anyOf'}}
+	{{>zodExportComposition}}
+{{else utilsEquals export 'allOf'}}
+	{{>zodExportComposition}}
+{{else utilsEquals export 'enum'}}
+	{{>zodExportEnum}}
+{{else}}
+	{{>zodExportType}}
+{{/utilsEquals}}
+
+export const {{{utilsNameWithNS name}}}NoPrimaryKey =
+	{{#commonModelsEntityHasPrimaryKey @root.allSettings}}
+		{{{utilsNameWithNS name}}}.omit({ '{{commonModelsEntityToPrimaryKeyNameMapping}}': true })
+	{{else}}
+		{{utilsNameWithNS name}}
+	{{/commonModelsEntityHasPrimaryKey}};
+
+{{/with}}

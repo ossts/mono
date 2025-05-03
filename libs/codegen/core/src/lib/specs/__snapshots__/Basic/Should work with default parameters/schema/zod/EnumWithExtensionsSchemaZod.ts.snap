@@ -4,3 +4,5 @@ import { z } from 'zod';
 import { EnumWithExtensions } from '../../common/models';
 
 export const EnumWithExtensionsSchemaZod = z.nativeEnum(EnumWithExtensions);
+export const EnumWithExtensionsSchemaZodNoPrimaryKey =
+  EnumWithExtensionsSchemaZod;

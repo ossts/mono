@@ -16,10 +16,7 @@ export function getCompositionWithAnyOfAndNullableMockFakerJs<
   TMode extends 'withReferences'
 >(
   params?: MockFakerJSGeneratorParams<TMode>
-):
-  | ModelOrIdNullable<CompositionWithAnyOfAndNullable>
-  | null
-  | CompositionWithAnyOfAndNullable['id'];
+): ModelOrIdNullable<CompositionWithAnyOfAndNullable> | null;
 
 export function getCompositionWithAnyOfAndNullableMockFakerJs<
   TMode extends 'standalone'
@@ -28,13 +25,14 @@ export function getCompositionWithAnyOfAndNullableMockFakerJs<
 ): CompositionWithAnyOfAndNullable | null;
 
 export function getCompositionWithAnyOfAndNullableMockFakerJs<
+  TMode extends 'primaryKey'
+>(params?: MockFakerJSGeneratorParams<TMode>): number | null;
+
+export function getCompositionWithAnyOfAndNullableMockFakerJs<
   TMode extends MockFakerJSGeneratorParamsMode = 'withReferences'
 >(
   params: MockFakerJSGeneratorParams<TMode> = {}
-):
-  | ModelOrIdNullable<CompositionWithAnyOfAndNullable>
-  | null
-  | CompositionWithAnyOfAndNullable['id'] {
+): ModelOrIdNullable<CompositionWithAnyOfAndNullable> | null {
   const modelName = 'CompositionWithAnyOfAndNullable';
 
   const { faker = fakerDefault, fakerParams: { probability } = {} } = params;

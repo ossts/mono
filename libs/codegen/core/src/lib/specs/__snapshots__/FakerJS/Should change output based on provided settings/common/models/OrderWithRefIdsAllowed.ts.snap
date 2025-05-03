@@ -1,0 +1,25 @@
+/* istanbul ignore file */
+
+export type OrderWithRefIdsAllowed = {
+  id?: number;
+  petId?: number;
+  quantity?: number;
+  shipDate?: string;
+  /**
+   * Order Status
+   */
+  status?: OrderWithRefIdsAllowed.status;
+  complete?: boolean;
+};
+
+export namespace OrderWithRefIdsAllowed {
+  export type NoPrimaryKey = Omit<OrderWithRefIdsAllowed, 'id'>;
+  /**
+   * Order Status
+   */
+  export enum status {
+    PLACED = 'placed',
+    APPROVED = 'approved',
+    DELIVERED = 'delivered',
+  }
+}

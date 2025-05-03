@@ -1,0 +1,11 @@
+/* istanbul ignore file */
+import type { ModelWithString } from './ModelWithString';
+
+export namespace FormDataOperationsParams {
+  export namespace PostApiFormData {
+    export type Query = {
+      parameter: string;
+      formData: ModelWithString;
+    };
+  }
+}

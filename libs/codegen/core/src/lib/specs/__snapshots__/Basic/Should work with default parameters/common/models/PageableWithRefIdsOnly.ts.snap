@@ -1,0 +1,11 @@
+/* istanbul ignore file */
+
+export type PageableWithRefIdsOnly = {
+  page?: number;
+  size?: number;
+  sort?: Array<string>;
+};
+
+export namespace PageableWithRefIdsOnly {
+  export type NoPrimaryKey = PageableWithRefIdsOnly;
+}

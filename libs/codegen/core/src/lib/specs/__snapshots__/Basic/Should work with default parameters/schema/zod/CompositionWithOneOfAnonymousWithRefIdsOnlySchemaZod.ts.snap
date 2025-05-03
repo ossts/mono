@@ -1,0 +1,22 @@
+/* istanbul ignore file */
+import { z } from 'zod';
+
+export const CompositionWithOneOfAnonymousWithRefIdsOnlySchemaZod = z
+  .object({
+    propA: z
+      .union([
+        z
+          .object({
+            propA: z.string().optional(),
+          })
+          .describe(`Anonymous object type`),
+        z.string(),
+        z.number(),
+      ])
+      .optional(),
+  })
+  .describe(
+    `Model:CompositionWithOneOfAnonymous---This is a model with one property with a 'one of' relationship where the options are not $ref`
+  );
+export const CompositionWithOneOfAnonymousWithRefIdsOnlySchemaZodNoPrimaryKey =
+  CompositionWithOneOfAnonymousWithRefIdsOnlySchemaZod;

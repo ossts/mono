@@ -9,3 +9,7 @@ export type ModelWithNestedEnums = {
   arrayWithEnum?: Array<'Success' | 'Warning' | 'Error'>;
   arrayWithDescription?: Array<number>;
 };
+
+export namespace ModelWithNestedEnums {
+  export type NoPrimaryKey = ModelWithNestedEnums;
+}

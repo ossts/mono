@@ -1,0 +1,15 @@
+/* istanbul ignore file */
+import type { ModelWithStringWithRefIdsOnly } from './ModelWithStringWithRefIdsOnly';
+
+/**
+ * This is a model with duplicated imports
+ */
+export type ModelWithDuplicateImportsWithRefIdsOnly = {
+  propA?: ModelWithStringWithRefIdsOnly;
+  propB?: ModelWithStringWithRefIdsOnly;
+  propC?: ModelWithStringWithRefIdsOnly;
+};
+
+export namespace ModelWithDuplicateImportsWithRefIdsOnly {
+  export type NoPrimaryKey = ModelWithDuplicateImportsWithRefIdsOnly;
+}

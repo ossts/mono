@@ -1,0 +1,12 @@
+/* istanbul ignore file */
+import { z } from 'zod';
+
+export const ModelWithBooleanWithRefIdsAllowedSchemaZod = z
+  .object({
+    prop: z.boolean().optional(),
+  })
+  .describe(
+    `Model:ModelWithBoolean---This is a model with one boolean property`
+  );
+export const ModelWithBooleanWithRefIdsAllowedSchemaZodNoPrimaryKey =
+  ModelWithBooleanWithRefIdsAllowedSchemaZod;

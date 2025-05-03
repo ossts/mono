@@ -1,0 +1,7 @@
+/* istanbul ignore file */
+import { z } from 'zod';
+
+export const FreeFormObjectWithoutAdditionalPropertiesWithRefIdsOnlySchemaZod =
+  z.record(z.string(), z.any());
+export const FreeFormObjectWithoutAdditionalPropertiesWithRefIdsOnlySchemaZodNoPrimaryKey =
+  FreeFormObjectWithoutAdditionalPropertiesWithRefIdsOnlySchemaZod;

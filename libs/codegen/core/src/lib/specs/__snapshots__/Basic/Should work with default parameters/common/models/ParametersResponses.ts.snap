@@ -1,0 +1,5 @@
+/* istanbul ignore file */
+import type { ModelWithString } from './ModelWithString';
+import type { Pageable } from './Pageable';
+
+export namespace ParametersServiceResponses {}

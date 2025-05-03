@@ -13,5 +13,10 @@ export function get{{{utilsNameWithNS name}}} <
   TMode extends 'standalone'
 >(params?: MockFakerJSGeneratorParams<TMode>): {{name}} | null;
 
+{{!-- this overload required to make proper return types for generator --}}
+export function get{{{utilsNameWithNS name}}} <
+  TMode extends 'primaryKey'
+>(params?: MockFakerJSGeneratorParams<TMode>): number | null;
+
 export function get{{{utilsNameWithNS name}}} {{>fakerGeneratorParamsInterfaceStart}} {{>fakerTypeInterface}}
 {{>fakerGeneratorParamsInterfaceEnd}}

@@ -1,0 +1,8 @@
+{{#utilsEquals code 200}}
+
+{{!-- code: -1 is special case for "default" response that can handle multiple statuses --}}
+{{else utilsEquals code -1}}
+Default
+{{else}}
+{{code}}
+{{/utilsEquals}}

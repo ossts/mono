@@ -17,6 +17,10 @@ export function getModelWithPatternMockFakerJs<TMode extends 'standalone'>(
   params?: MockFakerJSGeneratorParams<TMode>
 ): ModelWithPattern | null;
 
+export function getModelWithPatternMockFakerJs<TMode extends 'primaryKey'>(
+  params?: MockFakerJSGeneratorParams<TMode>
+): number | null;
+
 export function getModelWithPatternMockFakerJs<
   TMode extends MockFakerJSGeneratorParamsMode = 'withReferences'
 >(
@@ -35,7 +39,7 @@ export function getModelWithPatternMockFakerJs<
       enabled: faker.helpers.maybe(() => faker.datatype.boolean(), {
         probability,
       }),
-      modified: faker.helpers.maybe(() => faker.date.anytime(), {
+      modified: faker.helpers.maybe(() => faker.date.anytime().toISOString(), {
         probability,
       }),
       id: faker.helpers.maybe(() => faker.string.uuid(), {

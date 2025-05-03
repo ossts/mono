@@ -1,0 +1,23 @@
+/* istanbul ignore file */
+import { z } from 'zod';
+
+import { ModelWithStringWithRefIdsAllowedSchemaZod } from './ModelWithStringWithRefIdsAllowedSchemaZod';
+
+export const ModelWithArrayWithRefIdsAllowedSchemaZod = z
+  .object({
+    prop: z
+      .array(
+        ModelWithStringWithRefIdsAllowedSchemaZod.or(z.string())
+          .or(z.number())
+          .optional()
+          .nullable()
+      )
+      .optional(),
+    propWithFile: z.array(z.object()).optional(),
+    propWithNumber: z.array(z.number()).optional(),
+  })
+  .describe(
+    `Model:ModelWithArray---This is a model with one property containing an array`
+  );
+export const ModelWithArrayWithRefIdsAllowedSchemaZodNoPrimaryKey =
+  ModelWithArrayWithRefIdsAllowedSchemaZod;

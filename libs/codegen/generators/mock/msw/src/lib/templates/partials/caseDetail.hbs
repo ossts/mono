@@ -1,0 +1,9 @@
+case 'detail': {
+	const targetMap = allFaker.entityToDataMap.get(variant.model);
+
+	const id = +(pathParams?.[idProp ?? ''] ?? '');
+
+	if (!id || !targetMap) return getBadRequestResponse();
+
+	return HttpResponse.json(targetMap.get(id));
+}

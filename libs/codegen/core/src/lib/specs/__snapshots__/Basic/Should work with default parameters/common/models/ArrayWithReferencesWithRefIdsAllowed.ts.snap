@@ -1,0 +1,12 @@
+/* istanbul ignore file */
+import type { ModelWithStringWithRefIdsAllowed } from './ModelWithStringWithRefIdsAllowed';
+
+/**
+ * This is a simple array with references
+ */
+export type ArrayWithReferencesWithRefIdsAllowed =
+  Array<ModelWithStringWithRefIdsAllowed>;
+
+export namespace ArrayWithReferencesWithRefIdsAllowed {
+  export type NoPrimaryKey = ArrayWithReferencesWithRefIdsAllowed;
+}

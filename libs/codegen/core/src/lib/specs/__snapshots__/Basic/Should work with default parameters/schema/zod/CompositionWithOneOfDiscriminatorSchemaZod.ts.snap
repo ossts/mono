@@ -5,6 +5,8 @@ import { ModelCircleSchemaZod } from './ModelCircleSchemaZod';
 import { ModelSquareSchemaZod } from './ModelSquareSchemaZod';
 
 export const CompositionWithOneOfDiscriminatorSchemaZod = z.union([
-  ModelCircleSchemaZod,
-  ModelSquareSchemaZod,
+  ModelCircleSchemaZod.optional().nullable(),
+  ModelSquareSchemaZod.optional().nullable(),
 ]);
+export const CompositionWithOneOfDiscriminatorSchemaZodNoPrimaryKey =
+  CompositionWithOneOfDiscriminatorSchemaZod;

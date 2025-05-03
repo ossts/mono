@@ -1,0 +1,12 @@
+/* istanbul ignore file */
+
+/**
+ * This is a free-form object with additionalProperties: {}.
+ */
+export type FreeFormObjectWithAdditionalPropertiesEqEmptyObjectWithRefIdsAllowed =
+  Partial<Record<string, any>>;
+
+export namespace FreeFormObjectWithAdditionalPropertiesEqEmptyObjectWithRefIdsAllowed {
+  export type NoPrimaryKey =
+    FreeFormObjectWithAdditionalPropertiesEqEmptyObjectWithRefIdsAllowed;
+}

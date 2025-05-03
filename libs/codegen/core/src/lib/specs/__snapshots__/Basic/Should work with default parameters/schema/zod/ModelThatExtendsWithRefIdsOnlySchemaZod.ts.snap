@@ -1,0 +1,14 @@
+/* istanbul ignore file */
+import { z } from 'zod';
+
+import { ModelWithStringWithRefIdsOnlySchemaZod } from './ModelWithStringWithRefIdsOnlySchemaZod';
+
+export const ModelThatExtendsWithRefIdsOnlySchemaZod = z.intersection([
+  ModelWithStringSchemaZod.optional().nullable(),
+  z.object({
+    propExtendsA: z.string().optional(),
+    propExtendsB: ModelWithStringSchemaZod.optional().nullable(),
+  }),
+]);
+export const ModelThatExtendsWithRefIdsOnlySchemaZodNoPrimaryKey =
+  ModelThatExtendsWithRefIdsOnlySchemaZod;

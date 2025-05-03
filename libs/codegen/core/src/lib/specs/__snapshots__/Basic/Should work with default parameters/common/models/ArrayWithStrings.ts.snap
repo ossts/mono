@@ -4,3 +4,7 @@
  * This is a simple array with strings
  */
 export type ArrayWithStrings = Array<string>;
+
+export namespace ArrayWithStrings {
+  export type NoPrimaryKey = ArrayWithStrings;
+}

@@ -2,4 +2,3 @@ export * from './common/models';
 export * from './schema/zod';
 export * from './common/endpoints';
 export * from './mock/faker-js';
-export * from './mock/msw';

@@ -3,3 +3,5 @@ import { z } from 'zod';
 
 export const FreeFormObjectWithAdditionalPropertiesEqEmptyObjectSchemaZod =
   z.record(z.string(), z.any());
+export const FreeFormObjectWithAdditionalPropertiesEqEmptyObjectSchemaZodNoPrimaryKey =
+  FreeFormObjectWithAdditionalPropertiesEqEmptyObjectSchemaZod;

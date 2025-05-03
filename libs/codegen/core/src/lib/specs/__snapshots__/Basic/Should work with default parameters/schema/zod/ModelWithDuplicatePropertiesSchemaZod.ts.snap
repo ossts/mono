@@ -5,8 +5,10 @@ import { ModelWithStringSchemaZod } from './ModelWithStringSchemaZod';
 
 export const ModelWithDuplicatePropertiesSchemaZod = z
   .object({
-    prop: ModelWithStringSchemaZod,
+    prop: ModelWithStringSchemaZod.optional().nullable(),
   })
   .describe(
     `Model:ModelWithDuplicateProperties---This is a model with duplicated properties`
   );
+export const ModelWithDuplicatePropertiesSchemaZodNoPrimaryKey =
+  ModelWithDuplicatePropertiesSchemaZod;

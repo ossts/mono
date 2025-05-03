@@ -13,3 +13,5 @@ export const CompositionWithOneOfAndComplexArrayDictionarySchemaZod = z
   .describe(
     `Model:CompositionWithOneOfAndComplexArrayDictionary---This is a model that contains a dictionary of complex arrays (composited) within composition`
   );
+export const CompositionWithOneOfAndComplexArrayDictionarySchemaZodNoPrimaryKey =
+  CompositionWithOneOfAndComplexArrayDictionarySchemaZod;

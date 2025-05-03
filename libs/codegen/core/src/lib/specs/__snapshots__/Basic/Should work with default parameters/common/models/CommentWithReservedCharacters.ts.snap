@@ -4,3 +4,7 @@
  * Testing reserved characters in string: * inline * and ** inline ** should work
  */
 export type CommentWithReservedCharacters = number;
+
+export namespace CommentWithReservedCharacters {
+  export type NoPrimaryKey = CommentWithReservedCharacters;
+}

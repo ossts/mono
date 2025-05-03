@@ -1,0 +1,6 @@
+/* istanbul ignore file */
+import { z } from 'zod';
+
+export const SimpleIntegerWithRefIdsAllowedSchemaZod = z.number();
+export const SimpleIntegerWithRefIdsAllowedSchemaZodNoPrimaryKey =
+  SimpleIntegerWithRefIdsAllowedSchemaZod;

@@ -1,0 +1,15 @@
+case 'list': {
+	const targeMap = allFaker.entityToDataMap.get(variant.model);
+
+	if (!targeMap) {
+		return new HttpResponse(null, {
+			status: 400
+		});
+	}
+
+	{{!-- TODO: allow filter logic.
+		This will will be useful to implement custom filtering logic for already returned list of entities in case of a list.
+	--}}
+
+	return HttpResponse.json([...targeMap]);
+}

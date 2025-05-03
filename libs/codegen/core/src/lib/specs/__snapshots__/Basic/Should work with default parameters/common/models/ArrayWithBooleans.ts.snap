@@ -4,3 +4,7 @@
  * This is a simple array with booleans
  */
 export type ArrayWithBooleans = Array<boolean>;
+
+export namespace ArrayWithBooleans {
+  export type NoPrimaryKey = ArrayWithBooleans;
+}

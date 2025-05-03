@@ -1,0 +1,11 @@
+/* istanbul ignore file */
+import { z } from 'zod';
+
+export const ModelSquareWithRefIdsAllowedSchemaZod = z
+  .object({
+    kind: z.literal('square'),
+    sideLength: z.number().optional(),
+  })
+  .describe(`Model:ModelSquare---Square`);
+export const ModelSquareWithRefIdsAllowedSchemaZodNoPrimaryKey =
+  ModelSquareWithRefIdsAllowedSchemaZod;

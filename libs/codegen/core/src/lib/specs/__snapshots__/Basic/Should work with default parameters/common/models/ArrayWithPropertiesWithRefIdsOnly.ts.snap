@@ -1,0 +1,13 @@
+/* istanbul ignore file */
+
+/**
+ * This is a simple array with properties
+ */
+export type ArrayWithPropertiesWithRefIdsOnly = Array<{
+  foo?: string;
+  bar?: string;
+}>;
+
+export namespace ArrayWithPropertiesWithRefIdsOnly {
+  export type NoPrimaryKey = ArrayWithPropertiesWithRefIdsOnly;
+}

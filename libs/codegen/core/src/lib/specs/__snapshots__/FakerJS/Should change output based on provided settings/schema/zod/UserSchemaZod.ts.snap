@@ -13,3 +13,4 @@ export const UserSchemaZod = z
     userStatus: z.number().optional(),
   })
   .describe(`Model:User`);
+export const UserSchemaZodNoPrimaryKey = UserSchemaZod.omit({ id: true });

@@ -3,3 +3,7 @@
 export type _default = {
   name?: string;
 };
+
+export namespace _default {
+  export type NoPrimaryKey = _default;
+}

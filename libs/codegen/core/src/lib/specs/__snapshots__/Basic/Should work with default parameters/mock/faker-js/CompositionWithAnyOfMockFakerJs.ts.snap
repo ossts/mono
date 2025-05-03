@@ -17,17 +17,21 @@ export function getCompositionWithAnyOfMockFakerJs<
   TMode extends 'withReferences'
 >(
   params?: MockFakerJSGeneratorParams<TMode>
-): ModelOrIdNullable<CompositionWithAnyOf> | null | CompositionWithAnyOf['id'];
+): ModelOrIdNullable<CompositionWithAnyOf> | null;
 
 export function getCompositionWithAnyOfMockFakerJs<TMode extends 'standalone'>(
   params?: MockFakerJSGeneratorParams<TMode>
 ): CompositionWithAnyOf | null;
 
+export function getCompositionWithAnyOfMockFakerJs<TMode extends 'primaryKey'>(
+  params?: MockFakerJSGeneratorParams<TMode>
+): number | null;
+
 export function getCompositionWithAnyOfMockFakerJs<
   TMode extends MockFakerJSGeneratorParamsMode = 'withReferences'
 >(
   params: MockFakerJSGeneratorParams<TMode> = {}
-): ModelOrIdNullable<CompositionWithAnyOf> | null | CompositionWithAnyOf['id'] {
+): ModelOrIdNullable<CompositionWithAnyOf> | null {
   const modelName = 'CompositionWithAnyOf';
 
   const { faker = fakerDefault, fakerParams: { probability } = {} } = params;

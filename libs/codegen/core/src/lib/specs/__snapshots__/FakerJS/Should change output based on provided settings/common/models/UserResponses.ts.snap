@@ -1,0 +1,62 @@
+/* istanbul ignore file */
+import type { User } from './User';
+
+export namespace UserServiceResponses {
+  /**
+   * Method: `POST`
+   *
+   * This can only be done by the logged in user.
+   *
+   * successful operation
+   */
+  export type CreateUserPOSTDefault = any;
+
+  /**
+   * Method: `POST`
+   *
+   * successful operation
+   */
+  export type CreateUsersWithArrayInputPOSTDefault = any;
+
+  /**
+   * Method: `POST`
+   *
+   * successful operation
+   */
+  export type CreateUsersWithListInputPOSTDefault = any;
+
+  /**
+   * Method: `GET`
+   *
+   * successful operation
+   */
+  export type LoginUserGET = string;
+
+  /**
+   * Method: `GET`
+   *
+   * successful operation
+   */
+  export type LogoutUserGETDefault = any;
+
+  /**
+   * Method: `GET`
+   *
+   * successful operation
+   */
+  export type GetUserByNameGET = User;
+
+  /**
+   * Method: `PUT`
+   *
+   * This can only be done by the logged in user.
+   */
+  export type UpdateUserPUT = void;
+
+  /**
+   * Method: `DELETE`
+   *
+   * This can only be done by the logged in user.
+   */
+  export type DeleteUserDELETE = void;
+}

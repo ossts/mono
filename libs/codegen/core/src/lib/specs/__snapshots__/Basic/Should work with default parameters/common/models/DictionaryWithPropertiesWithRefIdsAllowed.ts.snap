@@ -1,0 +1,18 @@
+/* istanbul ignore file */
+
+/**
+ * This is a complex dictionary
+ */
+export type DictionaryWithPropertiesWithRefIdsAllowed = Partial<
+  Record<
+    string,
+    {
+      foo?: string;
+      bar?: string;
+    }
+  >
+>;
+
+export namespace DictionaryWithPropertiesWithRefIdsAllowed {
+  export type NoPrimaryKey = DictionaryWithPropertiesWithRefIdsAllowed;
+}

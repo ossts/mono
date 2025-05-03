@@ -10,3 +10,4 @@ export const ModelWithEnumSchemaZod = z
     bool: z.boolean().optional(),
   })
   .describe(`Model:ModelWithEnum---This is a model with one enum`);
+export const ModelWithEnumSchemaZodNoPrimaryKey = ModelWithEnumSchemaZod;

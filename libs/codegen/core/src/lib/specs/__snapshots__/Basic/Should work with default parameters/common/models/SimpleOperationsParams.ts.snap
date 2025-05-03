@@ -1,0 +1,17 @@
+/* istanbul ignore file */
+
+export namespace SimpleOperationsParams {
+  export namespace GetCallWithoutParametersAndResponse {}
+
+  export namespace PutCallWithoutParametersAndResponse {}
+
+  export namespace PostCallWithoutParametersAndResponse {}
+
+  export namespace DeleteCallWithoutParametersAndResponse {}
+
+  export namespace OptionsCallWithoutParametersAndResponse {}
+
+  export namespace HeadCallWithoutParametersAndResponse {}
+
+  export namespace PatchCallWithoutParametersAndResponse {}
+}

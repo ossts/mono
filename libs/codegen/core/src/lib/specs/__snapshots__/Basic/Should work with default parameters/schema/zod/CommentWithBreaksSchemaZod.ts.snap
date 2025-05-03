@@ -2,3 +2,5 @@
 import { z } from 'zod';
 
 export const CommentWithBreaksSchemaZod = z.number();
+export const CommentWithBreaksSchemaZodNoPrimaryKey =
+  CommentWithBreaksSchemaZod;

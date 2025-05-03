@@ -4,3 +4,7 @@
  * This is a simple string
  */
 export type SimpleString = string;
+
+export namespace SimpleString {
+  export type NoPrimaryKey = SimpleString;
+}

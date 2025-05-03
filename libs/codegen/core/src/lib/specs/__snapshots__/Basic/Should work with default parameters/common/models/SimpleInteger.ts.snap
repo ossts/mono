@@ -4,3 +4,7 @@
  * This is a simple number
  */
 export type SimpleInteger = number;
+
+export namespace SimpleInteger {
+  export type NoPrimaryKey = SimpleInteger;
+}

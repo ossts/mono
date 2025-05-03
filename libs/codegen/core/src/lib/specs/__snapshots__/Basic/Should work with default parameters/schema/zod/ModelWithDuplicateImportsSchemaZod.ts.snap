@@ -5,10 +5,12 @@ import { ModelWithStringSchemaZod } from './ModelWithStringSchemaZod';
 
 export const ModelWithDuplicateImportsSchemaZod = z
   .object({
-    propA: ModelWithStringSchemaZod,
-    propB: ModelWithStringSchemaZod,
-    propC: ModelWithStringSchemaZod,
+    propA: ModelWithStringSchemaZod.optional().nullable(),
+    propB: ModelWithStringSchemaZod.optional().nullable(),
+    propC: ModelWithStringSchemaZod.optional().nullable(),
   })
   .describe(
     `Model:ModelWithDuplicateImports---This is a model with duplicated imports`
   );
+export const ModelWithDuplicateImportsSchemaZodNoPrimaryKey =
+  ModelWithDuplicateImportsSchemaZod;

@@ -26,9 +26,27 @@ export class SchemaZodGenerator
             dataPath: 'models',
             nameFieldOrFn: (data) => `${data['name'].replace(/Schema/g, '')}`,
           },
+          schemaWithRefIdsAllowed: {
+            dataPath: 'models',
+            nameFieldOrFn: (data) =>
+              `${data['name'].replace(/Schema/g, '')}WithRefIdsAllowed`,
+          },
+          schemaWithRefIdsOnly: {
+            dataPath: 'models',
+            nameFieldOrFn: (data) =>
+              `${data['name'].replace(/Schema/g, '')}WithRefIdsOnly`,
+          },
           entityNameTo: {
             dataPath: '',
             nameFieldOrFn: () => 'entityNameTo',
+          },
+          entityNameToWithRefIdsOnly: {
+            dataPath: '',
+            nameFieldOrFn: () => 'entityNameToWithRefIdsOnly',
+          },
+          entityNameToWithRefIdsAllowed: {
+            dataPath: '',
+            nameFieldOrFn: () => 'entityNameToWithRefIdsAllowed',
           },
         },
         dependsOn: ['utils', 'common/models', ...(config?.dependsOn ?? [])],

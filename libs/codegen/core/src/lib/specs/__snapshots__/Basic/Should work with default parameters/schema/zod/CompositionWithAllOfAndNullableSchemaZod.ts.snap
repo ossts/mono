@@ -12,12 +12,14 @@ export const CompositionWithAllOfAndNullableSchemaZod = z
         z.object({
           boolean: z.boolean().optional(),
         }),
-        ModelWithEnumSchemaZod,
-        ModelWithArraySchemaZod,
-        ModelWithDictionarySchemaZod,
+        ModelWithEnumSchemaZod.optional().nullable(),
+        ModelWithArraySchemaZod.optional().nullable(),
+        ModelWithDictionarySchemaZod.optional().nullable(),
       ])
       .nullable(),
   })
   .describe(
     `Model:CompositionWithAllOfAndNullable---This is a model with one property with a 'all of' relationship`
   );
+export const CompositionWithAllOfAndNullableSchemaZodNoPrimaryKey =
+  CompositionWithAllOfAndNullableSchemaZod;

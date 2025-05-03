@@ -1,0 +1,37 @@
+/* istanbul ignore file */
+import type { ModelWithString } from './ModelWithString';
+
+export namespace DefaultsOperationsParams {
+  export namespace CallWithDefaultParameters {
+    export type Query = {
+      parameterString: string | null;
+      parameterNumber: number | null;
+      parameterBoolean: boolean | null;
+      parameterEnum: 'Success' | 'Warning' | 'Error';
+      parameterModel: ModelWithString | null;
+    };
+  }
+
+  export namespace CallWithDefaultOptionalParameters {
+    export type Query = {
+      parameterString: string;
+      parameterNumber: number;
+      parameterBoolean: boolean;
+      parameterEnum: 'Success' | 'Warning' | 'Error';
+      parameterModel: ModelWithString;
+    };
+  }
+
+  export namespace CallToTestOrderOfParams {
+    export type Query = {
+      parameterStringWithNoDefault: string;
+      parameterOptionalStringWithDefault: string;
+      parameterOptionalStringWithEmptyDefault: string;
+      parameterOptionalStringWithNoDefault: string;
+      parameterStringWithDefault: string;
+      parameterStringWithEmptyDefault: string;
+      parameterStringNullableWithNoDefault: string | null;
+      parameterStringNullableWithDefault: string | null;
+    };
+  }
+}

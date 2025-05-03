@@ -2,3 +2,7 @@
 import type { ModelWithString } from './ModelWithString';
 
 export type SimpleReference = ModelWithString;
+
+export namespace SimpleReference {
+  export type NoPrimaryKey = SimpleReference;
+}

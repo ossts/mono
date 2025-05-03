@@ -1,0 +1,14 @@
+/* istanbul ignore file */
+
+export namespace DescriptionsOperationsParams {
+  export namespace CallWithDescriptions {
+    export type Query = {
+      parameterWithBreaks: any;
+      parameterWithBackticks: any;
+      parameterWithSlashes: any;
+      parameterWithExpressionPlaceholders: any;
+      parameterWithQuotes: any;
+      parameterWithReservedCharacters: any;
+    };
+  }
+}

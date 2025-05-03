@@ -1,0 +1,15 @@
+/*
+ * Response type - {{type}}{{#utilsEquals export 'array'}}[]{{/utilsEquals}}
+ {{#if description}}
+ *
+ * {{description}}
+ {{/if}}
+ */
+{
+	model: allApiEntities.includes('{{operation.service}}') ?  '{{operation.service}}' : null,
+	isArray: {{#utilsEquals export 'array'}}true{{else}}false{{/utilsEquals}},
+	status: {{code}},
+	isVoid: {{#utilsEquals export 'generic'~}}
+		{{#utilsEquals type 'void'~}}true{{else}}false{{/utilsEquals}}
+	{{~else}}false{{/utilsEquals}}
+}

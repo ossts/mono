@@ -5,3 +5,7 @@ import type { ModelWithString } from './ModelWithString';
  * This is a string reference
  */
 export type DictionaryWithReference = Partial<Record<string, ModelWithString>>;
+
+export namespace DictionaryWithReference {
+  export type NoPrimaryKey = DictionaryWithReference;
+}

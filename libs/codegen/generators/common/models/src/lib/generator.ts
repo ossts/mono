@@ -21,6 +21,14 @@ export class CommonModelsGenerator
     mergeObjectsWithSameShape(this, {}, config, {
       dependsOn: ['utils', ...(config?.dependsOn ?? [])],
       entriesRenderCfg: {
+        modelsWithRefIdsAllowed: {
+          dataPath: 'models',
+          nameFieldOrFn: (data) => `${data['name']}WithRefIdsAllowed`,
+        },
+        modelsWithRefIdsOnly: {
+          dataPath: 'models',
+          nameFieldOrFn: (data) => `${data['name']}WithRefIdsOnly`,
+        },
         AllApiEntities: {
           dataPath: '',
           nameFieldOrFn: () => 'AllApiEntities',
@@ -32,6 +40,14 @@ export class CommonModelsGenerator
         apiEntityToPrimaryKeyMapping: {
           dataPath: '',
           nameFieldOrFn: () => 'apiEntityToPrimaryKeyMapping',
+        },
+        responseModels: {
+          dataPath: 'services',
+          nameFieldOrFn: (data) => `${data['name']}Responses`,
+        },
+        operationsParams: {
+          dataPath: 'services',
+          nameFieldOrFn: (data) => `${data['name']}OperationsParams`,
         },
       },
     });

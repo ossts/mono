@@ -8,10 +8,11 @@ import { TagSchemaZod } from './TagSchemaZod';
 export const PetSchemaZod = z
   .object({
     id: z.number().optional(),
-    category: CategorySchemaZod,
+    category: CategorySchemaZod.optional().nullable(),
     name: z.coerce.string(),
     photoUrls: z.array(z.string()),
-    tags: z.array(TagSchemaZod).optional(),
+    tags: z.array(TagSchemaZod.optional().nullable()).optional(),
     status: z.nativeEnum(Pet.status).optional(),
   })
   .describe(`Model:Pet`);
+export const PetSchemaZodNoPrimaryKey = PetSchemaZod.omit({ id: true });

@@ -1,0 +1,31 @@
+/* istanbul ignore file */
+
+export namespace TypesServiceResponses {
+  /**
+   * Method: `GET`
+   *
+   * Response is a simple number
+   */
+  export type TypesGET = number;
+
+  /**
+   * Method: `GET`
+   *
+   * Response is a simple string
+   */
+  export type TypesGET201 = string;
+
+  /**
+   * Method: `GET`
+   *
+   * Response is a simple boolean
+   */
+  export type TypesGET202 = boolean;
+
+  /**
+   * Method: `GET`
+   *
+   * Response is a simple object
+   */
+  export type TypesGET203 = Partial<Record<string, any>>;
+}

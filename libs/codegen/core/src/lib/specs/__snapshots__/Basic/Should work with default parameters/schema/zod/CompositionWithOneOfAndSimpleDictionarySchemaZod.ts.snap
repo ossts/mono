@@ -8,3 +8,5 @@ export const CompositionWithOneOfAndSimpleDictionarySchemaZod = z
   .describe(
     `Model:CompositionWithOneOfAndSimpleDictionary---This is a model that contains a simple dictionary within composition`
   );
+export const CompositionWithOneOfAndSimpleDictionarySchemaZodNoPrimaryKey =
+  CompositionWithOneOfAndSimpleDictionarySchemaZod;

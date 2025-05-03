@@ -1,0 +1,5 @@
+{
+  "name": "@ossts/codegen/generators/mock/msw",
+  "version": "0.0.1",
+  "type": "commonjs"
+}

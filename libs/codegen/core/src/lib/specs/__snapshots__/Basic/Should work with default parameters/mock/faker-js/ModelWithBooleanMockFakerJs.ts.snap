@@ -11,17 +11,21 @@ import type {
 
 export function getModelWithBooleanMockFakerJs<TMode extends 'withReferences'>(
   params?: MockFakerJSGeneratorParams<TMode>
-): ModelOrIdNullable<ModelWithBoolean> | null | ModelWithBoolean['id'];
+): ModelOrIdNullable<ModelWithBoolean> | null;
 
 export function getModelWithBooleanMockFakerJs<TMode extends 'standalone'>(
   params?: MockFakerJSGeneratorParams<TMode>
 ): ModelWithBoolean | null;
 
+export function getModelWithBooleanMockFakerJs<TMode extends 'primaryKey'>(
+  params?: MockFakerJSGeneratorParams<TMode>
+): number | null;
+
 export function getModelWithBooleanMockFakerJs<
   TMode extends MockFakerJSGeneratorParamsMode = 'withReferences'
 >(
   params: MockFakerJSGeneratorParams<TMode> = {}
-): ModelOrIdNullable<ModelWithBoolean> | null | ModelWithBoolean['id'] {
+): ModelOrIdNullable<ModelWithBoolean> | null {
   const modelName = 'ModelWithBoolean';
 
   const { faker = fakerDefault, fakerParams: { probability } = {} } = params;

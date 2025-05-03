@@ -10,44 +10,52 @@ export const getServices = (
 ): ParsedServiceOpenAPIV3[] => {
   const services = new Map<string, ParsedServiceOpenAPIV3>();
 
-  Object.entries(openApi.paths).forEach(([url, path]) => {
-    const pathParams = getOperationParameters(openApi, path?.parameters || []);
+  Object.entries(openApi.paths)
+    // sorting will make sure that URLs with dynamic arguments will come after static URLs
+    .sort()
+    .forEach(([url, path]) => {
+      const pathParams = getOperationParameters(
+        openApi,
+        path?.parameters || []
+      );
 
-    if (!path) return;
+      url = url.replace(/\/{(.+?)}/g, '/:$1');
 
-    Object.entries(path).forEach(([method, op]) => {
-      // Parse all the methods for this path
-      if (!isOperation(method, op)) return;
+      if (!path) return;
 
-      // Each method contains an OpenAPI operation, we parse the operation
-      const tags = op.tags?.length ? op.tags.filter(unique) : ['Common'];
-      tags.forEach((tag) => {
-        const operation = getOperation(
-          openApi,
-          url,
-          method,
-          tag,
-          op,
-          pathParams
-        );
+      Object.entries(path).forEach(([method, op]) => {
+        // Parse all the methods for this path
+        if (!isOperation(method, op)) return;
 
-        // If we have already declared a service, then we should fetch that and
-        // append the new method to it. Otherwise we should create a new service object.
-        const service: ParsedServiceOpenAPIV3 = services.get(
-          operation.service
-        ) || {
-          name: operation.service,
-          operations: [],
-          imports: [],
-        };
+        // Each method contains an OpenAPI operation, we parse the operation
+        const tags = op.tags?.length ? op.tags.filter(unique) : ['Common'];
+        tags.forEach((tag) => {
+          const operation = getOperation(
+            openApi,
+            url,
+            method,
+            tag,
+            op,
+            pathParams
+          );
 
-        // Push the operation in the service
-        service.operations.push(operation);
-        service.imports.push(...operation.imports);
-        services.set(operation.service, service);
+          // If we have already declared a service, then we should fetch that and
+          // append the new method to it. Otherwise we should create a new service object.
+          const service: ParsedServiceOpenAPIV3 = services.get(
+            operation.service
+          ) || {
+            name: operation.service,
+            operations: [],
+            imports: [],
+          };
+
+          // Push the operation in the service
+          service.operations.push(operation);
+          service.imports.push(...operation.imports);
+          services.set(operation.service, service);
+        });
       });
     });
-  });
 
   return Array.from(services.values());
 };

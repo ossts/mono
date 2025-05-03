@@ -8,7 +8,7 @@
 {{/if}}
  */
 {{/utilsIfdef}}
-export enum {{{name}}} {
+export enum {{{utilsNameWithNS name}}} {
 	{{#each enum}}
 	{{#if description}}
 	/**
@@ -21,4 +21,8 @@ export enum {{{name}}} {
 	{{{name}}} = {{{value}}},
 	{{/utilsContainsSpaces}}
 	{{/each}}
+}
+
+export namespace {{{utilsNameWithNS name}}} {
+	{{>exportNoPrimaryKey}}
 }

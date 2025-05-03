@@ -1,0 +1,18 @@
+/* istanbul ignore file */
+import { z } from 'zod';
+
+export const CompositionWithOneOfAndComplexArrayDictionaryWithRefIdsAllowedSchemaZod =
+  z
+    .object({
+      propA: z
+        .union([
+          z.boolean(),
+          z.record(z.string(), z.array(z.union([z.number(), z.string()]))),
+        ])
+        .optional(),
+    })
+    .describe(
+      `Model:CompositionWithOneOfAndComplexArrayDictionary---This is a model that contains a dictionary of complex arrays (composited) within composition`
+    );
+export const CompositionWithOneOfAndComplexArrayDictionaryWithRefIdsAllowedSchemaZodNoPrimaryKey =
+  CompositionWithOneOfAndComplexArrayDictionaryWithRefIdsAllowedSchemaZod;

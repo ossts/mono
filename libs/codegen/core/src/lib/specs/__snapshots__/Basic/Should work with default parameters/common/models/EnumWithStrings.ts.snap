@@ -10,3 +10,7 @@ export enum EnumWithStrings {
   _SINGLE_QUOTE_ = "'Single Quote'",
   _DOUBLE_QUOTES_ = '"Double Quotes"',
 }
+
+export namespace EnumWithStrings {
+  export type NoPrimaryKey = EnumWithStrings;
+}

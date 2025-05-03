@@ -1,74 +1,478 @@
 import {
   ArrayWithArraySchemaZod,
+  ArrayWithArraySchemaZodNoPrimaryKey,
+} from './ArrayWithArraySchemaZod';
+import {
   ArrayWithBooleansSchemaZod,
+  ArrayWithBooleansSchemaZodNoPrimaryKey,
+} from './ArrayWithBooleansSchemaZod';
+import {
   ArrayWithNumbersSchemaZod,
+  ArrayWithNumbersSchemaZodNoPrimaryKey,
+} from './ArrayWithNumbersSchemaZod';
+import {
   ArrayWithPropertiesSchemaZod,
+  ArrayWithPropertiesSchemaZodNoPrimaryKey,
+} from './ArrayWithPropertiesSchemaZod';
+import {
   ArrayWithReferencesSchemaZod,
+  ArrayWithReferencesSchemaZodNoPrimaryKey,
+} from './ArrayWithReferencesSchemaZod';
+import {
   ArrayWithStringsSchemaZod,
+  ArrayWithStringsSchemaZodNoPrimaryKey,
+} from './ArrayWithStringsSchemaZod';
+import {
   CommentWithBackticksSchemaZod,
+  CommentWithBackticksSchemaZodNoPrimaryKey,
+} from './CommentWithBackticksSchemaZod';
+import {
   CommentWithBreaksSchemaZod,
+  CommentWithBreaksSchemaZodNoPrimaryKey,
+} from './CommentWithBreaksSchemaZod';
+import {
   CommentWithExpressionPlaceholdersSchemaZod,
+  CommentWithExpressionPlaceholdersSchemaZodNoPrimaryKey,
+} from './CommentWithExpressionPlaceholdersSchemaZod';
+import {
   CommentWithQuotesSchemaZod,
+  CommentWithQuotesSchemaZodNoPrimaryKey,
+} from './CommentWithQuotesSchemaZod';
+import {
   CommentWithReservedCharactersSchemaZod,
+  CommentWithReservedCharactersSchemaZodNoPrimaryKey,
+} from './CommentWithReservedCharactersSchemaZod';
+import {
   CommentWithSlashesSchemaZod,
+  CommentWithSlashesSchemaZodNoPrimaryKey,
+} from './CommentWithSlashesSchemaZod';
+import {
   CompositionBaseModelSchemaZod,
+  CompositionBaseModelSchemaZodNoPrimaryKey,
+} from './CompositionBaseModelSchemaZod';
+import {
   CompositionExtendedModelSchemaZod,
+  CompositionExtendedModelSchemaZodNoPrimaryKey,
+} from './CompositionExtendedModelSchemaZod';
+import {
   CompositionWithAllOfAndNullableSchemaZod,
+  CompositionWithAllOfAndNullableSchemaZodNoPrimaryKey,
+} from './CompositionWithAllOfAndNullableSchemaZod';
+import {
   CompositionWithAnyOfAndNullableSchemaZod,
+  CompositionWithAnyOfAndNullableSchemaZodNoPrimaryKey,
+} from './CompositionWithAnyOfAndNullableSchemaZod';
+import {
   CompositionWithAnyOfAnonymousSchemaZod,
+  CompositionWithAnyOfAnonymousSchemaZodNoPrimaryKey,
+} from './CompositionWithAnyOfAnonymousSchemaZod';
+import {
   CompositionWithAnyOfSchemaZod,
+  CompositionWithAnyOfSchemaZodNoPrimaryKey,
+} from './CompositionWithAnyOfSchemaZod';
+import {
   CompositionWithOneOfAndComplexArrayDictionarySchemaZod,
+  CompositionWithOneOfAndComplexArrayDictionarySchemaZodNoPrimaryKey,
+} from './CompositionWithOneOfAndComplexArrayDictionarySchemaZod';
+import {
   CompositionWithOneOfAndNullableSchemaZod,
+  CompositionWithOneOfAndNullableSchemaZodNoPrimaryKey,
+} from './CompositionWithOneOfAndNullableSchemaZod';
+import {
   CompositionWithOneOfAndSimpleArrayDictionarySchemaZod,
+  CompositionWithOneOfAndSimpleArrayDictionarySchemaZodNoPrimaryKey,
+} from './CompositionWithOneOfAndSimpleArrayDictionarySchemaZod';
+import {
   CompositionWithOneOfAndSimpleDictionarySchemaZod,
+  CompositionWithOneOfAndSimpleDictionarySchemaZodNoPrimaryKey,
+} from './CompositionWithOneOfAndSimpleDictionarySchemaZod';
+import {
   CompositionWithOneOfAnonymousSchemaZod,
+  CompositionWithOneOfAnonymousSchemaZodNoPrimaryKey,
+} from './CompositionWithOneOfAnonymousSchemaZod';
+import {
   CompositionWithOneOfDiscriminatorSchemaZod,
+  CompositionWithOneOfDiscriminatorSchemaZodNoPrimaryKey,
+} from './CompositionWithOneOfDiscriminatorSchemaZod';
+import {
   CompositionWithOneOfSchemaZod,
+  CompositionWithOneOfSchemaZodNoPrimaryKey,
+} from './CompositionWithOneOfSchemaZod';
+import {
   DeprecatedModelSchemaZod,
+  DeprecatedModelSchemaZodNoPrimaryKey,
+} from './DeprecatedModelSchemaZod';
+import {
   DictionaryWithArraySchemaZod,
+  DictionaryWithArraySchemaZodNoPrimaryKey,
+} from './DictionaryWithArraySchemaZod';
+import {
   DictionaryWithDictionarySchemaZod,
+  DictionaryWithDictionarySchemaZodNoPrimaryKey,
+} from './DictionaryWithDictionarySchemaZod';
+import {
   DictionaryWithPropertiesSchemaZod,
+  DictionaryWithPropertiesSchemaZodNoPrimaryKey,
+} from './DictionaryWithPropertiesSchemaZod';
+import {
   DictionaryWithReferenceSchemaZod,
+  DictionaryWithReferenceSchemaZodNoPrimaryKey,
+} from './DictionaryWithReferenceSchemaZod';
+import {
   DictionaryWithStringSchemaZod,
+  DictionaryWithStringSchemaZodNoPrimaryKey,
+} from './DictionaryWithStringSchemaZod';
+import {
   EnumFromDescriptionSchemaZod,
+  EnumFromDescriptionSchemaZodNoPrimaryKey,
+} from './EnumFromDescriptionSchemaZod';
+import {
   EnumWithExtensionsSchemaZod,
+  EnumWithExtensionsSchemaZodNoPrimaryKey,
+} from './EnumWithExtensionsSchemaZod';
+import {
   EnumWithNumbersSchemaZod,
+  EnumWithNumbersSchemaZodNoPrimaryKey,
+} from './EnumWithNumbersSchemaZod';
+import {
   EnumWithStringsSchemaZod,
-  FileSchemaZod,
+  EnumWithStringsSchemaZodNoPrimaryKey,
+} from './EnumWithStringsSchemaZod';
+import { FileSchemaZod, FileSchemaZodNoPrimaryKey } from './FileSchemaZod';
+import {
   FreeFormObjectWithAdditionalPropertiesEqEmptyObjectSchemaZod,
+  FreeFormObjectWithAdditionalPropertiesEqEmptyObjectSchemaZodNoPrimaryKey,
+} from './FreeFormObjectWithAdditionalPropertiesEqEmptyObjectSchemaZod';
+import {
   FreeFormObjectWithAdditionalPropertiesEqTrueSchemaZod,
+  FreeFormObjectWithAdditionalPropertiesEqTrueSchemaZodNoPrimaryKey,
+} from './FreeFormObjectWithAdditionalPropertiesEqTrueSchemaZod';
+import {
   FreeFormObjectWithoutAdditionalPropertiesSchemaZod,
+  FreeFormObjectWithoutAdditionalPropertiesSchemaZodNoPrimaryKey,
+} from './FreeFormObjectWithoutAdditionalPropertiesSchemaZod';
+import {
   ModelCircleSchemaZod,
+  ModelCircleSchemaZodNoPrimaryKey,
+} from './ModelCircleSchemaZod';
+import {
   ModelSquareSchemaZod,
+  ModelSquareSchemaZodNoPrimaryKey,
+} from './ModelSquareSchemaZod';
+import {
   ModelThatExtendsExtendsSchemaZod,
+  ModelThatExtendsExtendsSchemaZodNoPrimaryKey,
+} from './ModelThatExtendsExtendsSchemaZod';
+import {
   ModelThatExtendsSchemaZod,
+  ModelThatExtendsSchemaZodNoPrimaryKey,
+} from './ModelThatExtendsSchemaZod';
+import {
   ModelWithArraySchemaZod,
+  ModelWithArraySchemaZodNoPrimaryKey,
+} from './ModelWithArraySchemaZod';
+import {
   ModelWithBooleanSchemaZod,
+  ModelWithBooleanSchemaZodNoPrimaryKey,
+} from './ModelWithBooleanSchemaZod';
+import {
   ModelWithCircularReferenceSchemaZod,
+  ModelWithCircularReferenceSchemaZodNoPrimaryKey,
+} from './ModelWithCircularReferenceSchemaZod';
+import {
   ModelWithDictionarySchemaZod,
+  ModelWithDictionarySchemaZodNoPrimaryKey,
+} from './ModelWithDictionarySchemaZod';
+import {
   ModelWithDuplicateImportsSchemaZod,
+  ModelWithDuplicateImportsSchemaZodNoPrimaryKey,
+} from './ModelWithDuplicateImportsSchemaZod';
+import {
   ModelWithDuplicatePropertiesSchemaZod,
+  ModelWithDuplicatePropertiesSchemaZodNoPrimaryKey,
+} from './ModelWithDuplicatePropertiesSchemaZod';
+import {
   ModelWithEnumFromDescriptionSchemaZod,
+  ModelWithEnumFromDescriptionSchemaZodNoPrimaryKey,
+} from './ModelWithEnumFromDescriptionSchemaZod';
+import {
   ModelWithEnumSchemaZod,
+  ModelWithEnumSchemaZodNoPrimaryKey,
+} from './ModelWithEnumSchemaZod';
+import {
   ModelWithIntegerSchemaZod,
+  ModelWithIntegerSchemaZodNoPrimaryKey,
+} from './ModelWithIntegerSchemaZod';
+import {
   ModelWithNestedEnumsSchemaZod,
+  ModelWithNestedEnumsSchemaZodNoPrimaryKey,
+} from './ModelWithNestedEnumsSchemaZod';
+import {
   ModelWithNestedPropertiesSchemaZod,
+  ModelWithNestedPropertiesSchemaZodNoPrimaryKey,
+} from './ModelWithNestedPropertiesSchemaZod';
+import {
   ModelWithNullableStringSchemaZod,
+  ModelWithNullableStringSchemaZodNoPrimaryKey,
+} from './ModelWithNullableStringSchemaZod';
+import {
   ModelWithOrderedPropertiesSchemaZod,
+  ModelWithOrderedPropertiesSchemaZodNoPrimaryKey,
+} from './ModelWithOrderedPropertiesSchemaZod';
+import {
   ModelWithPatternSchemaZod,
+  ModelWithPatternSchemaZodNoPrimaryKey,
+} from './ModelWithPatternSchemaZod';
+import {
   ModelWithPropertiesSchemaZod,
+  ModelWithPropertiesSchemaZodNoPrimaryKey,
+} from './ModelWithPropertiesSchemaZod';
+import {
   ModelWithReferenceSchemaZod,
+  ModelWithReferenceSchemaZodNoPrimaryKey,
+} from './ModelWithReferenceSchemaZod';
+import {
   ModelWithStringSchemaZod,
+  ModelWithStringSchemaZodNoPrimaryKey,
+} from './ModelWithStringSchemaZod';
+import {
   PageableSchemaZod,
+  PageableSchemaZodNoPrimaryKey,
+} from './PageableSchemaZod';
+import {
   SimpleBooleanSchemaZod,
+  SimpleBooleanSchemaZodNoPrimaryKey,
+} from './SimpleBooleanSchemaZod';
+import {
   SimpleFileSchemaZod,
+  SimpleFileSchemaZodNoPrimaryKey,
+} from './SimpleFileSchemaZod';
+import {
   SimpleIntegerSchemaZod,
+  SimpleIntegerSchemaZodNoPrimaryKey,
+} from './SimpleIntegerSchemaZod';
+import {
   SimpleReferenceSchemaZod,
+  SimpleReferenceSchemaZodNoPrimaryKey,
+} from './SimpleReferenceSchemaZod';
+import {
   SimpleStringSchemaZod,
+  SimpleStringSchemaZodNoPrimaryKey,
+} from './SimpleStringSchemaZod';
+import {
   SimpleStringWithPatternSchemaZod,
+  SimpleStringWithPatternSchemaZodNoPrimaryKey,
+} from './SimpleStringWithPatternSchemaZod';
+import {
   _defaultSchemaZod,
-} from './';
+  _defaultSchemaZodNoPrimaryKey,
+} from './_defaultSchemaZod';
 
+import {
+  CompositionWithAnyOfAndNullableSchemaZod,
+  CompositionWithAnyOfAndNullableSchemaZodNoPrimaryKey,
+} from './CompositionWithAnyOfAndNullableSchemaZod';
+import {
+  CompositionWithAnyOfAnonymousSchemaZod,
+  CompositionWithAnyOfAnonymousSchemaZodNoPrimaryKey,
+} from './CompositionWithAnyOfAnonymousSchemaZod';
+import {
+  CompositionWithOneOfSchemaZod,
+  CompositionWithOneOfSchemaZodNoPrimaryKey,
+} from './CompositionWithOneOfSchemaZod';
+import {
+  CompositionWithOneOfAndComplexArrayDictionarySchemaZod,
+  CompositionWithOneOfAndComplexArrayDictionarySchemaZodNoPrimaryKey,
+} from './CompositionWithOneOfAndComplexArrayDictionarySchemaZod';
+import {
+  CompositionWithOneOfAndNullableSchemaZod,
+  CompositionWithOneOfAndNullableSchemaZodNoPrimaryKey,
+} from './CompositionWithOneOfAndNullableSchemaZod';
+import {
+  CompositionWithOneOfAndSimpleArrayDictionarySchemaZod,
+  CompositionWithOneOfAndSimpleArrayDictionarySchemaZodNoPrimaryKey,
+} from './CompositionWithOneOfAndSimpleArrayDictionarySchemaZod';
+import {
+  CompositionWithOneOfAndSimpleDictionarySchemaZod,
+  CompositionWithOneOfAndSimpleDictionarySchemaZodNoPrimaryKey,
+} from './CompositionWithOneOfAndSimpleDictionarySchemaZod';
+import {
+  CompositionWithOneOfAnonymousSchemaZod,
+  CompositionWithOneOfAnonymousSchemaZodNoPrimaryKey,
+} from './CompositionWithOneOfAnonymousSchemaZod';
+import {
+  CompositionWithOneOfDiscriminatorSchemaZod,
+  CompositionWithOneOfDiscriminatorSchemaZodNoPrimaryKey,
+} from './CompositionWithOneOfDiscriminatorSchemaZod';
+import {
+  DeprecatedModelSchemaZod,
+  DeprecatedModelSchemaZodNoPrimaryKey,
+} from './DeprecatedModelSchemaZod';
+import {
+  DictionaryWithArraySchemaZod,
+  DictionaryWithArraySchemaZodNoPrimaryKey,
+} from './DictionaryWithArraySchemaZod';
+import {
+  DictionaryWithDictionarySchemaZod,
+  DictionaryWithDictionarySchemaZodNoPrimaryKey,
+} from './DictionaryWithDictionarySchemaZod';
+import {
+  DictionaryWithPropertiesSchemaZod,
+  DictionaryWithPropertiesSchemaZodNoPrimaryKey,
+} from './DictionaryWithPropertiesSchemaZod';
+import {
+  DictionaryWithReferenceSchemaZod,
+  DictionaryWithReferenceSchemaZodNoPrimaryKey,
+} from './DictionaryWithReferenceSchemaZod';
+import {
+  DictionaryWithStringSchemaZod,
+  DictionaryWithStringSchemaZodNoPrimaryKey,
+} from './DictionaryWithStringSchemaZod';
+import {
+  EnumFromDescriptionSchemaZod,
+  EnumFromDescriptionSchemaZodNoPrimaryKey,
+} from './EnumFromDescriptionSchemaZod';
+import {
+  EnumWithExtensionsSchemaZod,
+  EnumWithExtensionsSchemaZodNoPrimaryKey,
+} from './EnumWithExtensionsSchemaZod';
+import {
+  EnumWithNumbersSchemaZod,
+  EnumWithNumbersSchemaZodNoPrimaryKey,
+} from './EnumWithNumbersSchemaZod';
+import {
+  EnumWithStringsSchemaZod,
+  EnumWithStringsSchemaZodNoPrimaryKey,
+} from './EnumWithStringsSchemaZod';
+import { FileSchemaZod, FileSchemaZodNoPrimaryKey } from './FileSchemaZod';
+import {
+  FreeFormObjectWithAdditionalPropertiesEqEmptyObjectSchemaZod,
+  FreeFormObjectWithAdditionalPropertiesEqEmptyObjectSchemaZodNoPrimaryKey,
+} from './FreeFormObjectWithAdditionalPropertiesEqEmptyObjectSchemaZod';
+import {
+  FreeFormObjectWithAdditionalPropertiesEqTrueSchemaZod,
+  FreeFormObjectWithAdditionalPropertiesEqTrueSchemaZodNoPrimaryKey,
+} from './FreeFormObjectWithAdditionalPropertiesEqTrueSchemaZod';
+import {
+  FreeFormObjectWithoutAdditionalPropertiesSchemaZod,
+  FreeFormObjectWithoutAdditionalPropertiesSchemaZodNoPrimaryKey,
+} from './FreeFormObjectWithoutAdditionalPropertiesSchemaZod';
+import {
+  ModelCircleSchemaZod,
+  ModelCircleSchemaZodNoPrimaryKey,
+} from './ModelCircleSchemaZod';
+import {
+  ModelSquareSchemaZod,
+  ModelSquareSchemaZodNoPrimaryKey,
+} from './ModelSquareSchemaZod';
+import {
+  ModelThatExtendsSchemaZod,
+  ModelThatExtendsSchemaZodNoPrimaryKey,
+} from './ModelThatExtendsSchemaZod';
+import {
+  ModelThatExtendsExtendsSchemaZod,
+  ModelThatExtendsExtendsSchemaZodNoPrimaryKey,
+} from './ModelThatExtendsExtendsSchemaZod';
+import {
+  ModelWithArraySchemaZod,
+  ModelWithArraySchemaZodNoPrimaryKey,
+} from './ModelWithArraySchemaZod';
+import {
+  ModelWithBooleanSchemaZod,
+  ModelWithBooleanSchemaZodNoPrimaryKey,
+} from './ModelWithBooleanSchemaZod';
+import {
+  ModelWithCircularReferenceSchemaZod,
+  ModelWithCircularReferenceSchemaZodNoPrimaryKey,
+} from './ModelWithCircularReferenceSchemaZod';
+import {
+  ModelWithDictionarySchemaZod,
+  ModelWithDictionarySchemaZodNoPrimaryKey,
+} from './ModelWithDictionarySchemaZod';
+import {
+  ModelWithDuplicateImportsSchemaZod,
+  ModelWithDuplicateImportsSchemaZodNoPrimaryKey,
+} from './ModelWithDuplicateImportsSchemaZod';
+import {
+  ModelWithDuplicatePropertiesSchemaZod,
+  ModelWithDuplicatePropertiesSchemaZodNoPrimaryKey,
+} from './ModelWithDuplicatePropertiesSchemaZod';
+import {
+  ModelWithEnumSchemaZod,
+  ModelWithEnumSchemaZodNoPrimaryKey,
+} from './ModelWithEnumSchemaZod';
+import {
+  ModelWithEnumFromDescriptionSchemaZod,
+  ModelWithEnumFromDescriptionSchemaZodNoPrimaryKey,
+} from './ModelWithEnumFromDescriptionSchemaZod';
+import {
+  ModelWithIntegerSchemaZod,
+  ModelWithIntegerSchemaZodNoPrimaryKey,
+} from './ModelWithIntegerSchemaZod';
+import {
+  ModelWithNestedEnumsSchemaZod,
+  ModelWithNestedEnumsSchemaZodNoPrimaryKey,
+} from './ModelWithNestedEnumsSchemaZod';
+import {
+  ModelWithNestedPropertiesSchemaZod,
+  ModelWithNestedPropertiesSchemaZodNoPrimaryKey,
+} from './ModelWithNestedPropertiesSchemaZod';
+import {
+  ModelWithNullableStringSchemaZod,
+  ModelWithNullableStringSchemaZodNoPrimaryKey,
+} from './ModelWithNullableStringSchemaZod';
+import {
+  ModelWithOrderedPropertiesSchemaZod,
+  ModelWithOrderedPropertiesSchemaZodNoPrimaryKey,
+} from './ModelWithOrderedPropertiesSchemaZod';
+import {
+  ModelWithPatternSchemaZod,
+  ModelWithPatternSchemaZodNoPrimaryKey,
+} from './ModelWithPatternSchemaZod';
+import {
+  ModelWithPropertiesSchemaZod,
+  ModelWithPropertiesSchemaZodNoPrimaryKey,
+} from './ModelWithPropertiesSchemaZod';
+import {
+  ModelWithReferenceSchemaZod,
+  ModelWithReferenceSchemaZodNoPrimaryKey,
+} from './ModelWithReferenceSchemaZod';
+import {
+  ModelWithStringSchemaZod,
+  ModelWithStringSchemaZodNoPrimaryKey,
+} from './ModelWithStringSchemaZod';
+import {
+  PageableSchemaZod,
+  PageableSchemaZodNoPrimaryKey,
+} from './PageableSchemaZod';
+import {
+  SimpleBooleanSchemaZod,
+  SimpleBooleanSchemaZodNoPrimaryKey,
+} from './SimpleBooleanSchemaZod';
+import {
+  SimpleFileSchemaZod,
+  SimpleFileSchemaZodNoPrimaryKey,
+} from './SimpleFileSchemaZod';
+import {
+  SimpleIntegerSchemaZod,
+  SimpleIntegerSchemaZodNoPrimaryKey,
+} from './SimpleIntegerSchemaZod';
+import {
+  SimpleReferenceSchemaZod,
+  SimpleReferenceSchemaZodNoPrimaryKey,
+} from './SimpleReferenceSchemaZod';
+import {
+  SimpleStringSchemaZod,
+  SimpleStringSchemaZodNoPrimaryKey,
+} from './SimpleStringSchemaZod';
+import {
+  SimpleStringWithPatternSchemaZod,
+  SimpleStringWithPatternSchemaZodNoPrimaryKey,
+} from './SimpleStringWithPatternSchemaZod';
+import {
+  _defaultSchemaZod,
+  _defaultSchemaZodNoPrimaryKey,
+} from './_defaultSchemaZod';
 export const entityNameToSchemaZod = {
   ArrayWithArray: ArrayWithArraySchemaZod,
   ArrayWithBooleans: ArrayWithBooleansSchemaZod,
@@ -144,4 +548,91 @@ export const entityNameToSchemaZod = {
   SimpleString: SimpleStringSchemaZod,
   SimpleStringWithPattern: SimpleStringWithPatternSchemaZod,
   _default: _defaultSchemaZod,
+};
+
+export const entityNameToSchemaZodNoPrimaryKey = {
+  ArrayWithArray: ArrayWithArraySchemaZodNoPrimaryKey,
+  ArrayWithBooleans: ArrayWithBooleansSchemaZodNoPrimaryKey,
+  ArrayWithNumbers: ArrayWithNumbersSchemaZodNoPrimaryKey,
+  ArrayWithProperties: ArrayWithPropertiesSchemaZodNoPrimaryKey,
+  ArrayWithReferences: ArrayWithReferencesSchemaZodNoPrimaryKey,
+  ArrayWithStrings: ArrayWithStringsSchemaZodNoPrimaryKey,
+  CommentWithBackticks: CommentWithBackticksSchemaZodNoPrimaryKey,
+  CommentWithBreaks: CommentWithBreaksSchemaZodNoPrimaryKey,
+  CommentWithExpressionPlaceholders:
+    CommentWithExpressionPlaceholdersSchemaZodNoPrimaryKey,
+  CommentWithQuotes: CommentWithQuotesSchemaZodNoPrimaryKey,
+  CommentWithReservedCharacters:
+    CommentWithReservedCharactersSchemaZodNoPrimaryKey,
+  CommentWithSlashes: CommentWithSlashesSchemaZodNoPrimaryKey,
+  CompositionBaseModel: CompositionBaseModelSchemaZodNoPrimaryKey,
+  CompositionExtendedModel: CompositionExtendedModelSchemaZodNoPrimaryKey,
+  CompositionWithAllOfAndNullable:
+    CompositionWithAllOfAndNullableSchemaZodNoPrimaryKey,
+  CompositionWithAnyOf: CompositionWithAnyOfSchemaZodNoPrimaryKey,
+  CompositionWithAnyOfAndNullable:
+    CompositionWithAnyOfAndNullableSchemaZodNoPrimaryKey,
+  CompositionWithAnyOfAnonymous:
+    CompositionWithAnyOfAnonymousSchemaZodNoPrimaryKey,
+  CompositionWithOneOf: CompositionWithOneOfSchemaZodNoPrimaryKey,
+  CompositionWithOneOfAndComplexArrayDictionary:
+    CompositionWithOneOfAndComplexArrayDictionarySchemaZodNoPrimaryKey,
+  CompositionWithOneOfAndNullable:
+    CompositionWithOneOfAndNullableSchemaZodNoPrimaryKey,
+  CompositionWithOneOfAndSimpleArrayDictionary:
+    CompositionWithOneOfAndSimpleArrayDictionarySchemaZodNoPrimaryKey,
+  CompositionWithOneOfAndSimpleDictionary:
+    CompositionWithOneOfAndSimpleDictionarySchemaZodNoPrimaryKey,
+  CompositionWithOneOfAnonymous:
+    CompositionWithOneOfAnonymousSchemaZodNoPrimaryKey,
+  CompositionWithOneOfDiscriminator:
+    CompositionWithOneOfDiscriminatorSchemaZodNoPrimaryKey,
+  DeprecatedModel: DeprecatedModelSchemaZodNoPrimaryKey,
+  DictionaryWithArray: DictionaryWithArraySchemaZodNoPrimaryKey,
+  DictionaryWithDictionary: DictionaryWithDictionarySchemaZodNoPrimaryKey,
+  DictionaryWithProperties: DictionaryWithPropertiesSchemaZodNoPrimaryKey,
+  DictionaryWithReference: DictionaryWithReferenceSchemaZodNoPrimaryKey,
+  DictionaryWithString: DictionaryWithStringSchemaZodNoPrimaryKey,
+  EnumFromDescription: EnumFromDescriptionSchemaZodNoPrimaryKey,
+  EnumWithExtensions: EnumWithExtensionsSchemaZodNoPrimaryKey,
+  EnumWithNumbers: EnumWithNumbersSchemaZodNoPrimaryKey,
+  EnumWithStrings: EnumWithStringsSchemaZodNoPrimaryKey,
+  File: FileSchemaZodNoPrimaryKey,
+  FreeFormObjectWithAdditionalPropertiesEqEmptyObject:
+    FreeFormObjectWithAdditionalPropertiesEqEmptyObjectSchemaZodNoPrimaryKey,
+  FreeFormObjectWithAdditionalPropertiesEqTrue:
+    FreeFormObjectWithAdditionalPropertiesEqTrueSchemaZodNoPrimaryKey,
+  FreeFormObjectWithoutAdditionalProperties:
+    FreeFormObjectWithoutAdditionalPropertiesSchemaZodNoPrimaryKey,
+  ModelCircle: ModelCircleSchemaZodNoPrimaryKey,
+  ModelSquare: ModelSquareSchemaZodNoPrimaryKey,
+  ModelThatExtends: ModelThatExtendsSchemaZodNoPrimaryKey,
+  ModelThatExtendsExtends: ModelThatExtendsExtendsSchemaZodNoPrimaryKey,
+  ModelWithArray: ModelWithArraySchemaZodNoPrimaryKey,
+  ModelWithBoolean: ModelWithBooleanSchemaZodNoPrimaryKey,
+  ModelWithCircularReference: ModelWithCircularReferenceSchemaZodNoPrimaryKey,
+  ModelWithDictionary: ModelWithDictionarySchemaZodNoPrimaryKey,
+  ModelWithDuplicateImports: ModelWithDuplicateImportsSchemaZodNoPrimaryKey,
+  ModelWithDuplicateProperties:
+    ModelWithDuplicatePropertiesSchemaZodNoPrimaryKey,
+  ModelWithEnum: ModelWithEnumSchemaZodNoPrimaryKey,
+  ModelWithEnumFromDescription:
+    ModelWithEnumFromDescriptionSchemaZodNoPrimaryKey,
+  ModelWithInteger: ModelWithIntegerSchemaZodNoPrimaryKey,
+  ModelWithNestedEnums: ModelWithNestedEnumsSchemaZodNoPrimaryKey,
+  ModelWithNestedProperties: ModelWithNestedPropertiesSchemaZodNoPrimaryKey,
+  ModelWithNullableString: ModelWithNullableStringSchemaZodNoPrimaryKey,
+  ModelWithOrderedProperties: ModelWithOrderedPropertiesSchemaZodNoPrimaryKey,
+  ModelWithPattern: ModelWithPatternSchemaZodNoPrimaryKey,
+  ModelWithProperties: ModelWithPropertiesSchemaZodNoPrimaryKey,
+  ModelWithReference: ModelWithReferenceSchemaZodNoPrimaryKey,
+  ModelWithString: ModelWithStringSchemaZodNoPrimaryKey,
+  Pageable: PageableSchemaZodNoPrimaryKey,
+  SimpleBoolean: SimpleBooleanSchemaZodNoPrimaryKey,
+  SimpleFile: SimpleFileSchemaZodNoPrimaryKey,
+  SimpleInteger: SimpleIntegerSchemaZodNoPrimaryKey,
+  SimpleReference: SimpleReferenceSchemaZodNoPrimaryKey,
+  SimpleString: SimpleStringSchemaZodNoPrimaryKey,
+  SimpleStringWithPattern: SimpleStringWithPatternSchemaZodNoPrimaryKey,
+  _default: _defaultSchemaZodNoPrimaryKey,
 };

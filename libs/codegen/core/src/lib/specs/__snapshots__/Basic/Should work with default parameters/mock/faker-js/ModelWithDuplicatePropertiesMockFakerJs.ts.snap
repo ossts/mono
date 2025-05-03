@@ -14,10 +14,7 @@ export function getModelWithDuplicatePropertiesMockFakerJs<
   TMode extends 'withReferences'
 >(
   params?: MockFakerJSGeneratorParams<TMode>
-):
-  | ModelOrIdNullable<ModelWithDuplicateProperties>
-  | null
-  | ModelWithDuplicateProperties['id'];
+): ModelOrIdNullable<ModelWithDuplicateProperties> | null;
 
 export function getModelWithDuplicatePropertiesMockFakerJs<
   TMode extends 'standalone'
@@ -26,13 +23,14 @@ export function getModelWithDuplicatePropertiesMockFakerJs<
 ): ModelWithDuplicateProperties | null;
 
 export function getModelWithDuplicatePropertiesMockFakerJs<
+  TMode extends 'primaryKey'
+>(params?: MockFakerJSGeneratorParams<TMode>): number | null;
+
+export function getModelWithDuplicatePropertiesMockFakerJs<
   TMode extends MockFakerJSGeneratorParamsMode = 'withReferences'
 >(
   params: MockFakerJSGeneratorParams<TMode> = {}
-):
-  | ModelOrIdNullable<ModelWithDuplicateProperties>
-  | null
-  | ModelWithDuplicateProperties['id'] {
+): ModelOrIdNullable<ModelWithDuplicateProperties> | null {
   const modelName = 'ModelWithDuplicateProperties';
 
   const { faker = fakerDefault, fakerParams: { probability } = {} } = params;

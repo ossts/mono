@@ -7,3 +7,7 @@ export type ArrayWithProperties = Array<{
   foo?: string;
   bar?: string;
 }>;
+
+export namespace ArrayWithProperties {
+  export type NoPrimaryKey = ArrayWithProperties;
+}

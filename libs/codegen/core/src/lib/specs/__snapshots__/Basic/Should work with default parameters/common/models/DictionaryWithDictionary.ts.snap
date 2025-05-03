@@ -6,3 +6,7 @@
 export type DictionaryWithDictionary = Partial<
   Record<string, Partial<Record<string, string>>>
 >;
+
+export namespace DictionaryWithDictionary {
+  export type NoPrimaryKey = DictionaryWithDictionary;
+}

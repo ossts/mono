@@ -26,3 +26,5 @@ export const ModelWithPatternSchemaZod = z
   .describe(
     `Model:ModelWithPattern---This is a model that contains a some patterns`
   );
+export const ModelWithPatternSchemaZodNoPrimaryKey =
+  ModelWithPatternSchemaZod.omit({ id: true });

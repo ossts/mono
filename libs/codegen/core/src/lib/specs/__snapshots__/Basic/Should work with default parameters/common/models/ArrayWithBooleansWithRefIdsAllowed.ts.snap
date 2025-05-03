@@ -1,0 +1,10 @@
+/* istanbul ignore file */
+
+/**
+ * This is a simple array with booleans
+ */
+export type ArrayWithBooleansWithRefIdsAllowed = Array<boolean>;
+
+export namespace ArrayWithBooleansWithRefIdsAllowed {
+  export type NoPrimaryKey = ArrayWithBooleansWithRefIdsAllowed;
+}

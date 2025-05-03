@@ -1,4 +1,7 @@
-import type { AbstractExternalGeneratorWithName } from '@ossts/codegen/common';
+import type {
+  AbstractCodegenParsedClient,
+  AbstractExternalGeneratorWithName,
+} from '@ossts/codegen/common';
 import { getSchema, getSchemaParser } from '@ossts/codegen/common';
 import { runGenerators } from '@ossts/codegen/generators-runtime';
 
@@ -17,19 +20,25 @@ export const generateWithCustom = async <
     input,
     schemaType = 'openapi',
     parseOnly,
+    parsedSchema: parsedSchemaParam,
     ...generatorConfig
   } = config;
 
-  const schema = await getSchema(input, schemaType);
-  const { version } = schema;
+  let parsedSchema: AbstractCodegenParsedClient | null =
+    parsedSchemaParam ?? null;
 
-  const parse = await getSchemaParser(
-    schemaType,
-    version,
-    parserVersionsPathMapping
-  );
+  if (!parsedSchema) {
+    const schema = await getSchema(input, schemaType);
+    const { version } = schema;
 
-  const parsedSchema = await parse(schema);
+    const parse = await getSchemaParser(
+      schemaType,
+      version,
+      parserVersionsPathMapping
+    );
+
+    parsedSchema = await parse(schema);
+  }
 
   if (parseOnly) return parsedSchema;
 

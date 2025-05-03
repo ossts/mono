@@ -7,12 +7,21 @@ import type { ParsedModelOpenAPIV3 } from '@ossts/codegen/parsers/openapi/v3';
 /**
  * Returns full path for current property as `string[]`
  */
-export const fullPath: CodegenHandlebarsHelperWrapper<
-  AbstractGeneratorSettings
-> = () =>
-  function (this: ParsedModelOpenAPIV3): string[] {
-    return getFullPath(this, true);
-  };
+export const fullPath: CodegenHandlebarsHelperWrapper<AbstractGeneratorSettings> =
+  (() => {
+    const cache = new Map<ParsedModelOpenAPIV3, string[]>();
+
+    return () =>
+      function (this: ParsedModelOpenAPIV3): string[] {
+        const cachedVal = cache.get(this);
+        if (cachedVal) return cachedVal;
+
+        const result = getFullPath(this, true);
+        cache.set(this, result);
+
+        return result;
+      };
+  })();
 
 const getFullPath = (
   type: ParsedModelOpenAPIV3,

@@ -1,0 +1,11 @@
+/* istanbul ignore file */
+import { z } from 'zod';
+
+export const CategoryWithRefIdsOnlySchemaZod = z
+  .object({
+    id: z.number().optional(),
+    name: z.string().optional(),
+  })
+  .describe(`Model:Category`);
+export const CategoryWithRefIdsOnlySchemaZodNoPrimaryKey =
+  CategoryWithRefIdsOnlySchemaZod.omit({ id: true });

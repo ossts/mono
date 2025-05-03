@@ -12,9 +12,9 @@ export const CompositionWithAnyOfAndNullableSchemaZod = z
         z.object({
           boolean: z.boolean().optional(),
         }),
-        ModelWithEnumSchemaZod,
-        ModelWithArraySchemaZod,
-        ModelWithDictionarySchemaZod,
+        ModelWithEnumSchemaZod.optional().nullable(),
+        ModelWithArraySchemaZod.optional().nullable(),
+        ModelWithDictionarySchemaZod.optional().nullable(),
       ])
       .nullable()
       .optional(),
@@ -22,3 +22,5 @@ export const CompositionWithAnyOfAndNullableSchemaZod = z
   .describe(
     `Model:CompositionWithAnyOfAndNullable---This is a model with one property with a 'any of' relationship`
   );
+export const CompositionWithAnyOfAndNullableSchemaZodNoPrimaryKey =
+  CompositionWithAnyOfAndNullableSchemaZod;

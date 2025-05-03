@@ -18,3 +18,5 @@ export const ModelWithNestedPropertiesSchemaZod = z
   .describe(
     `Model:ModelWithNestedProperties---This is a model with one nested property`
   );
+export const ModelWithNestedPropertiesSchemaZodNoPrimaryKey =
+  ModelWithNestedPropertiesSchemaZod;

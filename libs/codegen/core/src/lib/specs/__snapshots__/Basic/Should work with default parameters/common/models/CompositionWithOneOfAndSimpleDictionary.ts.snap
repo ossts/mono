@@ -6,3 +6,7 @@
 export type CompositionWithOneOfAndSimpleDictionary = {
   propA?: boolean | Partial<Record<string, number>>;
 };
+
+export namespace CompositionWithOneOfAndSimpleDictionary {
+  export type NoPrimaryKey = CompositionWithOneOfAndSimpleDictionary;
+}

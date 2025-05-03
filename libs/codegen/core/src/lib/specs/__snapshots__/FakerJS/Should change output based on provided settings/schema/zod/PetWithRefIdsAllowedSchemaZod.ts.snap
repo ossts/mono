@@ -1,0 +1,29 @@
+/* istanbul ignore file */
+import { z } from 'zod';
+
+import { Pet } from '../../common/models';
+import { CategoryWithRefIdsAllowedSchemaZod } from './CategoryWithRefIdsAllowedSchemaZod';
+import { TagWithRefIdsAllowedSchemaZod } from './TagWithRefIdsAllowedSchemaZod';
+
+export const PetWithRefIdsAllowedSchemaZod = z
+  .object({
+    id: z.number().optional(),
+    category: CategoryWithRefIdsAllowedSchemaZod.or(z.string())
+      .or(z.number())
+      .optional()
+      .nullable(),
+    name: z.coerce.string(),
+    photoUrls: z.array(z.string()),
+    tags: z
+      .array(
+        TagWithRefIdsAllowedSchemaZod.or(z.string())
+          .or(z.number())
+          .optional()
+          .nullable()
+      )
+      .optional(),
+    status: z.nativeEnum(Pet.status).optional(),
+  })
+  .describe(`Model:Pet`);
+export const PetWithRefIdsAllowedSchemaZodNoPrimaryKey =
+  PetWithRefIdsAllowedSchemaZod.omit({ id: true });

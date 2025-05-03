@@ -1,0 +1,24 @@
+/* istanbul ignore file */
+import type { ModelWithStringWithRefIdsOnly } from './ModelWithStringWithRefIdsOnly';
+
+/**
+ * This is a model with one nested property
+ */
+export type ModelWithPropertiesWithRefIdsOnly = {
+  required: string;
+  readonly requiredAndReadOnly: string;
+  requiredAndNullable: string | null;
+  string?: string;
+  number?: number;
+  boolean?: boolean;
+  reference?: ModelWithStringWithRefIdsOnly;
+  'property with space'?: string;
+  default?: string;
+  try?: string;
+  readonly '@namespace.string'?: string;
+  readonly '@namespace.integer'?: number;
+};
+
+export namespace ModelWithPropertiesWithRefIdsOnly {
+  export type NoPrimaryKey = ModelWithPropertiesWithRefIdsOnly;
+}

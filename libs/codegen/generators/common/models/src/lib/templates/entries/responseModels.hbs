@@ -1,0 +1,30 @@
+{{#with data}}
+	{{>utilsHeader}}
+
+	{{#if imports}}
+		{{#each imports}}
+			import type { {{{this}}} } from './{{{this}}}';
+		{{/each}}
+	{{/if}}
+
+	export namespace {{name}}ServiceResponses {
+		{{#each operations}}
+			{{#each results}}
+				/**
+				 * Method: `{{../method}}`
+				 {{#if ../description}}
+				 *
+				 * {{utilsEscapeComment ../description ../gap}}
+				 {{/if}}
+				 {{#if description}}
+				 *
+				 * {{utilsEscapeComment description ../gap}}
+				 {{/if}}
+				 */
+				export type {{utilsUpperFirst ../name}}{{../method}}{{>responseStatusNo200}} = {{>utilsType}};
+
+			{{/each}}
+
+		{{/each}}
+	}
+{{/with}}

@@ -11,3 +11,7 @@ export type CompositionWithOneOfAnonymous = {
     | string
     | number;
 };
+
+export namespace CompositionWithOneOfAnonymous {
+  export type NoPrimaryKey = CompositionWithOneOfAnonymous;
+}

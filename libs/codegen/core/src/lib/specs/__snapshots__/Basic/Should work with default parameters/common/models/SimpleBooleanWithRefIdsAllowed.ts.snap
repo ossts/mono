@@ -1,0 +1,10 @@
+/* istanbul ignore file */
+
+/**
+ * This is a simple boolean
+ */
+export type SimpleBooleanWithRefIdsAllowed = boolean;
+
+export namespace SimpleBooleanWithRefIdsAllowed {
+  export type NoPrimaryKey = SimpleBooleanWithRefIdsAllowed;
+}

@@ -8,3 +8,4 @@ export const ModelWithBooleanSchemaZod = z
   .describe(
     `Model:ModelWithBoolean---This is a model with one boolean property`
   );
+export const ModelWithBooleanSchemaZodNoPrimaryKey = ModelWithBooleanSchemaZod;

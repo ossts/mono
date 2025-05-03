@@ -18,3 +18,7 @@ export type ModelWithProperties = {
   readonly '@namespace.string'?: string;
   readonly '@namespace.integer'?: number;
 };
+
+export namespace ModelWithProperties {
+  export type NoPrimaryKey = ModelWithProperties;
+}

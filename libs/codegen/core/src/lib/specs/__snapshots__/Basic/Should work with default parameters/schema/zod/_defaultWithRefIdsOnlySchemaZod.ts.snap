@@ -1,0 +1,10 @@
+/* istanbul ignore file */
+import { z } from 'zod';
+
+export const _defaultWithRefIdsOnlySchemaZod = z
+  .object({
+    name: z.string().optional(),
+  })
+  .describe(`Model:_default`);
+export const _defaultWithRefIdsOnlySchemaZodNoPrimaryKey =
+  _defaultWithRefIdsOnlySchemaZod;

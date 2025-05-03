@@ -1,0 +1,13 @@
+/* istanbul ignore file */
+
+export type FileWithRefIdsAllowed = {
+  readonly id?: string;
+  readonly updated_at?: string;
+  readonly created_at?: string;
+  mime: string;
+  readonly file?: string;
+};
+
+export namespace FileWithRefIdsAllowed {
+  export type NoPrimaryKey = Omit<FileWithRefIdsAllowed, 'id'>;
+}

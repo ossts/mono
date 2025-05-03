@@ -1,0 +1,15 @@
+/* istanbul ignore file */
+import { z } from 'zod';
+
+export const ModelWithCircularReferenceWithRefIdsAllowedSchemaZod = z
+  .object({
+    prop: ModelWithCircularReferenceWithRefIdsAllowedSchemaZod.or(z.string())
+      .or(z.number())
+      .optional()
+      .nullable(),
+  })
+  .describe(
+    `Model:ModelWithCircularReference---This is a model with one property containing a circular reference`
+  );
+export const ModelWithCircularReferenceWithRefIdsAllowedSchemaZodNoPrimaryKey =
+  ModelWithCircularReferenceWithRefIdsAllowedSchemaZod;

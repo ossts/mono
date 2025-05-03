@@ -1,0 +1,41 @@
+{
+  "name": "codegen-generators-mock-msw",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/codegen/generators/mock/msw/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/vite:build",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/codegen/generators/mock/msw"
+      },
+      "dependsOn": ["precompile-templates"]
+    },
+    "test": {
+      "executor": "@nx/vite:test",
+      "outputs": ["coverage/libs/codegen/generators/mock/msw"],
+      "options": {
+        "passWithNoTests": true,
+        "reportsDirectory": "../../../../../coverage/libs/codegen/generators/mock/msw"
+      },
+      "dependsOn": ["precompile-templates"]
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/codegen/generators/mock/msw/**/*.ts"]
+      },
+      "dependsOn": ["precompile-templates"]
+    },
+    "precompile-templates": {
+      "executor": "@ossts/plugin-codegen:precompile-templates",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "libs/codegen/generators/mock/msw/src/lib/precompiled-templates"
+      }
+    }
+  },
+  "tags": ["scope:ts", "type:lib", "project:codegen"]
+}

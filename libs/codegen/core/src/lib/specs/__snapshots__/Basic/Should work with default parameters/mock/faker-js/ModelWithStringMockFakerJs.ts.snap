@@ -11,17 +11,21 @@ import type {
 
 export function getModelWithStringMockFakerJs<TMode extends 'withReferences'>(
   params?: MockFakerJSGeneratorParams<TMode>
-): ModelOrIdNullable<ModelWithString> | null | ModelWithString['id'];
+): ModelOrIdNullable<ModelWithString> | null;
 
 export function getModelWithStringMockFakerJs<TMode extends 'standalone'>(
   params?: MockFakerJSGeneratorParams<TMode>
 ): ModelWithString | null;
 
+export function getModelWithStringMockFakerJs<TMode extends 'primaryKey'>(
+  params?: MockFakerJSGeneratorParams<TMode>
+): number | null;
+
 export function getModelWithStringMockFakerJs<
   TMode extends MockFakerJSGeneratorParamsMode = 'withReferences'
 >(
   params: MockFakerJSGeneratorParams<TMode> = {}
-): ModelOrIdNullable<ModelWithString> | null | ModelWithString['id'] {
+): ModelOrIdNullable<ModelWithString> | null {
   const modelName = 'ModelWithString';
 
   const { faker = fakerDefault, fakerParams: { probability } = {} } = params;

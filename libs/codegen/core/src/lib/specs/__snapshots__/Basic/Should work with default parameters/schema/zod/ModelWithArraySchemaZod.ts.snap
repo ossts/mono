@@ -5,10 +5,11 @@ import { ModelWithStringSchemaZod } from './ModelWithStringSchemaZod';
 
 export const ModelWithArraySchemaZod = z
   .object({
-    prop: z.array(ModelWithStringSchemaZod).optional(),
+    prop: z.array(ModelWithStringSchemaZod.optional().nullable()).optional(),
     propWithFile: z.array(z.object()).optional(),
     propWithNumber: z.array(z.number()).optional(),
   })
   .describe(
     `Model:ModelWithArray---This is a model with one property containing an array`
   );
+export const ModelWithArraySchemaZodNoPrimaryKey = ModelWithArraySchemaZod;

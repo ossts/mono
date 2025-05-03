@@ -2,3 +2,5 @@
 import { z } from 'zod';
 
 export const EnumFromDescriptionSchemaZod = z.number();
+export const EnumFromDescriptionSchemaZodNoPrimaryKey =
+  EnumFromDescriptionSchemaZod;

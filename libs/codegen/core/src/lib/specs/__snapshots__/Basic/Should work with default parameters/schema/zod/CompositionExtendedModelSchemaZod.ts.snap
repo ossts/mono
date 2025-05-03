@@ -4,10 +4,12 @@ import { z } from 'zod';
 import { CompositionBaseModelSchemaZod } from './CompositionBaseModelSchemaZod';
 
 export const CompositionExtendedModelSchemaZod = z.intersection([
-  CompositionBaseModelSchemaZod,
+  CompositionBaseModelSchemaZod.optional().nullable(),
   z.object({
     firstName: z.coerce.string(),
     lastname: z.coerce.string(),
     age: z.coerce.number(),
   }),
 ]);
+export const CompositionExtendedModelSchemaZodNoPrimaryKey =
+  CompositionExtendedModelSchemaZod;

@@ -1,0 +1,17 @@
+/* istanbul ignore file */
+import type { ModelWithString } from './ModelWithString';
+
+export namespace MultipartServiceResponses {
+  /**
+   * Method: `GET`
+   *
+   * OK
+   */
+  export type MultipartResponseGET = {
+    file?: Blob;
+    metadata?: {
+      foo?: string;
+      bar?: string;
+    };
+  };
+}

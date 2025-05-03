@@ -29,6 +29,7 @@ export const resolveGenerators = async <
 ): Promise<ResolvedGeneratorsMap<TGenerators>> => {
   const generatorsMap: ResolvedGeneratorsMap<TGenerators> = new Map();
   const generatorCfgMap = new Map<string, AbstractGeneratorWithName>();
+  const disabledGenerators = new Set<string>();
 
   let includesAll = false;
 
@@ -44,6 +45,11 @@ export const resolveGenerators = async <
       );
     }
 
+    if (generatorCfg.disabled) {
+      disabledGenerators.add(generatorCfg.name);
+      return;
+    }
+
     if (generatorCfgMap.has(generatorCfg.name)) {
       throw new Error(
         `Multiple configurations provided for generator "${name}"`
@@ -57,7 +63,7 @@ export const resolveGenerators = async <
     generatorNamesBuiltIn.forEach((name) => {
       // we need to skip all built-in generators which were listed explicitly
       // in the list of generators
-      if (generatorCfgMap.has(name)) return;
+      if (disabledGenerators.has(name) || generatorCfgMap.has(name)) return;
 
       generatorCfgMap.set(name, {
         name,

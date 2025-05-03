@@ -5,6 +5,7 @@
     "buildable",
     "codegen",
     "commitlint",
+    "MSWREST",
     "nextjs",
     "nrwl",
     "openapi",

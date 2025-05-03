@@ -1,0 +1,12 @@
+/* istanbul ignore file */
+import { z } from 'zod';
+
+export const ModelWithEnumFromDescriptionWithRefIdsAllowedSchemaZod = z
+  .object({
+    test: z.number().optional(),
+  })
+  .describe(
+    `Model:ModelWithEnumFromDescription---This is a model with one enum`
+  );
+export const ModelWithEnumFromDescriptionWithRefIdsAllowedSchemaZodNoPrimaryKey =
+  ModelWithEnumFromDescriptionWithRefIdsAllowedSchemaZod;

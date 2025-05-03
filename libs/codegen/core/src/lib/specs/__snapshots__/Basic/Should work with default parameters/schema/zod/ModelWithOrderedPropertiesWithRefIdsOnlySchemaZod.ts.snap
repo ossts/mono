@@ -1,0 +1,14 @@
+/* istanbul ignore file */
+import { z } from 'zod';
+
+export const ModelWithOrderedPropertiesWithRefIdsOnlySchemaZod = z
+  .object({
+    zebra: z.string().optional(),
+    apple: z.string().optional(),
+    hawaii: z.string().optional(),
+  })
+  .describe(
+    `Model:ModelWithOrderedProperties---This is a model with ordered properties`
+  );
+export const ModelWithOrderedPropertiesWithRefIdsOnlySchemaZodNoPrimaryKey =
+  ModelWithOrderedPropertiesWithRefIdsOnlySchemaZod;

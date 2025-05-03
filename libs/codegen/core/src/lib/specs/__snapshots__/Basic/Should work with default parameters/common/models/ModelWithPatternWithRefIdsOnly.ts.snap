@@ -1,0 +1,18 @@
+/* istanbul ignore file */
+
+/**
+ * This is a model that contains a some patterns
+ */
+export type ModelWithPatternWithRefIdsOnly = {
+  key: string;
+  name: string;
+  readonly enabled?: boolean;
+  readonly modified?: string;
+  id?: string;
+  text?: string;
+  patternWithSingleQuotes?: string;
+};
+
+export namespace ModelWithPatternWithRefIdsOnly {
+  export type NoPrimaryKey = Omit<ModelWithPatternWithRefIdsOnly, 'id'>;
+}

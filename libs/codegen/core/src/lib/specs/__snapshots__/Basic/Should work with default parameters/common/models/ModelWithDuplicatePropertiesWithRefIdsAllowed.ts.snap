@@ -1,0 +1,13 @@
+/* istanbul ignore file */
+import type { ModelWithStringWithRefIdsAllowed } from './ModelWithStringWithRefIdsAllowed';
+
+/**
+ * This is a model with duplicated properties
+ */
+export type ModelWithDuplicatePropertiesWithRefIdsAllowed = {
+  prop?: ModelWithStringWithRefIdsAllowed;
+};
+
+export namespace ModelWithDuplicatePropertiesWithRefIdsAllowed {
+  export type NoPrimaryKey = ModelWithDuplicatePropertiesWithRefIdsAllowed;
+}

@@ -1,0 +1,11 @@
+case 'delete': {
+	const id = +(pathParams?.[idProp ?? ''] ?? '');
+
+	const [isRemoved, message]  = allFaker.removeEntityIfAllowed(variant.model, id);
+
+	if (!isRemoved) return getBadRequestResponse(message);
+
+	if (variant.isVoid) return getVoidResponse();
+
+	return HttpResponse.json(null);
+}

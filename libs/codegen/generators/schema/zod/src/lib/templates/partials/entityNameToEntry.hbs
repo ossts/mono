@@ -1,0 +1,22 @@
+{{~#with data~}}
+{{~#each models~}}
+{{!-- Don't import from index file, it causes issues during testing of MSW --}}
+import { {{utilsNameWithNS name}}, {{utilsNameWithNS name}}NoPrimaryKey } from './{{utilsNameWithNS name}}';
+{{~/each}}
+{{/with}}
+
+export const {{utilsNameWithNS 'entityNameTo'}} = {
+{{#with data}}
+	{{#each models}}
+		{{name}}: {{utilsNameWithNS name}},
+	{{/each}}
+{{/with~}}
+};
+
+export const {{utilsNameWithNS 'entityNameTo'}}NoPrimaryKey = {
+{{#with data}}
+	{{#each models}}
+		{{name}}: {{utilsNameWithNS name}}NoPrimaryKey,
+	{{/each}}
+{{/with~}}
+};

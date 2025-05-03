@@ -4,3 +4,7 @@
  * This is a simple boolean
  */
 export type SimpleBoolean = boolean;
+
+export namespace SimpleBoolean {
+  export type NoPrimaryKey = SimpleBoolean;
+}

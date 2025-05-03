@@ -11,7 +11,7 @@ export const ModelWithPropertiesSchemaZod = z
     string: z.string().optional(),
     number: z.number().optional(),
     boolean: z.boolean().optional(),
-    reference: ModelWithStringSchemaZod,
+    reference: ModelWithStringSchemaZod.optional().nullable(),
     'property with space': z.string().optional(),
     default: z.string().optional(),
     try: z.string().optional(),
@@ -21,3 +21,5 @@ export const ModelWithPropertiesSchemaZod = z
   .describe(
     `Model:ModelWithProperties---This is a model with one nested property`
   );
+export const ModelWithPropertiesSchemaZodNoPrimaryKey =
+  ModelWithPropertiesSchemaZod;

@@ -14,17 +14,21 @@ export function getModelWithReferenceMockFakerJs<
   TMode extends 'withReferences'
 >(
   params?: MockFakerJSGeneratorParams<TMode>
-): ModelOrIdNullable<ModelWithReference> | null | ModelWithReference['id'];
+): ModelOrIdNullable<ModelWithReference> | null;
 
 export function getModelWithReferenceMockFakerJs<TMode extends 'standalone'>(
   params?: MockFakerJSGeneratorParams<TMode>
 ): ModelWithReference | null;
 
+export function getModelWithReferenceMockFakerJs<TMode extends 'primaryKey'>(
+  params?: MockFakerJSGeneratorParams<TMode>
+): number | null;
+
 export function getModelWithReferenceMockFakerJs<
   TMode extends MockFakerJSGeneratorParamsMode = 'withReferences'
 >(
   params: MockFakerJSGeneratorParams<TMode> = {}
-): ModelOrIdNullable<ModelWithReference> | null | ModelWithReference['id'] {
+): ModelOrIdNullable<ModelWithReference> | null {
   const modelName = 'ModelWithReference';
 
   const { faker = fakerDefault, fakerParams: { probability } = {} } = params;

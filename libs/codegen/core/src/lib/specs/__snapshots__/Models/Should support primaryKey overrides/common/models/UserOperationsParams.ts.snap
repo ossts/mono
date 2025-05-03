@@ -1,0 +1,38 @@
+/* istanbul ignore file */
+import type { User } from './User';
+
+export namespace UserOperationsParams {
+  export namespace CreateUser {}
+
+  export namespace CreateUsersWithArrayInput {}
+
+  export namespace CreateUsersWithListInput {}
+
+  export namespace LoginUser {
+    export type Query = {
+      username: string;
+      password: string;
+    };
+  }
+
+  export namespace LogoutUser {}
+
+  export namespace GetUserByName {
+    export type Path = {
+      username: string;
+    };
+  }
+
+  export namespace UpdateUser {
+    export type Path = {
+      username: string;
+      requestBody: User;
+    };
+  }
+
+  export namespace DeleteUser {
+    export type Path = {
+      username: string;
+    };
+  }
+}

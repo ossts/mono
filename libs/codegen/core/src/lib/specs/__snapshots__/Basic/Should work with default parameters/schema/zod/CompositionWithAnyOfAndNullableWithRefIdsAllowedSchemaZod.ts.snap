@@ -1,0 +1,26 @@
+/* istanbul ignore file */
+import { z } from 'zod';
+
+import { ModelWithArrayWithRefIdsAllowedSchemaZod } from './ModelWithArrayWithRefIdsAllowedSchemaZod';
+import { ModelWithDictionaryWithRefIdsAllowedSchemaZod } from './ModelWithDictionaryWithRefIdsAllowedSchemaZod';
+import { ModelWithEnumWithRefIdsAllowedSchemaZod } from './ModelWithEnumWithRefIdsAllowedSchemaZod';
+
+export const CompositionWithAnyOfAndNullableWithRefIdsAllowedSchemaZod = z
+  .object({
+    propA: z
+      .union([
+        z.object({
+          boolean: z.boolean().optional(),
+        }),
+        ModelWithEnumSchemaZod.optional().nullable(),
+        ModelWithArraySchemaZod.optional().nullable(),
+        ModelWithDictionarySchemaZod.optional().nullable(),
+      ])
+      .nullable()
+      .optional(),
+  })
+  .describe(
+    `Model:CompositionWithAnyOfAndNullable---This is a model with one property with a 'any of' relationship`
+  );
+export const CompositionWithAnyOfAndNullableWithRefIdsAllowedSchemaZodNoPrimaryKey =
+  CompositionWithAnyOfAndNullableWithRefIdsAllowedSchemaZod;

@@ -1,5 +1,29 @@
 {{~#utilsEquals base 'binary'~}}
 Blob
+{{~else utilsEquals export 'reference'~}}
+	{{~#utilsStartsWith base "'"~}}
+		{{{base}}}
+	{{~else~}}
+		{{!-- This is required because same code is used to handle operations, where we don't need this logic --}}
+		{{#unless @root.data.operations}}
+			{{#commonModelsEntityHasPrimaryKey @root.allSettings}}
+				{{#utilsEquals @root.rootNameSuffix 'WithRefIdsAllowed'}}
+					({{{utilsNameWithNS base}}} | number | string)
+				{{else utilsEquals @root.rootNameSuffix 'WithRefIdsOnly'}}
+					(number | string)
+				{{else}}
+					{{{utilsNameWithNS base}}}
+				{{/utilsEquals}}
+			{{else}}
+				{{{utilsNameWithNS base}}}
+			{{/commonModelsEntityHasPrimaryKey}}
+		{{else}}
+			{{{utilsNameWithNS base}}}
+		{{/unless}}
+	{{~/utilsStartsWith~}}
+{{!-- This will handle dictionary with type pointing to existing model --}}
+{{~else utilsEquals export 'dictionary'~}}
+	{{{utilsNameWithNS base}}}
 {{~else~}}
 {{{base}}}
 {{~/utilsEquals~}}

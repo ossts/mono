@@ -1,0 +1,135 @@
+/* istanbul ignore file */
+import type { ModelWithString } from './ModelWithString';
+import type { Pageable } from './Pageable';
+
+export namespace ParametersOperationsParams {
+  export namespace GetCallWithOptionalParam {
+    export type Query = {
+      requestBody: ModelWithString;
+
+      parameter: string;
+    };
+  }
+
+  export namespace PostCallWithOptionalParam {
+    export type Query = {
+      parameter: Pageable;
+
+      requestBody: ModelWithString;
+    };
+  }
+
+  export namespace CallWithWeirdParameterNames {
+    export type Path = {
+      parameterHeader: string | null;
+      parameterQuery: string | null;
+      parameterForm: string | null;
+      parameterCookie: string | null;
+      requestBody: ModelWithString;
+
+      parameterPath1: string;
+      parameterPath2: string;
+      parameterPath3: string;
+      _default: string;
+    };
+
+    export type Query = {
+      parameterHeader: string | null;
+      parameterQuery: string | null;
+      parameterForm: string | null;
+      parameterCookie: string | null;
+      requestBody: ModelWithString;
+
+      parameterPath1: string;
+      parameterPath2: string;
+      parameterPath3: string;
+      _default: string;
+    };
+
+    export type FormData = {
+      parameterHeader: string | null;
+      parameterQuery: string | null;
+      parameterForm: string | null;
+      parameterCookie: string | null;
+      requestBody: ModelWithString;
+
+      parameterPath1: string;
+      parameterPath2: string;
+      parameterPath3: string;
+      _default: string;
+    };
+
+    export type Header = {
+      parameterHeader: string | null;
+      parameterQuery: string | null;
+      parameterForm: string | null;
+      parameterCookie: string | null;
+      requestBody: ModelWithString;
+
+      parameterPath1: string;
+      parameterPath2: string;
+      parameterPath3: string;
+      _default: string;
+    };
+
+    export type Cookie = {
+      parameterHeader: string | null;
+      parameterQuery: string | null;
+      parameterForm: string | null;
+      parameterCookie: string | null;
+      requestBody: ModelWithString;
+
+      parameterPath1: string;
+      parameterPath2: string;
+      parameterPath3: string;
+      _default: string;
+    };
+  }
+
+  export namespace CallWithParameters {
+    export type Path = {
+      parameterHeader: string | null;
+      parameterQuery: string | null;
+      parameterForm: string | null;
+      parameterCookie: string | null;
+      parameterPath: string | null;
+      requestBody: ModelWithString;
+    };
+
+    export type Query = {
+      parameterHeader: string | null;
+      parameterQuery: string | null;
+      parameterForm: string | null;
+      parameterCookie: string | null;
+      parameterPath: string | null;
+      requestBody: ModelWithString;
+    };
+
+    export type FormData = {
+      parameterHeader: string | null;
+      parameterQuery: string | null;
+      parameterForm: string | null;
+      parameterCookie: string | null;
+      parameterPath: string | null;
+      requestBody: ModelWithString;
+    };
+
+    export type Header = {
+      parameterHeader: string | null;
+      parameterQuery: string | null;
+      parameterForm: string | null;
+      parameterCookie: string | null;
+      parameterPath: string | null;
+      requestBody: ModelWithString;
+    };
+
+    export type Cookie = {
+      parameterHeader: string | null;
+      parameterQuery: string | null;
+      parameterForm: string | null;
+      parameterCookie: string | null;
+      parameterPath: string | null;
+      requestBody: ModelWithString;
+    };
+  }
+}
