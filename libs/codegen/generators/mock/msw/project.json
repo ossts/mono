@@ -14,7 +14,7 @@
     },
     "test": {
       "executor": "@nx/vite:test",
-      "outputs": ["coverage/libs/codegen/generators/mock/msw"],
+      "outputs": ["{workspaceRoot}/coverage/libs/codegen/generators/mock/msw"],
       "options": {
         "passWithNoTests": true,
         "reportsDirectory": "../../../../../coverage/libs/codegen/generators/mock/msw"
@@ -22,11 +22,8 @@
       "dependsOn": ["precompile-templates"]
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": ["libs/codegen/generators/mock/msw/**/*.ts"]
-      },
       "dependsOn": ["precompile-templates"]
     },
     "precompile-templates": {

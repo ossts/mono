@@ -7,7 +7,7 @@ import type {
 export type AbstractExternalGeneratorSettings = AbstractGeneratorSettings;
 
 export abstract class AbstractExternalGenerator extends AbstractGenerator {
-  override settings?: AbstractExternalGeneratorSettings;
+  declare settings?: AbstractExternalGeneratorSettings;
 
   /**
    * This should point to path with export of precompiled Handlebars templates.

@@ -13,18 +13,17 @@
     },
     "test": {
       "executor": "@nx/vite:test",
-      "outputs": ["coverage/libs/shared/typescript/helper-types"],
+      "outputs": [
+        "{workspaceRoot}/coverage/libs/shared/typescript/helper-types"
+      ],
       "options": {
         "passWithNoTests": true,
         "reportsDirectory": "../../../../coverage/libs/shared/typescript/helper-types"
       }
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": ["libs/shared/typescript/helper-types/**/*.ts"]
-      }
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
     }
   },
   "tags": ["scope:ts", "type:lib", "project:shared"]

@@ -1,43 +1,45 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "npmScope": "ossts",
-  "tasksRunnerOptions": {
-    "default": {
-      "runner": "nx-cloud",
-      "options": {
-        "cacheableOperations": [
-          "build",
-          "lint",
-          "test",
-          "e2e",
-          "precompile-templates",
-          "precommit"
-        ],
-        "accessToken": "OTRiYzlhOTUtYjhlYS00ZjhkLWFlOTQtMTdkNjY1MWQ2YmFifHJlYWQtd3JpdGU="
-      }
-    }
-  },
   "targetDefaults": {
     "build": {
       "dependsOn": ["^build"],
-      "inputs": ["production", "^production", "build", "^build"]
-    },
-    "test": {
-      "inputs": ["default", "^production", "{workspaceRoot}/jest.preset.js"]
-    },
-    "lint": {
-      "inputs": ["default", "{workspaceRoot}/.eslintrc.json"]
+      "inputs": ["production", "^production", "build", "^build"],
+      "cache": true
     },
     "precompile-templates": {
       "dependsOn": ["^precompile-templates"],
-      "inputs": ["{projectRoot}/src/lib/templates/**/*"]
+      "inputs": ["{projectRoot}/src/lib/templates/**/*"],
+      "cache": true
     },
     "precommit": {
       "inputs": [
         "{workspaceRoot}/**/project.json",
         "{workspaceRoot}/libs/tooling/plugin-workspace/src/generators/cz-scopes/generator.ts"
       ],
-      "outputs": ["{workspaceRoot}/__generated__/cz-scopes.json"]
+      "outputs": ["{workspaceRoot}/__generated__/cz-scopes.json"],
+      "cache": true
+    },
+    "@nx/vite:test": {
+      "inputs": ["default", "^production", "{workspaceRoot}/jest.preset.js"],
+      "cache": true
+    },
+    "@nx/jest:jest": {
+      "cache": true,
+      "inputs": ["default", "^production", "{workspaceRoot}/jest.preset.js"],
+      "options": {
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    },
+    "@nx/eslint:lint": {
+      "inputs": ["default", "{workspaceRoot}/.eslintrc.json"],
+      "cache": true
     }
   },
   "namedInputs": {
@@ -47,7 +49,8 @@
       "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
       "!{projectRoot}/tsconfig.spec.json",
       "!{projectRoot}/.eslintrc.json",
-      "!{projectRoot}/jest.config.[jt]s"
+      "!{projectRoot}/jest.config.[jt]s",
+      "!{projectRoot}/src/test-setup.[jt]s"
     ],
     "build": ["{workspaceRoot}/scripts/build/**/*"],
     "sharedGlobals": []
@@ -59,5 +62,8 @@
         "unitTestRunner": "vitest"
       }
     }
-  }
+  },
+  "nxCloudAccessToken": "OTRiYzlhOTUtYjhlYS00ZjhkLWFlOTQtMTdkNjY1MWQ2YmFifHJlYWQtd3JpdGU=",
+  "useInferencePlugins": false,
+  "useLegacyCache": true
 }

@@ -33,5 +33,5 @@ export class DefaultExternalGenerator
     );
   }
 
-  override settings?: DefaultExternalGeneratorSettings;
+  declare settings?: DefaultExternalGeneratorSettings;
 }

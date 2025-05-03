@@ -37,18 +37,15 @@
     },
     "test": {
       "executor": "@nx/vite:test",
-      "outputs": ["coverage/libs/codegen/main"],
+      "outputs": ["{workspaceRoot}/coverage/libs/codegen/main"],
       "options": {
         "passWithNoTests": true,
         "reportsDirectory": "../../../coverage/libs/codegen/main"
       }
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": ["libs/codegen/main/**/*.ts"]
-      }
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
     }
   },
   "tags": ["scope:ts", "type:publishable-lib", "project:codegen"]

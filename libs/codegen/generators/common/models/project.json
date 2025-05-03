@@ -15,7 +15,9 @@
     },
     "test": {
       "executor": "@nx/vite:test",
-      "outputs": ["coverage/libs/codegen/generators/common/models"],
+      "outputs": [
+        "{workspaceRoot}/coverage/libs/codegen/generators/common/models"
+      ],
       "options": {
         "passWithNoTests": true,
         "reportsDirectory": "../../../../../coverage/libs/codegen/generators/common/models"
@@ -23,11 +25,8 @@
       "dependsOn": ["precompile-templates"]
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": ["libs/codegen/generators/common/models/**/*.ts"]
-      },
       "dependsOn": ["precompile-templates"]
     },
     "precompile-templates": {

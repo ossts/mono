@@ -14,7 +14,9 @@
     },
     "test": {
       "executor": "@nx/vite:test",
-      "outputs": ["coverage/libs/codegen/generators/mock/faker-js"],
+      "outputs": [
+        "{workspaceRoot}/coverage/libs/codegen/generators/mock/faker-js"
+      ],
       "options": {
         "passWithNoTests": true,
         "reportsDirectory": "../../../../../coverage/libs/codegen/generators/mock/faker-js"
@@ -22,11 +24,8 @@
       "dependsOn": ["precompile-templates"]
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": ["libs/codegen/generators/mock/faker-js/**/*.ts"]
-      },
       "dependsOn": ["precompile-templates"]
     },
     "precompile-templates": {

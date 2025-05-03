@@ -13,18 +13,15 @@
     },
     "test": {
       "executor": "@nx/vite:test",
-      "outputs": ["coverage/libs/codegen/common"],
+      "outputs": ["{workspaceRoot}/coverage/libs/codegen/common"],
       "options": {
         "passWithNoTests": true,
         "reportsDirectory": "../../../coverage/libs/codegen/common"
       }
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": ["libs/codegen/common/**/*.ts"]
-      }
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
     }
   },
   "tags": ["scope:ts", "type:lib", "project:codegen"]

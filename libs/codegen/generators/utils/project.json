@@ -14,7 +14,7 @@
     },
     "test": {
       "executor": "@nx/vite:test",
-      "outputs": ["coverage/libs/codegen/generators/utils"],
+      "outputs": ["{workspaceRoot}/coverage/libs/codegen/generators/utils"],
       "options": {
         "passWithNoTests": true,
         "reportsDirectory": "../../../../coverage/libs/codegen/generators/utils"
@@ -22,11 +22,8 @@
       "dependsOn": ["precompile-templates"]
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": ["libs/codegen/generators/utils/**/*.ts"]
-      },
       "dependsOn": ["precompile-templates"]
     },
     "precompile-templates": {
