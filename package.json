@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "precommit": "nx --silent exec -- yarn nx g @ossts/plugin-workspace:cz-scopes",
+    "precommit": "yarn nx g @ossts/plugin-workspace:cz-scopes",
     "commit": "czg",
     "prepare": "is-ci || husky install"
   },
