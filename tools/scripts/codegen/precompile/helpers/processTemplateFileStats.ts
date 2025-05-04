@@ -7,7 +7,7 @@ import { generatorsStatsMap } from '../data';
 
 export const processTemplateFileStats = (
   path: string,
-  eventName?: 'add' | 'change' | 'unlink'
+  eventName?: 'add' | 'change' | 'unlink',
 ) => {
   const parsedPath = parse(path);
 

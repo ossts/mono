@@ -11,21 +11,21 @@ import type {
 } from './typesMockFakerJs';
 
 export function getModelWithArrayMockFakerJs<TMode extends 'withReferences'>(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): ModelOrIdNullable<ModelWithArray> | null;
 
 export function getModelWithArrayMockFakerJs<TMode extends 'standalone'>(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): ModelWithArray | null;
 
 export function getModelWithArrayMockFakerJs<TMode extends 'primaryKey'>(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): number | null;
 
 export function getModelWithArrayMockFakerJs<
-  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences'
+  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences',
 >(
-  params: MockFakerJSGeneratorParams<TMode> = {}
+  params: MockFakerJSGeneratorParams<TMode> = {},
 ): ModelOrIdNullable<ModelWithArray> | null {
   const modelName = 'ModelWithArray';
 
@@ -46,11 +46,11 @@ export function getModelWithArrayMockFakerJs<
               }),
             ]
               // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              .filter(Boolean) as any
+              .filter(Boolean) as any,
           ),
         {
           probability,
-        }
+        },
       ),
       propWithFile: faker.helpers.maybe(
         () =>
@@ -59,14 +59,14 @@ export function getModelWithArrayMockFakerJs<
           ]),
         {
           probability,
-        }
+        },
       ),
       propWithNumber: faker.helpers.maybe(
         () => faker.helpers.arrayElements([faker.number.int()]),
         {
           probability,
-        }
+        },
       ),
-    })
+    }),
   );
 }

@@ -17,7 +17,7 @@ import type { AllGeneratorsResolvedParams, GeneratorName } from './Generator';
  * Generator with resolved templates
  */
 export type ResolvedGenerator<
-  TGenerators extends AbstractExternalGenerator = AbstractExternalGenerator
+  TGenerators extends AbstractExternalGenerator = AbstractExternalGenerator,
 > = AllGeneratorsResolvedParams<TGenerators> & {
   /**
    * Global name for this generator.
@@ -60,5 +60,6 @@ export type ResolvedGenerator<
 };
 
 export type ResolvedGeneratorsMap<
-  TGenerators extends AbstractExternalGeneratorWithName = AbstractExternalGeneratorWithName
+  TGenerators extends
+    AbstractExternalGeneratorWithName = AbstractExternalGeneratorWithName,
 > = Map<GeneratorName<TGenerators>, ResolvedGenerator<TGenerators>>;

@@ -12,7 +12,7 @@ export const ModelThatExtendsExtendsWithRefIdsAllowedSchemaZod = z.intersection(
       propExtendsC: z.string().optional(),
       propExtendsD: ModelWithStringSchemaZod.optional().nullable(),
     }),
-  ]
+  ],
 );
 export const ModelThatExtendsExtendsWithRefIdsAllowedSchemaZodNoPrimaryKey =
   ModelThatExtendsExtendsWithRefIdsAllowedSchemaZod;

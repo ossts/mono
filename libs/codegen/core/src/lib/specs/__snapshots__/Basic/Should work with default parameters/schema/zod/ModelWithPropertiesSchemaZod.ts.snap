@@ -19,7 +19,7 @@ export const ModelWithPropertiesSchemaZod = z
     '@namespace.integer': z.number().optional().readonly(),
   })
   .describe(
-    `Model:ModelWithProperties---This is a model with one nested property`
+    `Model:ModelWithProperties---This is a model with one nested property`,
   );
 export const ModelWithPropertiesSchemaZodNoPrimaryKey =
   ModelWithPropertiesSchemaZod;

@@ -10,14 +10,14 @@ export const ModelWithArrayWithRefIdsAllowedSchemaZod = z
         ModelWithStringWithRefIdsAllowedSchemaZod.or(z.string())
           .or(z.number())
           .optional()
-          .nullable()
+          .nullable(),
       )
       .optional(),
     propWithFile: z.array(z.object()).optional(),
     propWithNumber: z.array(z.number()).optional(),
   })
   .describe(
-    `Model:ModelWithArray---This is a model with one property containing an array`
+    `Model:ModelWithArray---This is a model with one property containing an array`,
   );
 export const ModelWithArrayWithRefIdsAllowedSchemaZodNoPrimaryKey =
   ModelWithArrayWithRefIdsAllowedSchemaZod;

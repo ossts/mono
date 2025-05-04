@@ -10,21 +10,21 @@ import type {
 } from './typesMockFakerJs';
 
 export function getDeprecatedModelMockFakerJs<TMode extends 'withReferences'>(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): ModelOrIdNullable<DeprecatedModel> | null;
 
 export function getDeprecatedModelMockFakerJs<TMode extends 'standalone'>(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): DeprecatedModel | null;
 
 export function getDeprecatedModelMockFakerJs<TMode extends 'primaryKey'>(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): number | null;
 
 export function getDeprecatedModelMockFakerJs<
-  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences'
+  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences',
 >(
-  params: MockFakerJSGeneratorParams<TMode> = {}
+  params: MockFakerJSGeneratorParams<TMode> = {},
 ): ModelOrIdNullable<DeprecatedModel> | null {
   const modelName = 'DeprecatedModel';
 
@@ -38,8 +38,8 @@ export function getDeprecatedModelMockFakerJs<
         () => faker.string.alpha({ length: { min: 2, max: 10 } }),
         {
           probability,
-        }
+        },
       ),
-    })
+    }),
   );
 }

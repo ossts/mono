@@ -18,7 +18,7 @@ export const CompositionWithOneOfWithRefIdsAllowedSchemaZod = z
       .optional(),
   })
   .describe(
-    `Model:CompositionWithOneOf---This is a model with one property with a 'one of' relationship`
+    `Model:CompositionWithOneOf---This is a model with one property with a 'one of' relationship`,
   );
 export const CompositionWithOneOfWithRefIdsAllowedSchemaZodNoPrimaryKey =
   CompositionWithOneOfWithRefIdsAllowedSchemaZod;

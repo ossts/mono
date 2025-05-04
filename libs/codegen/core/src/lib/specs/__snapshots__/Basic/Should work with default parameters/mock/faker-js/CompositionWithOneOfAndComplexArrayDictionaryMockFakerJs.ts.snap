@@ -10,25 +10,25 @@ import type {
 } from './typesMockFakerJs';
 
 export function getCompositionWithOneOfAndComplexArrayDictionaryMockFakerJs<
-  TMode extends 'withReferences'
+  TMode extends 'withReferences',
 >(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): ModelOrIdNullable<CompositionWithOneOfAndComplexArrayDictionary> | null;
 
 export function getCompositionWithOneOfAndComplexArrayDictionaryMockFakerJs<
-  TMode extends 'standalone'
+  TMode extends 'standalone',
 >(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): CompositionWithOneOfAndComplexArrayDictionary | null;
 
 export function getCompositionWithOneOfAndComplexArrayDictionaryMockFakerJs<
-  TMode extends 'primaryKey'
+  TMode extends 'primaryKey',
 >(params?: MockFakerJSGeneratorParams<TMode>): number | null;
 
 export function getCompositionWithOneOfAndComplexArrayDictionaryMockFakerJs<
-  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences'
+  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences',
 >(
-  params: MockFakerJSGeneratorParams<TMode> = {}
+  params: MockFakerJSGeneratorParams<TMode> = {},
 ): ModelOrIdNullable<CompositionWithOneOfAndComplexArrayDictionary> | null {
   const modelName = 'CompositionWithOneOfAndComplexArrayDictionary';
 
@@ -58,13 +58,13 @@ export function getCompositionWithOneOfAndComplexArrayDictionaryMockFakerJs<
                 ]),
               {
                 probability,
-              }
+              },
             ),
           },
         ]),
       {
         probability,
-      }
+      },
     ),
   }));
 }

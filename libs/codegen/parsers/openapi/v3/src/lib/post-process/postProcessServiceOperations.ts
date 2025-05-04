@@ -6,7 +6,7 @@ import type {
 } from '../types';
 
 export const postProcessServiceOperations = (
-  service: ParsedServiceOpenAPIV3
+  service: ParsedServiceOpenAPIV3,
 ): ParsedOperationOpenAPIV3[] => {
   const names = new Map<string, number>();
 
@@ -16,7 +16,7 @@ export const postProcessServiceOperations = (
     // Parse the service parameters and results, very similar to how we parse
     // properties of models. These methods will extend the type if needed.
     clone.imports.push(
-      ...flatMap(clone.parameters, (parameter) => parameter.imports)
+      ...flatMap(clone.parameters, (parameter) => parameter.imports),
     );
     clone.imports.push(...flatMap(clone.results, (result) => result.imports));
 

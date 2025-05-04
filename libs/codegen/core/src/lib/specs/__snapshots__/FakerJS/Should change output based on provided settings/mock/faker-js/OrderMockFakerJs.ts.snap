@@ -10,21 +10,21 @@ import type {
 } from './typesMockFakerJs';
 
 export function getOrderMockFakerJs<TMode extends 'withReferences'>(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): ModelOrIdNullable<Order> | null | Order['id'];
 
 export function getOrderMockFakerJs<TMode extends 'standalone'>(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): Order | null;
 
 export function getOrderMockFakerJs<TMode extends 'primaryKey'>(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): number | null;
 
 export function getOrderMockFakerJs<
-  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences'
+  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences',
 >(
-  params: MockFakerJSGeneratorParams<TMode> = {}
+  params: MockFakerJSGeneratorParams<TMode> = {},
 ): ModelOrIdNullable<Order> | null | Order['id'] {
   const modelName = 'Order';
 

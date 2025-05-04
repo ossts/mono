@@ -3,7 +3,7 @@ const readline = require('node:readline');
 
 const extractImportNameRegExp = new RegExp(
   /import.*?(?:from)?\s*'(.*?)';$/,
-  'gm'
+  'gm',
 );
 
 /**

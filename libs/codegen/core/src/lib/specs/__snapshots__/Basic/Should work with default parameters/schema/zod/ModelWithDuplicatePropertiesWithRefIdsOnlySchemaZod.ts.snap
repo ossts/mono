@@ -8,7 +8,7 @@ export const ModelWithDuplicatePropertiesWithRefIdsOnlySchemaZod = z
     prop: z.string().or(z.number()).optional().nullable(),
   })
   .describe(
-    `Model:ModelWithDuplicateProperties---This is a model with duplicated properties`
+    `Model:ModelWithDuplicateProperties---This is a model with duplicated properties`,
   );
 export const ModelWithDuplicatePropertiesWithRefIdsOnlySchemaZodNoPrimaryKey =
   ModelWithDuplicatePropertiesWithRefIdsOnlySchemaZod;

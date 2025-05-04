@@ -18,5 +18,5 @@ export class UtilsGenerator
     mergeObjectsWithSameShape(this, {}, config);
   }
 
-  override settings?: UtilsGeneratorSettings;
+  declare settings?: UtilsGeneratorSettings;
 }

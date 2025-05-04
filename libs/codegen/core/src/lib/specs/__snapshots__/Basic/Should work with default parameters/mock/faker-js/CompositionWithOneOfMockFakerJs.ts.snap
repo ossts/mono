@@ -14,23 +14,23 @@ import type {
 } from './typesMockFakerJs';
 
 export function getCompositionWithOneOfMockFakerJs<
-  TMode extends 'withReferences'
+  TMode extends 'withReferences',
 >(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): ModelOrIdNullable<CompositionWithOneOf> | null;
 
 export function getCompositionWithOneOfMockFakerJs<TMode extends 'standalone'>(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): CompositionWithOneOf | null;
 
 export function getCompositionWithOneOfMockFakerJs<TMode extends 'primaryKey'>(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): number | null;
 
 export function getCompositionWithOneOfMockFakerJs<
-  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences'
+  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences',
 >(
-  params: MockFakerJSGeneratorParams<TMode> = {}
+  params: MockFakerJSGeneratorParams<TMode> = {},
 ): ModelOrIdNullable<CompositionWithOneOf> | null {
   const modelName = 'CompositionWithOneOf';
 
@@ -63,8 +63,8 @@ export function getCompositionWithOneOfMockFakerJs<
           ]),
         {
           probability,
-        }
+        },
       ),
-    })
+    }),
   );
 }

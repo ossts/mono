@@ -6,7 +6,7 @@ export const CompositionWithOneOfAndSimpleDictionarySchemaZod = z
     propA: z.union([z.boolean(), z.record(z.string(), z.number())]).optional(),
   })
   .describe(
-    `Model:CompositionWithOneOfAndSimpleDictionary---This is a model that contains a simple dictionary within composition`
+    `Model:CompositionWithOneOfAndSimpleDictionary---This is a model that contains a simple dictionary within composition`,
   );
 export const CompositionWithOneOfAndSimpleDictionarySchemaZodNoPrimaryKey =
   CompositionWithOneOfAndSimpleDictionarySchemaZod;

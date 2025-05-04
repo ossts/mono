@@ -8,7 +8,7 @@ import { getPattern } from '../utils';
 
 export const getOperationRequestBody = (
   openApi: OpenAPIV3Document,
-  body: OpenAPIV3RequestBodyWithRef
+  body: OpenAPIV3RequestBodyWithRef,
 ): ParsedOperationParameterOpenAPIV3 => {
   const requestBody: ParsedOperationParameterOpenAPIV3 = {
     in: 'body',

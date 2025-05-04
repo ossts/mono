@@ -7,13 +7,12 @@ import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 
 export default defineConfig({
   root: __dirname,
-  cacheDir: '../../../../../node_modules/.vite/codegen-generators-schema-zod',
+  cacheDir: '../../../../../node_modules/.vite/codegen/generators/schema/zod',
 
   plugins: [
     dts({
       entryRoot: 'src',
-      tsConfigFilePath: joinPathFragments(__dirname, 'tsconfig.lib.json'),
-      skipDiagnostics: true,
+      tsconfigPath: joinPathFragments(__dirname, 'tsconfig.lib.json'),
     }),
 
     nxViteTsPaths(),
@@ -57,9 +56,6 @@ export default defineConfig({
       provider: 'v8',
     },
     globals: true,
-    cache: {
-      dir: '../../../../../node_modules/.vitest',
-    },
     environment: 'jsdom',
     include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
   },

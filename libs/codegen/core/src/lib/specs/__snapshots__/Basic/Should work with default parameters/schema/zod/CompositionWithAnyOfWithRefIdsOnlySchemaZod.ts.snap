@@ -18,7 +18,7 @@ export const CompositionWithAnyOfWithRefIdsOnlySchemaZod = z
       .optional(),
   })
   .describe(
-    `Model:CompositionWithAnyOf---This is a model with one property with a 'any of' relationship`
+    `Model:CompositionWithAnyOf---This is a model with one property with a 'any of' relationship`,
   );
 export const CompositionWithAnyOfWithRefIdsOnlySchemaZodNoPrimaryKey =
   CompositionWithAnyOfWithRefIdsOnlySchemaZod;

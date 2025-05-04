@@ -29,7 +29,7 @@ export const generateIndex = (path?: string) => {
   const precompiledTemplates = exportsMapEntries.reduce<string[]>(
     (acc, [key, exports]) =>
       acc.concat(generatePrecompiledSection(key, exports)),
-    []
+    [],
   );
 
   content += [
@@ -46,7 +46,7 @@ export const generateIndex = (path?: string) => {
 
 const generatePrecompiledSection = (
   key: string,
-  exports: Dictionary<string>
+  exports: Dictionary<string>,
 ) => {
   return [
     `  ${key}: {`,

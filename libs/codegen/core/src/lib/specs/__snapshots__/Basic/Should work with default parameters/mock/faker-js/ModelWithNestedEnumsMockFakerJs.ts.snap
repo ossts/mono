@@ -10,23 +10,23 @@ import type {
 } from './typesMockFakerJs';
 
 export function getModelWithNestedEnumsMockFakerJs<
-  TMode extends 'withReferences'
+  TMode extends 'withReferences',
 >(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): ModelOrIdNullable<ModelWithNestedEnums> | null;
 
 export function getModelWithNestedEnumsMockFakerJs<TMode extends 'standalone'>(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): ModelWithNestedEnums | null;
 
 export function getModelWithNestedEnumsMockFakerJs<TMode extends 'primaryKey'>(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): number | null;
 
 export function getModelWithNestedEnumsMockFakerJs<
-  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences'
+  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences',
 >(
-  params: MockFakerJSGeneratorParams<TMode> = {}
+  params: MockFakerJSGeneratorParams<TMode> = {},
 ): ModelOrIdNullable<ModelWithNestedEnums> | null {
   const modelName = 'ModelWithNestedEnums';
 
@@ -52,12 +52,12 @@ export function getModelWithNestedEnumsMockFakerJs<
               ]),
             {
               probability,
-            }
+            },
           ),
         }),
         {
           probability,
-        }
+        },
       ),
       dictionaryWithEnumFromDescription: faker.helpers.maybe(
         () => ({
@@ -72,7 +72,7 @@ export function getModelWithNestedEnumsMockFakerJs<
         }),
         {
           probability,
-        }
+        },
       ),
       arrayWithEnum: faker.helpers.maybe(
         () =>
@@ -85,14 +85,14 @@ export function getModelWithNestedEnumsMockFakerJs<
           ]),
         {
           probability,
-        }
+        },
       ),
       arrayWithDescription: faker.helpers.maybe(
         () => faker.helpers.arrayElements([faker.number.int()]),
         {
           probability,
-        }
+        },
       ),
-    })
+    }),
   );
 }

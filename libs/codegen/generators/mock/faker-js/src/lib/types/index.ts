@@ -50,14 +50,15 @@ export interface MockFakerJSGeneratorGenerateFnParams
 }
 
 export type MockFakerJSGeneratorGenerateFn<
-  T extends MockFakerJSGeneratorGenerateParamsFnParams = MockFakerJSGeneratorGenerateFnParams
+  T extends
+    MockFakerJSGeneratorGenerateParamsFnParams = MockFakerJSGeneratorGenerateFnParams,
 > = (
   /**
    * Currently processed item
    */
   target: ParsedModelOpenAPIV3,
 
-  params: T
+  params: T,
 ) => string | null | undefined | void;
 
 export type MockFakerJSGeneratorGeneratePathBased = {
@@ -95,7 +96,7 @@ export type MockFakerJSGeneratorGenerateParamsTypeBased = Partial<
   >
 >;
 
-/* eslint-disable-next-line @typescript-eslint/no-empty-interface */
+/* eslint-disable-next-line @typescript-eslint/no-empty-interface, @typescript-eslint/no-empty-object-type */
 export interface MockFakerJsGeneratorSettings
   extends AbstractGeneratorSettings {
   fakerGenerators?: {

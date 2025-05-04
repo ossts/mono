@@ -11,7 +11,7 @@ export const ModelWithDuplicatePropertiesWithRefIdsAllowedSchemaZod = z
       .nullable(),
   })
   .describe(
-    `Model:ModelWithDuplicateProperties---This is a model with duplicated properties`
+    `Model:ModelWithDuplicateProperties---This is a model with duplicated properties`,
   );
 export const ModelWithDuplicatePropertiesWithRefIdsAllowedSchemaZodNoPrimaryKey =
   ModelWithDuplicatePropertiesWithRefIdsAllowedSchemaZod;

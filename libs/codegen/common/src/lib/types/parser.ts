@@ -10,7 +10,7 @@ import type {
 export type SchemaParsers = (typeof schemaParsers)[number];
 
 export type GenericParserModuleExportParseFn = (
-  schema: AbstractCodegenSchema
+  schema: AbstractCodegenSchema,
 ) => Promise<AbstractCodegenParsedClient>;
 
 export type GenericParserModuleExport = {

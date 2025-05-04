@@ -6,7 +6,6 @@ import prettier from 'prettier';
 import rimraf from 'rimraf';
 
 import type { AbstractExternalGeneratorWithName } from '@ossts/codegen/common';
-import type { DictionaryWithAny } from '@ossts/shared/typescript/helper-types';
 
 import type {
   AllGeneratorsSettings,
@@ -16,7 +15,8 @@ import type {
 } from '../types';
 
 export const renderEntries = async <
-  TGenerators extends AbstractExternalGeneratorWithName = AbstractExternalGeneratorWithName
+  TGenerators extends
+    AbstractExternalGeneratorWithName = AbstractExternalGeneratorWithName,
 >(
   generators: ResolvedGeneratorsMap<TGenerators>,
   {
@@ -28,11 +28,11 @@ export const renderEntries = async <
   }: Pick<
     GenerateParams,
     'output' | 'parsedSchema' | 'sequential' | 'beforeEach' | 'afterEach'
-  >
+  >,
 ) => {
   const rootFileNames: string[] = [];
 
-  const prettierOptions = (await prettier.resolveConfig(process.cwd())) ?? {};
+  const prettierOptions = (await prettier.resolveConfig('')) ?? {};
 
   const promises: Promise<void>[] = [];
 
@@ -76,152 +76,155 @@ export const renderEntries = async <
 };
 
 const render = <
-  TGenerators extends AbstractExternalGeneratorWithName = AbstractExternalGeneratorWithName
+  TGenerators extends
+    AbstractExternalGeneratorWithName = AbstractExternalGeneratorWithName,
 >(
   generator: ResolvedGenerator<TGenerators>,
   allSettings: AllGeneratorsSettings,
   prettierOptions: prettier.Options,
-  { parsedSchema, output }: Pick<GenerateParams, 'output' | 'parsedSchema'>
+  { parsedSchema, output }: Pick<GenerateParams, 'output' | 'parsedSchema'>,
 ) =>
-  new Promise<void>((resolve) => {
-    const { handlebarsInstance } = generator;
-    if (!generator.templates || !handlebarsInstance) return;
+  new Promise<void>((resolve) =>
+    (async () => {
+      const { handlebarsInstance } = generator;
+      if (!generator.templates || !handlebarsInstance) return;
 
-    const promises: Promise<void>[] = [];
-    const { templates, settings = {} } = generator;
+      const promises: Promise<void>[] = [];
+      const { templates, settings = {} } = generator;
 
-    const generatorNS = generator.settings?.globalNS;
+      const generatorNS = generator.settings?.globalNS;
 
-    const basePath = resolvePath(output ?? '', generator.outputPath);
+      const basePath = resolvePath(output ?? '', generator.outputPath);
 
-    if (!generator.settings?.preventCleanup) {
-      rimraf.sync(basePath);
-    }
-
-    const fileNames: string[] = [];
-
-    for (const name in templates.entries) {
-      const config = generator.resolvedEntriesRenderCfg?.[name];
-      if (!config) continue;
-
-      const tpl = handlebarsInstance.template(templates.entries[name]);
-
-      const data = config.dataPath
-        ? getNested(parsedSchema, config.dataPath)
-        : parsedSchema;
-
-      if (!data) {
-        throw new Error(
-          `No data available in client for path "${config.dataPath}"`
-        );
+      if (!generator.settings?.preventCleanup) {
+        rimraf.sync(basePath);
       }
 
-      const dataAsArray = Array.isArray(data) ? data : [data];
+      const fileNames: string[] = [];
 
-      dataAsArray.forEach((data: DictionaryWithAny) => {
-        if (!isPlainObject(data)) {
+      for (const name in templates.entries) {
+        const config = generator.resolvedEntriesRenderCfg?.[name];
+        if (!config) continue;
+
+        const tpl = handlebarsInstance.template(templates.entries[name]);
+
+        const data = config.dataPath
+          ? getNested(parsedSchema, config.dataPath)
+          : parsedSchema;
+
+        if (!data) {
           throw new Error(
-            `Data in client for path "${config.dataPath}" should return object or array of objects`
+            `No data available in client for path "${config.dataPath}"`,
           );
         }
 
-        let fileName = '';
+        const dataAsArray = Array.isArray(data) ? data : [data];
 
-        if (typeof config.nameFieldOrFn === 'string') {
-          fileName = getNested(data, config.nameFieldOrFn);
-          if (!fileName) {
+        for (const data of dataAsArray) {
+          if (!isPlainObject(data)) {
             throw new Error(
-              `No data available for key "${config.nameFieldOrFn}"`
+              `Data in client for path "${config.dataPath}" should return object or array of objects`,
             );
           }
-          if (config.nameSuffix) {
-            fileName += config.nameSuffix;
+
+          let fileName = '';
+
+          if (typeof config.nameFieldOrFn === 'string') {
+            fileName = getNested(data, config.nameFieldOrFn);
+            if (!fileName) {
+              throw new Error(
+                `No data available for key "${config.nameFieldOrFn}"`,
+              );
+            }
+            if (config.nameSuffix) {
+              fileName += config.nameSuffix;
+            }
+          } else {
+            fileName = config.nameFieldOrFn(data);
           }
-        } else {
-          fileName = config.nameFieldOrFn(data);
-        }
 
-        if (!config.doNotAddToIndex) {
-          fileNames.push(fileName);
-        }
+          if (!config.doNotAddToIndex) {
+            fileNames.push(fileName);
+          }
 
-        const content = tpl({
-          data,
-          settings,
-          allSettings,
-        });
-
-        let formattedContent = content;
-
-        if (settings.formatter === 'prettier') {
-          formattedContent = prettier.format(content, {
-            parser: 'typescript',
-            ...prettierOptions,
+          const content = tpl({
+            data,
+            settings,
+            allSettings,
           });
-        } else if (typeof settings.formatter === 'function') {
-          formattedContent = settings.formatter(content);
-        }
 
-        const dist = resolvePath(basePath, `${fileName}${generatorNS}.ts`);
+          let formattedContent = content;
 
-        ensureFileSync(dist);
-        promises.push(writeFile(dist, formattedContent));
-      });
-    }
-
-    const indexDist = resolvePath(basePath, 'index.ts');
-    const importAllNames = new Set();
-    let content = fileNames
-      .map((name) => {
-        let content = `export * from './${name}${generatorNS}';`;
-
-        if (
-          generator.settings?.withEntryExportAll ||
-          generator.settings?.withExportAll
-        ) {
-          let importAllName = `${name}${upperFirst(generatorNS)}${
-            generator.settings?.exportAllSuffix
-          }`;
-          if (!generator.settings.preventExportNameCapitalization) {
-            importAllName = upperFirst(importAllName);
+          if (settings.formatter === 'prettier') {
+            formattedContent = await prettier.format(content, {
+              parser: 'typescript',
+              ...prettierOptions,
+            });
+          } else if (typeof settings.formatter === 'function') {
+            formattedContent = settings.formatter(content);
           }
 
-          content += `\nimport * as ${importAllName} from './${name}${generatorNS}';`;
-          if (generator.settings?.withEntryExportAll) {
-            content += `\nexport { ${importAllName} }`;
-          }
+          const dist = resolvePath(basePath, `${fileName}${generatorNS}.ts`);
 
-          importAllNames.add(importAllName);
+          ensureFileSync(dist);
+          promises.push(writeFile(dist, formattedContent));
         }
-
-        return content;
-      })
-      .join('\n\n');
-
-    if (generator.settings?.withExportAll) {
-      let name = '',
-        typeName = '';
-
-      if (generator.settings.withExportAll === true) {
-        name = `all${upperFirst(generatorNS)}${
-          generator.settings.exportAllSuffix
-        }`;
-        typeName = upperFirst(name);
-      } else {
-        ({ name } = generator.settings.withExportAll);
-        typeName =
-          generator.settings.withExportAll.typeName ?? upperFirst(name);
       }
 
-      content += `\n\nexport const ${name} = {\n`;
-      content += [...importAllNames].map((name) => `  ${name},`).join('\n');
-      content += '\n};';
+      const indexDist = resolvePath(basePath, 'index.ts');
+      const importAllNames = new Set();
+      let content = fileNames
+        .map((name) => {
+          let content = `export * from './${name}${generatorNS}';`;
 
-      content += `\n\nexport type ${typeName} = typeof ${name};`;
-    }
+          if (
+            generator.settings?.withEntryExportAll ||
+            generator.settings?.withExportAll
+          ) {
+            let importAllName = `${name}${upperFirst(generatorNS)}${
+              generator.settings?.exportAllSuffix
+            }`;
+            if (!generator.settings.preventExportNameCapitalization) {
+              importAllName = upperFirst(importAllName);
+            }
 
-    ensureFileSync(indexDist);
-    promises.push(writeFile(indexDist, content + '\n'));
+            content += `\nimport * as ${importAllName} from './${name}${generatorNS}';`;
+            if (generator.settings?.withEntryExportAll) {
+              content += `\nexport { ${importAllName} }`;
+            }
 
-    Promise.all(promises).then(() => resolve());
-  });
+            importAllNames.add(importAllName);
+          }
+
+          return content;
+        })
+        .join('\n\n');
+
+      if (generator.settings?.withExportAll) {
+        let name = '',
+          typeName = '';
+
+        if (generator.settings.withExportAll === true) {
+          name = `all${upperFirst(generatorNS)}${
+            generator.settings.exportAllSuffix
+          }`;
+          typeName = upperFirst(name);
+        } else {
+          ({ name } = generator.settings.withExportAll);
+          typeName =
+            generator.settings.withExportAll.typeName ?? upperFirst(name);
+        }
+
+        content += `\n\nexport const ${name} = {\n`;
+        content += [...importAllNames].map((name) => `  ${name},`).join('\n');
+        content += '\n};';
+
+        content += `\n\nexport type ${typeName} = typeof ${name};`;
+      }
+
+      ensureFileSync(indexDist);
+      promises.push(writeFile(indexDist, content + '\n'));
+
+      Promise.all(promises).then(() => resolve());
+    })(),
+  );

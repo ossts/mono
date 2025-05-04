@@ -42,7 +42,7 @@ export const fakerTypeFormat: CodegenHandlebarsHelperWrapper<
      */
     let params = generatorSettings.fakerParamsGenerators?.generate?.(
       this,
-      paramsGeneratorFnParams
+      paramsGeneratorFnParams,
     );
 
     if (typeof params !== 'string') {
@@ -67,7 +67,7 @@ export const fakerTypeFormat: CodegenHandlebarsHelperWrapper<
 
     let result = generatorSettings.fakerGenerators?.generate?.(
       this,
-      resultGeneratorFnParams
+      resultGeneratorFnParams,
     );
     if (typeof result !== 'string') {
       result = formatPathBased(this, resultGeneratorFnParams);
@@ -92,7 +92,7 @@ export const fakerTypeFormat: CodegenHandlebarsHelperWrapper<
 
 const getParamsPathBased = (
   type: ParsedModelOpenAPIV3,
-  resultGeneratorFnParams: MockFakerJSGeneratorGenerateParamsFnParams
+  resultGeneratorFnParams: MockFakerJSGeneratorGenerateParamsFnParams,
 ): string | undefined => {
   const { fullPath } = resultGeneratorFnParams;
   const pathBased =
@@ -134,7 +134,7 @@ const getParamsPathBased = (
 
 const getParamsTypeBased = (
   type: ParsedModelOpenAPIV3,
-  resultGeneratorFnParams: MockFakerJSGeneratorGenerateParamsFnParams
+  resultGeneratorFnParams: MockFakerJSGeneratorGenerateParamsFnParams,
 ): string | undefined => {
   let finalOrIntermediateResult:
     | string
@@ -165,7 +165,7 @@ const getParamsTypeBased = (
 
 const formatPathBased = (
   type: ParsedModelOpenAPIV3,
-  resultGeneratorFnParams: MockFakerJSGeneratorGenerateFnParams
+  resultGeneratorFnParams: MockFakerJSGeneratorGenerateFnParams,
 ): string | undefined => {
   const { fullPath } = resultGeneratorFnParams;
   const pathBased =
@@ -207,7 +207,7 @@ const formatPathBased = (
 
 const formatTypeBased = (
   type: ParsedModelOpenAPIV3,
-  resultGeneratorFnParams: MockFakerJSGeneratorGenerateFnParams
+  resultGeneratorFnParams: MockFakerJSGeneratorGenerateFnParams,
 ): string | undefined => {
   let finalOrIntermediateResult:
     | string
@@ -238,7 +238,7 @@ const formatTypeBased = (
 
 const formatDefaultBasedOnType = (
   type: ParsedModelOpenAPIV3,
-  params: string
+  params: string,
 ): string => {
   // this is required to make sure that default strings have decent length
   const string = `.string.alpha(${

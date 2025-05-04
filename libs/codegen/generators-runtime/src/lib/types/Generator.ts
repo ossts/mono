@@ -12,14 +12,16 @@ import type {
 import type { GeneratorsBuiltIn } from '../__generated__';
 
 export type GeneratorNameExternal<
-  TGenerators extends AbstractExternalGeneratorWithName = AbstractExternalGeneratorWithName
+  TGenerators extends
+    AbstractExternalGeneratorWithName = AbstractExternalGeneratorWithName,
 > = TGenerators['name'];
 
 /**
  * All generators
  */
 export type GeneratorName<
-  TGenerators extends AbstractExternalGeneratorWithName = AbstractExternalGeneratorWithName
+  TGenerators extends
+    AbstractExternalGeneratorWithName = AbstractExternalGeneratorWithName,
 > = LiteralUnion<
   GeneratorNameBuiltIn | GeneratorNameExternal<TGenerators>,
   string
@@ -44,14 +46,14 @@ export type GeneratorsWithAll =
  * All possible generators, including those that passed as generic ones
  */
 export type AllGenerators<
-  TGenerators extends AbstractExternalGenerator = AbstractExternalGenerator
+  TGenerators extends AbstractExternalGenerator = AbstractExternalGenerator,
 > = AbstractGeneratorWithName | TGenerators;
 
 /**
  * All possible generators, with required parameters marked as required
  */
 export type AllGeneratorsResolvedParams<
-  TGenerators extends AbstractExternalGenerator = AbstractExternalGenerator
+  TGenerators extends AbstractExternalGenerator = AbstractExternalGenerator,
 > = SetRequired<
   AllGenerators<TGenerators>,
   keyof Pick<AbstractExternalGenerator, 'outputPath' | 'generatorPath'>

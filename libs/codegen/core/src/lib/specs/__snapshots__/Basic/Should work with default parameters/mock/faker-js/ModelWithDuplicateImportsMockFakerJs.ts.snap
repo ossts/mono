@@ -11,23 +11,23 @@ import type {
 } from './typesMockFakerJs';
 
 export function getModelWithDuplicateImportsMockFakerJs<
-  TMode extends 'withReferences'
+  TMode extends 'withReferences',
 >(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): ModelOrIdNullable<ModelWithDuplicateImports> | null;
 
 export function getModelWithDuplicateImportsMockFakerJs<
-  TMode extends 'standalone'
+  TMode extends 'standalone',
 >(params?: MockFakerJSGeneratorParams<TMode>): ModelWithDuplicateImports | null;
 
 export function getModelWithDuplicateImportsMockFakerJs<
-  TMode extends 'primaryKey'
+  TMode extends 'primaryKey',
 >(params?: MockFakerJSGeneratorParams<TMode>): number | null;
 
 export function getModelWithDuplicateImportsMockFakerJs<
-  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences'
+  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences',
 >(
-  params: MockFakerJSGeneratorParams<TMode> = {}
+  params: MockFakerJSGeneratorParams<TMode> = {},
 ): ModelOrIdNullable<ModelWithDuplicateImports> | null {
   const modelName = 'ModelWithDuplicateImports';
 
@@ -46,7 +46,7 @@ export function getModelWithDuplicateImportsMockFakerJs<
           }),
         {
           probability,
-        }
+        },
       ),
       propB: faker.helpers.maybe(
         () =>
@@ -57,7 +57,7 @@ export function getModelWithDuplicateImportsMockFakerJs<
           }),
         {
           probability,
-        }
+        },
       ),
       propC: faker.helpers.maybe(
         () =>
@@ -68,8 +68,8 @@ export function getModelWithDuplicateImportsMockFakerJs<
           }),
         {
           probability,
-        }
+        },
       ),
-    })
+    }),
   );
 }

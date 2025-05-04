@@ -10,21 +10,21 @@ import type {
 } from './typesMockFakerJs';
 
 export function get_defaultMockFakerJs<TMode extends 'withReferences'>(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): ModelOrIdNullable<_default> | null;
 
 export function get_defaultMockFakerJs<TMode extends 'standalone'>(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): _default | null;
 
 export function get_defaultMockFakerJs<TMode extends 'primaryKey'>(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): number | null;
 
 export function get_defaultMockFakerJs<
-  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences'
+  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences',
 >(
-  params: MockFakerJSGeneratorParams<TMode> = {}
+  params: MockFakerJSGeneratorParams<TMode> = {},
 ): ModelOrIdNullable<_default> | null {
   const modelName = '_default';
 
@@ -38,8 +38,8 @@ export function get_defaultMockFakerJs<
         () => faker.string.alpha({ length: { min: 2, max: 10 } }),
         {
           probability,
-        }
+        },
       ),
-    })
+    }),
   );
 }

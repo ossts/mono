@@ -22,10 +22,11 @@ import { registerHandlebarsEntities } from './registerHandlebarEntities';
  * Prepares generator configuration and templates
  */
 export const resolveGenerators = async <
-  TGenerators extends AbstractExternalGeneratorWithName = AbstractExternalGeneratorWithName
+  TGenerators extends
+    AbstractExternalGeneratorWithName = AbstractExternalGeneratorWithName,
 >(
   generatorsCfg: (GeneratorsWithAll | TGenerators)[],
-  generatorsSettings: AbstractGeneratorSettings | undefined
+  generatorsSettings: AbstractGeneratorSettings | undefined,
 ): Promise<ResolvedGeneratorsMap<TGenerators>> => {
   const generatorsMap: ResolvedGeneratorsMap<TGenerators> = new Map();
   const generatorCfgMap = new Map<string, AbstractGeneratorWithName>();
@@ -41,7 +42,7 @@ export const resolveGenerators = async <
 
     if (!('name' in generatorCfg)) {
       throw new Error(
-        `"name" field is required, but missing for generator at index "${index}"`
+        `"name" field is required, but missing for generator at index "${index}"`,
       );
     }
 
@@ -52,7 +53,7 @@ export const resolveGenerators = async <
 
     if (generatorCfgMap.has(generatorCfg.name)) {
       throw new Error(
-        `Multiple configurations provided for generator "${name}"`
+        `Multiple configurations provided for generator "${name}"`,
       );
     }
 
@@ -74,7 +75,7 @@ export const resolveGenerators = async <
   await resolveGeneratorsConfigs(
     generatorsMap,
     generatorCfgMap,
-    generatorsSettings
+    generatorsSettings,
   );
 
   return generatorsMap;
@@ -85,19 +86,20 @@ export const resolveGenerators = async <
  * and its dependencies specified in `dependsOn` field
  */
 const resolveGeneratorsConfigs = async <
-  TGenerators extends AbstractExternalGeneratorWithName = AbstractExternalGeneratorWithName
+  TGenerators extends
+    AbstractExternalGeneratorWithName = AbstractExternalGeneratorWithName,
 >(
   generatorsMap: ResolvedGeneratorsMap<TGenerators>,
   generatorCfgMap: Map<string, AbstractGeneratorWithName>,
-  generatorsSettings: AbstractGeneratorSettings | undefined
+  generatorsSettings: AbstractGeneratorSettings | undefined,
 ) => {
   const resolveTemplatesPromises = [...generatorCfgMap.values()].map(
     (generatorCfg) =>
-      resolveGeneratorParams<TGenerators>(generatorCfg, generatorsSettings)
+      resolveGeneratorParams<TGenerators>(generatorCfg, generatorsSettings),
   );
 
   const generatorConfigs: ResolvedGenerator<TGenerators>[] = await Promise.all(
-    resolveTemplatesPromises
+    resolveTemplatesPromises,
   );
 
   const dependsOnGenerators = new Set<string>();
@@ -122,7 +124,7 @@ const resolveGeneratorsConfigs = async <
     await resolveGeneratorsConfigs(
       generatorsMap,
       generatorCfgMap,
-      generatorsSettings
+      generatorsSettings,
     );
   }
 

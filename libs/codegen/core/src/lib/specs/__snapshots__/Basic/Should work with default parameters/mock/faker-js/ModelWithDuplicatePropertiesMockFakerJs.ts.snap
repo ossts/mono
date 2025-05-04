@@ -11,25 +11,25 @@ import type {
 } from './typesMockFakerJs';
 
 export function getModelWithDuplicatePropertiesMockFakerJs<
-  TMode extends 'withReferences'
+  TMode extends 'withReferences',
 >(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): ModelOrIdNullable<ModelWithDuplicateProperties> | null;
 
 export function getModelWithDuplicatePropertiesMockFakerJs<
-  TMode extends 'standalone'
+  TMode extends 'standalone',
 >(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): ModelWithDuplicateProperties | null;
 
 export function getModelWithDuplicatePropertiesMockFakerJs<
-  TMode extends 'primaryKey'
+  TMode extends 'primaryKey',
 >(params?: MockFakerJSGeneratorParams<TMode>): number | null;
 
 export function getModelWithDuplicatePropertiesMockFakerJs<
-  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences'
+  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences',
 >(
-  params: MockFakerJSGeneratorParams<TMode> = {}
+  params: MockFakerJSGeneratorParams<TMode> = {},
 ): ModelOrIdNullable<ModelWithDuplicateProperties> | null {
   const modelName = 'ModelWithDuplicateProperties';
 
@@ -48,8 +48,8 @@ export function getModelWithDuplicatePropertiesMockFakerJs<
           }),
         {
           probability,
-        }
+        },
       ),
-    })
+    }),
   );
 }

@@ -8,7 +8,8 @@ import type {
 import type { GenerateParams } from '@ossts/codegen/generators-runtime';
 
 export interface Config<
-  TGenerators extends AbstractExternalGeneratorWithName = AbstractExternalGeneratorWithName
+  TGenerators extends
+    AbstractExternalGeneratorWithName = AbstractExternalGeneratorWithName,
 > extends Omit<GenerateParams<TGenerators>, 'parsedSchema'> {
   /**
    * Path to input file or http endpoint URL for OpenAPI schema

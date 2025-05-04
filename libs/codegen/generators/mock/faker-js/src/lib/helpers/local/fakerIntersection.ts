@@ -10,7 +10,7 @@ export const fakerIntersection: CodegenHandlebarsHelperWrapper = ({
   function (
     this: ParsedModelOpenAPIV3,
     properties: ParsedModelOpenAPIV3[],
-    options: Handlebars.HelperOptions
+    options: Handlebars.HelperOptions,
   ) {
     const type = handlebarsInstance.partials['fakerType'];
     const types = properties.map((property) =>
@@ -19,7 +19,7 @@ export const fakerIntersection: CodegenHandlebarsHelperWrapper = ({
         hasWrapperType: true,
         parentName: this.refToParent?.name,
         settings,
-      })
+      }),
     );
 
     const uniqueTypes = [...new Set(types)];
@@ -29,8 +29,8 @@ export const fakerIntersection: CodegenHandlebarsHelperWrapper = ({
         item.trim().startsWith('{')
           ? item
           : item.startsWith('.')
-          ? `faker${item}`
-          : item
+            ? `faker${item}`
+            : item,
       )
       .join(', ...');
     if (uniqueTypes.length > 1) {

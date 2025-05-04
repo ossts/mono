@@ -14,7 +14,7 @@ let cachedKnownHelpers = new Map<DictionaryWithAny, Dictionary<boolean>>();
  * Combines internal global helpers with generator local helpers
  */
 export const getKnownHelpers = async (
-  generatorLocalHelpers: DictionaryWithAny = {}
+  generatorLocalHelpers: DictionaryWithAny = {},
 ) => {
   if (
     !globals.watcherInitialized &&
@@ -29,7 +29,7 @@ export const getKnownHelpers = async (
   const knownHelpersSet = new Set<string>();
 
   for await (let [generatorName, helpers] of Object.entries(
-    builtInGlobalHelpers
+    builtInGlobalHelpers,
   )) {
     Object.keys(helpers).forEach((helperName) => {
       knownHelpersSet.add(`${generatorName}${upperFirst(helperName)}`);
@@ -51,7 +51,7 @@ export const getKnownHelpers = async (
       acc[helperName] = true;
       return acc;
     },
-    {}
+    {},
   );
 
   if (!globals.watcherInitialized) {

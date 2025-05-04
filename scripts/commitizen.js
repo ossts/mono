@@ -2,7 +2,7 @@ const { resolve } = require('node:path');
 const { readJsonSync } = require('fs-extra');
 
 const scopes = readJsonSync(
-  resolve(__dirname, '../__generated__/cz-scopes.json')
+  resolve(__dirname, '../__generated__/cz-scopes.json'),
 );
 
 /** @type {import('cz-git').CommitizenGitOptions} */

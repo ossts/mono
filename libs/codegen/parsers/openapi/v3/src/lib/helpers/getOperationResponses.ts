@@ -9,7 +9,7 @@ import type {
 
 export const getOperationResponses = (
   openApi: OpenAPIV3Document,
-  responses: OpenAPIV3.ResponsesObject
+  responses: OpenAPIV3.ResponsesObject,
 ): ParsedOperationResponseOpenAPIV3[] => {
   const operationResponses: ParsedOperationResponseOpenAPIV3[] = [];
 
@@ -23,7 +23,7 @@ export const getOperationResponses = (
       const operationResponse = getOperationResponse(
         openApi,
         response,
-        responseCode
+        responseCode,
       );
       operationResponses.push(operationResponse);
     }

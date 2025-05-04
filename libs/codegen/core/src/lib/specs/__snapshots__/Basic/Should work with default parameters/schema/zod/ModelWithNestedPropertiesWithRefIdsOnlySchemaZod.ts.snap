@@ -16,7 +16,7 @@ export const ModelWithNestedPropertiesWithRefIdsOnlySchemaZod = z
       .readonly(),
   })
   .describe(
-    `Model:ModelWithNestedProperties---This is a model with one nested property`
+    `Model:ModelWithNestedProperties---This is a model with one nested property`,
   );
 export const ModelWithNestedPropertiesWithRefIdsOnlySchemaZodNoPrimaryKey =
   ModelWithNestedPropertiesWithRefIdsOnlySchemaZod;

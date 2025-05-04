@@ -4,7 +4,7 @@ import type {
 } from '@ossts/codegen/common';
 
 export const parse = async (
-  schema: AbstractCodegenSchema
+  schema: AbstractCodegenSchema,
 ): Promise<AbstractCodegenParsedClient> => {
   // TODO: implementation which will transform to openapi and run it's generators
 

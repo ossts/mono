@@ -9,7 +9,7 @@ export const ModelWithNullableStringWithRefIdsOnlySchemaZod = z
     nullableRequiredProp2: z.string().nullable(),
   })
   .describe(
-    `Model:ModelWithNullableString---This is a model with one string property`
+    `Model:ModelWithNullableString---This is a model with one string property`,
   );
 export const ModelWithNullableStringWithRefIdsOnlySchemaZodNoPrimaryKey =
   ModelWithNullableStringWithRefIdsOnlySchemaZod;

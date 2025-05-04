@@ -6,7 +6,7 @@ export const ArrayWithPropertiesSchemaZod = z
     z.object({
       foo: z.string().optional(),
       bar: z.string().optional(),
-    })
+    }),
   )
   .min(1)
   .max(20);

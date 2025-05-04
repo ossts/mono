@@ -11,23 +11,23 @@ import type {
 } from './typesMockFakerJs';
 
 export function getModelWithPropertiesMockFakerJs<
-  TMode extends 'withReferences'
+  TMode extends 'withReferences',
 >(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): ModelOrIdNullable<ModelWithProperties> | null;
 
 export function getModelWithPropertiesMockFakerJs<TMode extends 'standalone'>(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): ModelWithProperties | null;
 
 export function getModelWithPropertiesMockFakerJs<TMode extends 'primaryKey'>(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): number | null;
 
 export function getModelWithPropertiesMockFakerJs<
-  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences'
+  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences',
 >(
-  params: MockFakerJSGeneratorParams<TMode> = {}
+  params: MockFakerJSGeneratorParams<TMode> = {},
 ): ModelOrIdNullable<ModelWithProperties> | null {
   const modelName = 'ModelWithProperties';
 
@@ -47,7 +47,7 @@ export function getModelWithPropertiesMockFakerJs<
         () => faker.string.alpha({ length: { min: 2, max: 10 } }),
         {
           probability,
-        }
+        },
       ),
       number: faker.helpers.maybe(() => faker.number.int(), {
         probability,
@@ -64,35 +64,35 @@ export function getModelWithPropertiesMockFakerJs<
           }),
         {
           probability,
-        }
+        },
       ),
       'property with space': faker.helpers.maybe(
         () => faker.string.alpha({ length: { min: 2, max: 10 } }),
         {
           probability,
-        }
+        },
       ),
       default: faker.helpers.maybe(
         () => faker.string.alpha({ length: { min: 2, max: 10 } }),
         {
           probability,
-        }
+        },
       ),
       try: faker.helpers.maybe(
         () => faker.string.alpha({ length: { min: 2, max: 10 } }),
         {
           probability,
-        }
+        },
       ),
       '@namespace.string': faker.helpers.maybe(
         () => faker.string.alpha({ length: { min: 2, max: 10 } }),
         {
           probability,
-        }
+        },
       ),
       '@namespace.integer': faker.helpers.maybe(() => faker.number.int(), {
         probability,
       }),
-    })
+    }),
   );
 }

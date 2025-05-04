@@ -4,7 +4,7 @@ export const containsSpaces: CodegenHandlebarsHelperWrapper = () =>
   function (
     this: unknown,
     value: string,
-    options: Handlebars.HelperOptions
+    options: Handlebars.HelperOptions,
   ): string {
     return /\s+/.test(value) ? options.fn(this) : options.inverse(this);
   };

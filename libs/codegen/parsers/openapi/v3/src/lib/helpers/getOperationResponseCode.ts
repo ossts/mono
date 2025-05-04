@@ -1,5 +1,5 @@
 export const getOperationResponseCode = (
-  value: string | 'default'
+  value: string | 'default',
 ): number | null => {
   // Since "default" can handle multiple status codes we set it to -1 to identify it later in generators
   if (value === 'default') {

@@ -10,7 +10,7 @@ export const ModelWithDuplicateImportsWithRefIdsOnlySchemaZod = z
     propC: z.string().or(z.number()).optional().nullable(),
   })
   .describe(
-    `Model:ModelWithDuplicateImports---This is a model with duplicated imports`
+    `Model:ModelWithDuplicateImports---This is a model with duplicated imports`,
   );
 export const ModelWithDuplicateImportsWithRefIdsOnlySchemaZodNoPrimaryKey =
   ModelWithDuplicateImportsWithRefIdsOnlySchemaZod;

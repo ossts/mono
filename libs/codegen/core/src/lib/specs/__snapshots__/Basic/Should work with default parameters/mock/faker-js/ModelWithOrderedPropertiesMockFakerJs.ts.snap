@@ -10,25 +10,25 @@ import type {
 } from './typesMockFakerJs';
 
 export function getModelWithOrderedPropertiesMockFakerJs<
-  TMode extends 'withReferences'
+  TMode extends 'withReferences',
 >(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): ModelOrIdNullable<ModelWithOrderedProperties> | null;
 
 export function getModelWithOrderedPropertiesMockFakerJs<
-  TMode extends 'standalone'
+  TMode extends 'standalone',
 >(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): ModelWithOrderedProperties | null;
 
 export function getModelWithOrderedPropertiesMockFakerJs<
-  TMode extends 'primaryKey'
+  TMode extends 'primaryKey',
 >(params?: MockFakerJSGeneratorParams<TMode>): number | null;
 
 export function getModelWithOrderedPropertiesMockFakerJs<
-  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences'
+  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences',
 >(
-  params: MockFakerJSGeneratorParams<TMode> = {}
+  params: MockFakerJSGeneratorParams<TMode> = {},
 ): ModelOrIdNullable<ModelWithOrderedProperties> | null {
   const modelName = 'ModelWithOrderedProperties';
 
@@ -42,20 +42,20 @@ export function getModelWithOrderedPropertiesMockFakerJs<
         () => faker.string.alpha({ length: { min: 2, max: 10 } }),
         {
           probability,
-        }
+        },
       ),
       apple: faker.helpers.maybe(
         () => faker.string.alpha({ length: { min: 2, max: 10 } }),
         {
           probability,
-        }
+        },
       ),
       hawaii: faker.helpers.maybe(
         () => faker.string.alpha({ length: { min: 2, max: 10 } }),
         {
           probability,
-        }
+        },
       ),
-    })
+    }),
   );
 }

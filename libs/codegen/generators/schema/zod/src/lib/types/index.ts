@@ -2,7 +2,7 @@ import type { AbstractGeneratorSettings } from '@ossts/codegen/common';
 
 import type { SchemaZodGenerator, schemaZodGeneratorName } from '../generator';
 
-/* eslint-disable-next-line @typescript-eslint/no-empty-interface */
+/* eslint-disable-next-line @typescript-eslint/no-empty-interface, @typescript-eslint/no-empty-object-type */
 export interface SchemaZodGeneratorSettings extends AbstractGeneratorSettings {
   /**
    * Set this to `true` to disable primitives coercion.

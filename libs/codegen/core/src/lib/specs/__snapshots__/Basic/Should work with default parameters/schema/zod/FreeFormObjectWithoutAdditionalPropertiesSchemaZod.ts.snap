@@ -3,7 +3,7 @@ import { z } from 'zod';
 
 export const FreeFormObjectWithoutAdditionalPropertiesSchemaZod = z.record(
   z.string(),
-  z.any()
+  z.any(),
 );
 export const FreeFormObjectWithoutAdditionalPropertiesSchemaZodNoPrimaryKey =
   FreeFormObjectWithoutAdditionalPropertiesSchemaZod;

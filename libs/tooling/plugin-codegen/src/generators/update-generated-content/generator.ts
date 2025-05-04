@@ -10,8 +10,6 @@ import {
   readCachedProjectGraph,
 } from '@nx/devkit';
 
-import type { Dictionary } from '@ossts/shared/typescript/helper-types';
-
 import type { NormalizedSchema as GeneratorGeneratorNormalizedSchema } from '../generator/generator';
 import type { UpdateGeneratedContentGeneratorSchema } from './schema';
 
@@ -22,7 +20,7 @@ interface NormalizedSchema extends UpdateGeneratedContentGeneratorSchema {
 
 export async function updateGeneratedContent(
   tree: Tree,
-  options: UpdateGeneratedContentGeneratorSchema
+  options: UpdateGeneratedContentGeneratorSchema,
 ) {
   const normalizedOptions = normalizeOptions(tree, options);
 
@@ -32,11 +30,11 @@ export async function updateGeneratedContent(
 
 function normalizeOptions(
   tree: Tree,
-  options: UpdateGeneratedContentGeneratorSchema
+  options: UpdateGeneratedContentGeneratorSchema,
 ): NormalizedSchema {
   const projectRoot = joinPathFragments(
     getWorkspaceLayout(tree).libsDir,
-    'codegen'
+    'codegen',
   );
 
   return {
@@ -52,17 +50,20 @@ function addFiles(tree: Tree, options: NormalizedSchema) {
   const parsersRootPaths = projectNodesValues
     .filter((node) => node.data.root.startsWith('libs/codegen/parsers'))
     .map((node) => node.data.root);
-  const parsers = parsersRootPaths.reduce<Dictionary<string[]>>((acc, path) => {
-    const [, , , name, version] = path.split(pathSeparator);
+  const parsers = parsersRootPaths.reduce<Record<string, string[]>>(
+    (acc, path) => {
+      const [, , , name, version] = path.split(pathSeparator);
 
-    if (!acc[name]) {
-      acc[name] = [];
-    }
+      if (!acc[name]) {
+        acc[name] = [];
+      }
 
-    acc[name].push(version);
+      acc[name].push(version);
 
-    return acc;
-  }, {});
+      return acc;
+    },
+    {},
+  );
 
   const generatorBasePath = 'libs/codegen/generators/';
   const generatorsRootPaths = projectNodesValues
@@ -83,7 +84,7 @@ function addFiles(tree: Tree, options: NormalizedSchema) {
 
       return acc;
     },
-    []
+    [],
   );
 
   const templateOptions = {
@@ -96,7 +97,7 @@ function addFiles(tree: Tree, options: NormalizedSchema) {
     tree,
     joinPathFragments(__dirname, 'files'),
     options.projectRoot,
-    templateOptions
+    templateOptions,
   );
 }
 

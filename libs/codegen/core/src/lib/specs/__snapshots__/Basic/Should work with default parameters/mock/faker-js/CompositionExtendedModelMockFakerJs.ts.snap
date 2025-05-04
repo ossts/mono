@@ -11,7 +11,7 @@ import type {
 } from './typesMockFakerJs';
 
 export function getCompositionExtendedModelMockFakerJs<
-  TMode extends 'standalone' = 'standalone'
+  TMode extends 'standalone' = 'standalone',
 >(params?: MockFakerJSGeneratorParams<TMode>): CompositionExtendedModel | null {
   const modelName = 'CompositionExtendedModel';
 

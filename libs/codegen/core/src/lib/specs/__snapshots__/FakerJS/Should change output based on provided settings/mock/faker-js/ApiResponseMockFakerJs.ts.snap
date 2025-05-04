@@ -10,21 +10,21 @@ import type {
 } from './typesMockFakerJs';
 
 export function getApiResponseMockFakerJs<TMode extends 'withReferences'>(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): ModelOrIdNullable<ApiResponse> | null;
 
 export function getApiResponseMockFakerJs<TMode extends 'standalone'>(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): ApiResponse | null;
 
 export function getApiResponseMockFakerJs<TMode extends 'primaryKey'>(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): number | null;
 
 export function getApiResponseMockFakerJs<
-  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences'
+  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences',
 >(
-  params: MockFakerJSGeneratorParams<TMode> = {}
+  params: MockFakerJSGeneratorParams<TMode> = {},
 ): ModelOrIdNullable<ApiResponse> | null {
   const modelName = 'ApiResponse';
 
@@ -41,14 +41,14 @@ export function getApiResponseMockFakerJs<
         () => faker.string.alpha({ length: { min: 2, max: 10 } }),
         {
           probability,
-        }
+        },
       ),
       message: faker.helpers.maybe(
         () => faker.string.alpha({ length: { min: 2, max: 10 } }),
         {
           probability,
-        }
+        },
       ),
-    })
+    }),
   );
 }

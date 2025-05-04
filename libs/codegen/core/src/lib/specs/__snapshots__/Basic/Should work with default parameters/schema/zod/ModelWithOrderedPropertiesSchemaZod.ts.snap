@@ -8,7 +8,7 @@ export const ModelWithOrderedPropertiesSchemaZod = z
     hawaii: z.string().optional(),
   })
   .describe(
-    `Model:ModelWithOrderedProperties---This is a model with ordered properties`
+    `Model:ModelWithOrderedProperties---This is a model with ordered properties`,
   );
 export const ModelWithOrderedPropertiesSchemaZodNoPrimaryKey =
   ModelWithOrderedPropertiesSchemaZod;

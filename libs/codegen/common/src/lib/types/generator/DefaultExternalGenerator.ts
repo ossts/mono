@@ -6,7 +6,7 @@ import {
   type AbstractExternalGeneratorSettings,
 } from './AbstractExternalGenerator';
 
-/* eslint-disable-next-line @typescript-eslint/no-empty-interface */
+/* eslint-disable-next-line @typescript-eslint/no-empty-interface, @typescript-eslint/no-empty-object-type */
 export interface DefaultExternalGeneratorSettings
   extends AbstractExternalGeneratorSettings {}
 
@@ -29,7 +29,7 @@ export class DefaultExternalGenerator
       {
         generatorPath: '',
       },
-      config
+      config,
     );
   }
 

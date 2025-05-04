@@ -4,7 +4,7 @@ import type {
 } from '@ossts/codegen/parsers/openapi/v3';
 
 export const resolveRefsToParent = (
-  data: ParsedClientOpenAPIV3
+  data: ParsedClientOpenAPIV3,
 ): ParsedClientOpenAPIV3 => {
   data.models.forEach((model) => resolveModelRecursive(model));
 
@@ -13,7 +13,7 @@ export const resolveRefsToParent = (
 
 const resolveModelRecursive = (
   model: ParsedModelOpenAPIV3 | null,
-  parent?: ParsedModelOpenAPIV3
+  parent?: ParsedModelOpenAPIV3,
 ) => {
   if (!model) return;
 

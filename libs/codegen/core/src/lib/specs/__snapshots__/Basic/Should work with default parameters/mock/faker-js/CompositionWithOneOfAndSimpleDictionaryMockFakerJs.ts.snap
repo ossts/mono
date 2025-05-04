@@ -10,25 +10,25 @@ import type {
 } from './typesMockFakerJs';
 
 export function getCompositionWithOneOfAndSimpleDictionaryMockFakerJs<
-  TMode extends 'withReferences'
+  TMode extends 'withReferences',
 >(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): ModelOrIdNullable<CompositionWithOneOfAndSimpleDictionary> | null;
 
 export function getCompositionWithOneOfAndSimpleDictionaryMockFakerJs<
-  TMode extends 'standalone'
+  TMode extends 'standalone',
 >(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): CompositionWithOneOfAndSimpleDictionary | null;
 
 export function getCompositionWithOneOfAndSimpleDictionaryMockFakerJs<
-  TMode extends 'primaryKey'
+  TMode extends 'primaryKey',
 >(params?: MockFakerJSGeneratorParams<TMode>): number | null;
 
 export function getCompositionWithOneOfAndSimpleDictionaryMockFakerJs<
-  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences'
+  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences',
 >(
-  params: MockFakerJSGeneratorParams<TMode> = {}
+  params: MockFakerJSGeneratorParams<TMode> = {},
 ): ModelOrIdNullable<CompositionWithOneOfAndSimpleDictionary> | null {
   const modelName = 'CompositionWithOneOfAndSimpleDictionary';
 
@@ -55,8 +55,8 @@ export function getCompositionWithOneOfAndSimpleDictionaryMockFakerJs<
           ]),
         {
           probability,
-        }
+        },
       ),
-    })
+    }),
   );
 }

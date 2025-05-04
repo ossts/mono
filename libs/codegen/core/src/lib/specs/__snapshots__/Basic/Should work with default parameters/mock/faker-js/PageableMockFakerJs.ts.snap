@@ -10,21 +10,21 @@ import type {
 } from './typesMockFakerJs';
 
 export function getPageableMockFakerJs<TMode extends 'withReferences'>(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): ModelOrIdNullable<Pageable> | null;
 
 export function getPageableMockFakerJs<TMode extends 'standalone'>(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): Pageable | null;
 
 export function getPageableMockFakerJs<TMode extends 'primaryKey'>(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): number | null;
 
 export function getPageableMockFakerJs<
-  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences'
+  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences',
 >(
-  params: MockFakerJSGeneratorParams<TMode> = {}
+  params: MockFakerJSGeneratorParams<TMode> = {},
 ): ModelOrIdNullable<Pageable> | null {
   const modelName = 'Pageable';
 
@@ -47,8 +47,8 @@ export function getPageableMockFakerJs<
           ]),
         {
           probability,
-        }
+        },
       ),
-    })
+    }),
   );
 }

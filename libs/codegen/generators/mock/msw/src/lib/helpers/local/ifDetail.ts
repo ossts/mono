@@ -9,7 +9,7 @@ export const ifDetail: CodegenHandlebarsHelperWrapper = () =>
 
     if (
       val['parameters']?.find(
-        (item: DictionaryWithAny) => item['in'] === 'path'
+        (item: DictionaryWithAny) => item['in'] === 'path',
       )
     ) {
       return options.fn(this);

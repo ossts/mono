@@ -5,7 +5,7 @@ export const includes: CodegenHandlebarsHelperWrapper = () =>
     this: unknown,
     value: string | undefined,
     b: string,
-    options: Handlebars.HelperOptions
+    options: Handlebars.HelperOptions,
   ): string {
     return value?.includes(b) ? options.fn(this) : options.inverse(this);
   };

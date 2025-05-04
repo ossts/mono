@@ -11,7 +11,7 @@ import type {
 } from './typesMockFakerJs';
 
 export function getArrayWithArrayMockFakerJs<
-  TMode extends 'standalone' = 'standalone'
+  TMode extends 'standalone' = 'standalone',
 >(params?: MockFakerJSGeneratorParams<TMode>): ArrayWithArray | null {
   const modelName = 'ArrayWithArray';
 
@@ -35,7 +35,7 @@ export function getArrayWithArrayMockFakerJs<
         }),
       ]
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        .filter(Boolean) as any
+        .filter(Boolean) as any,
     ),
   ]);
 

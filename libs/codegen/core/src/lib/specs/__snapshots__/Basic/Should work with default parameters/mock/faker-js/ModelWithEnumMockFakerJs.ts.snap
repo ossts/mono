@@ -10,21 +10,21 @@ import type {
 } from './typesMockFakerJs';
 
 export function getModelWithEnumMockFakerJs<TMode extends 'withReferences'>(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): ModelOrIdNullable<ModelWithEnum> | null;
 
 export function getModelWithEnumMockFakerJs<TMode extends 'standalone'>(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): ModelWithEnum | null;
 
 export function getModelWithEnumMockFakerJs<TMode extends 'primaryKey'>(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): number | null;
 
 export function getModelWithEnumMockFakerJs<
-  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences'
+  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences',
 >(
-  params: MockFakerJSGeneratorParams<TMode> = {}
+  params: MockFakerJSGeneratorParams<TMode> = {},
 ): ModelOrIdNullable<ModelWithEnum> | null {
   const modelName = 'ModelWithEnum';
 
@@ -38,17 +38,17 @@ export function getModelWithEnumMockFakerJs<
         () => faker.helpers.enumValue(ModelWithEnum.test),
         {
           probability,
-        }
+        },
       ),
       statusCode: faker.helpers.maybe(
         () => faker.helpers.enumValue(ModelWithEnum.statusCode),
         {
           probability,
-        }
+        },
       ),
       bool: faker.helpers.maybe(() => faker.datatype.boolean(), {
         probability,
       }),
-    })
+    }),
   );
 }

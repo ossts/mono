@@ -10,21 +10,21 @@ import type {
 } from './typesMockFakerJs';
 
 export function getUserMockFakerJs<TMode extends 'withReferences'>(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): ModelOrIdNullable<User> | null | User['id'];
 
 export function getUserMockFakerJs<TMode extends 'standalone'>(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): User | null;
 
 export function getUserMockFakerJs<TMode extends 'primaryKey'>(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): number | null;
 
 export function getUserMockFakerJs<
-  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences'
+  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences',
 >(
-  params: MockFakerJSGeneratorParams<TMode> = {}
+  params: MockFakerJSGeneratorParams<TMode> = {},
 ): ModelOrIdNullable<User> | null | User['id'] {
   const modelName = 'User';
 
@@ -35,7 +35,7 @@ export function getUserMockFakerJs<
       () => faker.string.fromCharacters('abc_xyz', { min: 5, max: 20 }),
       {
         probability,
-      }
+      },
     ),
     username: faker.helpers.maybe(() => faker.internet.username(), {
       probability,
@@ -54,7 +54,7 @@ export function getUserMockFakerJs<
         }),
       {
         probability,
-      }
+      },
     ),
     password: faker.helpers.maybe(() => faker.internet.password(), {
       probability,

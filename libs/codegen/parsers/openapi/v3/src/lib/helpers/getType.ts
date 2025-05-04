@@ -14,7 +14,7 @@ const encode = (value: string): string => {
  */
 export const getType = (
   type: string | string[] = 'any',
-  format?: string
+  format?: string,
 ): ParsedTypeOpenAPIV3 => {
   const result: ParsedTypeOpenAPIV3 = {
     type: 'any',

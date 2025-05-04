@@ -10,7 +10,7 @@ import { getPattern } from '../utils';
 export const getOperationResponse = (
   openApi: OpenAPIV3Document,
   response: OpenAPIV3ResponseWithRef,
-  responseCode: number
+  responseCode: number,
 ): ParsedOperationResponseOpenAPIV3 => {
   const operationResponse: ParsedOperationResponseOpenAPIV3 = {
     in: 'response',
@@ -48,7 +48,7 @@ export const getOperationResponse = (
         if (content.schema.$ref?.startsWith('#/components/responses/')) {
           content.schema = getRef<OpenAPIV3SchemaWithRef>(
             openApi,
-            content.schema
+            content.schema,
           );
         }
 

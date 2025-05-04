@@ -31,6 +31,6 @@ describe('Basic', () => {
     });
 
     // just to make vitest runner happy
-    expect(true).toBe(true);
+    expect('true').toMatchSnapshot();
   });
 });

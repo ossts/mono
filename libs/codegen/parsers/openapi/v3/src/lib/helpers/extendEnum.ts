@@ -8,7 +8,7 @@ import type { ParsedEnumOpenAPIV3, WithEnumExtensionOpenAPIV3 } from '../types';
  */
 export const extendEnum = (
   enumerators: ParsedEnumOpenAPIV3[],
-  definition: WithEnumExtensionOpenAPIV3
+  definition: WithEnumExtensionOpenAPIV3,
 ): ParsedEnumOpenAPIV3[] => {
   const names = definition['x-enum-varnames']?.filter(isString);
   const descriptions = definition['x-enum-descriptions']?.filter(isString);

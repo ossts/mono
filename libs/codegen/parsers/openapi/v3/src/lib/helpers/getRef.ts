@@ -9,7 +9,7 @@ const ESCAPED_REF_TILDE = /~0/g;
 
 export const getRef = <T extends object>(
   openApi: OpenAPIV3Document,
-  item: T | OpenAPIV3.ReferenceObject
+  item: T | OpenAPIV3.ReferenceObject,
 ): T => {
   if ('$ref' in item) {
     // Fetch the paths to the definitions, this converts:
@@ -24,7 +24,7 @@ export const getRef = <T extends object>(
     let result: DictionaryWithAny = openApi;
     paths.forEach((path) => {
       const decodedPath = decodeURIComponent(
-        path.replace(ESCAPED_REF_SLASH, '/').replace(ESCAPED_REF_TILDE, '~')
+        path.replace(ESCAPED_REF_SLASH, '/').replace(ESCAPED_REF_TILDE, '~'),
       );
       if (Object.prototype.hasOwnProperty.call(result, decodedPath)) {
         result = result[decodedPath];

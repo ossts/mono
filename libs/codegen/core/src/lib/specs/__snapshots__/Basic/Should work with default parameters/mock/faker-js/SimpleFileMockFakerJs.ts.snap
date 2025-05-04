@@ -10,7 +10,7 @@ import type {
 } from './typesMockFakerJs';
 
 export function getSimpleFileMockFakerJs<
-  TMode extends 'standalone' = 'standalone'
+  TMode extends 'standalone' = 'standalone',
 >(params?: MockFakerJSGeneratorParams<TMode>): SimpleFile | null {
   const modelName = 'SimpleFile';
 

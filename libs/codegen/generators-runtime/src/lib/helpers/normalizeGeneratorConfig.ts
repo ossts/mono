@@ -9,9 +9,10 @@ import type {
 import type { ResolvedGenerator } from '../types';
 
 export const normalizeGeneratorConfigs = <
-  TGenerators extends AbstractExternalGeneratorWithName = AbstractExternalGeneratorWithName
+  TGenerators extends
+    AbstractExternalGeneratorWithName = AbstractExternalGeneratorWithName,
 >(
-  generatorCfg: AbstractGeneratorWithName | AbstractExternalGeneratorUXName
+  generatorCfg: AbstractGeneratorWithName | AbstractExternalGeneratorUXName,
 ): ResolvedGenerator<TGenerators> => {
   let name: string;
 

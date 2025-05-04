@@ -8,7 +8,7 @@ export const CompositionWithOneOfAndSimpleArrayDictionarySchemaZod = z
       .optional(),
   })
   .describe(
-    `Model:CompositionWithOneOfAndSimpleArrayDictionary---This is a model that contains a dictionary of simple arrays within composition`
+    `Model:CompositionWithOneOfAndSimpleArrayDictionary---This is a model that contains a dictionary of simple arrays within composition`,
   );
 export const CompositionWithOneOfAndSimpleArrayDictionarySchemaZodNoPrimaryKey =
   CompositionWithOneOfAndSimpleArrayDictionarySchemaZod;

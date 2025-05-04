@@ -3,6 +3,7 @@
   "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/codegen/generators/schema/zod/src",
   "projectType": "library",
+  "tags": ["scope:ts", "type:lib", "project:codegen"],
   "targets": {
     "build": {
       "executor": "@nx/vite:build",
@@ -35,6 +36,5 @@
         "outputPath": "libs/codegen/generators/schema/zod/src/lib/precompiled-templates"
       }
     }
-  },
-  "tags": ["scope:ts", "type:lib", "project:codegen"]
+  }
 }

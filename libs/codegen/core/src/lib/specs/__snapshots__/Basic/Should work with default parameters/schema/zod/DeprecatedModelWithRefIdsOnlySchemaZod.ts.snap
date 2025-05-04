@@ -6,7 +6,7 @@ export const DeprecatedModelWithRefIdsOnlySchemaZod = z
     prop: z.string().optional(),
   })
   .describe(
-    `Model:DeprecatedModel---This is a deprecated model with a deprecated property`
+    `Model:DeprecatedModel---This is a deprecated model with a deprecated property`,
   );
 export const DeprecatedModelWithRefIdsOnlySchemaZodNoPrimaryKey =
   DeprecatedModelWithRefIdsOnlySchemaZod;

@@ -7,7 +7,7 @@ export const ArrayWithReferencesWithRefIdsAllowedSchemaZod = z.array(
   ModelWithStringWithRefIdsAllowedSchemaZod.or(z.string())
     .or(z.number())
     .optional()
-    .nullable()
+    .nullable(),
 );
 export const ArrayWithReferencesWithRefIdsAllowedSchemaZodNoPrimaryKey =
   ArrayWithReferencesWithRefIdsAllowedSchemaZod;

@@ -8,8 +8,8 @@ export const ArrayWithArrayWithRefIdsAllowedSchemaZod = z.array(
     ModelWithStringWithRefIdsAllowedSchemaZod.or(z.string())
       .or(z.number())
       .optional()
-      .nullable()
-  )
+      .nullable(),
+  ),
 );
 export const ArrayWithArrayWithRefIdsAllowedSchemaZodNoPrimaryKey =
   ArrayWithArrayWithRefIdsAllowedSchemaZod;

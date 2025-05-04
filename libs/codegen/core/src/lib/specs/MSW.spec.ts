@@ -169,7 +169,7 @@ describe('MSW', () => {
       `${baseUrl}/pet/5035956471177324`,
       {
         method: 'DELETE',
-      }
+      },
     );
     expect(deleteNotFoundResponse.ok).toBe(false);
     expect(deleteNotFoundResponse.status).toBe(400);

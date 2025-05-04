@@ -6,7 +6,7 @@ export const ModelWithEnumFromDescriptionSchemaZod = z
     test: z.number().optional(),
   })
   .describe(
-    `Model:ModelWithEnumFromDescription---This is a model with one enum`
+    `Model:ModelWithEnumFromDescription---This is a model with one enum`,
   );
 export const ModelWithEnumFromDescriptionSchemaZodNoPrimaryKey =
   ModelWithEnumFromDescriptionSchemaZod;

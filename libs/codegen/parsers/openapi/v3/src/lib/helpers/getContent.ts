@@ -24,7 +24,7 @@ const BASIC_MEDIA_TYPES = [
 
 export const getContent = (
   openApi: OpenAPIV3Document,
-  content: Dictionary<OpenAPIV3.MediaTypeObject>
+  content: Dictionary<OpenAPIV3.MediaTypeObject>,
 ): Content | null => {
   const basicMediaTypeWithSchema = Object.keys(content)
     .filter((mediaType) => {
@@ -40,7 +40,7 @@ export const getContent = (
   }
 
   const firstMediaTypeWithSchema = Object.keys(content).find(
-    (mediaType) => !isNil(content[mediaType]?.schema)
+    (mediaType) => !isNil(content[mediaType]?.schema),
   );
   if (firstMediaTypeWithSchema) {
     return {

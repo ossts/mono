@@ -11,7 +11,7 @@ import type {
 } from './typesMockFakerJs';
 
 export function getModelThatExtendsMockFakerJs<
-  TMode extends 'standalone' = 'standalone'
+  TMode extends 'standalone' = 'standalone',
 >(params?: MockFakerJSGeneratorParams<TMode>): ModelThatExtends | null {
   const modelName = 'ModelThatExtends';
 
@@ -36,7 +36,7 @@ export function getModelThatExtendsMockFakerJs<
         () => faker.string.alpha({ length: { min: 2, max: 10 } }),
         {
           probability,
-        }
+        },
       ),
       propExtendsB: faker.helpers.maybe(
         () =>
@@ -47,7 +47,7 @@ export function getModelThatExtendsMockFakerJs<
           }),
         {
           probability,
-        }
+        },
       ),
     },
   };

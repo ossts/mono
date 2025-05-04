@@ -40,5 +40,5 @@ export class CommonEndpointsGenerator
     });
   }
 
-  override settings?: CommonEndpointsGeneratorSettings;
+  declare settings?: CommonEndpointsGeneratorSettings;
 }

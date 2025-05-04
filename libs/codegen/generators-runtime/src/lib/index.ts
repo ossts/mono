@@ -4,7 +4,8 @@ import { renderEntries, resolveGenerators } from './helpers';
 import type { GenerateParams } from './types';
 
 export const runGenerators = async <
-  TGenerators extends AbstractExternalGeneratorWithName = AbstractExternalGeneratorWithName
+  TGenerators extends
+    AbstractExternalGeneratorWithName = AbstractExternalGeneratorWithName,
 >({
   generators: generatorsCfg = ['*'],
   generatorsSettings,

@@ -6,7 +6,7 @@ import { isOperation, unique } from '../utils';
  * Get the OpenAPI services
  */
 export const getServices = (
-  openApi: OpenAPIV3Document
+  openApi: OpenAPIV3Document,
 ): ParsedServiceOpenAPIV3[] => {
   const services = new Map<string, ParsedServiceOpenAPIV3>();
 
@@ -16,7 +16,7 @@ export const getServices = (
     .forEach(([url, path]) => {
       const pathParams = getOperationParameters(
         openApi,
-        path?.parameters || []
+        path?.parameters || [],
       );
 
       url = url.replace(/\/{(.+?)}/g, '/:$1');
@@ -36,13 +36,13 @@ export const getServices = (
             method,
             tag,
             op,
-            pathParams
+            pathParams,
           );
 
           // If we have already declared a service, then we should fetch that and
           // append the new method to it. Otherwise we should create a new service object.
           const service: ParsedServiceOpenAPIV3 = services.get(
-            operation.service
+            operation.service,
           ) || {
             name: operation.service,
             operations: [],

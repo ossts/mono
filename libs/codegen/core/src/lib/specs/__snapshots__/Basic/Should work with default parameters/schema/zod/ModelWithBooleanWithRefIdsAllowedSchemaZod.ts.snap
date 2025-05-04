@@ -6,7 +6,7 @@ export const ModelWithBooleanWithRefIdsAllowedSchemaZod = z
     prop: z.boolean().optional(),
   })
   .describe(
-    `Model:ModelWithBoolean---This is a model with one boolean property`
+    `Model:ModelWithBoolean---This is a model with one boolean property`,
   );
 export const ModelWithBooleanWithRefIdsAllowedSchemaZodNoPrimaryKey =
   ModelWithBooleanWithRefIdsAllowedSchemaZod;

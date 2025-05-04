@@ -21,7 +21,7 @@ import {
 
 export const processTemplateFile = async (
   path: string,
-  eventName?: 'add' | 'change' | 'unlink'
+  eventName?: 'add' | 'change' | 'unlink',
 ) => {
   const generatorConfig = await getGeneratorConfig();
 
@@ -36,11 +36,11 @@ export const processTemplateFile = async (
 
   const targetPath = resolve(
     generatorPrecompiledTemplatesPath,
-    `${targetPathRelative}.${fileExtension}`
+    `${targetPathRelative}.${fileExtension}`,
   );
   const pathBasedNameUnderscored = parsedPathSplit.join('_');
   const camelCasedName = camelCase(
-    `${pathBasedNameUnderscored}_${parsedPath.name}`
+    `${pathBasedNameUnderscored}_${parsedPath.name}`,
   );
 
   if (eventName === 'unlink') {
@@ -52,7 +52,7 @@ export const processTemplateFile = async (
     const contents = readFileSync(`${generatorTemplatesPath}/${path}`, 'utf-8');
 
     const knownHelpers = await getKnownHelpers(
-      generatorConfig?.helpers.localHelpers
+      generatorConfig?.helpers.localHelpers,
     );
 
     const precompiledTemplate = handlebars.precompile(contents, {

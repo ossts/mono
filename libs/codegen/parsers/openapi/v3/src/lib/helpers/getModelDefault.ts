@@ -5,7 +5,7 @@ import type {
 
 export const getModelDefault = (
   schema: OpenAPIV3SchemaWithEnumExtension,
-  model?: ParsedModelOpenAPIV3
+  model?: ParsedModelOpenAPIV3,
 ): string | undefined => {
   if (schema.default === undefined) {
     return undefined;

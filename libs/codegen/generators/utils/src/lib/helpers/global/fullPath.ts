@@ -25,7 +25,7 @@ export const fullPath: CodegenHandlebarsHelperWrapper<AbstractGeneratorSettings>
 
 const getFullPath = (
   type: ParsedModelOpenAPIV3,
-  firstCall = false
+  firstCall = false,
 ): string[] => {
   let path: string[] = [];
 
@@ -47,7 +47,7 @@ const getFullPath = (
       // eslint-disable-next-line no-debugger
       debugger;
       throw new Error(
-        'No "refToParent" available for type. This should never happen'
+        'No "refToParent" available for type. This should never happen',
       );
     }
   }

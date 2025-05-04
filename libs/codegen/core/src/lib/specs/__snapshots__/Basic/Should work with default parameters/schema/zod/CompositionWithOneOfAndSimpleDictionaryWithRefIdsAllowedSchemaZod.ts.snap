@@ -9,7 +9,7 @@ export const CompositionWithOneOfAndSimpleDictionaryWithRefIdsAllowedSchemaZod =
         .optional(),
     })
     .describe(
-      `Model:CompositionWithOneOfAndSimpleDictionary---This is a model that contains a simple dictionary within composition`
+      `Model:CompositionWithOneOfAndSimpleDictionary---This is a model that contains a simple dictionary within composition`,
     );
 export const CompositionWithOneOfAndSimpleDictionaryWithRefIdsAllowedSchemaZodNoPrimaryKey =
   CompositionWithOneOfAndSimpleDictionaryWithRefIdsAllowedSchemaZod;

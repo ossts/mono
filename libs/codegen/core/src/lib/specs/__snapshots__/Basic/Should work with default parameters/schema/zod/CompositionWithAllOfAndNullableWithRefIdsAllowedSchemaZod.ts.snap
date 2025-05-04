@@ -19,7 +19,7 @@ export const CompositionWithAllOfAndNullableWithRefIdsAllowedSchemaZod = z
       .nullable(),
   })
   .describe(
-    `Model:CompositionWithAllOfAndNullable---This is a model with one property with a 'all of' relationship`
+    `Model:CompositionWithAllOfAndNullable---This is a model with one property with a 'all of' relationship`,
   );
 export const CompositionWithAllOfAndNullableWithRefIdsAllowedSchemaZodNoPrimaryKey =
   CompositionWithAllOfAndNullableWithRefIdsAllowedSchemaZod;

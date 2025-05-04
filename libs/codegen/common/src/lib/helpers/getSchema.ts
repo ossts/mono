@@ -5,7 +5,7 @@ import { parseReferencesBundle } from './parseReferencesBundle';
 
 export const getSchema = async (
   input: string | JSONSchema,
-  schemaType: SchemaParsers
+  schemaType: SchemaParsers,
 ): Promise<AbstractCodegenSchema> => {
   switch (schemaType) {
     case 'openapi':

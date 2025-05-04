@@ -10,25 +10,25 @@ import type {
 } from './typesMockFakerJs';
 
 export function getCompositionWithOneOfAnonymousMockFakerJs<
-  TMode extends 'withReferences'
+  TMode extends 'withReferences',
 >(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): ModelOrIdNullable<CompositionWithOneOfAnonymous> | null;
 
 export function getCompositionWithOneOfAnonymousMockFakerJs<
-  TMode extends 'standalone'
+  TMode extends 'standalone',
 >(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): CompositionWithOneOfAnonymous | null;
 
 export function getCompositionWithOneOfAnonymousMockFakerJs<
-  TMode extends 'primaryKey'
+  TMode extends 'primaryKey',
 >(params?: MockFakerJSGeneratorParams<TMode>): number | null;
 
 export function getCompositionWithOneOfAnonymousMockFakerJs<
-  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences'
+  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences',
 >(
-  params: MockFakerJSGeneratorParams<TMode> = {}
+  params: MockFakerJSGeneratorParams<TMode> = {},
 ): ModelOrIdNullable<CompositionWithOneOfAnonymous> | null {
   const modelName = 'CompositionWithOneOfAnonymous';
 
@@ -46,7 +46,7 @@ export function getCompositionWithOneOfAnonymousMockFakerJs<
                 () => faker.string.alpha({ length: { min: 2, max: 10 } }),
                 {
                   probability,
-                }
+                },
               ),
             },
             faker.string.alpha({ length: { min: 2, max: 10 } }),
@@ -54,8 +54,8 @@ export function getCompositionWithOneOfAnonymousMockFakerJs<
           ]),
         {
           probability,
-        }
+        },
       ),
-    })
+    }),
   );
 }

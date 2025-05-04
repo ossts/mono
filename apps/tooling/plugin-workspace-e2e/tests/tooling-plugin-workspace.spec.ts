@@ -16,7 +16,7 @@ describe('tooling-plugin-workspace e2e', () => {
   beforeAll(() => {
     ensureNxProject(
       '@ossts/plugin-workspace',
-      'dist/libs/tooling/plugin-workspace'
+      'dist/libs/tooling/plugin-workspace',
     );
   });
 

@@ -10,7 +10,7 @@ import type {
 } from './typesMockFakerJs';
 
 export function getDictionaryWithDictionaryMockFakerJs<
-  TMode extends 'standalone' = 'standalone'
+  TMode extends 'standalone' = 'standalone',
 >(params?: MockFakerJSGeneratorParams<TMode>): DictionaryWithDictionary | null {
   const modelName = 'DictionaryWithDictionary';
 
@@ -41,12 +41,12 @@ export function getDictionaryWithDictionaryMockFakerJs<
           () => faker.string.alpha({ length: { min: 2, max: 10 } }),
           {
             probability,
-          }
+          },
         ),
       }),
       {
         probability,
-      }
+      },
     ),
   };
 

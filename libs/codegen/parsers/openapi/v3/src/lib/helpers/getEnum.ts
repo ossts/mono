@@ -1,7 +1,7 @@
 import type { ParsedEnumOpenAPIV3 } from '../types';
 
 export const getEnum = (
-  values?: (string | number)[]
+  values?: (string | number)[],
 ): ParsedEnumOpenAPIV3[] => {
   if (!Array.isArray(values)) return [];
 

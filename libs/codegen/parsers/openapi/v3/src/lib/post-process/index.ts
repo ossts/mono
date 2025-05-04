@@ -3,7 +3,7 @@ import { postProcessModel } from './postProcessModel';
 import { postProcessService } from './postProcessService';
 
 export const postProcess = (
-  client: ParsedClientOpenAPIV3
+  client: ParsedClientOpenAPIV3,
 ): ParsedClientOpenAPIV3 => {
   return {
     ...client,

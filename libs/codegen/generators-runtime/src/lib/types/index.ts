@@ -11,7 +11,8 @@ export * from './Generator';
 export * from './ResolvedGenerator';
 
 export type GenerateParams<
-  TGenerators extends AbstractExternalGeneratorWithName = AbstractExternalGeneratorWithName
+  TGenerators extends
+    AbstractExternalGeneratorWithName = AbstractExternalGeneratorWithName,
 > = AbstractGenerateParams<
   GeneratorsWithAll | TGenerators,
   ResolvedGeneratorsMap<TGenerators>,

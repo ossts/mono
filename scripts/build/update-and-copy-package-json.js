@@ -33,7 +33,7 @@ module.exports.updateAndCopyPackageJSON = async () => {
     if (!key.endsWith('.js')) continue;
 
     metaFileOutputs[key].imports.forEach(({ path }) =>
-      requiredDependencies.add(path)
+      requiredDependencies.add(path),
     );
   }
 
@@ -52,7 +52,7 @@ module.exports.updateAndCopyPackageJSON = async () => {
       // which may be longer than package name
     } else if (dependency.includes('/')) {
       const matchedDependency = rootDependenciesKeys.find((name) =>
-        dependency.startsWith(name)
+        dependency.startsWith(name),
       );
       if (matchedDependency) {
         libPackageJSON['dependencies'][matchedDependency] =
@@ -61,7 +61,7 @@ module.exports.updateAndCopyPackageJSON = async () => {
       }
 
       const matchedDevDependency = rootDevDependenciesKeys.find((name) =>
-        dependency.startsWith(name)
+        dependency.startsWith(name),
       );
 
       if (!matchedDevDependency) continue;

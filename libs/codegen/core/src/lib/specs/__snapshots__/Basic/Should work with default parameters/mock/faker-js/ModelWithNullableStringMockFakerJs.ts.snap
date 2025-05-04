@@ -10,23 +10,23 @@ import type {
 } from './typesMockFakerJs';
 
 export function getModelWithNullableStringMockFakerJs<
-  TMode extends 'withReferences'
+  TMode extends 'withReferences',
 >(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): ModelOrIdNullable<ModelWithNullableString> | null;
 
 export function getModelWithNullableStringMockFakerJs<
-  TMode extends 'standalone'
+  TMode extends 'standalone',
 >(params?: MockFakerJSGeneratorParams<TMode>): ModelWithNullableString | null;
 
 export function getModelWithNullableStringMockFakerJs<
-  TMode extends 'primaryKey'
+  TMode extends 'primaryKey',
 >(params?: MockFakerJSGeneratorParams<TMode>): number | null;
 
 export function getModelWithNullableStringMockFakerJs<
-  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences'
+  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences',
 >(
-  params: MockFakerJSGeneratorParams<TMode> = {}
+  params: MockFakerJSGeneratorParams<TMode> = {},
 ): ModelOrIdNullable<ModelWithNullableString> | null {
   const modelName = 'ModelWithNullableString';
 
@@ -44,7 +44,7 @@ export function getModelWithNullableStringMockFakerJs<
           ]),
         {
           probability,
-        }
+        },
       ),
       nullableRequiredProp1: faker.helpers.arrayElement([
         faker.string.alpha({ length: { min: 2, max: 10 } }),
@@ -58,12 +58,12 @@ export function getModelWithNullableStringMockFakerJs<
           ]),
         {
           probability,
-        }
+        },
       ),
       nullableRequiredProp2: faker.helpers.arrayElement([
         faker.string.alpha({ length: { min: 2, max: 10 } }),
         null,
       ]),
-    })
+    }),
   );
 }

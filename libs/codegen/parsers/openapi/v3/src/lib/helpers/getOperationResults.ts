@@ -5,7 +5,7 @@ import type {
 
 const areEqual = (
   a: ParsedModelOpenAPIV3,
-  b: ParsedModelOpenAPIV3
+  b: ParsedModelOpenAPIV3,
 ): boolean => {
   const equal =
     a.type === b.type && a.base === b.base && a.template === b.template;
@@ -16,7 +16,7 @@ const areEqual = (
 };
 
 export const getOperationResults = (
-  operationResponses: ParsedOperationResponseOpenAPIV3[]
+  operationResponses: ParsedOperationResponseOpenAPIV3[],
 ): ParsedOperationResponseOpenAPIV3[] => {
   const operationResults: ParsedOperationResponseOpenAPIV3[] = [];
 

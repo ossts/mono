@@ -25,7 +25,7 @@ it('Should be able to parse schema into required format', async () => {
         }
 
         return value;
-      })
-    )
+      }),
+    ),
   ).toMatchSnapshot();
 });

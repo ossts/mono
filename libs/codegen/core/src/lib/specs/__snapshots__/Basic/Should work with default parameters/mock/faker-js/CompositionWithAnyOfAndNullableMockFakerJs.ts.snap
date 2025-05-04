@@ -13,25 +13,25 @@ import type {
 } from './typesMockFakerJs';
 
 export function getCompositionWithAnyOfAndNullableMockFakerJs<
-  TMode extends 'withReferences'
+  TMode extends 'withReferences',
 >(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): ModelOrIdNullable<CompositionWithAnyOfAndNullable> | null;
 
 export function getCompositionWithAnyOfAndNullableMockFakerJs<
-  TMode extends 'standalone'
+  TMode extends 'standalone',
 >(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): CompositionWithAnyOfAndNullable | null;
 
 export function getCompositionWithAnyOfAndNullableMockFakerJs<
-  TMode extends 'primaryKey'
+  TMode extends 'primaryKey',
 >(params?: MockFakerJSGeneratorParams<TMode>): number | null;
 
 export function getCompositionWithAnyOfAndNullableMockFakerJs<
-  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences'
+  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences',
 >(
-  params: MockFakerJSGeneratorParams<TMode> = {}
+  params: MockFakerJSGeneratorParams<TMode> = {},
 ): ModelOrIdNullable<CompositionWithAnyOfAndNullable> | null {
   const modelName = 'CompositionWithAnyOfAndNullable';
 
@@ -67,8 +67,8 @@ export function getCompositionWithAnyOfAndNullableMockFakerJs<
           ]),
         {
           probability,
-        }
+        },
       ),
-    })
+    }),
   );
 }

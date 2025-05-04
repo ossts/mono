@@ -10,9 +10,9 @@ import type {
 } from './typesMockFakerJs';
 
 export function getFreeFormObjectWithoutAdditionalPropertiesMockFakerJs<
-  TMode extends 'standalone' = 'standalone'
+  TMode extends 'standalone' = 'standalone',
 >(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): FreeFormObjectWithoutAdditionalProperties | null {
   const modelName = 'FreeFormObjectWithoutAdditionalProperties';
 

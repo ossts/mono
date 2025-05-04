@@ -199,7 +199,7 @@ describe('FakerJS', () => {
     // 1. expect "success"
     const [isRemoved, deleteMessage] = removeEntityIfAllowed(
       'Pet',
-      4895266431930164
+      4895266431930164,
     );
     expect(isRemoved).toBe(true);
     expect(deleteMessage).toBeUndefined();
@@ -208,7 +208,7 @@ describe('FakerJS', () => {
     // 2. expect error "not found"
     const [isRemovedNotFound, deleteMessageNotFound] = removeEntityIfAllowed(
       'Pet',
-      647875750
+      647875750,
     );
     expect(isRemovedNotFound).toBe(false);
     expect(deleteMessageNotFound).not.toBe('');
@@ -219,7 +219,7 @@ describe('FakerJS', () => {
     const entityAsDependencyId = 8699624478886955;
     const refToModelAsDependency = tagsMap.get(entityAsDependencyId);
     const refsCountSetForRefAsDependency = modelRefsMap.get(
-      refToModelAsDependency
+      refToModelAsDependency,
     );
     expect(refsCountSetForRefAsDependency.size).toBe(1);
     const [isRemovedIsDependency, deleteMessageIsDependency] =
@@ -317,7 +317,7 @@ describe('FakerJS', () => {
       newUnregisteredPetForCreateMethod,
       {
         faker,
-      }
+      },
     );
     expect(newUnregisteredPetCreatedViaMethod).toMatchSnapshot();
     expect(petsMap.size).toBe(4);
@@ -345,7 +345,7 @@ describe('FakerJS', () => {
     expect(modelRefsMap.size).toBe(9);
     expect(modelDependenciesMap.size).toBe(5);
     expect(petsMap.get(newUnregisteredPetForUpdateWithRefs.id)).toStrictEqual(
-      newUnregisteredPetForUpdateWithRefs
+      newUnregisteredPetForUpdateWithRefs,
     );
 
     // 3. Attempt to update non existing entity - error
@@ -360,7 +360,7 @@ describe('FakerJS', () => {
     newUnregisteredPetForUpdateNonExisting.id = -1;
 
     expect(() =>
-      updateEntity('Pet', newUnregisteredPetForUpdateNonExisting)
+      updateEntity('Pet', newUnregisteredPetForUpdateNonExisting),
     ).toThrowError();
 
     // 4. Update Tag which is reference by Pet. Check all old relations removed and new created
@@ -394,7 +394,7 @@ describe('FakerJS', () => {
     expect(modelDependenciesMap.size).toBe(5);
     expect(tagsMap.get(newTagForUpdate.id)).toStrictEqual(newTagForUpdate);
     expect(categoriesMap.get(newCategoryForUpdate.id)).toStrictEqual(
-      newCategoryForUpdate
+      newCategoryForUpdate,
     );
 
     // !!!IMPORTANT!!! don't forget to restore mocked FS to write results as snapshots

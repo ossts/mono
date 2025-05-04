@@ -9,7 +9,7 @@ export const ModelWithCircularReferenceWithRefIdsAllowedSchemaZod = z
       .nullable(),
   })
   .describe(
-    `Model:ModelWithCircularReference---This is a model with one property containing a circular reference`
+    `Model:ModelWithCircularReference---This is a model with one property containing a circular reference`,
   );
 export const ModelWithCircularReferenceWithRefIdsAllowedSchemaZodNoPrimaryKey =
   ModelWithCircularReferenceWithRefIdsAllowedSchemaZod;

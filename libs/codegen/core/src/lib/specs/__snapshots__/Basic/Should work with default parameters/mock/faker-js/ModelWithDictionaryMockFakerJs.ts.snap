@@ -10,23 +10,23 @@ import type {
 } from './typesMockFakerJs';
 
 export function getModelWithDictionaryMockFakerJs<
-  TMode extends 'withReferences'
+  TMode extends 'withReferences',
 >(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): ModelOrIdNullable<ModelWithDictionary> | null;
 
 export function getModelWithDictionaryMockFakerJs<TMode extends 'standalone'>(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): ModelWithDictionary | null;
 
 export function getModelWithDictionaryMockFakerJs<TMode extends 'primaryKey'>(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): number | null;
 
 export function getModelWithDictionaryMockFakerJs<
-  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences'
+  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences',
 >(
-  params: MockFakerJSGeneratorParams<TMode> = {}
+  params: MockFakerJSGeneratorParams<TMode> = {},
 ): ModelOrIdNullable<ModelWithDictionary> | null {
   const modelName = 'ModelWithDictionary';
 
@@ -47,13 +47,13 @@ export function getModelWithDictionaryMockFakerJs<
             () => faker.string.alpha({ length: { min: 2, max: 10 } }),
             {
               probability,
-            }
+            },
           ),
         }),
         {
           probability,
-        }
+        },
       ),
-    })
+    }),
   );
 }

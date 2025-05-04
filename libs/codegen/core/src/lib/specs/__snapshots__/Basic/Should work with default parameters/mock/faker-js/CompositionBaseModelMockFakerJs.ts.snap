@@ -10,23 +10,23 @@ import type {
 } from './typesMockFakerJs';
 
 export function getCompositionBaseModelMockFakerJs<
-  TMode extends 'withReferences'
+  TMode extends 'withReferences',
 >(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): ModelOrIdNullable<CompositionBaseModel> | null;
 
 export function getCompositionBaseModelMockFakerJs<TMode extends 'standalone'>(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): CompositionBaseModel | null;
 
 export function getCompositionBaseModelMockFakerJs<TMode extends 'primaryKey'>(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): number | null;
 
 export function getCompositionBaseModelMockFakerJs<
-  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences'
+  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences',
 >(
-  params: MockFakerJSGeneratorParams<TMode> = {}
+  params: MockFakerJSGeneratorParams<TMode> = {},
 ): ModelOrIdNullable<CompositionBaseModel> | null {
   const modelName = 'CompositionBaseModel';
 
@@ -42,6 +42,6 @@ export function getCompositionBaseModelMockFakerJs<
       lastname: faker.helpers.maybe(() => faker.person.lastName(), {
         probability,
       }),
-    })
+    }),
   );
 }

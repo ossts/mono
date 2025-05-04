@@ -11,7 +11,7 @@ export const union: CodegenHandlebarsHelperWrapper = ({
     this: unknown,
     properties: ParsedModelOpenAPIV3[],
     parent: string | undefined,
-    options: Handlebars.HelperOptions
+    options: Handlebars.HelperOptions,
   ) {
     const type = handlebarsInstance.partials['utilsType'];
     const types = properties.map((property) =>
@@ -21,8 +21,8 @@ export const union: CodegenHandlebarsHelperWrapper = ({
           parent,
           settings,
         },
-        options
-      )
+        options,
+      ),
     );
     const uniqueTypes = [...new Set(types)];
     let uniqueTypesString = uniqueTypes.join(' | ');

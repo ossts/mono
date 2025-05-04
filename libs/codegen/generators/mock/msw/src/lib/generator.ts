@@ -51,5 +51,5 @@ export class MockMswGenerator
     });
   }
 
-  override settings?: MockMswGeneratorSettings;
+  declare settings?: MockMswGeneratorSettings;
 }

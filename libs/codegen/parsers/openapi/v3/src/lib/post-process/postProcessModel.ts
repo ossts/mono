@@ -8,7 +8,7 @@ import { postProcessModelImports } from './postProcessModelImports';
  * This will clean up any double imports or enum values.
  */
 export const postProcessModel = (
-  model: ParsedModelOpenAPIV3
+  model: ParsedModelOpenAPIV3,
 ): ParsedModelOpenAPIV3 => {
   return {
     ...model,

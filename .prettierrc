@@ -1,5 +1,6 @@
 {
   "singleQuote": true,
+  "trailingComma": "all",
   "importOrder": [
     "^node:",
     "^react(-dom|-is)?$",

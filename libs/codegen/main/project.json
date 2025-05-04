@@ -7,6 +7,7 @@
     "name": "codegen",
     "description": "anything related to codegen project"
   },
+  "tags": ["scope:ts", "type:publishable-lib", "project:codegen"],
   "targets": {
     "build": {
       "executor": "nx:run-commands",
@@ -47,6 +48,5 @@
       "executor": "@nx/eslint:lint",
       "outputs": ["{options.outputFile}"]
     }
-  },
-  "tags": ["scope:ts", "type:publishable-lib", "project:codegen"]
+  }
 }

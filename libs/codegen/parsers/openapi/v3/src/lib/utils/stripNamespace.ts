@@ -11,7 +11,7 @@ const stripNamespaceRegExpNames = [
 ];
 
 const stripNamespaceRegExp = new RegExp(
-  `^#/components/(${stripNamespaceRegExpNames.join('|')})/`
+  `^#/components/(${stripNamespaceRegExpNames.join('|')})/`,
 );
 
 /**

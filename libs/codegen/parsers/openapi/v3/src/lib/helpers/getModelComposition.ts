@@ -17,7 +17,7 @@ export const getModelComposition = (
   schemas: OpenAPIV3SchemaWithRef[],
   type: 'oneOf' | 'anyOf' | 'allOf',
   getModel: GetModelFn,
-  parent: ParsedModelOpenAPIV3
+  parent: ParsedModelOpenAPIV3,
 ): ParsedModelCompositionOpenAPIV3 => {
   const composition: ParsedModelCompositionOpenAPIV3 = {
     type,
@@ -50,7 +50,7 @@ export const getModelComposition = (
       openApi,
       schema.required,
       schemas,
-      getModel
+      getModel,
     );
     requiredProperties.forEach((requiredProperty) => {
       composition.imports.push(...requiredProperty.imports);

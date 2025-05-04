@@ -8,7 +8,7 @@ export const enumerator: CodegenHandlebarsHelperWrapper = () =>
     parent: string | undefined,
     name: string | undefined,
     useUnionTypes: boolean,
-    options: Handlebars.HelperOptions
+    options: Handlebars.HelperOptions,
   ) {
     if (!useUnionTypes && parent && name) {
       return `${parent}${options.data?.root?.rootNameSuffix ?? ''}.${name}`;

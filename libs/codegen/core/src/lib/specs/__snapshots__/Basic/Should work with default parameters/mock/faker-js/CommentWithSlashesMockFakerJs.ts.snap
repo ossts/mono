@@ -10,7 +10,7 @@ import type {
 } from './typesMockFakerJs';
 
 export function getCommentWithSlashesMockFakerJs<
-  TMode extends 'standalone' = 'standalone'
+  TMode extends 'standalone' = 'standalone',
 >(params?: MockFakerJSGeneratorParams<TMode>): CommentWithSlashes | null {
   const modelName = 'CommentWithSlashes';
 

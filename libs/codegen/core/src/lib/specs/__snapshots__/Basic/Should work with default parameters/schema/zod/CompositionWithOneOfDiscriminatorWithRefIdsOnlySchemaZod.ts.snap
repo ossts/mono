@@ -8,7 +8,7 @@ export const CompositionWithOneOfDiscriminatorWithRefIdsOnlySchemaZod = z.union(
   [
     ModelCircleSchemaZod.optional().nullable(),
     ModelSquareSchemaZod.optional().nullable(),
-  ]
+  ],
 );
 export const CompositionWithOneOfDiscriminatorWithRefIdsOnlySchemaZodNoPrimaryKey =
   CompositionWithOneOfDiscriminatorWithRefIdsOnlySchemaZod;

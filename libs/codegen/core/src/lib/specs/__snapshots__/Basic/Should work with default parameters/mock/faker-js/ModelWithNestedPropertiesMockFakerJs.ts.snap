@@ -10,23 +10,23 @@ import type {
 } from './typesMockFakerJs';
 
 export function getModelWithNestedPropertiesMockFakerJs<
-  TMode extends 'withReferences'
+  TMode extends 'withReferences',
 >(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): ModelOrIdNullable<ModelWithNestedProperties> | null;
 
 export function getModelWithNestedPropertiesMockFakerJs<
-  TMode extends 'standalone'
+  TMode extends 'standalone',
 >(params?: MockFakerJSGeneratorParams<TMode>): ModelWithNestedProperties | null;
 
 export function getModelWithNestedPropertiesMockFakerJs<
-  TMode extends 'primaryKey'
+  TMode extends 'primaryKey',
 >(params?: MockFakerJSGeneratorParams<TMode>): number | null;
 
 export function getModelWithNestedPropertiesMockFakerJs<
-  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences'
+  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences',
 >(
-  params: MockFakerJSGeneratorParams<TMode> = {}
+  params: MockFakerJSGeneratorParams<TMode> = {},
 ): ModelOrIdNullable<ModelWithNestedProperties> | null {
   const modelName = 'ModelWithNestedProperties';
 
@@ -50,6 +50,6 @@ export function getModelWithNestedPropertiesMockFakerJs<
         },
         null,
       ]),
-    })
+    }),
   );
 }

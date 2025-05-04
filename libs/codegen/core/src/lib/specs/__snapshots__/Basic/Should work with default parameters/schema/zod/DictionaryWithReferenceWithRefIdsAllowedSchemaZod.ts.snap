@@ -8,7 +8,7 @@ export const DictionaryWithReferenceWithRefIdsAllowedSchemaZod = z.record(
   ModelWithStringWithRefIdsAllowedSchemaZod.or(z.string())
     .or(z.number())
     .optional()
-    .nullable()
+    .nullable(),
 );
 export const DictionaryWithReferenceWithRefIdsAllowedSchemaZodNoPrimaryKey =
   DictionaryWithReferenceWithRefIdsAllowedSchemaZod;

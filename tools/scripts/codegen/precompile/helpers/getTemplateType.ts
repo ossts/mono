@@ -12,8 +12,8 @@ export const getTemplateType = (path: string): GeneratorTemplatesExportType => {
   if (!generatorTemplatesExportTypes.includes(parsedPathType)) {
     throw new Error(
       `Unsupported template type "${parsedPathType}". Allowed values are "${JSON.stringify(
-        generatorTemplatesExportTypes
-      )}"`
+        generatorTemplatesExportTypes,
+      )}"`,
     );
   }
   return parsedPathType;

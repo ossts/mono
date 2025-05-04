@@ -20,7 +20,7 @@ export const CompositionWithAnyOfAndNullableSchemaZod = z
       .optional(),
   })
   .describe(
-    `Model:CompositionWithAnyOfAndNullable---This is a model with one property with a 'any of' relationship`
+    `Model:CompositionWithAnyOfAndNullable---This is a model with one property with a 'any of' relationship`,
   );
 export const CompositionWithAnyOfAndNullableSchemaZodNoPrimaryKey =
   CompositionWithAnyOfAndNullableSchemaZod;

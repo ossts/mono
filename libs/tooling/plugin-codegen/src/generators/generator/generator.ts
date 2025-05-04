@@ -11,8 +11,6 @@ import {
 } from '@nx/devkit';
 import { libraryGenerator as jsLibraryGenerator } from '@nx/js';
 
-import type { DictionaryWithAny } from '@ossts/shared/typescript/helper-types';
-
 import { updateGeneratedContent } from '../update-generated-content/generator';
 import type { GeneratorGeneratorSchema } from './schema';
 
@@ -48,17 +46,17 @@ export default async function (tree: Tree, schema: GeneratorGeneratorSchema) {
 
 function normalizeOptions(
   tree: Tree,
-  options: GeneratorGeneratorSchema
+  options: GeneratorGeneratorSchema,
 ): NormalizedSchema {
   const generatorsBasePath = 'codegen/generators';
   if (options.directory?.startsWith(generatorsBasePath)) {
     throw new Error(
-      `Generator "directory" should be relative to "${generatorsBasePath}"`
+      `Generator "directory" should be relative to "${generatorsBasePath}"`,
     );
   }
   if (!options.directory && options.name.startsWith(generatorsBasePath)) {
     throw new Error(
-      `Generator "name" should be relative to "${generatorsBasePath}"`
+      `Generator "name" should be relative to "${generatorsBasePath}"`,
     );
   }
 
@@ -87,15 +85,15 @@ function removeFiles(tree: Tree, options: NormalizedSchema) {
     joinPathFragments(
       options.projectRoot,
       'src/lib',
-      `${options.projectName}.ts`
-    )
+      `${options.projectName}.ts`,
+    ),
   );
   tree.delete(
     joinPathFragments(
       options.projectRoot,
       'src/lib',
-      `${options.projectName}.spec.ts`
-    )
+      `${options.projectName}.spec.ts`,
+    ),
   );
 }
 
@@ -111,18 +109,19 @@ function addFiles(tree: Tree, options: NormalizedSchema) {
     tree,
     joinPathFragments(__dirname, 'files'),
     options.projectRoot,
-    templateOptions
+    templateOptions,
   );
 }
 
 function updateProjectTargets(tree: Tree, options: NormalizedSchema) {
   const precompiledTemplatesPath = joinPathFragments(
     options.projectRoot,
-    'src/lib/precompiled-templates'
+    'src/lib/precompiled-templates',
   );
 
   updateJson(tree, `${options.projectRoot}/project.json`, (json) => {
-    Object.values<DictionaryWithAny>(json.targets).forEach((target) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    Object.values<Record<string, any>>(json.targets).forEach((target) => {
       target.dependsOn = ['precompile-templates'];
     });
 

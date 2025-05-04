@@ -10,25 +10,25 @@ import type {
 } from './typesMockFakerJs';
 
 export function getCompositionWithOneOfAndSimpleArrayDictionaryMockFakerJs<
-  TMode extends 'withReferences'
+  TMode extends 'withReferences',
 >(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): ModelOrIdNullable<CompositionWithOneOfAndSimpleArrayDictionary> | null;
 
 export function getCompositionWithOneOfAndSimpleArrayDictionaryMockFakerJs<
-  TMode extends 'standalone'
+  TMode extends 'standalone',
 >(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): CompositionWithOneOfAndSimpleArrayDictionary | null;
 
 export function getCompositionWithOneOfAndSimpleArrayDictionaryMockFakerJs<
-  TMode extends 'primaryKey'
+  TMode extends 'primaryKey',
 >(params?: MockFakerJSGeneratorParams<TMode>): number | null;
 
 export function getCompositionWithOneOfAndSimpleArrayDictionaryMockFakerJs<
-  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences'
+  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences',
 >(
-  params: MockFakerJSGeneratorParams<TMode> = {}
+  params: MockFakerJSGeneratorParams<TMode> = {},
 ): ModelOrIdNullable<CompositionWithOneOfAndSimpleArrayDictionary> | null {
   const modelName = 'CompositionWithOneOfAndSimpleArrayDictionary';
 
@@ -52,13 +52,13 @@ export function getCompositionWithOneOfAndSimpleArrayDictionaryMockFakerJs<
               () => faker.helpers.arrayElements([faker.datatype.boolean()]),
               {
                 probability,
-              }
+              },
             ),
           },
         ]),
       {
         probability,
-      }
+      },
     ),
   }));
 }

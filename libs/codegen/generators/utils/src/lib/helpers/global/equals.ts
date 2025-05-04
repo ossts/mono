@@ -5,7 +5,7 @@ export const equals: CodegenHandlebarsHelperWrapper = () =>
     this: unknown,
     a: string,
     b: string,
-    options: Handlebars.HelperOptions
+    options: Handlebars.HelperOptions,
   ): string {
     return a === b ? options.fn(this) : options.inverse(this);
   };

@@ -3,7 +3,7 @@ import { entityToPrimaryKeyNameDefaultMapping } from '../debug/settings';
 import { generateMockOutputPath, generatorsSettings } from './helpers.spec';
 import { parsedSchemas } from './setup.spec';
 
-describe.only('Models', () => {
+describe('Models', () => {
   it('Should support primaryKey overrides', async ({ task }) => {
     await generate({
       input: '',

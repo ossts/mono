@@ -17,10 +17,11 @@ import type { ResolvedGenerator } from '../types';
 export const generatorNamesString: readonly string[] = generatorNamesBuiltIn;
 
 export const resolveGeneratorParams = async <
-  TGenerators extends AbstractExternalGeneratorWithName = AbstractExternalGeneratorWithName
+  TGenerators extends
+    AbstractExternalGeneratorWithName = AbstractExternalGeneratorWithName,
 >(
   generatorCfg: AbstractGeneratorWithName | AbstractExternalGeneratorWithName,
-  generatorsSettings: AbstractGeneratorSettings | undefined
+  generatorsSettings: AbstractGeneratorSettings | undefined,
 ): Promise<ResolvedGenerator<TGenerators>> => {
   const isBuiltIn = generatorNamesString.includes(generatorCfg.name);
 
@@ -42,7 +43,7 @@ export const resolveGeneratorParams = async <
     };
 
     generator = new GeneratorCls(
-      generatorParams
+      generatorParams,
     ) as ResolvedGenerator<TGenerators>;
 
     generator.templates = precompiledTemplates;
@@ -50,7 +51,7 @@ export const resolveGeneratorParams = async <
   } else {
     if (!generatorCfg.generatorPath) {
       throw new Error(
-        `"generatorPath" is missing for "${generatorCfg.name}" generator`
+        `"generatorPath" is missing for "${generatorCfg.name}" generator`,
       );
     }
 
@@ -67,7 +68,7 @@ export const resolveGeneratorParams = async <
     };
 
     generator = new DefaultExternalGenerator(
-      generatorParams
+      generatorParams,
     ) as ResolvedGenerator<TGenerators>;
 
     generator.templates = precompiledTemplates;

@@ -5,7 +5,7 @@ import { ModelWithStringSchemaZod } from './ModelWithStringSchemaZod';
 
 export const DictionaryWithReferenceSchemaZod = z.record(
   z.string(),
-  ModelWithStringSchemaZod.optional().nullable()
+  ModelWithStringSchemaZod.optional().nullable(),
 );
 export const DictionaryWithReferenceSchemaZodNoPrimaryKey =
   DictionaryWithReferenceSchemaZod;

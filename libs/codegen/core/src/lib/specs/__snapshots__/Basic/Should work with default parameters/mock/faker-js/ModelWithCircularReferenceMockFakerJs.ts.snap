@@ -10,25 +10,25 @@ import type {
 } from './typesMockFakerJs';
 
 export function getModelWithCircularReferenceMockFakerJs<
-  TMode extends 'withReferences'
+  TMode extends 'withReferences',
 >(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): ModelOrIdNullable<ModelWithCircularReference> | null;
 
 export function getModelWithCircularReferenceMockFakerJs<
-  TMode extends 'standalone'
+  TMode extends 'standalone',
 >(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): ModelWithCircularReference | null;
 
 export function getModelWithCircularReferenceMockFakerJs<
-  TMode extends 'primaryKey'
+  TMode extends 'primaryKey',
 >(params?: MockFakerJSGeneratorParams<TMode>): number | null;
 
 export function getModelWithCircularReferenceMockFakerJs<
-  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences'
+  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences',
 >(
-  params: MockFakerJSGeneratorParams<TMode> = {}
+  params: MockFakerJSGeneratorParams<TMode> = {},
 ): ModelOrIdNullable<ModelWithCircularReference> | null {
   const modelName = 'ModelWithCircularReference';
 
@@ -47,8 +47,8 @@ export function getModelWithCircularReferenceMockFakerJs<
           }),
         {
           probability,
-        }
+        },
       ),
-    })
+    }),
   );
 }

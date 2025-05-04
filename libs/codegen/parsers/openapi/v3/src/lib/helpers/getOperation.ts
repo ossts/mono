@@ -25,7 +25,7 @@ export const getOperation = (
   method: string,
   tag: string,
   op: OpenAPIV3.OperationObject,
-  pathParams: ParsedOperationParametersOpenAPIV3
+  pathParams: ParsedOperationParametersOpenAPIV3,
 ): ParsedOperationOpenAPIV3 => {
   const serviceName = getServiceName(tag);
   const operationName = getOperationName(url, method, op.operationId);
@@ -68,7 +68,7 @@ export const getOperation = (
   if (op.requestBody) {
     const requestBodyDef = getRef<OpenAPIV3RequestBodyWithRef>(
       openApi,
-      op.requestBody
+      op.requestBody,
     );
     const requestBody = getOperationRequestBody(openApi, requestBodyDef);
     operation.imports.push(...requestBody.imports);

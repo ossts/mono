@@ -26,7 +26,7 @@ const TYPE_MAPPINGS = new Map<string, string>([
  */
 export const getMappedType = (
   type: string,
-  format?: string
+  format?: string,
 ): string | undefined => {
   if (format === 'binary') {
     return 'binary';

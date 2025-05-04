@@ -10,21 +10,21 @@ import type {
 } from './typesMockFakerJs';
 
 export function getModelSquareMockFakerJs<TMode extends 'withReferences'>(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): ModelOrIdNullable<ModelSquare> | null;
 
 export function getModelSquareMockFakerJs<TMode extends 'standalone'>(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): ModelSquare | null;
 
 export function getModelSquareMockFakerJs<TMode extends 'primaryKey'>(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): number | null;
 
 export function getModelSquareMockFakerJs<
-  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences'
+  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences',
 >(
-  params: MockFakerJSGeneratorParams<TMode> = {}
+  params: MockFakerJSGeneratorParams<TMode> = {},
 ): ModelOrIdNullable<ModelSquare> | null {
   const modelName = 'ModelSquare';
 
@@ -38,6 +38,6 @@ export function getModelSquareMockFakerJs<
       sideLength: faker.helpers.maybe(() => faker.number.int(), {
         probability,
       }),
-    })
+    }),
   );
 }

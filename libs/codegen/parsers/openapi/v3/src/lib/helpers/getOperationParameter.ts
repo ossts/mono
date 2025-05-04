@@ -10,10 +10,10 @@ import { createModel, getPattern } from '../utils';
 
 export const getOperationParameter = (
   openApi: OpenAPIV3Document,
-  parameter: OpenAPIV3.ReferenceObject | OpenAPIV3.ParameterObject
+  parameter: OpenAPIV3.ReferenceObject | OpenAPIV3.ParameterObject,
 ): ParsedOperationParameterOpenAPIV3 => {
   const operationParameter = createModel<ParsedOperationParameterOpenAPIV3>(
-    parameter as OpenAPIV3SchemaWithRef
+    parameter as OpenAPIV3SchemaWithRef,
   );
 
   if ('$ref' in parameter) {

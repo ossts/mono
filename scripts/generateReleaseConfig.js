@@ -11,7 +11,7 @@ module.exports = (
   packageName,
   branchName = packageName,
   path = packageName,
-  additionalCommitPaths = []
+  additionalCommitPaths = [],
 ) => {
   const srcRoot = `libs/${path}`;
   const distRoot = `dist/${srcRoot}`;

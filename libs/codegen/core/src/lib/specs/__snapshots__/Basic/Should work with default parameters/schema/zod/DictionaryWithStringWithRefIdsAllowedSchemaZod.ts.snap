@@ -3,7 +3,7 @@ import { z } from 'zod';
 
 export const DictionaryWithStringWithRefIdsAllowedSchemaZod = z.record(
   z.string(),
-  z.string()
+  z.string(),
 );
 export const DictionaryWithStringWithRefIdsAllowedSchemaZodNoPrimaryKey =
   DictionaryWithStringWithRefIdsAllowedSchemaZod;

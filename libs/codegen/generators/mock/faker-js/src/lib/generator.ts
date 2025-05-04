@@ -51,11 +51,11 @@ export class MockFakerJsGenerator
       config,
       {
         settings,
-      }
+      },
     );
   }
 
-  override settings?: MockFakerJsGeneratorSettings;
+  declare settings?: MockFakerJsGeneratorSettings;
 }
 
 /**
@@ -64,7 +64,7 @@ export class MockFakerJsGenerator
  * Transforms all faker generators keys toLowerCase to make it match different styles
  */
 const getFinalSettings = (
-  settings: MockFakerJsGeneratorConfig['settings']
+  settings: MockFakerJsGeneratorConfig['settings'],
 ): MockFakerJsGeneratorConfig['settings'] => {
   const defaultSettings: MockFakerJsGeneratorConfig['settings'] = {
     fakerGenerators: {
@@ -93,22 +93,22 @@ const getFinalSettings = (
 
   if (mergedSettings.fakerGenerators?.typeBased) {
     mergedSettings.fakerGenerators.typeBased = lowerCaseKeysRecursive(
-      mergedSettings.fakerGenerators?.typeBased
+      mergedSettings.fakerGenerators?.typeBased,
     );
   }
   if (mergedSettings.fakerGenerators?.pathBased) {
     mergedSettings.fakerGenerators.pathBased = lowerCaseKeysRecursive(
-      mergedSettings.fakerGenerators?.pathBased
+      mergedSettings.fakerGenerators?.pathBased,
     );
   }
   if (mergedSettings.fakerParamsGenerators?.typeBased) {
     mergedSettings.fakerParamsGenerators.typeBased = lowerCaseKeysRecursive(
-      mergedSettings.fakerParamsGenerators?.typeBased
+      mergedSettings.fakerParamsGenerators?.typeBased,
     );
   }
   if (mergedSettings.fakerParamsGenerators?.pathBased) {
     mergedSettings.fakerParamsGenerators.pathBased = lowerCaseKeysRecursive(
-      mergedSettings.fakerParamsGenerators?.pathBased
+      mergedSettings.fakerParamsGenerators?.pathBased,
     );
   }
 
@@ -116,7 +116,7 @@ const getFinalSettings = (
 };
 
 const lowerCaseKeysRecursive = (
-  obj: DictionaryWithAny | undefined
+  obj: DictionaryWithAny | undefined,
 ): DictionaryWithAny | undefined => {
   if (!isPlainObject(obj)) return;
 

@@ -5,7 +5,7 @@ export const startsWith: CodegenHandlebarsHelperWrapper = () =>
     this: unknown,
     value: string,
     b: string,
-    options: Handlebars.HelperOptions
+    options: Handlebars.HelperOptions,
   ): string {
     return value.startsWith(b) ? options.fn(this) : options.inverse(this);
   };

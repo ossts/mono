@@ -3,6 +3,7 @@
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/tooling/plugin-codegen/src",
   "projectType": "library",
+  "tags": ["scope:nx", "type:plugin", "project:codegen"],
   "targets": {
     "build": {
       "executor": "@nx/js:tsc",
@@ -47,6 +48,5 @@
         "jestConfig": "libs/tooling/plugin-codegen/jest.config.ts"
       }
     }
-  },
-  "tags": ["scope:nx", "type:plugin", "project:codegen"]
+  }
 }

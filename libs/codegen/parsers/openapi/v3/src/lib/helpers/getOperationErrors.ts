@@ -4,7 +4,7 @@ import type {
 } from '../types';
 
 export const getOperationErrors = (
-  operationResponses: ParsedOperationResponseOpenAPIV3[]
+  operationResponses: ParsedOperationResponseOpenAPIV3[],
 ): ParsedOperationErrorOpenAPIV3[] => {
   return operationResponses
     .filter((operationResponse) => {

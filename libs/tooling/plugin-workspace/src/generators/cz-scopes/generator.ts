@@ -29,12 +29,12 @@ export default async function (tree: Tree) {
       }
       return acc;
     },
-    []
+    [],
   );
 
   const sorted = scopes.sort((a, b) => {
-    const nameA = typeof a === 'string' ? a : a.value ?? a.name;
-    const nameB = typeof b === 'string' ? b : b.value ?? b.name;
+    const nameA = typeof a === 'string' ? a : (a.value ?? a.name);
+    const nameB = typeof b === 'string' ? b : (b.value ?? b.name);
     return nameA > nameB ? 1 : -1;
   });
 

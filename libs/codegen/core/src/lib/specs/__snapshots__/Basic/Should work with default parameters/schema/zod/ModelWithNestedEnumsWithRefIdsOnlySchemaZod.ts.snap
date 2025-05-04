@@ -10,7 +10,7 @@ export const ModelWithNestedEnumsWithRefIdsOnlySchemaZod = z
           z.literal('Success'),
           z.literal('Warning'),
           z.literal('Error'),
-        ])
+        ]),
       )
       .optional(),
     dictionaryWithEnumFromDescription: z
@@ -22,7 +22,7 @@ export const ModelWithNestedEnumsWithRefIdsOnlySchemaZod = z
           z.literal('Success'),
           z.literal('Warning'),
           z.literal('Error'),
-        ])
+        ]),
       )
       .optional(),
     arrayWithDescription: z.array(z.number()).optional(),

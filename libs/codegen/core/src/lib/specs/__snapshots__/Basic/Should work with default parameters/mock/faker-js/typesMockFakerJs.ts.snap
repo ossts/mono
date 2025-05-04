@@ -28,7 +28,7 @@ export type MockFakerJSGeneratorParamsCallStack = {
 };
 
 export type MockFakerJSGeneratorParams<
-  TMode extends MockFakerJSGeneratorParamsMode = MockFakerJSGeneratorParamsMode
+  TMode extends MockFakerJSGeneratorParamsMode = MockFakerJSGeneratorParamsMode,
 > = {
   /**
    * Faker instance

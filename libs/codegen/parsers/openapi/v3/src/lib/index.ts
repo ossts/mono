@@ -6,7 +6,7 @@ import type { ParsedClientOpenAPIV3 } from './types';
 import { isOpenAPIV3Document } from './utils';
 
 export const parse = async (
-  openApi: AbstractCodegenSchema
+  openApi: AbstractCodegenSchema,
 ): Promise<ParsedClientOpenAPIV3> => {
   if (!isOpenAPIV3Document(openApi)) {
     throw new Error(`Provided config is not a valid OpenAPIV3 Document`);

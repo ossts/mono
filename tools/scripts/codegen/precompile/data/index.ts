@@ -31,7 +31,7 @@ const generatorAbsolutePath = resolve(generatorPath);
 const generatorTemplatesPath = join(generatorPath, 'templates');
 const generatorPrecompiledTemplatesPath = join(
   generatorPath,
-  'precompiled-templates'
+  'precompiled-templates',
 );
 
 let generatorName = generatorAbsolutePath.split(pathSeparator).at(-1);
@@ -54,7 +54,7 @@ const getGeneratorConfig = async () => {
   generatorConfig = await import(`${generatorPath}`);
   if (!generatorConfig) {
     throw new Error(
-      `Unable to read generator config. Please make sure that there is an "index.{${fileExtension}}" present in generator root directory.`
+      `Unable to read generator config. Please make sure that there is an "index.{${fileExtension}}" present in generator root directory.`,
     );
   }
 

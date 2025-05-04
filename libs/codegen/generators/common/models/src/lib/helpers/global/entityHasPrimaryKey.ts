@@ -15,7 +15,7 @@ export const entityHasPrimaryKey: CodegenHandlebarsHelperWrapper<
   function (
     this: ParsedModelOpenAPIV3,
     allSettings: Map<string, AbstractGeneratorSettings>,
-    options: Handlebars.HelperOptions
+    options: Handlebars.HelperOptions,
   ) {
     const modelsGeneratorSettings = allSettings.get('common/models');
 

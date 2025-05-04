@@ -30,9 +30,8 @@ export const disableFSMock = async () => {
   const fsExtra = await import('fs-extra');
 
   // eslint-disable-next-line @typescript-eslint/consistent-type-imports
-  const actualFsExtra = await vi.importActual<typeof import('fs-extra')>(
-    'fs-extra'
-  );
+  const actualFsExtra =
+    await vi.importActual<typeof import('fs-extra')>('fs-extra');
 
   const writeFileSpy = vi
     .spyOn(fsExtra, 'writeFile')

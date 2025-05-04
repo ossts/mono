@@ -10,24 +10,24 @@ import type { PrecompileTemplatesExecutorSchema } from './schema';
 
 export default async function runExecutor(
   { watch }: PrecompileTemplatesExecutorSchema,
-  context: ExecutorContext
+  context: ExecutorContext,
 ) {
   if (!context.projectName || !context.projectsConfigurations) return;
 
   const otherGeneratorProjectNames = Object.values(
-    context.projectsConfigurations.projects
+    context.projectsConfigurations.projects,
   )
     .filter(
       (config) =>
         config.name !== context.projectName &&
-        config.sourceRoot?.startsWith('libs/codegen/generators/')
+        config.sourceRoot?.startsWith('libs/codegen/generators/'),
     )
     .map((config) => config.name);
 
   // we have to create precompiled templates for all generators
   // otherwise we would get error about missing import paths
   otherGeneratorProjectNames.forEach(
-    (name) => name && ensurePrecompiledTemplatesPresent(context, name)
+    (name) => name && ensurePrecompiledTemplatesPresent(context, name),
   );
 
   const { sourceRoot } =
@@ -54,7 +54,7 @@ export default async function runExecutor(
     ].join(' '),
     {
       stdio: 'inherit',
-    }
+    },
   );
 
   return {
@@ -65,7 +65,7 @@ export default async function runExecutor(
 function ensurePrecompiledTemplatesPresent(
   context: ExecutorContext,
   projectName: string,
-  forceUpdate = false
+  forceUpdate = false,
 ) {
   if (!context.projectsConfigurations) return;
 
@@ -78,7 +78,7 @@ function ensurePrecompiledTemplatesPresent(
 
   const precompiledTemplatesPath = joinPathFragments(
     libPath,
-    'precompiled-templates'
+    'precompiled-templates',
   );
 
   if (!forceUpdate && existsSync(precompiledTemplatesPath)) return;
@@ -87,12 +87,12 @@ function ensurePrecompiledTemplatesPresent(
 
   const precompiledTemplatesIndexPath = joinPathFragments(
     precompiledTemplatesPath,
-    'index.ts'
+    'index.ts',
   );
 
   ensureFileSync(precompiledTemplatesIndexPath);
   writeFileSync(
     precompiledTemplatesIndexPath,
-    `export const precompiledTemplates = {};`
+    `export const precompiledTemplates = {};`,
   );
 }

@@ -51,9 +51,9 @@ export class SchemaZodGenerator
         },
         dependsOn: ['utils', 'common/models', ...(config?.dependsOn ?? [])],
       },
-      config
+      config,
     );
   }
 
-  override settings?: SchemaZodGeneratorSettings;
+  declare settings?: SchemaZodGeneratorSettings;
 }

@@ -6,9 +6,9 @@ import type {
 import type { ResolvedGenerator } from '../types';
 
 export const resolveEntriesRenderCfg = <
-  TGenerators extends AbstractGeneratorWithName = AbstractGeneratorWithName
+  TGenerators extends AbstractGeneratorWithName = AbstractGeneratorWithName,
 >(
-  generator: ResolvedGenerator<TGenerators>
+  generator: ResolvedGenerator<TGenerators>,
 ) => {
   if (!generator.templates) return;
 

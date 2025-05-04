@@ -10,9 +10,10 @@ import { validateConfig } from './helpers/validateConfig';
 import type { Config } from './types';
 
 export const generateWithCustom = async <
-  TGenerators extends AbstractExternalGeneratorWithName = AbstractExternalGeneratorWithName
+  TGenerators extends
+    AbstractExternalGeneratorWithName = AbstractExternalGeneratorWithName,
 >(
-  config: Config<TGenerators>
+  config: Config<TGenerators>,
 ) => {
   validateConfig(config);
 
@@ -34,7 +35,7 @@ export const generateWithCustom = async <
     const parse = await getSchemaParser(
       schemaType,
       version,
-      parserVersionsPathMapping
+      parserVersionsPathMapping,
     );
 
     parsedSchema = await parse(schema);

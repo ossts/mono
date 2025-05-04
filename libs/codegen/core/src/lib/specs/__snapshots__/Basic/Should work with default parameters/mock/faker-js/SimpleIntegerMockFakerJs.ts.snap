@@ -10,7 +10,7 @@ import type {
 } from './typesMockFakerJs';
 
 export function getSimpleIntegerMockFakerJs<
-  TMode extends 'standalone' = 'standalone'
+  TMode extends 'standalone' = 'standalone',
 >(params?: MockFakerJSGeneratorParams<TMode>): SimpleInteger | null {
   const modelName = 'SimpleInteger';
 

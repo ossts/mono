@@ -11,7 +11,7 @@ export const getModelProperties = (
   openApi: OpenAPIV3Document,
   schema: OpenAPIV3.SchemaObject,
   getModel: GetModelFn,
-  parent?: ParsedModelOpenAPIV3
+  parent?: ParsedModelOpenAPIV3,
 ): ParsedModelOpenAPIV3[] => {
   if (!schema.properties) return [];
 
@@ -36,7 +36,7 @@ export const getModelProperties = (
           type: 'string',
           base: `'${mapPropertyValue(discriminator, parent)}'`,
           nullable: !!schema.nullable,
-        }
+        },
       );
     }
 

@@ -11,23 +11,23 @@ import type {
 } from './typesMockFakerJs';
 
 export function getModelWithReferenceMockFakerJs<
-  TMode extends 'withReferences'
+  TMode extends 'withReferences',
 >(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): ModelOrIdNullable<ModelWithReference> | null;
 
 export function getModelWithReferenceMockFakerJs<TMode extends 'standalone'>(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): ModelWithReference | null;
 
 export function getModelWithReferenceMockFakerJs<TMode extends 'primaryKey'>(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): number | null;
 
 export function getModelWithReferenceMockFakerJs<
-  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences'
+  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences',
 >(
-  params: MockFakerJSGeneratorParams<TMode> = {}
+  params: MockFakerJSGeneratorParams<TMode> = {},
 ): ModelOrIdNullable<ModelWithReference> | null {
   const modelName = 'ModelWithReference';
 
@@ -46,8 +46,8 @@ export function getModelWithReferenceMockFakerJs<
           }),
         {
           probability,
-        }
+        },
       ),
-    })
+    }),
   );
 }

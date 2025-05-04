@@ -7,7 +7,7 @@ export const CompositionBaseModelSchemaZod = z
     lastname: z.string().optional(),
   })
   .describe(
-    `Model:CompositionBaseModel---This is a base model with two simple optional properties`
+    `Model:CompositionBaseModel---This is a base model with two simple optional properties`,
   );
 export const CompositionBaseModelSchemaZodNoPrimaryKey =
   CompositionBaseModelSchemaZod;

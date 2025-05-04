@@ -10,21 +10,21 @@ import type {
 } from './typesMockFakerJs';
 
 export function getModelWithBooleanMockFakerJs<TMode extends 'withReferences'>(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): ModelOrIdNullable<ModelWithBoolean> | null;
 
 export function getModelWithBooleanMockFakerJs<TMode extends 'standalone'>(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): ModelWithBoolean | null;
 
 export function getModelWithBooleanMockFakerJs<TMode extends 'primaryKey'>(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): number | null;
 
 export function getModelWithBooleanMockFakerJs<
-  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences'
+  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences',
 >(
-  params: MockFakerJSGeneratorParams<TMode> = {}
+  params: MockFakerJSGeneratorParams<TMode> = {},
 ): ModelOrIdNullable<ModelWithBoolean> | null {
   const modelName = 'ModelWithBoolean';
 
@@ -37,6 +37,6 @@ export function getModelWithBooleanMockFakerJs<
       prop: faker.helpers.maybe(() => faker.datatype.boolean(), {
         probability,
       }),
-    })
+    }),
   );
 }

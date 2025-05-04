@@ -13,7 +13,7 @@ const {
 module.exports.copyReleaseResources = async () => {
   copyFileSync(
     resolve(libRootPath, 'README.md'),
-    resolve(distRootPath, 'README.md')
+    resolve(distRootPath, 'README.md'),
   );
 
   const libNPMIgnorePath = resolve(libRootPath, '.npmignore');
@@ -22,7 +22,7 @@ module.exports.copyReleaseResources = async () => {
   }
   copyFileSync(
     resolve(projectRootPath, 'LICENSE'),
-    resolve(distRootPath, 'LICENSE')
+    resolve(distRootPath, 'LICENSE'),
   );
 
   const libBinIndexPath = resolve(libBinPath, 'index.js');
@@ -30,7 +30,7 @@ module.exports.copyReleaseResources = async () => {
     ensureDirSync(distBinPath);
     copyFileSync(
       resolve(libBinPath, 'index.js'),
-      resolve(distBinPath, 'index.js')
+      resolve(distBinPath, 'index.js'),
     );
   }
 };

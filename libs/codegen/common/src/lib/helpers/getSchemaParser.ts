@@ -13,12 +13,12 @@ import type {
 export const getSchemaParser = async (
   schemaType: SchemaParsers,
   schemaVersion: string,
-  parserVersionsPathMapping: ParserVersionsPathsMapping
+  parserVersionsPathMapping: ParserVersionsPathsMapping,
 ): Promise<GenericParserModuleExportParseFn> => {
   const schemaParsers = parserVersionsSemverMapping[schemaType];
 
   const requiredParserVersion = Object.entries(schemaParsers).find(
-    ([version, semver]) => satisfies(schemaVersion, semver)
+    ([version, semver]) => satisfies(schemaVersion, semver),
   );
 
   if (!requiredParserVersion) {
@@ -26,8 +26,8 @@ export const getSchemaParser = async (
       `No parser available for "${schemaType}" schema version "${schemaVersion}".\nAvailable parsers are: \n${JSON.stringify(
         schemaParsers,
         null,
-        2
-      )}`
+        2,
+      )}`,
     );
   }
 

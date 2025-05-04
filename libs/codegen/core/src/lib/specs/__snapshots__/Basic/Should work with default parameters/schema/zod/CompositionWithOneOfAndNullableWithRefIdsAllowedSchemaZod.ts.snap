@@ -20,7 +20,7 @@ export const CompositionWithOneOfAndNullableWithRefIdsAllowedSchemaZod = z
       .optional(),
   })
   .describe(
-    `Model:CompositionWithOneOfAndNullable---This is a model with one property with a 'one of' relationship`
+    `Model:CompositionWithOneOfAndNullable---This is a model with one property with a 'one of' relationship`,
   );
 export const CompositionWithOneOfAndNullableWithRefIdsAllowedSchemaZodNoPrimaryKey =
   CompositionWithOneOfAndNullableWithRefIdsAllowedSchemaZod;

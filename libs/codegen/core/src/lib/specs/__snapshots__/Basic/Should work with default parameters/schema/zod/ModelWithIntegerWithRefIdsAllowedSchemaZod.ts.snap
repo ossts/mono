@@ -6,7 +6,7 @@ export const ModelWithIntegerWithRefIdsAllowedSchemaZod = z
     prop: z.number().optional(),
   })
   .describe(
-    `Model:ModelWithInteger---This is a model with one number property`
+    `Model:ModelWithInteger---This is a model with one number property`,
   );
 export const ModelWithIntegerWithRefIdsAllowedSchemaZodNoPrimaryKey =
   ModelWithIntegerWithRefIdsAllowedSchemaZod;

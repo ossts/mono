@@ -4,7 +4,7 @@ import { z } from 'zod';
 import { ModelWithStringWithRefIdsOnlySchemaZod } from './ModelWithStringWithRefIdsOnlySchemaZod';
 
 export const ArrayWithReferencesWithRefIdsOnlySchemaZod = z.array(
-  z.string().or(z.number()).optional().nullable()
+  z.string().or(z.number()).optional().nullable(),
 );
 export const ArrayWithReferencesWithRefIdsOnlySchemaZodNoPrimaryKey =
   ArrayWithReferencesWithRefIdsOnlySchemaZod;

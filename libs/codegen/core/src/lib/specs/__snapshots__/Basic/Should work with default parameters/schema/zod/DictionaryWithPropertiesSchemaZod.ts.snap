@@ -6,7 +6,7 @@ export const DictionaryWithPropertiesSchemaZod = z.record(
   z.object({
     foo: z.string().optional(),
     bar: z.string().optional(),
-  })
+  }),
 );
 export const DictionaryWithPropertiesSchemaZodNoPrimaryKey =
   DictionaryWithPropertiesSchemaZod;

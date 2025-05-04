@@ -9,7 +9,7 @@ import type {
 
 export const getOperationParameters = (
   openApi: OpenAPIV3Document,
-  parameters: OpenAPIV3ParameterWithRef[]
+  parameters: OpenAPIV3ParameterWithRef[],
 ): ParsedOperationParametersOpenAPIV3 => {
   const operationParameters: ParsedOperationParametersOpenAPIV3 = {
     imports: [],
@@ -26,7 +26,7 @@ export const getOperationParameters = (
   parameters.forEach((parameterOrReference) => {
     const parameterDef = getRef<OpenAPIV3.ParameterObject>(
       openApi,
-      parameterOrReference
+      parameterOrReference,
     );
     const parameter = getOperationParameter(openApi, parameterDef);
 

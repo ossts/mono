@@ -13,7 +13,7 @@ export const entityToPrimaryKeyNameMapping: CodegenHandlebarsHelperWrapper<Commo
     return ({ handlebarsInstance, settings: generatorSettings }) =>
       function (
         this: ParsedModelOpenAPIV3,
-        options: Handlebars.HelperOptions
+        options: Handlebars.HelperOptions,
       ): string | undefined {
         if (cache.has(this)) return cache.get(this);
 
@@ -27,7 +27,7 @@ export const entityToPrimaryKeyNameMapping: CodegenHandlebarsHelperWrapper<Commo
         result = getIdPropPathBased(
           this,
           generatorSettings.entityToPrimaryKeyNameMapping,
-          fullPath
+          fullPath,
         );
 
         result = result ?? generatorSettings.primaryKeyName ?? 'id';
@@ -40,7 +40,7 @@ export const entityToPrimaryKeyNameMapping: CodegenHandlebarsHelperWrapper<Commo
 const getIdPropPathBased = (
   type: ParsedModelOpenAPIV3,
   mapping: CommonModelsGeneratorSettings['entityToPrimaryKeyNameMapping'],
-  fullPath: string[]
+  fullPath: string[],
 ): string | undefined => {
   let result: string | undefined = undefined;
 
@@ -53,7 +53,7 @@ const getIdPropPathBased = (
 
       return acc[val] ?? acc;
     },
-    mapping
+    mapping,
   );
 
   if (!result && mapping['*'] !== undefined) {

@@ -10,21 +10,21 @@ import type {
 } from './typesMockFakerJs';
 
 export function getModelCircleMockFakerJs<TMode extends 'withReferences'>(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): ModelOrIdNullable<ModelCircle> | null;
 
 export function getModelCircleMockFakerJs<TMode extends 'standalone'>(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): ModelCircle | null;
 
 export function getModelCircleMockFakerJs<TMode extends 'primaryKey'>(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): number | null;
 
 export function getModelCircleMockFakerJs<
-  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences'
+  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences',
 >(
-  params: MockFakerJSGeneratorParams<TMode> = {}
+  params: MockFakerJSGeneratorParams<TMode> = {},
 ): ModelOrIdNullable<ModelCircle> | null {
   const modelName = 'ModelCircle';
 
@@ -38,6 +38,6 @@ export function getModelCircleMockFakerJs<
       radius: faker.helpers.maybe(() => faker.number.int(), {
         probability,
       }),
-    })
+    }),
   );
 }

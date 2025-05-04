@@ -13,7 +13,7 @@ export const getRequiredPropertiesFromComposition = (
   openApi: OpenAPIV3Document,
   required: string[],
   schemas: OpenAPIV3SchemaWithRef[],
-  getModel: GetModelFn
+  getModel: GetModelFn,
 ): ParsedModelOpenAPIV3[] => {
   return schemas
     .reduce<ParsedModelOpenAPIV3[]>((properties, schema) => {

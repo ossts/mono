@@ -3,6 +3,7 @@
   "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/codegen/generators/common/endpoints/src",
   "projectType": "library",
+  "tags": ["scope:ts", "type:lib", "project:codegen"],
   "implicitDependencies": ["codegen-generators-utils"],
   "targets": {
     "build": {
@@ -36,6 +37,5 @@
         "outputPath": "libs/codegen/generators/common/endpoints/src/lib/precompiled-templates"
       }
     }
-  },
-  "tags": ["scope:ts", "type:lib", "project:codegen"]
+  }
 }

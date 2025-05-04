@@ -4,6 +4,6 @@ import { z } from 'zod';
 import { ModelWithStringSchemaZod } from './ModelWithStringSchemaZod';
 
 export const ArrayWithArraySchemaZod = z.array(
-  z.array(ModelWithStringSchemaZod.optional().nullable())
+  z.array(ModelWithStringSchemaZod.optional().nullable()),
 );
 export const ArrayWithArraySchemaZodNoPrimaryKey = ArrayWithArraySchemaZod;

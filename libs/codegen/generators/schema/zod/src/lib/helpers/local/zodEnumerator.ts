@@ -8,7 +8,7 @@ export const zodEnumerator: CodegenHandlebarsHelperWrapper = () =>
     parentName: string | undefined,
     name: string | undefined,
     useUnionTypes: boolean,
-    options: Handlebars.HelperOptions
+    options: Handlebars.HelperOptions,
   ) {
     if (!useUnionTypes && parentName && name) {
       return `z.nativeEnum(${parentName}.${name})`;

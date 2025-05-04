@@ -13,7 +13,7 @@ import type {
 export interface AbstractGenerateParams<
   TGenerators extends AbstractGeneratorWithAll = AbstractGeneratorWithAll,
   TResolvedGeneratorsMap = unknown,
-  TGeneratorNames extends string = string
+  TGeneratorNames extends string = string,
 > {
   /**
    * Parsed schema

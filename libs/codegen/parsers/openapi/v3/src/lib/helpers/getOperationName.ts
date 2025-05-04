@@ -8,14 +8,14 @@ import { camelCase } from 'lodash';
 export const getOperationName = (
   url: string,
   method: string,
-  operationId?: string
+  operationId?: string,
 ): string => {
   if (operationId) {
     return camelCase(
       operationId
         .replace(/^[^a-zA-Z]+/g, '')
         .replace(/[^\w-]+/g, '-')
-        .trim()
+        .trim(),
     );
   }
 

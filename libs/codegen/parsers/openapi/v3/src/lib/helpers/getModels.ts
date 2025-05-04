@@ -2,7 +2,7 @@ import { getModel, getType, reservedWords } from '.';
 import type { OpenAPIV3Document, ParsedModelOpenAPIV3 } from '../types';
 
 export const getModels = (
-  openApi: OpenAPIV3Document
+  openApi: OpenAPIV3Document,
 ): ParsedModelOpenAPIV3[] => {
   if (!openApi.components?.schemas) return [];
 
@@ -13,7 +13,7 @@ export const getModels = (
       openApi,
       schema,
       type.base.replace(reservedWords, '_$1'),
-      true
+      true,
     );
   });
 };

@@ -53,5 +53,5 @@ export class CommonModelsGenerator
     });
   }
 
-  override settings?: CommonModelsGeneratorSettings;
+  declare settings?: CommonModelsGeneratorSettings;
 }

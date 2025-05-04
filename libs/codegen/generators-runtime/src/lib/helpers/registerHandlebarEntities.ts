@@ -6,10 +6,10 @@ import type { AbstractGeneratorWithName } from '@ossts/codegen/common';
 import type { ResolvedGenerator, ResolvedGeneratorsMap } from '../types';
 
 export const registerHandlebarsEntities = <
-  TGenerators extends AbstractGeneratorWithName = AbstractGeneratorWithName
+  TGenerators extends AbstractGeneratorWithName = AbstractGeneratorWithName,
 >(
   generator: ResolvedGenerator<TGenerators>,
-  allGenerators: ResolvedGeneratorsMap<TGenerators>
+  allGenerators: ResolvedGeneratorsMap<TGenerators>,
 ) => {
   const handlebarsInstance = Handlebars.create();
 
@@ -22,7 +22,7 @@ export const registerHandlebarsEntities = <
     for (const name in generator.templates.partials) {
       handlebarsInstance.registerPartial(
         name,
-        handlebarsInstance.template(generator.templates.partials[name])
+        handlebarsInstance.template(generator.templates.partials[name]),
       );
     }
   }
@@ -33,7 +33,7 @@ export const registerHandlebarsEntities = <
         generator.helpers.localHelpers[name]({
           handlebarsInstance,
           settings,
-        })
+        }),
       );
     }
   }
@@ -45,8 +45,8 @@ export const registerHandlebarsEntities = <
         handlebarsInstance.registerPartial(
           `${currentGenerator.globalName}${upperFirst(name)}`,
           handlebarsInstance.template(
-            currentGenerator.templates.globalPartials[name]
-          )
+            currentGenerator.templates.globalPartials[name],
+          ),
         );
       }
     }
@@ -57,7 +57,7 @@ export const registerHandlebarsEntities = <
           currentGenerator.helpers.globalHelpers[name]({
             handlebarsInstance,
             settings,
-          })
+          }),
         );
       }
     }

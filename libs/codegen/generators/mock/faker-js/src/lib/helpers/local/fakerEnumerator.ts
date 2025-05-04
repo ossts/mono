@@ -9,7 +9,7 @@ export const fakerEnumerator: CodegenHandlebarsHelperWrapper = () =>
     this: ParsedModelOpenAPIV3,
     enumerators: ParsedEnumOpenAPIV3[],
     name: string | undefined,
-    options: Handlebars.HelperOptions
+    options: Handlebars.HelperOptions,
   ) {
     if (this.refToParent?.name && name) {
       return `faker.helpers.enumValue(${this.refToParent?.name}.${name})`;
@@ -17,10 +17,10 @@ export const fakerEnumerator: CodegenHandlebarsHelperWrapper = () =>
 
     const enums = enumerators.map((enumerator) => enumerator.value);
     const uniqueEnums = [...new Set(enums)].map(
-      (item) => `faker.helpers.fake(${item})`
+      (item) => `faker.helpers.fake(${item})`,
     );
     const uniqueEnumsString = `faker.helpers.arrayElement([${uniqueEnums.join(
-      ', '
+      ', ',
     )}])`;
 
     return options.fn(uniqueEnumsString);

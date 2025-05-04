@@ -10,7 +10,7 @@ import type {
 } from './typesMockFakerJs';
 
 export function getCommentWithBackticksMockFakerJs<
-  TMode extends 'standalone' = 'standalone'
+  TMode extends 'standalone' = 'standalone',
 >(params?: MockFakerJSGeneratorParams<TMode>): CommentWithBackticks | null {
   const modelName = 'CommentWithBackticks';
 

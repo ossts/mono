@@ -10,7 +10,7 @@ export const ModelWithArrayWithRefIdsOnlySchemaZod = z
     propWithNumber: z.array(z.number()).optional(),
   })
   .describe(
-    `Model:ModelWithArray---This is a model with one property containing an array`
+    `Model:ModelWithArray---This is a model with one property containing an array`,
   );
 export const ModelWithArrayWithRefIdsOnlySchemaZodNoPrimaryKey =
   ModelWithArrayWithRefIdsOnlySchemaZod;

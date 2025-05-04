@@ -12,9 +12,9 @@ import type {
 } from './typesMockFakerJs';
 
 export function getCompositionWithOneOfDiscriminatorMockFakerJs<
-  TMode extends 'standalone' = 'standalone'
+  TMode extends 'standalone' = 'standalone',
 >(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): CompositionWithOneOfDiscriminator | null {
   const modelName = 'CompositionWithOneOfDiscriminator';
 

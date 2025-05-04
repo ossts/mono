@@ -10,21 +10,21 @@ import type {
 } from './typesMockFakerJs';
 
 export function getFileMockFakerJs<TMode extends 'withReferences'>(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): ModelOrIdNullable<File> | null | File['id'];
 
 export function getFileMockFakerJs<TMode extends 'standalone'>(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): File | null;
 
 export function getFileMockFakerJs<TMode extends 'primaryKey'>(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): number | null;
 
 export function getFileMockFakerJs<
-  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences'
+  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences',
 >(
-  params: MockFakerJSGeneratorParams<TMode> = {}
+  params: MockFakerJSGeneratorParams<TMode> = {},
 ): ModelOrIdNullable<File> | null | File['id'] {
   const modelName = 'File';
 
@@ -45,7 +45,7 @@ export function getFileMockFakerJs<
       () => faker.string.alpha({ length: { min: 2, max: 10 } }),
       {
         probability,
-      }
+      },
     ),
   }));
 }

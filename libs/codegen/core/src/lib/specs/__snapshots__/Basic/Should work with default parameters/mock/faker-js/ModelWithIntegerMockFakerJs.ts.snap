@@ -10,21 +10,21 @@ import type {
 } from './typesMockFakerJs';
 
 export function getModelWithIntegerMockFakerJs<TMode extends 'withReferences'>(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): ModelOrIdNullable<ModelWithInteger> | null;
 
 export function getModelWithIntegerMockFakerJs<TMode extends 'standalone'>(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): ModelWithInteger | null;
 
 export function getModelWithIntegerMockFakerJs<TMode extends 'primaryKey'>(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): number | null;
 
 export function getModelWithIntegerMockFakerJs<
-  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences'
+  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences',
 >(
-  params: MockFakerJSGeneratorParams<TMode> = {}
+  params: MockFakerJSGeneratorParams<TMode> = {},
 ): ModelOrIdNullable<ModelWithInteger> | null {
   const modelName = 'ModelWithInteger';
 
@@ -37,6 +37,6 @@ export function getModelWithIntegerMockFakerJs<
       prop: faker.helpers.maybe(() => faker.number.int(), {
         probability,
       }),
-    })
+    }),
   );
 }

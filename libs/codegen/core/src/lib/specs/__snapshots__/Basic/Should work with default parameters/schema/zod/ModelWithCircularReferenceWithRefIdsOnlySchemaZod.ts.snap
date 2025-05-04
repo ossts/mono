@@ -6,7 +6,7 @@ export const ModelWithCircularReferenceWithRefIdsOnlySchemaZod = z
     prop: z.string().or(z.number()).optional().nullable(),
   })
   .describe(
-    `Model:ModelWithCircularReference---This is a model with one property containing a circular reference`
+    `Model:ModelWithCircularReference---This is a model with one property containing a circular reference`,
   );
 export const ModelWithCircularReferenceWithRefIdsOnlySchemaZodNoPrimaryKey =
   ModelWithCircularReferenceWithRefIdsOnlySchemaZod;

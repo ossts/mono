@@ -37,13 +37,13 @@ export function createCallStack(
 export function createCallStack(
   oldStack: MockFakerJSGeneratorParamsCallStack,
   newEntryModelName: AllApiEntities,
-  newEntryPath?: string
+  newEntryPath?: string,
 ): MockFakerJSGeneratorParamsCallStack;
 
 export function createCallStack(
   oldStack: MockFakerJSGeneratorParamsCallStack | undefined,
   newEntryModelName: AllApiEntities,
-  newEntryPath?: string
+  newEntryPath?: string,
 ): MockFakerJSGeneratorParamsCallStack {
   if (!oldStack) {
     return {
@@ -58,7 +58,7 @@ export function createCallStack(
   }
 
   const newStackEntriesCallCount = new Map<AllApiEntities, number>(
-    oldStack.entriesCallCount
+    oldStack.entriesCallCount,
   );
 
   const newVal = (newStackEntriesCallCount.get(newEntryModelName) ?? 0) + 1;
@@ -160,14 +160,14 @@ const registerMultipleEntities = (params: InitializeFakerJSParams) => {
       registerEntityAndReturnId(
         entityName,
         model,
-        generatorParams?.preventReferenceResolve
+        generatorParams?.preventReferenceResolve,
       );
-    })
+    }),
   );
 };
 
 const setInitialEntitiesCounts = (
-  params: InitializeFakerJSParams = {}
+  params: InitializeFakerJSParams = {},
 ): void => {
   const { generateEntitiesCount = {} } = params;
 
@@ -210,7 +210,7 @@ const generateInitialEntities = (params: InitializeFakerJSParams = {}) =>
     generateEntities(
       entityName,
       () => dataMap.size < count,
-      params.generatorParams
+      params.generatorParams,
     );
   });
 
@@ -220,7 +220,7 @@ const generateInitialEntities = (params: InitializeFakerJSParams = {}) =>
 const generateEntities = (
   entityName: string,
   countOrCondition: number | (() => boolean) = 1,
-  params?: MockFakerJSGeneratorParams
+  params?: MockFakerJSGeneratorParams,
 ): void => {
   while (
     typeof countOrCondition === 'number'
@@ -240,7 +240,7 @@ const generateEntities = (
 
 export const removeEntityIfAllowed = (
   entityName: AllApiEntities,
-  id: number | string
+  id: number | string,
 ): [isRemoved: boolean, message?: string] => {
   const targetMap = entityToDataMap.get(entityName);
   const targeEntity = targetMap?.get(id);
@@ -258,7 +258,7 @@ export const removeEntityIfAllowed = (
 };
 
 export const entityCanBeRemoved = (
-  entity: AllApiModels
+  entity: AllApiModels,
 ): [canRemove: boolean, reason?: string] => {
   const refs = modelRefsMap.get(entity);
 
@@ -272,7 +272,7 @@ export const entityCanBeRemoved = (
 
 export const updateEntity = (
   entityName: AllApiEntities,
-  rawModel: AllApiModels.NoPrimaryKey
+  rawModel: AllApiModels.NoPrimaryKey,
   // params: MockFakerJSGeneratorParams = {}
 ): void => {
   const primaryKeyName = apiEntityToPrimaryKeyMapping[entityName];
@@ -290,7 +290,7 @@ export const updateEntity = (
   const previousModel = targetMap.get(idVal);
   if (!previousModel)
     throw new Error(
-      `Unable to update entity. No entity "${entityName}" with ID "${idVal}" registered yet.`
+      `Unable to update entity. No entity "${entityName}" with ID "${idVal}" registered yet.`,
     );
   const previousModelAsRecord = previousModel as DictionaryWithAny;
 
@@ -305,7 +305,7 @@ export const updateEntity = (
     if (oldRefs) {
       if (Array.isArray(oldRefs)) {
         oldRefs.forEach((oldRef) =>
-          removeDependencyRelations(previousModel, oldRef)
+          removeDependencyRelations(previousModel, oldRef),
         );
       } else {
         removeDependencyRelations(previousModel, oldRefs);
@@ -342,7 +342,7 @@ export const updateEntity = (
 export const createEntity = (
   entityName: AllApiEntities,
   rawModelNoId: AllApiModels.NoPrimaryKey,
-  params: MockFakerJSGeneratorParams = {}
+  params: MockFakerJSGeneratorParams = {},
 ): AllApiModels => {
   const primaryKeyName = apiEntityToPrimaryKeyMapping[entityName];
   if (!primaryKeyName)
@@ -351,7 +351,7 @@ export const createEntity = (
   const schema = getZodSchemaForEntity(
     entityName,
     'withRefIdsAllowed',
-    'noPrimaryKey'
+    'noPrimaryKey',
   );
   const model: AllApiModels = schema.parse(rawModelNoId);
 
@@ -379,7 +379,7 @@ export const createEntity = (
 export const registerEntityAndReturnId = (
   entityName: AllApiEntities,
   model: AllApiModels,
-  skipReferenceResolve = false
+  skipReferenceResolve = false,
 ): number | string => {
   // 1. Validate input
   const schema = getZodSchemaForEntity(entityName, 'withRefIdsAllowed');
@@ -400,7 +400,7 @@ export const registerEntityAndReturnId = (
 
   if (targetMap.get(idVal))
     throw new Error(
-      `Unable to register entity. Entity "${entityName}" with ID "${idVal}" already registered.`
+      `Unable to register entity. Entity "${entityName}" with ID "${idVal}" already registered.`,
     );
 
   targetMap.set(idVal, model);
@@ -422,7 +422,7 @@ export const registerEntityAndReturnId = (
     } else if (!['string', 'number'].includes(typeof modelFieldVal)) {
       modelAsRecord[fieldName] = registerEntityAndReturnId(
         refName,
-        modelFieldVal
+        modelFieldVal,
       );
     }
   });
@@ -450,14 +450,14 @@ const zodSchemaTypeToEntitySchema = {
 export const getZodSchemaForEntity = (
   entityName: AllApiEntities,
   schemaType: 'default' | 'withRefIdsAllowed' | 'withRefIdsOnly' = 'default',
-  schemaGroup: 'default' | 'noPrimaryKey' = 'default'
+  schemaGroup: 'default' | 'noPrimaryKey' = 'default',
 ) => {
   const schema =
     zodSchemaTypeToEntitySchema[schemaGroup][schemaType][entityName];
   if (!('shape' in schema))
     throw new Error(
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      `Unhandled zod schema type "${(schema as any)._def.typeName}"`
+      `Unhandled zod schema type "${(schema as any)._def.typeName}"`,
     );
 
   return schema;
@@ -468,7 +468,7 @@ export const getZodSchemaForEntity = (
  */
 const updateEntityReferences = (
   entityName: AllApiEntities,
-  model: DictionaryWithAny
+  model: DictionaryWithAny,
 ) =>
   forEachEntityRef(entityName, ({ fieldName, refName, refModelsMap }) => {
     const modelAsRecord = model as DictionaryWithAny;
@@ -483,7 +483,7 @@ const updateEntityReferences = (
 
         if (!refModel) {
           throw new Error(
-            `No matching record found for model "${refName}" with value "${val}"`
+            `No matching record found for model "${refName}" with value "${val}"`,
           );
         }
 
@@ -503,7 +503,7 @@ const updateEntityReferences = (
     const refModel = refModelsMap.get(modelFieldVal);
     if (!refModel) {
       throw new Error(
-        `No matching record found for model "${refName}" with value "${modelFieldVal}"`
+        `No matching record found for model "${refName}" with value "${modelFieldVal}"`,
       );
     }
 
@@ -527,7 +527,7 @@ const forEachEntityRef = (() => {
 
   return (
     entityName: AllApiEntities,
-    cb: (params: MockFakerJSEForEachEntityRefCallbackParams) => void
+    cb: (params: MockFakerJSEForEachEntityRefCallbackParams) => void,
   ) => {
     const cachedVal = cache.get(entityName);
     if (cachedVal) return cachedVal.forEach(cb);
@@ -544,7 +544,7 @@ const forEachEntityRef = (() => {
       const refModelsMap = entityToDataMap.get(refName);
       if (!refModelsMap)
         throw new Error(
-          `No model available in entityToDataMap for "${refName}}"`
+          `No model available in entityToDataMap for "${refName}}"`,
         );
 
       const params: MockFakerJSEForEachEntityRefCallbackParams = {
@@ -569,7 +569,7 @@ const forEachEntityRef = (() => {
  */
 const addDependencyRelations = (
   model: AllApiModels,
-  refModel: AllApiModels
+  refModel: AllApiModels,
 ) => {
   const dependenciesSet = modelDependenciesMap.get(model) ?? new Set();
   dependenciesSet.add(refModel);
@@ -585,7 +585,7 @@ const addDependencyRelations = (
  */
 const removeDependencyRelations = (
   model: AllApiModels,
-  refModel: AllApiModels
+  refModel: AllApiModels,
 ) => {
   const dependenciesSet = modelDependenciesMap.get(model);
   const refsSet = modelRefsMap.get(refModel);
@@ -606,7 +606,7 @@ const removeAllModelDependencyRelations = (model: AllApiModels) => {
   const [canRemove] = entityCanBeRemoved(model);
   if (!canRemove)
     throw new Error(
-      `You cannot remove model which still have dependencies. Use "entityCanBeRemoved" before calling this.`
+      `You cannot remove model which still have dependencies. Use "entityCanBeRemoved" before calling this.`,
     );
 
   modelRefsMap.delete(model);
@@ -646,7 +646,7 @@ const getReferenceName = (() => {
 
     if (!modelName) {
       throw new Error(
-        'Reference is detected, but no "Model:[ModelName]--" present in Zod schema description.'
+        'Reference is detected, but no "Model:[ModelName]--" present in Zod schema description.',
       );
     }
 
@@ -657,7 +657,7 @@ const getReferenceName = (() => {
 })();
 
 const getZodReference = (
-  val: ZodFirstPartySchemaTypes
+  val: ZodFirstPartySchemaTypes,
 ): ZodFirstPartySchemaTypes | null => {
   // TODO: handle types like union, array, intersection, etc.
   switch (val._def.typeName) {
@@ -677,16 +677,16 @@ const getZodReference = (
 };
 
 type AbstractGenerateFnDef<TModel extends AllApiModels> = (
-  callStack: MockFakerJSGeneratorParamsCallStack
+  callStack: MockFakerJSGeneratorParamsCallStack,
 ) => ModelOrIdNullable<TModel>;
 
 export function abstractGenerateFn<
   TModel extends AllApiModels,
-  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences'
+  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences',
 >(
   modelName: AllApiEntities,
   params: MockFakerJSGeneratorParams<TMode>,
-  generatorFn: AbstractGenerateFnDef<TModel>
+  generatorFn: AbstractGenerateFnDef<TModel>,
 ): ModelOrIdNullable<TModel> | null {
   const idProp = apiEntityToPrimaryKeyMapping[modelName];
 

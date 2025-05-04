@@ -10,21 +10,21 @@ import type {
 } from './typesMockFakerJs';
 
 export function getCategoryMockFakerJs<TMode extends 'withReferences'>(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): ModelOrIdNullable<Category> | null | Category['id'];
 
 export function getCategoryMockFakerJs<TMode extends 'standalone'>(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): Category | null;
 
 export function getCategoryMockFakerJs<TMode extends 'primaryKey'>(
-  params?: MockFakerJSGeneratorParams<TMode>
+  params?: MockFakerJSGeneratorParams<TMode>,
 ): number | null;
 
 export function getCategoryMockFakerJs<
-  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences'
+  TMode extends MockFakerJSGeneratorParamsMode = 'withReferences',
 >(
-  params: MockFakerJSGeneratorParams<TMode> = {}
+  params: MockFakerJSGeneratorParams<TMode> = {},
 ): ModelOrIdNullable<Category> | null | Category['id'] {
   const modelName = 'Category';
 
@@ -40,6 +40,6 @@ export function getCategoryMockFakerJs<
       name: faker.helpers.maybe(() => faker.string.alpha(10), {
         probability,
       }),
-    })
+    }),
   );
 }

@@ -16,7 +16,7 @@ describe('tooling-plugin-codegen e2e', () => {
   beforeAll(() => {
     ensureNxProject(
       '@ossts/plugin-codegen',
-      'dist/libs/tooling/plugin-codegen'
+      'dist/libs/tooling/plugin-codegen',
     );
   });
 

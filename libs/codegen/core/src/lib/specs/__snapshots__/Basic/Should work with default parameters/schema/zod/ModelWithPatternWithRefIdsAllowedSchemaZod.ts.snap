@@ -24,7 +24,7 @@ export const ModelWithPatternWithRefIdsAllowedSchemaZod = z
       .optional(),
   })
   .describe(
-    `Model:ModelWithPattern---This is a model that contains a some patterns`
+    `Model:ModelWithPattern---This is a model that contains a some patterns`,
   );
 export const ModelWithPatternWithRefIdsAllowedSchemaZodNoPrimaryKey =
   ModelWithPatternWithRefIdsAllowedSchemaZod.omit({ id: true });

@@ -1,7 +1,7 @@
 import type { OpenAPIV3Document, ParsedClientServer } from '../types';
 
 export const getServers = (
-  openApi: OpenAPIV3Document
+  openApi: OpenAPIV3Document,
 ): ParsedClientServer[] | undefined => {
   const { servers } = openApi;
 
@@ -19,7 +19,7 @@ export const getServers = (
       {
         url: server.url.replace(/\/$/g, ''),
         description: server.description,
-      }
+      },
     );
   });
 };

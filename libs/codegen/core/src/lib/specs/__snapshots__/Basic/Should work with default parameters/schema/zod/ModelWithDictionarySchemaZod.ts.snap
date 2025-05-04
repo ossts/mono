@@ -6,7 +6,7 @@ export const ModelWithDictionarySchemaZod = z
     prop: z.record(z.string(), z.string()).optional(),
   })
   .describe(
-    `Model:ModelWithDictionary---This is a model with one property containing a dictionary`
+    `Model:ModelWithDictionary---This is a model with one property containing a dictionary`,
   );
 export const ModelWithDictionarySchemaZodNoPrimaryKey =
   ModelWithDictionarySchemaZod;

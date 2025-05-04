@@ -11,7 +11,7 @@ export const zodIntersection: CodegenHandlebarsHelperWrapper = ({
     this: unknown,
     properties: ParsedModelOpenAPIV3[],
     parentName: string | undefined,
-    options: Handlebars.HelperOptions
+    options: Handlebars.HelperOptions,
   ) {
     const type = handlebarsInstance.partials['zodType'];
     const types = properties.map((property) =>
@@ -20,13 +20,13 @@ export const zodIntersection: CodegenHandlebarsHelperWrapper = ({
         hasWrapperType: true,
         parentName,
         settings,
-      })
+      }),
     );
 
     const uniqueTypes = [...new Set(types)];
     let uniqueTypesString = uniqueTypes
       .map((item) =>
-        item.startsWith('{') ? item : item.startsWith('.') ? `z${item}` : item
+        item.startsWith('{') ? item : item.startsWith('.') ? `z${item}` : item,
       )
       .join(', ');
     if (uniqueTypes.length > 1) {

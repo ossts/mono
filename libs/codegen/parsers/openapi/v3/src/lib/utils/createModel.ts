@@ -4,7 +4,7 @@ import { escapeName, getPattern } from './';
 
 export const createModel = <T extends ParsedModelOpenAPIV3>(
   schema: OpenAPIV3SchemaWithRef,
-  initialValues: Partial<T> = {}
+  initialValues: Partial<T> = {},
 ): T => {
   const model: ParsedModelOpenAPIV3 = {
     name: '',

@@ -8,7 +8,7 @@ export const ModelWithReferenceSchemaZod = z
     prop: ModelWithPropertiesSchemaZod.optional().nullable(),
   })
   .describe(
-    `Model:ModelWithReference---This is a model with one property containing a reference`
+    `Model:ModelWithReference---This is a model with one property containing a reference`,
   );
 export const ModelWithReferenceSchemaZodNoPrimaryKey =
   ModelWithReferenceSchemaZod;

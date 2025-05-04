@@ -17,7 +17,7 @@ export const getModel = (
   openApi: OpenAPIV3Document,
   schema: OpenAPIV3SchemaWithRef,
   name = '',
-  isRoot = false
+  isRoot = false,
 ): ParsedModelOpenAPIV3 => {
   const model = createModel(schema, {
     name,
@@ -102,7 +102,7 @@ export const getModel = (
       schema.oneOf,
       'oneOf',
       getModel,
-      model
+      model,
     );
     model.export = composition.type;
     model.imports.push(...composition.imports);
@@ -118,7 +118,7 @@ export const getModel = (
       schema.anyOf,
       'anyOf',
       getModel,
-      model
+      model,
     );
     model.export = composition.type;
     model.imports.push(...composition.imports);
@@ -134,7 +134,7 @@ export const getModel = (
       schema.allOf,
       'allOf',
       getModel,
-      model
+      model,
     );
     model.export = composition.type;
     model.imports.push(...composition.imports);
@@ -154,7 +154,7 @@ export const getModel = (
         openApi,
         schema,
         getModel,
-        model
+        model,
       );
       modelProperties.forEach((modelProperty) => {
         model.imports.push(...modelProperty.imports);

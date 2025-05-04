@@ -97,7 +97,7 @@ vi.mock(import('fs-extra'), async (importOriginal) => {
     ensureFileSync: emptyFn,
     writeFile: (async (
       path: PathOrFileDescriptor,
-      content: string | NodeJS.ArrayBufferView
+      content: string | NodeJS.ArrayBufferView,
     ) => {
       await expect(content).toMatchFileSnapshot(path.toString() + '.snap');
     }) as any,

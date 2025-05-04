@@ -15,7 +15,7 @@ const inverseDictionary = (map: Dictionary<string>): Dictionary<string> => {
 
 export const findOneOfParentDiscriminator = (
   openApi: OpenAPIV3.Document,
-  parent?: ParsedModelOpenAPIV3
+  parent?: ParsedModelOpenAPIV3,
 ): OpenAPIV3.DiscriminatorObject | undefined => {
   if (!openApi.components?.schemas || !parent) return;
 
@@ -25,7 +25,7 @@ export const findOneOfParentDiscriminator = (
 
     return schema.oneOf.some(
       (subSchema) =>
-        '$ref' in subSchema && stripNamespace(subSchema.$ref) == parent.name
+        '$ref' in subSchema && stripNamespace(subSchema.$ref) == parent.name,
     );
   });
 
@@ -36,12 +36,12 @@ export const findOneOfParentDiscriminator = (
 
 export const mapPropertyValue = (
   discriminator: OpenAPIV3.DiscriminatorObject,
-  parent: ParsedModelOpenAPIV3
+  parent: ParsedModelOpenAPIV3,
 ): string => {
   if (discriminator.mapping) {
     const mapping = inverseDictionary(discriminator.mapping);
     const key = Object.keys(mapping).find(
-      (item) => stripNamespace(item) == parent.name
+      (item) => stripNamespace(item) == parent.name,
     );
     if (key && mapping[key]) {
       return mapping[key];

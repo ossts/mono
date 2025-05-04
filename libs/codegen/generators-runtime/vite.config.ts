@@ -7,16 +7,16 @@ import dts from 'vite-plugin-dts';
 import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 
 const nodeBuiltinModules = builtinModules.concat(
-  builtinModules.map((name) => `node:${name}`)
+  builtinModules.map((name) => `node:${name}`),
 );
 
 export default defineConfig({
   root: __dirname,
+  cacheDir: '../../../node_modules/.vite/codegen/generators-runtime',
+
   plugins: [
     dts({
-      tsConfigFilePath: join(__dirname, 'tsconfig.lib.json'),
-      // Faster builds by skipping tests. Set this to false to enable type checking.
-      skipDiagnostics: true,
+      tsconfigPath: join(__dirname, 'tsconfig.lib.json'),
     }),
 
     nxViteTsPaths(),
@@ -59,9 +59,6 @@ export default defineConfig({
       provider: 'v8',
     },
     globals: true,
-    cache: {
-      dir: '../../../node_modules/.vitest',
-    },
     environment: 'jsdom',
     include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
   },

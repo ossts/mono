@@ -3,7 +3,7 @@ import { postProcessServiceImports } from './postProcessServiceImports';
 import { postProcessServiceOperations } from './postProcessServiceOperations';
 
 export const postProcessService = (
-  service: ParsedServiceOpenAPIV3
+  service: ParsedServiceOpenAPIV3,
 ): ParsedServiceOpenAPIV3 => {
   const clone = { ...service };
   clone.operations = postProcessServiceOperations(clone);
