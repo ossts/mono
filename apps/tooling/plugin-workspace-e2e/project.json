@@ -3,17 +3,21 @@
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
   "sourceRoot": "apps/tooling/plugin-workspace-e2e/src",
+  "tags": [],
+  "implicitDependencies": ["tooling-plugin-workspace"],
   "targets": {
     "e2e": {
-      "executor": "@nx/jest:jest",
       "options": {
-        "jestConfig": "apps/tooling/plugin-workspace-e2e/jest.config.ts",
-        "runInBand": true,
-        "passWithNoTests": false
+        "passWithNoTests": false,
+        "runInBand": true
       },
-      "dependsOn": ["tooling-plugin-workspace:build"]
+      "dependsOn": ["tooling-plugin-workspace:build"],
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "coverage": true
+        }
+      }
     }
-  },
-  "tags": [],
-  "implicitDependencies": ["tooling-plugin-workspace"]
+  }
 }
