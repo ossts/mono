@@ -88,14 +88,6 @@ jobs:
           name: build-artifacts
           path: 'dist/**/*'
 
-  agents:
-    name: Nx Cloud - Agents
-    needs:
-      - prepare
-    uses: nrwl/ci/.github/workflows/nx-cloud-agents.yml@v0.15.0
-    with:
-      number-of-agents: 3
-
   # release result of NX Cloud build
   release:
     name: Release
@@ -139,7 +131,7 @@ jobs:
         with:
           script: |
             const { name } = JSON.parse('${{ needs.prepare.outputs.branchData }}');
-            await exec.exec(`pnpm nx release ${name} --verbose`)
+            await exec.exec(`pnpm nx custom-release ${name} --verbose`)
 
       # https://octokit.github.io/rest.js/v19#repos-merge
       # - name: Merge changes into default branch

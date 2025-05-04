@@ -28,7 +28,7 @@
         "outputPath": "dist/libs/codegen/main"
       }
     },
-    "release": {
+    "custom-release": {
       "executor": "nx:run-commands",
       "outputs": [],
       "options": {
