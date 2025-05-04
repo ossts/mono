@@ -20,5 +20,5 @@ pnpm add -D @ossts/codegen
 ## Usage
 
 ```sh
-yarn codegen -i path/to/openapi-spec.json
+pnpm codegen -i path/to/openapi-spec.json
 ```

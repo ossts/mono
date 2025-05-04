@@ -62,9 +62,9 @@ jobs:
       artifacts-path: dist/**/*
       artifacts-name: build-artifacts
       init-commands: |
-        yarn nx-cloud start-ci-run --stop-agents-after="build" --agent-count=3
+        pnpm nx-cloud start-ci-run --stop-agents-after="build" --agent-count=3
       parallel-commands-on-agents: |
-        yarn nx build ${{ needs.prepare.outputs.project }}
+        pnpm nx build ${{ needs.prepare.outputs.project }}
 
   agents:
     name: Nx Cloud - Agents
@@ -93,10 +93,10 @@ jobs:
         with:
           node-version-file: '.nvmrc'
           check-latest: true
-          cache: yarn
+          cache: pnpm
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: pnpm install --frozen-lockfile
 
       - name: Download build artifacts
         uses: actions/download-artifact@v4
@@ -113,7 +113,7 @@ jobs:
         with:
           script: |
             const { name } = JSON.parse('${{ needs.prepare.outputs.branchData }}');
-            await exec.exec(`yarn nx release ${name} --verbose`)
+            await exec.exec(`pnpm nx release ${name} --verbose`)
 
       # https://octokit.github.io/rest.js/v19#repos-merge
       # - name: Merge changes into default branch

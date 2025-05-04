@@ -13,7 +13,7 @@
       "options": {
         "commands": [
           "rm -rf dist/{args.libPath}",
-          "UXNX_LIB_PATH={args.libPath} yarn tsup --config ./{args.libPath}/tsup.config.ts",
+          "UXNX_LIB_PATH={args.libPath} pnpm tsup --config ./{args.libPath}/tsup.config.ts",
           "node ./scripts/build/index.js --withJSONSchema=Config --nxLibPath={args.libPath}"
         ],
         "args": "--libPath=libs/codegen/main",
@@ -31,7 +31,7 @@
       "executor": "nx:run-commands",
       "outputs": [],
       "options": {
-        "command": "yarn semantic-release --extends ./libs/codegen/main/release.config.js",
+        "command": "pnpm semantic-release --extends ./libs/codegen/main/release.config.js",
         "parallel": false
       }
     },
