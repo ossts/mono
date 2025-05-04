@@ -1,3 +1,18 @@
+# [1.7.0](https://github.com/ossts/mono/compare/@ossts/codegen-v1.6.0...@ossts/codegen-v1.7.0) (2025-05-04)
+
+
+### Bug Fixes
+
+* **codegen:** various various fixes to fix CI build and other workspace issues ([cba0561](https://github.com/ossts/mono/commit/cba0561a0cf63a4cc7e0d84c98a8961673131514))
+
+
+### Features
+
+* **codegen:** add AllApiAllApiEntities AllApiModels types. Sort models in alphabetic order ([2a4f04a](https://github.com/ossts/mono/commit/2a4f04a72b51214409b66623aa868cdc82470032))
+* **codegen:** add initialization helper and improve generation logic for FakerJS ([0580d8c](https://github.com/ossts/mono/commit/0580d8c6deb62a102c4cf1540a77e086ed0a5b6c))
+* **codegen:** add MSW generator. Various updates/improvements to generators ([9304586](https://github.com/ossts/mono/commit/93045866539cf8e651603fd50b00c1c576ec8249))
+* **workspace:** migrate to latest NX version ([070d2a6](https://github.com/ossts/mono/commit/070d2a61626e3b78558bc0bddc6ed1f285f6a0e4))
+
 # [1.6.0](https://github.com/ossts/mono/compare/@ossts/codegen-v1.5.1...@ossts/codegen-v1.6.0) (2025-03-10)
 
 
