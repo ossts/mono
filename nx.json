@@ -52,5 +52,6 @@
     "@nx/js": { "library": { "bundler": "vite", "unitTestRunner": "vitest" } }
   },
   "useInferencePlugins": false,
-  "nxCloudId": "68161a501b6283edd08d34a0"
+  "useLegacyCache": true,
+  "nxCloudId": "6817105f1b6283edd08d3567"
 }
