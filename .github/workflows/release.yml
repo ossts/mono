@@ -52,19 +52,41 @@ jobs:
       project: ${{steps.project.outputs.result}}
 
   build:
-    name: Nx Cloud - Main Job
+    runs-on: ubuntu-latest
     needs:
       - prepare
-    uses: nrwl/ci/.github/workflows/nx-cloud-main.yml@v0.15.0
-    with:
-      main-branch-name: main
-      number-of-agents: 3
-      artifacts-path: dist/**/*
-      artifacts-name: build-artifacts
-      init-commands: |
-        pnpm nx-cloud start-ci-run --stop-agents-after="build" --agent-count=3
-      parallel-commands-on-agents: |
-        pnpm nx build ${{ needs.prepare.outputs.project }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          filter: tree:0
+          fetch-depth: 0
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      # This enables task distribution via Nx Cloud
+      # Run this command as early as possible, before dependencies are installed
+      # Learn more at https://nx.dev/ci/reference/nx-cloud-cli#npx-nxcloud-startcirun
+      # Uncomment this line to enable task distribution
+      - run: pnpm dlx nx-cloud start-ci-run --distribute-on="3 linux-medium-js" --stop-agents-after="build"
+
+      # Cache node_modules
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          check-latest: true
+          cache: 'pnpm'
+
+      - run: pnpm install --frozen-lockfile
+      - uses: nrwl/nx-set-shas@v4
+
+      - run: pnpm exec nx build ${{ needs.prepare.outputs.project }}
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: build-artifacts
+          path: 'dist/**/*'
 
   agents:
     name: Nx Cloud - Agents
@@ -87,6 +109,10 @@ jobs:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
 
       - name: Setup node
         uses: actions/setup-node@v4
