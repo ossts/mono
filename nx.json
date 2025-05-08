@@ -3,13 +3,24 @@
   "npmScope": "ossts",
   "targetDefaults": {
     "build": {
-      "dependsOn": ["^build"],
-      "inputs": ["production", "^production", "build", "^build"],
+      "dependsOn": [
+        "^build"
+      ],
+      "inputs": [
+        "production",
+        "^production",
+        "build",
+        "^build"
+      ],
       "cache": true
     },
     "precompile-templates": {
-      "dependsOn": ["^precompile-templates"],
-      "inputs": ["{projectRoot}/src/lib/templates/**/*"],
+      "dependsOn": [
+        "^precompile-templates"
+      ],
+      "inputs": [
+        "{projectRoot}/src/lib/templates/**/*"
+      ],
       "cache": true
     },
     "precommit": {
@@ -17,16 +28,26 @@
         "{workspaceRoot}/**/project.json",
         "{workspaceRoot}/libs/tooling/plugin-workspace/src/generators/cz-scopes/generator.ts"
       ],
-      "outputs": ["{workspaceRoot}/__generated__/cz-scopes.json"],
+      "outputs": [
+        "{workspaceRoot}/__generated__/cz-scopes.json"
+      ],
       "cache": true
     },
     "@nx/vite:test": {
-      "inputs": ["default", "^production", "{workspaceRoot}/jest.preset.js"],
+      "inputs": [
+        "default",
+        "^production",
+        "{workspaceRoot}/jest.preset.js"
+      ],
       "cache": true
     },
     "@nx/jest:jest": {
       "cache": true,
-      "inputs": ["default", "^production", "{workspaceRoot}/jest.preset.js"],
+      "inputs": [
+        "default",
+        "^production",
+        "{workspaceRoot}/jest.preset.js"
+      ],
       "options": {
         "passWithNoTests": true
       },
@@ -47,7 +68,10 @@
     }
   },
   "namedInputs": {
-    "default": ["{projectRoot}/**/*", "sharedGlobals"],
+    "default": [
+      "{projectRoot}/**/*",
+      "sharedGlobals"
+    ],
     "production": [
       "default",
       "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
@@ -57,7 +81,9 @@
       "!{projectRoot}/src/test-setup.[jt]s",
       "!{projectRoot}/eslint.config.mjs"
     ],
-    "build": ["{workspaceRoot}/scripts/build/**/*"],
+    "build": [
+      "{workspaceRoot}/scripts/build/**/*"
+    ],
     "sharedGlobals": []
   },
   "generators": {
