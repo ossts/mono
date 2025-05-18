@@ -7,7 +7,9 @@ import { initialize } from '../faker-js';
 import type {
 	MockMSWGetServerParams,
 	MockMSWGetServerParamsOptional,
-} from './{{utilsNameWithNS 'types'}}'
+} from './{{utilsNameWithNS 'types'}}';
+
+const __dirname = import.meta.dirname;
 
 {{#with data}}
 import {

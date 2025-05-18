@@ -11,7 +11,7 @@ export type ModelWithPropertiesWithRefIdsOnly = {
   string?: string;
   number?: number;
   boolean?: boolean;
-  reference?: ModelWithStringWithRefIdsOnly;
+  reference?: number | string;
   'property with space'?: string;
   default?: string;
   try?: string;

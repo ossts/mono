@@ -1,7 +1,7 @@
 {{~#if properties~}}
 {
 {{#each properties}}
-{{#utilsIfdef description deprecated}}
+{{#utilsIfSome description deprecated}}
 /**
 {{#if description}}
  * {{{utilsEscapeComment description}}}
@@ -10,7 +10,7 @@
  * @deprecated
 {{/if}}
  */
-{{/utilsIfdef}}
+{{/utilsIfSome}}
 {{#if ../parent}}
 {{>utilsReadOnly}}{{{name}}}{{>utilsRequired}}: {{>utilsType parent=../parent}};
 {{else}}

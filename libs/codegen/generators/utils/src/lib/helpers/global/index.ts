@@ -1,4 +1,5 @@
-export * from './ifdef';
+export * from './ifEvery';
+export * from './ifSome';
 export * from './equals';
 export * from './notEquals';
 export * from './containsSpaces';

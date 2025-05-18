@@ -1,0 +1,10 @@
+/* istanbul ignore file */
+
+export type Tag = {
+  id?: number;
+  name?: string;
+};
+
+export namespace Tag {
+  export type NoPrimaryKey = Omit<Tag, 'id'>;
+}

@@ -11,7 +11,7 @@ export type ModelWithPropertiesWithRefIdsAllowed = {
   string?: string;
   number?: number;
   boolean?: boolean;
-  reference?: ModelWithStringWithRefIdsAllowed;
+  reference?: ModelWithStringWithRefIdsAllowed | number | string;
   'property with space'?: string;
   default?: string;
   try?: string;

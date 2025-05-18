@@ -6,36 +6,65 @@ import type { Dictionary } from '@ossts/shared/typescript/helper-types';
 
 import type { CommonModelsGeneratorSettings } from '../../types';
 
-export const entityToPrimaryKeyNameMapping: CodegenHandlebarsHelperWrapper<CommonModelsGeneratorSettings> =
-  (() => {
-    const cache = new Map<ParsedModelOpenAPIV3, string>();
+const defaultIdProp = 'id';
 
-    return ({ handlebarsInstance, settings: generatorSettings }) =>
-      function (
-        this: ParsedModelOpenAPIV3,
-        options: Handlebars.HelperOptions,
-      ): string | undefined {
-        if (cache.has(this)) return cache.get(this);
+const caches = new WeakMap<
+  typeof Handlebars,
+  Map<ParsedModelOpenAPIV3, string>
+>();
 
-        const fullPathHelper: Handlebars.HelperDelegate =
-          handlebarsInstance.helpers['utilsFullPath'];
+export const entityToPrimaryKeyNameMapping: CodegenHandlebarsHelperWrapper<
+  CommonModelsGeneratorSettings
+> = ({ handlebarsInstance, settings: generatorSettings }) => {
+  // we have to create cache per handlebars instance
+  // to make sure that caches won't shared between runs
+  // which leads to incorrect results in test
+  let cache = caches.get(handlebarsInstance);
+  if (!cache) {
+    cache = new Map();
+    caches.set(handlebarsInstance, cache);
+  }
 
-        const fullPath = fullPathHelper.call(this, options);
+  return function (
+    this: ParsedModelOpenAPIV3,
+    options: Handlebars.HelperOptions,
+  ): string | undefined {
+    if (cache.has(this)) return cache.get(this);
 
-        let result: string | undefined = undefined;
+    const fullPathHelper: Handlebars.HelperDelegate =
+      handlebarsInstance.helpers['utilsFullPath'];
 
-        result = getIdPropPathBased(
-          this,
-          generatorSettings.entityToPrimaryKeyNameMapping,
-          fullPath,
-        );
+    const fullPath: string[] = fullPathHelper.call(this, options);
 
-        result = result ?? generatorSettings.primaryKeyName ?? 'id';
-        cache.set(this, result);
+    let result: string | undefined = undefined;
 
-        return result;
-      };
-  })();
+    result = getIdPropPathBased(
+      this,
+      generatorSettings.entityToPrimaryKeyNameMapping,
+      fullPath,
+    );
+
+    result = result ?? generatorSettings.primaryKeyName ?? defaultIdProp;
+
+    // we want to make sure that key is present to check for default `defaultIdProp` value
+    if (result) {
+      const propertiesNames = this.properties.map((item) => item.name);
+
+      if (!propertiesNames.includes(result)) {
+        if (result !== defaultIdProp) {
+          console.warn(
+            `!!!-----------WARNING START-----------!!!!\nModel "${this.name}" doesn't have property "${result}".\nAvailable properties are "[${this.properties.map((prop) => prop.name).join(', ')}]". \nProperty id will be ignored.\n!!!------------WARNING END------------!!!!`,
+          );
+        }
+        result = '';
+      }
+    }
+
+    cache.set(this, result);
+
+    return result;
+  };
+};
 
 const getIdPropPathBased = (
   type: ParsedModelOpenAPIV3,

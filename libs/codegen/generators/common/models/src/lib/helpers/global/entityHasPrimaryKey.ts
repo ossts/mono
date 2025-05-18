@@ -17,6 +17,17 @@ export const entityHasPrimaryKey: CodegenHandlebarsHelperWrapper<
     allSettings: Map<string, AbstractGeneratorSettings>,
     options: Handlebars.HelperOptions,
   ) {
+    const fullPathHelper: Handlebars.HelperDelegate =
+      handlebarsInstance.helpers['utilsFullPath'];
+
+    const fullPath: string[] = fullPathHelper.call(this, options);
+
+    if (fullPath.length > 1) {
+      // we don't really care about nested properties
+      // if those are references there's definitely some primary key present
+      return options.fn(this);
+    }
+
     const modelsGeneratorSettings = allSettings.get('common/models');
 
     if (!modelsGeneratorSettings) {

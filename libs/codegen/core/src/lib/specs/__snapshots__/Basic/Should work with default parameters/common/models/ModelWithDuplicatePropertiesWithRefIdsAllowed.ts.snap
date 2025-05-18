@@ -5,7 +5,7 @@ import type { ModelWithStringWithRefIdsAllowed } from './ModelWithStringWithRefI
  * This is a model with duplicated properties
  */
 export type ModelWithDuplicatePropertiesWithRefIdsAllowed = {
-  prop?: ModelWithStringWithRefIdsAllowed;
+  prop?: ModelWithStringWithRefIdsAllowed | number | string;
 };
 
 export namespace ModelWithDuplicatePropertiesWithRefIdsAllowed {

@@ -1,0 +1,11 @@
+/* istanbul ignore file */
+
+export type ApiResponseWithRefIdsAllowed = {
+  code?: number;
+  type?: string;
+  message?: string;
+};
+
+export namespace ApiResponseWithRefIdsAllowed {
+  export type NoPrimaryKey = ApiResponseWithRefIdsAllowed;
+}

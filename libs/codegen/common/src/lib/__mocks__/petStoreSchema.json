@@ -869,7 +869,8 @@
             "format": "int64"
           },
           "category": {
-            "$ref": "#/components/schemas/Category"
+            "$ref": "#/components/schemas/Category",
+            "description": "description for the category field"
           },
           "name": {
             "type": "string",

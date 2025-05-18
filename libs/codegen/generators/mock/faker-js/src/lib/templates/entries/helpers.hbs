@@ -1,4 +1,3 @@
-import { random } from 'lodash';
 import type { ZodFirstPartySchemaTypes } from 'zod';
 import { ZodFirstPartyTypeKind } from 'zod';
 
@@ -176,10 +175,13 @@ const setInitialEntitiesCounts = (
   allApiEntities.forEach((entityName) => {
     const range = generateEntitiesCount[entityName] ?? defaultCount;
     const rangeArray = Array.isArray(range) ? range : [range, range];
-    const count = random(rangeArray[0], rangeArray[1]);
+   const count = getRandom(rangeArray[0], rangeArray[1] + 1);
     initialEntitiesCountMap.set(entityName, count);
   });
 };
+
+const getRandom = (min: number, max: number) =>
+  Math.floor(Math.random() * (max - min) + min);
 
 /**
  * Map of current Model to all it's dependencies.
@@ -295,7 +297,18 @@ export const updateEntity = (
   const previousModelAsRecord = previousModel as DictionaryWithAny;
 
   const schema = getZodSchemaForEntity(entityName, 'withRefIdsAllowed');
-  const model: AllApiModels = schema.parse(rawModel);
+
+	let model: AllApiModels | null = null;
+
+  try {
+    model = schema.parse(rawModel);
+  } catch (err) {
+    console.error(
+      `Zod parsing error in "updateEntity". Entity: "${entityName}". Model: `,
+      JSON.stringify(rawModel, null, 2)
+    );
+    throw new Error(err as Error);
+  }
 
   // register references for new model instance and unregister refs for old one
   forEachEntityRef(entityName, ({ fieldName }) => {
@@ -353,7 +366,18 @@ export const createEntity = (
     'withRefIdsAllowed',
     'noPrimaryKey'
   );
-  const model: AllApiModels = schema.parse(rawModelNoId);
+
+  let model: AllApiModels | null = null;
+
+  try {
+    model = schema.parse(rawModel);
+  } catch (err) {
+    console.error(
+      `Zod parsing error in "createEntity". Entity: "${entityName}". Model: `,
+      JSON.stringify(rawModel, null, 2)
+    );
+    throw new Error(err as Error);
+  }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const generate = (generators as any)[`get${entityName}MockFakerJs`];
@@ -383,7 +407,16 @@ export const registerEntityAndReturnId = (
 ): number | string => {
   // 1. Validate input
   const schema = getZodSchemaForEntity(entityName, 'withRefIdsAllowed');
-  model = schema.parse(model);
+
+ try {
+    model = schema.parse(model);
+  } catch (err) {
+    console.error(
+      `Zod parsing error in "registerEntityAndReturnId". Entity: "${entityName}". Model: `,
+      JSON.stringify(model, null, 2)
+    );
+    throw new Error(err as Error);
+  }
 
   // 2. Register entity itself itself
   const idProp = apiEntityToPrimaryKeyMapping[entityName];
@@ -705,6 +738,12 @@ export function abstractGenerateFn<
   if (!isRoot && mode === 'primaryKey') return null;
 
   const result = generatorFn(callStack);
+
+	if (!Object.prototype.hasOwnProperty.call(result, idProp)) {
+    throw new Error(
+      `Entity "${modelName}" doesn't have primary key. Either provide correct primary key using "entityToPrimaryKeyNameMapping" in models generator. Or set "generateEntitiesCount" to 0`
+    );
+  }
 
   if (mode === 'primaryKey') {
     return (result as DictionaryWithAny)[idProp];

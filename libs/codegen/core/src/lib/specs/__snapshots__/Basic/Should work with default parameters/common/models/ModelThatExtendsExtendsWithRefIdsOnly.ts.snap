@@ -9,7 +9,7 @@ export type ModelThatExtendsExtendsWithRefIdsOnly =
   ModelWithStringWithRefIdsOnly &
     ModelThatExtendsWithRefIdsOnly & {
       propExtendsC?: string;
-      propExtendsD?: ModelWithStringWithRefIdsOnly;
+      propExtendsD?: number | string;
     };
 
 export namespace ModelThatExtendsExtendsWithRefIdsOnly {

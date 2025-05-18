@@ -5,7 +5,7 @@ import type { ModelWithPropertiesWithRefIdsOnly } from './ModelWithPropertiesWit
  * This is a model with one property containing a reference
  */
 export type ModelWithReferenceWithRefIdsOnly = {
-  prop?: ModelWithPropertiesWithRefIdsOnly;
+  prop?: number | string;
 };
 
 export namespace ModelWithReferenceWithRefIdsOnly {

@@ -13,7 +13,7 @@ export type OrderWithRefIdsAllowed = {
 };
 
 export namespace OrderWithRefIdsAllowed {
-  export type NoPrimaryKey = Omit<OrderWithRefIdsAllowed, 'orderId'>;
+  export type NoPrimaryKey = OrderWithRefIdsAllowed;
   /**
    * Order Status
    */

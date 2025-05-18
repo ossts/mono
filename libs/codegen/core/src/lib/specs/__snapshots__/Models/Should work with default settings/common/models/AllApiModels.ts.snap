@@ -1,0 +1,13 @@
+import { ApiResponse, Category, Order, Pet, Tag, User } from './';
+
+export type AllApiModels = ApiResponse | Category | Order | Pet | Tag | User;
+
+export namespace AllApiModels {
+  export type NoPrimaryKey =
+    | ApiResponse.NoPrimaryKey
+    | Category.NoPrimaryKey
+    | Order.NoPrimaryKey
+    | Pet.NoPrimaryKey
+    | Tag.NoPrimaryKey
+    | User.NoPrimaryKey;
+}

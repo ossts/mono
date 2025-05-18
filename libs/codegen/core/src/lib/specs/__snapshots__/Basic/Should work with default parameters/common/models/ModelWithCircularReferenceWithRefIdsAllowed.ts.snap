@@ -4,7 +4,7 @@
  * This is a model with one property containing a circular reference
  */
 export type ModelWithCircularReferenceWithRefIdsAllowed = {
-  prop?: ModelWithCircularReferenceWithRefIdsAllowed;
+  prop?: ModelWithCircularReferenceWithRefIdsAllowed | number | string;
 };
 
 export namespace ModelWithCircularReferenceWithRefIdsAllowed {

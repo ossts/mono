@@ -1,4 +1,4 @@
-{{#utilsIfdef description deprecated}}
+{{#utilsIfSome description deprecated}}
 /**
 {{#if description}}
  * {{{utilsEscapeComment description}}}
@@ -7,10 +7,10 @@
  * @deprecated
 {{/if}}
  */
-{{/utilsIfdef}}
+{{/utilsIfSome}}
 export type {{{utilsNameWithNS name}}} = {
 	{{#each properties}}
-	{{#utilsIfdef description deprecated}}
+	{{#utilsIfSome description deprecated}}
 	/**
 	{{#if description}}
 	 * {{{utilsEscapeComment description}}}
@@ -19,7 +19,7 @@ export type {{{utilsNameWithNS name}}} = {
 	 * @deprecated
 	{{/if}}
 	 */
-	{{/utilsIfdef}}
+	{{/utilsIfSome}}
 	{{>utilsReadOnly}}{{{name}}}{{>utilsRequired}}: {{>utilsType parent=../name}};
 	{{/each}}
 };

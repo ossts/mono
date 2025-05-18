@@ -1,0 +1,10 @@
+export const allApiModelNames = [
+  'ApiResponse',
+  'Category',
+  'Order',
+  'Pet',
+  'Tag',
+  'User',
+] as const;
+
+export type AllApiModelNames = (typeof allApiModelNames)[number];

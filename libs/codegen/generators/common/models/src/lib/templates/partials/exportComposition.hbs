@@ -1,4 +1,4 @@
-{{#utilsIfdef description deprecated}}
+{{#utilsIfSome description deprecated}}
 /**
 {{#if description}}
  * {{{utilsEscapeComment description}}}
@@ -7,7 +7,7 @@
  * @deprecated
 {{/if}}
  */
-{{/utilsIfdef}}
+{{/utilsIfSome}}
 export type {{{utilsNameWithNS name}}} = {{>utilsType parent=name}};
 
 export namespace {{{utilsNameWithNS name}}} {
@@ -16,7 +16,7 @@ export namespace {{{utilsNameWithNS name}}} {
 	{{#if enums}}
 	{{#unless @root.settings.useUnionTypes}}
 		{{#each enums}}
-		{{#utilsIfdef description deprecated}}
+		{{#utilsIfSome description deprecated}}
 		/**
 		{{#if description}}
 		* {{{utilsEscapeComment description}}}
@@ -25,7 +25,7 @@ export namespace {{{utilsNameWithNS name}}} {
 		* @deprecated
 		{{/if}}
 		*/
-		{{/utilsIfdef}}
+		{{/utilsIfSome}}
 		export enum {{{name}}} {
 			{{#each enum}}
 			{{{name}}} = {{{value}}},

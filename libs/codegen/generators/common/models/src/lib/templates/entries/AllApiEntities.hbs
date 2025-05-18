@@ -1,7 +1,9 @@
 export const allApiEntities = [
 {{#with data}}
 	{{#each models}}
-		'{{name}}',
+		{{#commonModelsEntityHasPrimaryKey @root.allSettings}}
+			'{{name}}',
+		{{/commonModelsEntityHasPrimaryKey}}
 	{{/each}}
 {{/with~}}
 ] as const;

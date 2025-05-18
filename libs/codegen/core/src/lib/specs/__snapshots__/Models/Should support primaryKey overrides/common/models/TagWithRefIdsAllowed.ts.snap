@@ -6,5 +6,5 @@ export type TagWithRefIdsAllowed = {
 };
 
 export namespace TagWithRefIdsAllowed {
-  export type NoPrimaryKey = Omit<TagWithRefIdsAllowed, 'idTag'>;
+  export type NoPrimaryKey = Omit<TagWithRefIdsAllowed, 'name'>;
 }

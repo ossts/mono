@@ -1,5 +1,7 @@
 export * from './AllApiEntities';
 
+export * from './AllApiModelNames';
+
 export * from './AllApiModels';
 
 export * from './apiEntityToPrimaryKeyMapping';

@@ -33,6 +33,10 @@ export class CommonModelsGenerator
           dataPath: '',
           nameFieldOrFn: () => 'AllApiEntities',
         },
+        AllApiModelNames: {
+          dataPath: '',
+          nameFieldOrFn: () => 'AllApiModelNames',
+        },
         AllApiModels: {
           dataPath: '',
           nameFieldOrFn: () => 'AllApiModels',

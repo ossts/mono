@@ -6,5 +6,5 @@ export type Tag = {
 };
 
 export namespace Tag {
-  export type NoPrimaryKey = Omit<Tag, 'idTag'>;
+  export type NoPrimaryKey = Omit<Tag, 'name'>;
 }

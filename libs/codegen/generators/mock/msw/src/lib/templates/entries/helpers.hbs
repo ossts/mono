@@ -1,5 +1,4 @@
 import { HttpResponse } from 'msw';
-import { random } from 'lodash';
 
 {{!-- For some reason "entityToDataMap" undefined if we run test in JS debug console of VSCode --}}
 import * as allFaker from '../faker-js';
@@ -65,10 +64,12 @@ export const processResults: MockMSWProcessResults = async ({
 		}
 	});
 
-	const resultIndex = random(results.length - 1);
+	const resultIndex = getRandom(0, results.length);
 
 	return results[resultIndex]();
 }
+
+const getRandom = (min: number, max: number) => Math.floor(Math.random() * (max - min) + min);
 
 export const getVoidResponse = () => HttpResponse.json(null);
 

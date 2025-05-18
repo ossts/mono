@@ -1,4 +1,4 @@
-{{#utilsIfdef description deprecated}}
+{{#utilsIfSome description deprecated}}
 /**
 {{#if description}}
  * {{{utilsEscapeComment description}}}
@@ -7,7 +7,7 @@
  * @deprecated
 {{/if}}
  */
-{{/utilsIfdef}}
+{{/utilsIfSome}}
 export type {{{utilsNameWithNS name}}} = {{>utilsType}};
 
 export namespace {{{utilsNameWithNS name}}} {

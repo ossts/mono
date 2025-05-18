@@ -1,3 +1,5 @@
+import type { DictionaryWithAny } from '@ossts/shared/typescript/helper-types';
+
 import { getType } from '../helpers';
 import type { OpenAPIV3SchemaWithRef, ParsedModelOpenAPIV3 } from '../types';
 import { escapeName, getPattern } from './';
@@ -33,6 +35,8 @@ export const createModel = <T extends ParsedModelOpenAPIV3>(
     const schemaRef = getType(schema.$ref);
     Object.assign<ParsedModelOpenAPIV3, Partial<ParsedModelOpenAPIV3>>(model, {
       export: 'reference',
+      // there are schemas where this field is present, so why not show this info
+      description: (schema as DictionaryWithAny)['description'],
       type: schemaRef.type,
       base: schemaRef.base,
       template: schemaRef.template,

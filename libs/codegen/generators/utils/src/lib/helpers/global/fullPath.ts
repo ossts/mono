@@ -3,25 +3,49 @@ import type {
   CodegenHandlebarsHelperWrapper,
 } from '@ossts/codegen/common';
 import type { ParsedModelOpenAPIV3 } from '@ossts/codegen/parsers/openapi/v3';
+import type { DictionaryWithAny } from '@ossts/shared/typescript/helper-types';
+
+const caches = new WeakMap<
+  typeof Handlebars,
+  Map<ParsedModelOpenAPIV3, string[]>
+>();
 
 /**
  * Returns full path for current property as `string[]`
  */
-export const fullPath: CodegenHandlebarsHelperWrapper<AbstractGeneratorSettings> =
-  (() => {
-    const cache = new Map<ParsedModelOpenAPIV3, string[]>();
+export const fullPath: CodegenHandlebarsHelperWrapper<
+  AbstractGeneratorSettings
+> = ({ handlebarsInstance }) => {
+  // we have to create cache per handlebars instance
+  // to make sure that caches won't shared between runs
+  // which leads to incorrect results in test
+  let cache = caches.get(handlebarsInstance);
+  if (!cache) {
+    cache = new Map();
+    caches.set(handlebarsInstance, cache);
+  }
 
-    return () =>
-      function (this: ParsedModelOpenAPIV3): string[] {
-        const cachedVal = cache.get(this);
-        if (cachedVal) return cachedVal;
+  if (
+    !(handlebarsInstance as DictionaryWithAny)[
+      '__$$osstsEntityToPrimaryKeyNameMappingCacheSet$$__'
+    ]
+  ) {
+    cache.clear();
+    (handlebarsInstance as DictionaryWithAny)[
+      '__$$osstsEntityToPrimaryKeyNameMappingCacheSet$$__'
+    ] = true;
+  }
 
-        const result = getFullPath(this, true);
-        cache.set(this, result);
+  return function (this: ParsedModelOpenAPIV3): string[] {
+    const cachedVal = cache.get(this);
+    if (cachedVal) return cachedVal;
 
-        return result;
-      };
-  })();
+    const result = getFullPath(this, true);
+    cache.set(this, result);
+
+    return result;
+  };
+};
 
 const getFullPath = (
   type: ParsedModelOpenAPIV3,

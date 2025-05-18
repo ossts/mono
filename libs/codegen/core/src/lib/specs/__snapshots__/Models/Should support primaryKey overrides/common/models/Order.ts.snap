@@ -13,7 +13,7 @@ export type Order = {
 };
 
 export namespace Order {
-  export type NoPrimaryKey = Omit<Order, 'orderId'>;
+  export type NoPrimaryKey = Order;
   /**
    * Order Status
    */

@@ -5,9 +5,9 @@ import type { ModelWithStringWithRefIdsAllowed } from './ModelWithStringWithRefI
  * This is a model with duplicated imports
  */
 export type ModelWithDuplicateImportsWithRefIdsAllowed = {
-  propA?: ModelWithStringWithRefIdsAllowed;
-  propB?: ModelWithStringWithRefIdsAllowed;
-  propC?: ModelWithStringWithRefIdsAllowed;
+  propA?: ModelWithStringWithRefIdsAllowed | number | string;
+  propB?: ModelWithStringWithRefIdsAllowed | number | string;
+  propC?: ModelWithStringWithRefIdsAllowed | number | string;
 };
 
 export namespace ModelWithDuplicateImportsWithRefIdsAllowed {

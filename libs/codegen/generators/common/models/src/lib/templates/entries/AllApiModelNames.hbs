@@ -1,0 +1,9 @@
+export const allApiModelNames = [
+{{#with data}}
+	{{#each models}}
+		'{{name}}',
+	{{/each}}
+{{/with~}}
+] as const;
+
+export type AllApiModelNames = typeof allApiModelNames[number];

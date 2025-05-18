@@ -6,7 +6,7 @@ import type { ModelWithStringWithRefIdsOnly } from './ModelWithStringWithRefIdsO
  */
 export type ModelThatExtendsWithRefIdsOnly = ModelWithStringWithRefIdsOnly & {
   propExtendsA?: string;
-  propExtendsB?: ModelWithStringWithRefIdsOnly;
+  propExtendsB?: number | string;
 };
 
 export namespace ModelThatExtendsWithRefIdsOnly {

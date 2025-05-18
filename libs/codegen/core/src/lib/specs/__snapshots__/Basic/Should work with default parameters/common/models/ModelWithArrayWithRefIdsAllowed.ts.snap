@@ -5,7 +5,7 @@ import type { ModelWithStringWithRefIdsAllowed } from './ModelWithStringWithRefI
  * This is a model with one property containing an array
  */
 export type ModelWithArrayWithRefIdsAllowed = {
-  prop?: Array<ModelWithStringWithRefIdsAllowed>;
+  prop?: Array<ModelWithStringWithRefIdsAllowed | number | string>;
   propWithFile?: Array<Blob>;
   propWithNumber?: Array<number>;
 };
