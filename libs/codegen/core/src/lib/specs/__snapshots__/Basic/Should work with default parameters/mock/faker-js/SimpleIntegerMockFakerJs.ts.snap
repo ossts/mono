@@ -1,29 +1,3 @@
-/* istanbul ignore file */
-import { faker as fakerDefault } from '@faker-js/faker';
-
-import { SimpleInteger } from '../../common/models';
-import { abstractGenerateFn, createCallStack } from './helpersMockFakerJs';
-import type {
-  MockFakerJSGeneratorParams,
-  MockFakerJSGeneratorParamsMode,
-  ModelOrIdNullable,
-} from './typesMockFakerJs';
-
-export function getSimpleIntegerMockFakerJs<
-  TMode extends 'standalone' = 'standalone',
->(params?: MockFakerJSGeneratorParams<TMode>): SimpleInteger | null {
-  const modelName = 'SimpleInteger';
-
-  const {
-    faker = fakerDefault,
-    fakerParams: { probability } = {},
-    mode = 'standalone',
-    callStack = createCallStack(),
-  } = params ?? {};
-
-  const callCount = callStack.entriesCallCount.get(modelName) ?? 0;
-  if (callCount > 10) return null;
-
-  const result: SimpleInteger = faker.number.int();
-  return result;
+export function getSimpleIntegerMockFakerJs() {
+  throw new Error('Not implemented');
 }

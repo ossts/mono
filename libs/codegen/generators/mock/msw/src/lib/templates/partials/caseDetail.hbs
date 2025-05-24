@@ -1,4 +1,6 @@
 case 'detail': {
+	if (!variant.model) return getNotImplementedResponse();
+
 	const targetMap = allFaker.entityToDataMap.get(variant.model);
 
 	const id = +(pathParams?.[idProp ?? ''] ?? '');

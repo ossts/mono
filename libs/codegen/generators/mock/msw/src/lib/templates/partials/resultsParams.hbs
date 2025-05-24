@@ -6,7 +6,17 @@
  {{/if}}
  */
 {
-	model:  {{#utilsEquals export 'reference'}} '{{base}}' {{else}} null {{/utilsEquals}},
+	model:  {{#utilsEquals export 'reference'~}}
+		'{{base}}'
+	{{~else utilsEquals export 'array'~}}
+		{{~#utilsHasLength imports~}}
+			'{{base}}'
+		{{~else~}}
+			null
+		{{~/utilsHasLength}}
+	{{~else~}}
+		null
+	{{~/utilsEquals}},
 	isArray: {{#utilsEquals export 'array'}}true{{else}}false{{/utilsEquals}},
 	status: {{code}},
 	isVoid: {{#utilsEquals export 'generic'~}}

@@ -135,6 +135,10 @@ export type MockMSWGetServer = (
   params?: MockMSWGetServerParamsOptional
 ) => HttpResponse;
 
+export interface MockMSWRequestParams {
+	model: AllApiEntities | null,
+};
+
 export interface MockMSWResultsParams {
 	status: number,
 	model: AllApiEntities | null,
@@ -146,6 +150,7 @@ export interface MockMSWProcessResultsParams {
 	params: MockMSWGetServerParams,
 	methodParams: Parameters<HttpResponseResolver>[0],
 	idProp: string,
+	requestParams: MockMSWRequestParams,
 	resultsParams: MockMSWResultsParams[],
 	defaultRESTTypes: (MockMSWRESTType | null)[],
 }

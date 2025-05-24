@@ -1,35 +1,3 @@
-/* istanbul ignore file */
-import { faker as fakerDefault } from '@faker-js/faker';
-
-import { SimpleReference } from '../../common/models';
-import { getModelWithStringMockFakerJs } from './ModelWithStringMockFakerJs';
-import { abstractGenerateFn, createCallStack } from './helpersMockFakerJs';
-import type {
-  MockFakerJSGeneratorParams,
-  MockFakerJSGeneratorParamsMode,
-  ModelOrIdNullable,
-} from './typesMockFakerJs';
-
-export function getSimpleReferenceMockFakerJs<
-  TMode extends 'standalone' = 'standalone',
->(params?: MockFakerJSGeneratorParams<TMode>): SimpleReference | null {
-  const modelName = 'SimpleReference';
-
-  const {
-    faker = fakerDefault,
-    fakerParams: { probability } = {},
-    mode = 'standalone',
-    callStack = createCallStack(),
-  } = params ?? {};
-
-  const callCount = callStack.entriesCallCount.get(modelName) ?? 0;
-  if (callCount > 10) return null;
-
-  const result: SimpleReference = // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    getModelWithStringMockFakerJs<any>({
-      ...params,
-      callStack: createCallStack(callStack, modelName, 'SimpleReference'),
-    });
-
-  return result;
+export function getSimpleReferenceMockFakerJs() {
+  throw new Error('Not implemented');
 }

@@ -370,11 +370,11 @@ export const createEntity = (
   let model: AllApiModels | null = null;
 
   try {
-    model = schema.parse(rawModel);
+    model = schema.parse(rawModelNoId);
   } catch (err) {
     console.error(
       `Zod parsing error in "createEntity". Entity: "${entityName}". Model: `,
-      JSON.stringify(rawModel, null, 2)
+      JSON.stringify(rawModelNoId, null, 2)
     );
     throw new Error(err as Error);
   }

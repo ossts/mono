@@ -1,4 +1,6 @@
 case 'list': {
+	if (!variant.model) return getNotImplementedResponse();
+
 	const targeMap = allFaker.entityToDataMap.get(variant.model);
 
 	if (!targeMap) {

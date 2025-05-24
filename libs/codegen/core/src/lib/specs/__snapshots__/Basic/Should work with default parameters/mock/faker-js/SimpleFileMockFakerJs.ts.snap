@@ -1,29 +1,3 @@
-/* istanbul ignore file */
-import { faker as fakerDefault } from '@faker-js/faker';
-
-import { SimpleFile } from '../../common/models';
-import { abstractGenerateFn, createCallStack } from './helpersMockFakerJs';
-import type {
-  MockFakerJSGeneratorParams,
-  MockFakerJSGeneratorParamsMode,
-  ModelOrIdNullable,
-} from './typesMockFakerJs';
-
-export function getSimpleFileMockFakerJs<
-  TMode extends 'standalone' = 'standalone',
->(params?: MockFakerJSGeneratorParams<TMode>): SimpleFile | null {
-  const modelName = 'SimpleFile';
-
-  const {
-    faker = fakerDefault,
-    fakerParams: { probability } = {},
-    mode = 'standalone',
-    callStack = createCallStack(),
-  } = params ?? {};
-
-  const callCount = callStack.entriesCallCount.get(modelName) ?? 0;
-  if (callCount > 10) return null;
-
-  const result: SimpleFile = faker.number.binary({ min: 0, max: 1024 });
-  return result;
+export function getSimpleFileMockFakerJs() {
+  throw new Error('Not implemented');
 }

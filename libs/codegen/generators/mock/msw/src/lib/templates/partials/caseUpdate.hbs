@@ -1,6 +1,8 @@
 case 'update': {
+	if (!requestParams.model) return getNotImplementedResponse();
+	
 	allFaker.updateEntity(
-		variant.model,
+		requestParams.model,
 		body,
 		// params.persistence.initializerParams?.generatorParams
 	);

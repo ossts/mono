@@ -1,6 +1,8 @@
 case 'create': {
+	if (!requestParams.model) return getNotImplementedResponse();
+
 	const data = allFaker.createEntity(
-		variant.model,
+		requestParams.model,
 		body,
 		params.persistence.initializerParams?.generatorParams
 	);

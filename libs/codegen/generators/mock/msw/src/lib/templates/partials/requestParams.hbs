@@ -1,0 +1,15 @@
+const requestParams: MockMSWRequestParams = {
+	model: {{#utilsEquals method 'DELETE'~}}
+		'{{service}}'
+	{{~else~}}
+		{{~#utilsHasLength parameters~}}
+			{{#utilsEquals parameters.0.export 'reference'~}}
+				'{{parameters.0.base}}'
+			{{~else~}}
+				null
+			{{~/utilsEquals}}
+		{{~else~}}
+			null
+		{{~/utilsHasLength}},
+	{{~/utilsEquals}}
+};

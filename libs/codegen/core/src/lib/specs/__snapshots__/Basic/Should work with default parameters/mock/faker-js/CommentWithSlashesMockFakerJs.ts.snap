@@ -1,29 +1,3 @@
-/* istanbul ignore file */
-import { faker as fakerDefault } from '@faker-js/faker';
-
-import { CommentWithSlashes } from '../../common/models';
-import { abstractGenerateFn, createCallStack } from './helpersMockFakerJs';
-import type {
-  MockFakerJSGeneratorParams,
-  MockFakerJSGeneratorParamsMode,
-  ModelOrIdNullable,
-} from './typesMockFakerJs';
-
-export function getCommentWithSlashesMockFakerJs<
-  TMode extends 'standalone' = 'standalone',
->(params?: MockFakerJSGeneratorParams<TMode>): CommentWithSlashes | null {
-  const modelName = 'CommentWithSlashes';
-
-  const {
-    faker = fakerDefault,
-    fakerParams: { probability } = {},
-    mode = 'standalone',
-    callStack = createCallStack(),
-  } = params ?? {};
-
-  const callCount = callStack.entriesCallCount.get(modelName) ?? 0;
-  if (callCount > 10) return null;
-
-  const result: CommentWithSlashes = faker.number.int();
-  return result;
+export function getCommentWithSlashesMockFakerJs() {
+  throw new Error('Not implemented');
 }

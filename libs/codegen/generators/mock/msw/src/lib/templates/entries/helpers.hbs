@@ -9,6 +9,7 @@ export const processResults: MockMSWProcessResults = async ({
 	params,
 	methodParams,
 	idProp,
+	requestParams,
 	resultsParams,
 	defaultRESTTypes,
 }) => {
@@ -42,8 +43,6 @@ export const processResults: MockMSWProcessResults = async ({
 	const restTypeResolver = params.RESTTypeResolver?.Pet?.addPet;
 
 	const results = resultsParams.map((variant, index) => () => {
-		if (!variant.model) return getNotImplementedResponse();
-
 		let restType: MockMSWRESTType | null =
 			restTypeResolver ?
 				typeof restTypeResolver === 'function' ?

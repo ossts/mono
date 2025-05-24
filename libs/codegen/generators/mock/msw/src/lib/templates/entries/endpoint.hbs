@@ -1,7 +1,12 @@
 import { type HttpHandler, HttpResponse, http } from 'msw';
 
 import { allApiEntities } from '../../common/models';
-import type { MockMSWGetServerParams, MockMSWRESTType, MockMSWResultsParams } from './{{utilsNameWithNS 'types'}}';
+import type {
+	MockMSWGetServerParams,
+	MockMSWRESTType,
+	MockMSWResultsParams,
+	MockMSWRequestParams,
+} from './{{utilsNameWithNS 'types'}}';
 import { processResults } from './{{utilsNameWithNS 'helpers'}}';
 
 {{#with data}}
@@ -38,6 +43,8 @@ export const {{{utilsNameWithNS name}}} = (
 		try {
 			const idProp = '{{extractIdParamFromPath path}}';
 
+			{{>requestParams}}
+
 			{{!-- This is required because it's possible to return multiple results --}}
 			const resultsParams: MockMSWResultsParams[] = [
 				{{#each results}}
@@ -55,6 +62,7 @@ export const {{{utilsNameWithNS name}}} = (
 				params,
 				methodParams,
 				idProp,
+				requestParams,
 				resultsParams,
 				defaultRESTTypes,
 			})

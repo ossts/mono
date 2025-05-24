@@ -1,7 +1,9 @@
 case 'delete': {
+	if (!requestParams.model) return getNotImplementedResponse();
+
 	const id = +(pathParams?.[idProp ?? ''] ?? '');
 
-	const [isRemoved, message]  = allFaker.removeEntityIfAllowed(variant.model, id);
+	const [isRemoved, message]  = allFaker.removeEntityIfAllowed(requestParams.model, id);
 
 	if (!isRemoved) return getBadRequestResponse(message);
 
