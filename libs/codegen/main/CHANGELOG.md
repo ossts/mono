@@ -1,3 +1,16 @@
+# [1.8.0](https://github.com/ossts/mono/compare/@ossts/codegen-v1.7.0...@ossts/codegen-v1.8.0) (2025-09-06)
+
+
+### Bug Fixes
+
+* **codegen:** remove all occurances of word "Schama" from model name ([8ad64ee](https://github.com/ossts/mono/commit/8ad64ee1b7da25551ec3ed9915397cc112d23053))
+* **codegen:** various fixes for test and codegen improvements ([883579a](https://github.com/ossts/mono/commit/883579ad71fb46c3f28d1cd56d1671e10a377d1b))
+
+
+### Features
+
+* **codegen:** various fixes and improvements ([1f67f8f](https://github.com/ossts/mono/commit/1f67f8fea9267d66ab9d84ab20bd31f13aa547a5))
+
 # [1.7.0](https://github.com/ossts/mono/compare/@ossts/codegen-v1.6.0...@ossts/codegen-v1.7.0) (2025-05-04)
 
 
