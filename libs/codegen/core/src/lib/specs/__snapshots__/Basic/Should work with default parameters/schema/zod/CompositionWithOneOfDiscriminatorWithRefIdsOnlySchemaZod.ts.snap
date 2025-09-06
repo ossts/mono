@@ -4,11 +4,10 @@ import { z } from 'zod';
 import { ModelCircleWithRefIdsOnlySchemaZod } from './ModelCircleWithRefIdsOnlySchemaZod';
 import { ModelSquareWithRefIdsOnlySchemaZod } from './ModelSquareWithRefIdsOnlySchemaZod';
 
-export const CompositionWithOneOfDiscriminatorWithRefIdsOnlySchemaZod = z.union(
-  [
-    ModelCircleSchemaZod.optional().nullable(),
-    ModelSquareSchemaZod.optional().nullable(),
-  ],
-);
+export const CompositionWithOneOfDiscriminatorWithRefIdsOnlySchemaZod = z
+  .string()
+  .or(z.number())
+  .optional()
+  .nullable();
 export const CompositionWithOneOfDiscriminatorWithRefIdsOnlySchemaZodNoPrimaryKey =
   CompositionWithOneOfDiscriminatorWithRefIdsOnlySchemaZod;

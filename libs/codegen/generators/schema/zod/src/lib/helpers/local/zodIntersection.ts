@@ -15,12 +15,15 @@ export const zodIntersection: CodegenHandlebarsHelperWrapper = ({
   ) {
     const type = handlebarsInstance.partials['zodType'];
     const types = properties.map((property) =>
-      type({
-        ...property,
-        hasWrapperType: true,
-        parentName,
-        settings,
-      }),
+      type(
+        {
+          ...property,
+          hasWrapperType: true,
+          parentName,
+          settings,
+        },
+        options,
+      ),
     );
 
     const uniqueTypes = [...new Set(types)];

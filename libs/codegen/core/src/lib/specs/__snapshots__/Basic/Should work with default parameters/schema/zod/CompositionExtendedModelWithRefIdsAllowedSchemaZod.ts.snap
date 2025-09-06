@@ -5,7 +5,10 @@ import { CompositionBaseModelWithRefIdsAllowedSchemaZod } from './CompositionBas
 
 export const CompositionExtendedModelWithRefIdsAllowedSchemaZod =
   z.intersection([
-    CompositionBaseModelSchemaZod.optional().nullable(),
+    CompositionBaseModelWithRefIdsAllowedSchemaZod.or(z.string())
+      .or(z.number())
+      .optional()
+      .nullable(),
     z.object({
       firstName: z.coerce.string(),
       lastname: z.coerce.string(),

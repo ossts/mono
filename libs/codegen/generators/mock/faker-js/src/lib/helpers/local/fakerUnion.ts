@@ -15,12 +15,15 @@ export const fakerUnion: CodegenHandlebarsHelperWrapper = ({
     const type = handlebarsInstance.partials['fakerType'];
 
     const types = properties.map((property) =>
-      type({
-        ...property,
-        hasWrapperType: true,
-        parentName: this.refToParent?.name,
-        settings,
-      }).trim(),
+      type(
+        {
+          ...property,
+          hasWrapperType: true,
+          parentName: this.refToParent?.name,
+          settings,
+        },
+        options,
+      ).trim(),
     );
     const uniqueTypes = [...new Set(types)];
 

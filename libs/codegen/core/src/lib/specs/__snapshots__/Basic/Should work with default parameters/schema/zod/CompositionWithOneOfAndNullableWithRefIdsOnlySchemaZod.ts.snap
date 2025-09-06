@@ -12,9 +12,7 @@ export const CompositionWithOneOfAndNullableWithRefIdsOnlySchemaZod = z
         z.object({
           boolean: z.boolean().optional(),
         }),
-        ModelWithEnumSchemaZod.optional().nullable(),
-        ModelWithArraySchemaZod.optional().nullable(),
-        ModelWithDictionarySchemaZod.optional().nullable(),
+        z.string().or(z.number()).optional().nullable(),
       ])
       .nullable()
       .optional(),

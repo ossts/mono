@@ -8,14 +8,7 @@ import { ModelWithStringWithRefIdsOnlySchemaZod } from './ModelWithStringWithRef
 
 export const CompositionWithAnyOfWithRefIdsOnlySchemaZod = z
   .object({
-    propA: z
-      .union([
-        ModelWithStringSchemaZod.optional().nullable(),
-        ModelWithEnumSchemaZod.optional().nullable(),
-        ModelWithArraySchemaZod.optional().nullable(),
-        ModelWithDictionarySchemaZod.optional().nullable(),
-      ])
-      .optional(),
+    propA: z.string().or(z.number()).optional().nullable().optional(),
   })
   .describe(
     `Model:CompositionWithAnyOf---This is a model with one property with a 'any of' relationship`,

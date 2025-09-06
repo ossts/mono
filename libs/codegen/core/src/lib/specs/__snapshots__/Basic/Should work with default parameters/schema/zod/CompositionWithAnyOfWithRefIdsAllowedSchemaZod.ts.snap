@@ -10,10 +10,22 @@ export const CompositionWithAnyOfWithRefIdsAllowedSchemaZod = z
   .object({
     propA: z
       .union([
-        ModelWithStringSchemaZod.optional().nullable(),
-        ModelWithEnumSchemaZod.optional().nullable(),
-        ModelWithArraySchemaZod.optional().nullable(),
-        ModelWithDictionarySchemaZod.optional().nullable(),
+        ModelWithStringWithRefIdsAllowedSchemaZod.or(z.string())
+          .or(z.number())
+          .optional()
+          .nullable(),
+        ModelWithEnumWithRefIdsAllowedSchemaZod.or(z.string())
+          .or(z.number())
+          .optional()
+          .nullable(),
+        ModelWithArrayWithRefIdsAllowedSchemaZod.or(z.string())
+          .or(z.number())
+          .optional()
+          .nullable(),
+        ModelWithDictionaryWithRefIdsAllowedSchemaZod.or(z.string())
+          .or(z.number())
+          .optional()
+          .nullable(),
       ])
       .optional(),
   })

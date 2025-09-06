@@ -4,7 +4,7 @@ import { z } from 'zod';
 import { CompositionBaseModelWithRefIdsOnlySchemaZod } from './CompositionBaseModelWithRefIdsOnlySchemaZod';
 
 export const CompositionExtendedModelWithRefIdsOnlySchemaZod = z.intersection([
-  CompositionBaseModelSchemaZod.optional().nullable(),
+  z.string().or(z.number()).optional().nullable(),
   z.object({
     firstName: z.coerce.string(),
     lastname: z.coerce.string(),

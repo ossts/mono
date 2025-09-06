@@ -6,11 +6,20 @@ import { ModelWithStringWithRefIdsAllowedSchemaZod } from './ModelWithStringWith
 
 export const ModelThatExtendsExtendsWithRefIdsAllowedSchemaZod = z.intersection(
   [
-    ModelWithStringSchemaZod.optional().nullable(),
-    ModelThatExtendsSchemaZod.optional().nullable(),
+    ModelWithStringWithRefIdsAllowedSchemaZod.or(z.string())
+      .or(z.number())
+      .optional()
+      .nullable(),
+    ModelThatExtendsWithRefIdsAllowedSchemaZod.or(z.string())
+      .or(z.number())
+      .optional()
+      .nullable(),
     z.object({
       propExtendsC: z.string().optional(),
-      propExtendsD: ModelWithStringSchemaZod.optional().nullable(),
+      propExtendsD: ModelWithStringWithRefIdsAllowedSchemaZod.or(z.string())
+        .or(z.number())
+        .optional()
+        .nullable(),
     }),
   ],
 );

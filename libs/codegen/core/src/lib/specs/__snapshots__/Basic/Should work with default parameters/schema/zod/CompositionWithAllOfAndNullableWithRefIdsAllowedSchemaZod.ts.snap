@@ -12,9 +12,18 @@ export const CompositionWithAllOfAndNullableWithRefIdsAllowedSchemaZod = z
         z.object({
           boolean: z.boolean().optional(),
         }),
-        ModelWithEnumSchemaZod.optional().nullable(),
-        ModelWithArraySchemaZod.optional().nullable(),
-        ModelWithDictionarySchemaZod.optional().nullable(),
+        ModelWithEnumWithRefIdsAllowedSchemaZod.or(z.string())
+          .or(z.number())
+          .optional()
+          .nullable(),
+        ModelWithArrayWithRefIdsAllowedSchemaZod.or(z.string())
+          .or(z.number())
+          .optional()
+          .nullable(),
+        ModelWithDictionaryWithRefIdsAllowedSchemaZod.or(z.string())
+          .or(z.number())
+          .optional()
+          .nullable(),
       ])
       .nullable(),
   })
