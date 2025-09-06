@@ -24,17 +24,15 @@ export class SchemaZodGenerator
         entriesRenderCfg: {
           schema: {
             dataPath: 'models',
-            nameFieldOrFn: (data) => `${data['name'].replace(/Schema/g, '')}`,
+            nameFieldOrFn: (data) => data['name'],
           },
           schemaWithRefIdsAllowed: {
             dataPath: 'models',
-            nameFieldOrFn: (data) =>
-              `${data['name'].replace(/Schema/g, '')}WithRefIdsAllowed`,
+            nameFieldOrFn: (data) => `${data['name']}WithRefIdsAllowed`,
           },
           schemaWithRefIdsOnly: {
             dataPath: 'models',
-            nameFieldOrFn: (data) =>
-              `${data['name'].replace(/Schema/g, '')}WithRefIdsOnly`,
+            nameFieldOrFn: (data) => `${data['name']}WithRefIdsOnly`,
           },
           entityNameTo: {
             dataPath: '',

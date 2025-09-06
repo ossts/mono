@@ -18,5 +18,8 @@ const stripNamespaceRegExp = new RegExp(
  * Strip (OpenAPI) namespaces fom values.
  */
 export const stripNamespace = (value: string): string => {
-  return value.trim().replace(stripNamespaceRegExp, '');
+  return value
+    .trim()
+    .replace(stripNamespaceRegExp, '')
+    .replace(/Schema/g, '');
 };

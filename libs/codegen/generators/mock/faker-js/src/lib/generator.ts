@@ -29,7 +29,7 @@ export class MockFakerJsGenerator
         entriesRenderCfg: {
           schema: {
             dataPath: 'models',
-            nameFieldOrFn: (data) => `${data['name'].replace(/Schema/g, '')}`,
+            nameFieldOrFn: (data) => data['name'],
           },
           types: {
             dataPath: '',

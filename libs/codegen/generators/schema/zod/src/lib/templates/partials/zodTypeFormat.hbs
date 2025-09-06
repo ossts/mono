@@ -15,7 +15,7 @@
 {{~else utilsEquals format 'uri'~}}
 	.string().url()
 {{~else utilsEquals format 'uuid'~}}
-	.uuid()
+	.string().uuid()
 {{~else utilsEquals type 'binary'~}}
 	.object()
 {{~else utilsEquals type 'string'~}}

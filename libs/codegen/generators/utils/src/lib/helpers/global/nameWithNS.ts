@@ -10,9 +10,8 @@ export const nameWithNS: CodegenHandlebarsHelperWrapper = ({
     ...args: any[]
   ): string {
     const options: Handlebars.HelperOptions = args.pop();
-    const nameWithoutSchema = name.replace(/Schema/g, '');
 
     const suffix = options.data?.root?.rootNameSuffix ?? '';
 
-    return `${nameWithoutSchema}${suffix}${globalNS}`;
+    return `${name}${suffix}${globalNS}`;
   };
