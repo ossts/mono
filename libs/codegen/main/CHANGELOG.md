@@ -1,3 +1,10 @@
+## [1.8.1](https://github.com/ossts/mono/compare/@ossts/codegen-v1.8.0...@ossts/codegen-v1.8.1) (2025-09-06)
+
+
+### Bug Fixes
+
+* **codegen:** zod WithRefIds generated incorrectly ([17cfeab](https://github.com/ossts/mono/commit/17cfeab3bc4b5fb7a5933f95060ced15dd63f200))
+
 # [1.8.0](https://github.com/ossts/mono/compare/@ossts/codegen-v1.7.0...@ossts/codegen-v1.8.0) (2025-09-06)
 
 
