@@ -307,8 +307,12 @@ export const updateEntity = (
       `Zod parsing error in "updateEntity". Entity: "${entityName}". Model: `,
       JSON.stringify(rawModel, null, 2),
     );
-    throw new Error(err as Error);
+    if (err instanceof Error) {
+      throw new Error(err.message);
+    }
   }
+
+  if (!model) return;
 
   // register references for new model instance and unregister refs for old one
   forEachEntityRef(entityName, ({ fieldName }) => {
@@ -376,8 +380,12 @@ export const createEntity = (
       `Zod parsing error in "createEntity". Entity: "${entityName}". Model: `,
       JSON.stringify(rawModelNoId, null, 2),
     );
-    throw new Error(err as Error);
+    if (err instanceof Error) {
+      throw new Error(err.message);
+    }
   }
+
+  if (!model) throw new Error(`Unable to create entity "${entityName}"`);
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const generate = (generators as any)[`get${entityName}MockFakerJs`];
@@ -415,7 +423,9 @@ export const registerEntityAndReturnId = (
       `Zod parsing error in "registerEntityAndReturnId". Entity: "${entityName}". Model: `,
       JSON.stringify(model, null, 2),
     );
-    throw new Error(err as Error);
+    if (err instanceof Error) {
+      throw new Error(err.message);
+    }
   }
 
   // 2. Register entity itself itself
